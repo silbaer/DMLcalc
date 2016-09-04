@@ -49,6 +49,7 @@ public class MainActivity extends ActionBarActivity {
     public AutoCompleteTextView textChild;
     Dragon mom = null;
     Dragon dad = null;
+    Dragon child = null;
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -146,6 +147,7 @@ public class MainActivity extends ActionBarActivity {
             textDad.requestFocus();
 
 
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -161,7 +163,6 @@ public class MainActivity extends ActionBarActivity {
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
-
     private AdapterView.OnItemClickListener onChildItemClick = new AdapterView.OnItemClickListener() {
 
         public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
@@ -172,15 +173,15 @@ public class MainActivity extends ActionBarActivity {
                     INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
 
-            Dragon child = (Dragon) arg0.getItemAtPosition(arg2);
+            child = (Dragon) arg0.getItemAtPosition(arg2);
 
-            displayHowToResult(child);
+            displayHowToResult();
 
 
         }
     };
 
-    private void displayHowToResult(Dragon child){
+    private void displayHowToResult(){
         List<Pair<Pair<Dragon,Dragon>,Double>> htb = dml.howToBreed(child);
 
 
@@ -216,6 +217,14 @@ public class MainActivity extends ActionBarActivity {
             }
         }
     };
+
+    public void displayBreedResult(Dragon mom, Dragon dad){
+        this.mom = mom;
+        this.dad = dad;
+        textDad.setText(dad.lng_de);
+        textMom.setText(mom.lng_de);
+        displayBreedResult();
+    }
 
     private void displayBreedResult(){
         List<Dragon> result = new ArrayList<Dragon>();
@@ -257,9 +266,13 @@ public class MainActivity extends ActionBarActivity {
 
 
     public void onBreedClick(View v) {
-        List<Dragon> result = new ArrayList<Dragon>();
-
-        result = dml.breed((Dragon) spinnerDad.getSelectedItem(), (Dragon) spinnerMom.getSelectedItem());
+        textDad.setText(dad.lng_de);
+        textMom.setText(mom.lng_de);
+        displayBreedResult();
+    }
+    public void onHowToClick(View v) {
+        textChild.setText(child.lng_de);
+        displayHowToResult();
     }
 
     public void onClick(View v) {

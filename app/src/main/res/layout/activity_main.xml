@@ -34,25 +34,53 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Child" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="How"
+                android:id="@+id/buttonHowTo"
+                android:onClick="onHowToClick" />
         </LinearLayout>
 
-        <AutoCompleteTextView
-            android:id="@+id/autoCompleteTextDad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Dad">
-            <requestFocus />
-        </AutoCompleteTextView>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <AutoCompleteTextView
-            android:id="@+id/autoCompleteTextMom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Mom">
-            <requestFocus />
-        </AutoCompleteTextView>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteTextDad"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Dad">
+                    <requestFocus />
+                </AutoCompleteTextView>
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteTextMom"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Mom">
+                    <requestFocus />
+                </AutoCompleteTextView>
+            </LinearLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="Breed"
+                android:id="@+id/buttonBreed"
+                android:clickable="false"
+                android:onClick="onBreedClick" />
+        </LinearLayout>
 
         <ListView
             android:layout_width="fill_parent"

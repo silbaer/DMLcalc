@@ -62,7 +62,13 @@ public class howToItemAdapter extends BaseAdapter implements AdapterView.OnItemC
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LinearLayout itemView = (LinearLayout) mInflater.inflate(R.layout.breed_list_item, parent, false);
+
+        LinearLayout itemView;
+
+        itemView = (LinearLayout) convertView;
+        if(itemView == null) {
+            itemView = (LinearLayout) mInflater.inflate(R.layout.breed_list_item, parent, false);
+        }
         bindView(itemView, position);
         return itemView;
     }
@@ -132,6 +138,8 @@ public class howToItemAdapter extends BaseAdapter implements AdapterView.OnItemC
 //
 //            Toast.makeText(context, sb.toString(),
 //                    Toast.LENGTH_LONG).show();
+            Pair<Pair<Dragon,Dragon>,Double> p = (Pair<Pair<Dragon,Dragon>,Double>) getItem(position);
+   //         ((MainActivity)context).displayBreedResult(p.first.first,p.first.second);
         } catch (Exception e) {
            // e.printStackTrace();
         }
