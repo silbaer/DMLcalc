@@ -95,9 +95,9 @@ public class DMLcalc {
     }
 
 
-    public Map<Pair<Dragon,Dragon>,Double> howToBreed(Dragon son) {
-        Map<Pair<Dragon,Dragon>,Double> retval = new HashMap<Pair<Dragon,Dragon>,Double>();
-        ArrayList< Dragon> dl = new ArrayList<Dragon>(dragons.values());
+    public List<Pair<Pair<Dragon,Dragon>,Double>> howToBreed(Dragon son) {
+        List<Pair<Pair<Dragon,Dragon>,Double>> retval = new ArrayList<>();
+        ArrayList< Dragon> dl = new ArrayList<>(dragons.values());
         for(int x = 0; x < dl.size()-1; x++){
             for(int y = x+1; y < dl.size();y++){
                 if(!dl.get(x).id.equalsIgnoreCase(son.id)
@@ -106,15 +106,14 @@ public class DMLcalc {
                         List<Dragon> tmp = breed(dl.get(x), dl.get(y));
                         for (Dragon d : tmp) {
                             if (d.id.equalsIgnoreCase(son.id)) {
-                                retval.put(new Pair<Dragon, Dragon>(dl.get(x), dl.get(y)), d.odd);
+                                retval.add(new Pair<Pair<Dragon,Dragon>,Double>(new Pair<Dragon, Dragon>(dl.get(x), dl.get(y)), d.odd));
                             }
                         }
                     }
                 }
             }
         }
-        Map<Pair<Dragon,Dragon>,Double> retval2 = sortMapByValue( retval);
-        return retval2;
+        return retval;
     }
 
     public List<Dragon> breed(Dragon mom, Dragon dad) {

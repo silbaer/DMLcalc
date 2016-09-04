@@ -16,6 +16,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -82,7 +83,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        txtContent = (TextView) findViewById(R.id.textView);
+    //    txtContent = (TextView) findViewById(R.id.textView);
 
 
         //  dml = new DMLcalc("");
@@ -112,26 +113,28 @@ public class MainActivity extends ActionBarActivity {
 //            }
             dml = new DMLcalc(sb.toString());
 
-            ArrayAdapter<Dragon> adapter = new ArrayAdapter<Dragon>(this, R.layout.support_simple_spinner_dropdown_item);
+            ArrayAdapter<Dragon> breed = new ArrayAdapter<Dragon>(this, R.layout.support_simple_spinner_dropdown_item);
+            ArrayAdapter<Dragon> howTo = new ArrayAdapter<Dragon>(this, R.layout.support_simple_spinner_dropdown_item);
             //      dml.dragons.values()
-            adapter.addAll(dml.dragons.values());
-            for(int i = adapter.getCount()-1; i >= 0; i--){
-                Dragon d = adapter.getItem(i);
+            howTo.addAll(dml.dragons.values());
+            breed.addAll(dml.dragons.values());
+            for(int i = breed.getCount()-1; i >= 0; i--){
+                Dragon d = breed.getItem(i);
                 if(d.isBoss() || d.islegendary()){
-                    adapter.remove(d);
+                    breed.remove(d);
                 }
             }
 
          //   spinnerDad.setAdapter(adapter);
            // spinnerMom.setAdapter(adapter);
 
-            textDad.setAdapter(adapter);
+            textDad.setAdapter(breed);
             textDad.setThreshold(1);
 
-            textMom.setAdapter(adapter);
+            textMom.setAdapter(breed);
             textMom.setThreshold(1);
 
-            textChild.setAdapter(adapter);
+            textChild.setAdapter(howTo);
             textChild.setThreshold(1);
 
             //         textMom.setOnItemSelectedListener(this);
@@ -171,26 +174,31 @@ public class MainActivity extends ActionBarActivity {
 
             Dragon child = (Dragon) arg0.getItemAtPosition(arg2);
 
-            Map<Pair<Dragon, Dragon>, Double> htb = dml.howToBreed(child);
+            displayHowToResult(child);
 
-//                List<Dragon> result = new ArrayList<Dragon>();
 
-//                result = dml.breed(dad,mom);
-            StringBuilder sb = new StringBuilder();
-            for (Map.Entry<Pair<Dragon, Dragon>, Double> entry : htb.entrySet()) {
-                Pair<Dragon, Dragon> key = entry.getKey();
-                Double odd = entry.getValue();
-                sb.append(key.first.lng_de + " & " + key.second.lng_de + " " + String.format("%.1f", odd) + "\n");
-
-            }
-            if (!(sb.length() > 0)) {
-                sb.append("No result");
-            }
-            txtContent.setText(sb.toString());
         }
     };
 
+    private void displayHowToResult(Dragon child){
+        List<Pair<Pair<Dragon,Dragon>,Double>> htb = dml.howToBreed(child);
 
+
+//        StringBuilder sb = new StringBuilder();
+//        for (Dragon d : result) {
+//            sb.append(d.lng_de + " " + String.format("%.1f",d.odd) + "\n");
+//        }
+//        if (!(sb.length() > 0)) {
+//            sb.append("No result");
+//        }
+//        txtContent.setText(sb.toString());
+
+        ListView l = (ListView) findViewById(R.id.listView);
+        howToItemAdapter a = new howToItemAdapter(this,htb);
+        l.setAdapter(a);
+        l.setOnItemClickListener(a);
+
+    }
 
     private AdapterView.OnItemClickListener onDadItemClick = new AdapterView.OnItemClickListener(){
 
@@ -213,15 +221,19 @@ public class MainActivity extends ActionBarActivity {
         List<Dragon> result = new ArrayList<Dragon>();
 
         result = dml.breed(dad, mom);
-        StringBuilder sb = new StringBuilder();
-        for (Dragon d : result) {
-            sb.append(d.lng_de + " " + String.format("%.1f",d.odd) + "\n");
-        }
-        if (!(sb.length() > 0)) {
-            sb.append("No result");
-        }
-        txtContent.setText(sb.toString());
+//        StringBuilder sb = new StringBuilder();
+//        for (Dragon d : result) {
+//            sb.append(d.lng_de + " " + String.format("%.1f",d.odd) + "\n");
+//        }
+//        if (!(sb.length() > 0)) {
+//            sb.append("No result");
+//        }
+//        txtContent.setText(sb.toString());
 
+        ListView l = (ListView) findViewById(R.id.listView);
+        breedListItemAdapter a = new breedListItemAdapter(this,result);
+        l.setAdapter(a);
+        l.setOnItemClickListener(a);
 
     }
 
