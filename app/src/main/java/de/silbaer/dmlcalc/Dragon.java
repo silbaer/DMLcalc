@@ -36,6 +36,7 @@ public class Dragon {
     public Boolean islegendary() { return this.element1.trim().equalsIgnoreCase("legendary"); }
     public Boolean isEvent() { return this.boss_vip.trim().equalsIgnoreCase("E");  }
     public Boolean isVIP() {  return this.boss_vip.trim().equalsIgnoreCase("V");  }
+    public Boolean isUnreleased() {  return this.boss_vip.trim().equalsIgnoreCase("UN");  }
 
     public String toString(){ return lng_de;}
 
@@ -84,7 +85,7 @@ public class Dragon {
 
     }
 
-    public Boolean isChildOf(Dragon mom, Dragon dad){
+    private Boolean isChildOf(Dragon mom, Dragon dad){
         Boolean retval = false;
 
         Boolean dotmcontrol = false;

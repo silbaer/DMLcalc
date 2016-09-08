@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.Pair;
 import android.view.Menu;
@@ -36,13 +37,11 @@ import java.util.Map;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     DMLcalc dml;
     private static final int RQS_OPEN_IMAGE = 1;
 
-    public Spinner spinnerMom;
-    public Spinner spinnerDad;
     public TextView txtContent;
     public AutoCompleteTextView textDad;
     public AutoCompleteTextView textMom;
@@ -92,27 +91,12 @@ public class MainActivity extends ActionBarActivity {
         textMom = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextMom);
         textChild = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextChild);
 
-        AssetManager assetManager = getAssets();
+
 
 
         try {
-            InputStreamReader is = new InputStreamReader(getAssets().open("dragon.list"));
-//
-//        BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
-//        BufferedReader br = null;
-//        StringBuilder sb = new StringBuilder();
 
-            BufferedReader reader = new BufferedReader(is);
-            //reader.readLine();
-            String line;
-            StringBuilder sb = new StringBuilder();
-            while ((line = reader.readLine()) != null) {
-                sb.append(line).append("\n");
-            }
-//            while ((line = reader.readLine()) != null) {
-
-//            }
-            dml = new DMLcalc(sb.toString());
+            dml = (DMLcalc) getApplicationContext();
 
             ArrayAdapter<Dragon> breed = new ArrayAdapter<Dragon>(this, R.layout.support_simple_spinner_dropdown_item);
             ArrayAdapter<Dragon> howTo = new ArrayAdapter<Dragon>(this, R.layout.support_simple_spinner_dropdown_item);
@@ -148,7 +132,7 @@ public class MainActivity extends ActionBarActivity {
 
 
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -180,6 +164,13 @@ public class MainActivity extends ActionBarActivity {
 
         }
     };
+
+    public void onDDWClick(View v){
+        Toast.makeText(getBaseContext(), "onDDWClick",
+                Toast.LENGTH_LONG).show();
+        Intent myIntent = new Intent(this, DdwDdmInput.class);
+        startActivity(myIntent);
+    }
 
     private void displayHowToResult(){
         List<Pair<Pair<Dragon,Dragon>,Double>> htb = dml.howToBreed(child);
@@ -284,64 +275,6 @@ public class MainActivity extends ActionBarActivity {
         startActivityForResult(intent, RQS_OPEN_IMAGE);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == Activity.RESULT_OK) {
-
-
-            if (requestCode == RQS_OPEN_IMAGE) {
-//
-//                imageView.setImageBitmap(null);
-//                textInfo1.setText("");
-//                textInfo2.setText("");
-//
-                Uri mediaUri = data.getData();
-
-                String mediaPath = mediaUri.getPath();
-
-//
-                //display the image
-                try {
-                    InputStream inputStream = getBaseContext().getContentResolver().openInputStream(mediaUri);
-                    BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
-                    BufferedReader br = null;
-                    StringBuilder sb = new StringBuilder();
-
-                    String line;
-                    try {
-
-                        br = new BufferedReader(new InputStreamReader(inputStream));
-                        while ((line = br.readLine()) != null) {
-                            sb.append(line).append("\n");
-                        }
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } finally {
-                        if (br != null) {
-                            try {
-                                br.close();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                    dml = new DMLcalc(sb.toString());
-//                    Bitmap bm = BitmapFactory.decodeStream(inputStream);
-//                    imageView.setImageBitmap(bm);
-
-                    ArrayAdapter<Dragon> adapter = new ArrayAdapter<Dragon>(this, R.layout.support_simple_spinner_dropdown_item);
-                    //      dml.dragons.values()
-                    adapter.addAll(dml.dragons.values());
-                    spinnerDad.setAdapter(adapter);
-                    spinnerMom.setAdapter(adapter);
-
-                } catch (FileNotFoundException e) {
-//                    e.printStackTrace();
-                }
-            }
-        }
-    }
 
     @Override
     public void onStart() {
