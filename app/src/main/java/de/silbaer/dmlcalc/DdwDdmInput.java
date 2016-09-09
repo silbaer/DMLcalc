@@ -16,6 +16,10 @@ public class DdwDdmInput extends AppCompatActivity {
     public AutoCompleteTextView textDDW;
     DMLcalc dml;
 
+    private String DDW;
+    private String DDW_mom;
+    private String DDW_dad;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,10 +49,37 @@ public class DdwDdmInput extends AppCompatActivity {
         textMom.setOnItemClickListener(onDDWMomItemClick);
         textDad.setOnItemClickListener(onDDWDadItemClick);
 
+        DDW = dml.getDDW();
+        DDW_dad = dml.getDDW_dad();
+        DDW_mom = dml.getDDW_mom();
+
+        Dragon d;
+
+        d = dml.dragons.get(DDW);
+        if(d != null) {
+            textDDW.setText(d.lng_de);
+        }
+
+        d = dml.dragons.get(DDW_mom);
+        if(d != null) {
+            textMom.setText(d.lng_de);
+        }
+
+        d = dml.dragons.get(DDW_dad);
+        if(d != null) {
+            textDad.setText(d.lng_de);
+        }
+
 
         textDad.requestFocus();
     }
 
+    @Override
+    public void onStop(){
+        super.onStop();
+        dml.setDDW(DDW,DDW_mom,DDW_dad);
+
+    }
 
     private AdapterView.OnItemClickListener onDDWItemClick = new AdapterView.OnItemClickListener() {
 
@@ -62,10 +93,7 @@ public class DdwDdmInput extends AppCompatActivity {
 
             Dragon d = (Dragon) arg0.getItemAtPosition(arg2);
 
-            dml.DDW = d.id;
-
-
-
+            DDW = d.id;
         }
     };
     private AdapterView.OnItemClickListener onDDWMomItemClick = new AdapterView.OnItemClickListener() {
@@ -80,11 +108,7 @@ public class DdwDdmInput extends AppCompatActivity {
 
             Dragon d = (Dragon) arg0.getItemAtPosition(arg2);
 
-            dml.DDW_Mom = d.id;
-
-
-
-
+            DDW_mom = d.id;
         }
     };
     private AdapterView.OnItemClickListener onDDWDadItemClick = new AdapterView.OnItemClickListener() {
@@ -99,10 +123,7 @@ public class DdwDdmInput extends AppCompatActivity {
 
             Dragon d = (Dragon) arg0.getItemAtPosition(arg2);
 
-            dml.DDW_Dad = d.id;
-
-
-
+            DDW_dad = d.id;
         }
     };
 }

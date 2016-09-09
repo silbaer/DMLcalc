@@ -2,6 +2,8 @@ package de.silbaer.dmlcalc;
 
 
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.util.Pair;
 
@@ -21,12 +23,14 @@ import java.util.TreeMap;
  */
 public class DMLcalc extends Application {
 
+    private static final String PREFS_NAME = "de.silbaer.dmlcal.appsettings";
+
     public String DDM;
     public List<String> DDM_Elements;
 
-    public String DDW;
-    public String DDW_Mom;
-    public String DDW_Dad;
+    private String DDW="";
+    private String DDW_Mom="";
+    private String DDW_Dad="";
 
     public Map<String,Dragon> dragons = new Hashtable<String,Dragon>();
 //    public Dictionary<string, Element> elements = new Dictionary<string,Element>();
@@ -41,6 +45,37 @@ public class DMLcalc extends Application {
         odds.put("E",10d);
         odds.put("L", 6d);
         DDM_Elements = new ArrayList<>();
+    }
+
+    public void setDDW(String ddw, String mom, String dad){
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(getString(R.string.DDW),ddw);
+        editor.putString(getString(R.string.DDW_mom),mom);
+        editor.putString(getString(R.string.DDW_dad),dad);
+        editor.commit();
+    }
+
+    public String getDDW() {
+        if(DDW.isEmpty()){
+            SharedPreferences prefs = getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
+            DDW = prefs.getString(getString(R.string.DDW),"");
+        }
+        return DDW;
+    }
+    public String getDDW_mom() {
+        if(DDW_Mom.isEmpty()){
+            SharedPreferences prefs = getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
+            DDW_Mom = prefs.getString(getString(R.string.DDW_mom),"");
+        }
+        return DDW_Mom;
+    }
+    public String getDDW_dad() {
+        if(DDW_Dad.isEmpty()){
+            SharedPreferences prefs = getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
+            DDW_Dad = prefs.getString(getString(R.string.DDW_dad),"");
+        }
+        return DDW_Dad;
     }
 
 
