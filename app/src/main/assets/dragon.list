@@ -76,7 +76,7 @@
 				["rainbow", "Rainbow_Dragon", "./img/dragons/Rainbow_Dragon.png", "energy", "water", "", "", "36000", "50400", "U", "201", "65", "290", "Arco-&Iacute;ris", "Arc-en-ciel", "Arcobaleno", "Regenbogen"],
 				["brick", "Brick_Dragon", "./img/dragons/Brick_Dragon.png", "energy", "earth", "", "", "36000", "50400", "U", "205", "63", "320", "Tijolo", "Brique", "Mattone", "Ziegel"],
 				["lightning", "Lightning_Dragon", "./img/dragons/Lightning_Dragon.png", "energy", "wind", "", "", "50400", "70800", "R", "189", "67", "370", "Rel&acirc;mpago", "Foudre", "Fulmine", "Blitz"],
-				["soccer", "Soccer_Dragon", "./img/dragons/Soccer_Dragon.png", "energy", "earth", "", "E", "50400", "70800", "R", "205", "63", "380", "Futebol", "Football", "Calcio", "Fu&szlig;ball"],
+				["soccer", "Soccer_Dragon", "./img/dragons/Soccer_Dragon.png", "energy", "earth", "", "E", "50400", "70800", "R", "205", "63", "380", "Futebol", "Football", "Calcio", "Fußball"],
 				["tololoche", "Tololoche_Dragon", "./img/dragons/Tololoche_Dragon.png", "energy", "plant", "", "E", "57600", "70200", "R", "200", "66", "410", "Tololoche", "Tololoche", "Tololoche", "Tololoche"],
 				["geyser", "Geyser_Dragon", "./img/dragons/Geyser_Dragon.png", "fire", "water", "energy", "", "64800", "93600", "E", "196", "68", "430", "Geiser", "Geyser", "Geyser", "Geysir"],
 				["ruby", "Ruby_Dragon", "./img/dragons/Ruby_Dragon.png", "earth", "energy", "fire", "", "64800", "93600", "E", "200", "66", "460", "Rubi", "Rubis", "Rubino", "Rubin"],

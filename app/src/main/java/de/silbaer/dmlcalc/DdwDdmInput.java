@@ -7,6 +7,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class DdwDdmInput extends AppCompatActivity {
@@ -14,6 +15,8 @@ public class DdwDdmInput extends AppCompatActivity {
     public AutoCompleteTextView textDad;
     public AutoCompleteTextView textMom;
     public AutoCompleteTextView textDDW;
+
+    public ImageView ddw_e1;
     DMLcalc dml;
 
     private String DDW;
@@ -69,6 +72,11 @@ public class DdwDdmInput extends AppCompatActivity {
         if(d != null) {
             textDad.setText(d.lng_de);
         }
+
+
+     //   ddw_e1 = (ImageView) findViewById(R.id.iv_ddm_e1);
+     //   ddw_e1.setImageResource(R.drawable.element_earth);
+
 
 
         textDad.requestFocus();

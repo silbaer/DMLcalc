@@ -17,6 +17,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     DMLcalc dml;
     private static final int RQS_OPEN_IMAGE = 1;
 
-    public TextView txtContent;
+
     public AutoCompleteTextView textDad;
     public AutoCompleteTextView textMom;
     public AutoCompleteTextView textChild;
@@ -130,6 +131,19 @@ public class MainActivity extends AppCompatActivity {
             textChild.setOnItemClickListener(onChildItemClick);
             textDad.requestFocus();
 
+            ImageView iv = (ImageView) findViewById(R.id.iv_ddm_e1);
+            iv.setImageResource(R.drawable.element_earth);
+
+            iv = (ImageView) findViewById(R.id.iv_ddm_e2);
+            iv.setImageResource(R.drawable.element_energy);
+
+            iv = (ImageView) findViewById(R.id.iv_ddm_e3);
+            iv.setImageResource(R.drawable.element_shadow);
+
+            iv = (ImageView) findViewById(R.id.iv_ddm_e4);
+            iv.setImageResource(R.drawable.element_plant);
+
+            ((TextView)findViewById(R.id.textViewDDM)).setText("MyDragon");
 
 
         } catch (Exception e) {
@@ -282,18 +296,25 @@ public class MainActivity extends AppCompatActivity {
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Main Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://de.silbaer.dmlcalc/http/host/path")
-        );
-        AppIndex.AppIndexApi.start(client, viewAction);
+//        client.connect();
+//        Action viewAction = Action.newAction(
+//                Action.TYPE_VIEW, // TODO: choose an action type.
+//                "Main Page", // TODO: Define a title for the content shown.
+//                // TODO: If you have web page content that matches this app activity's content,
+//                // make sure this auto-generated web page URL is correct.
+//                // Otherwise, set the URL to null.
+//                Uri.parse("http://host/path"),
+//                // TODO: Make sure this auto-generated app URL is correct.
+//                Uri.parse("android-app://de.silbaer.dmlcalc/http/host/path")
+//        );
+//        AppIndex.AppIndexApi.start(client, viewAction);
+
+       String ddw = dml.getDDW();
+        if(!ddw.isEmpty()){
+            TextView tv = (TextView) findViewById(R.id.textViewDDW);
+            tv.setText(String.format("%s",dml.dragons.get(ddw).lng_de));
+        }
+
     }
 
     @Override
