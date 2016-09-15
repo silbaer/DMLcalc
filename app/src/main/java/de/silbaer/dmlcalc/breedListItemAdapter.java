@@ -30,7 +30,7 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
             } else if(o1.odd > o2.odd){
               return -1;
             } else {
-            return 1;
+            return 0;
             }
 
         }
