@@ -132,16 +132,16 @@ public class MainActivity extends AppCompatActivity {
             textDad.requestFocus();
 
             ImageView iv = (ImageView) findViewById(R.id.iv_ddm_e1);
-            iv.setImageResource(R.drawable.element_earth);
+//            iv.setImageResource(R.drawable.element_earth);
 
             iv = (ImageView) findViewById(R.id.iv_ddm_e2);
-            iv.setImageResource(R.drawable.element_energy);
+//            iv.setImageResource(R.drawable.element_energy);
 
             iv = (ImageView) findViewById(R.id.iv_ddm_e3);
-            iv.setImageResource(R.drawable.element_shadow);
+//            iv.setImageResource(R.drawable.element_shadow);
 
             iv = (ImageView) findViewById(R.id.iv_ddm_e4);
-            iv.setImageResource(R.drawable.element_plant);
+//            iv.setImageResource(R.drawable.element_plant);
 
             ((TextView)findViewById(R.id.textViewDDM)).setText("MyDragon");
 

@@ -32,7 +32,7 @@ public class howToItemAdapter extends BaseAdapter implements AdapterView.OnItemC
             } else if(o1.second  > o2.second){
               return -1;
             } else {
-             return 1;
+             return 0;
             }
 
         }
