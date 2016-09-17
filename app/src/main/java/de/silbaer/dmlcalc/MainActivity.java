@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -131,19 +132,34 @@ public class MainActivity extends AppCompatActivity {
             textChild.setOnItemClickListener(onChildItemClick);
             textDad.requestFocus();
 
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(40, 40);
+
             ImageView iv = (ImageView) findViewById(R.id.iv_ddm_e1);
             iv.setImageResource(R.drawable.element_earth);
+            iv.setLayoutParams(layoutParams);
+            iv.requestLayout();
 
             iv = (ImageView) findViewById(R.id.iv_ddm_e2);
             iv.setImageResource(R.drawable.element_energy);
+            iv.setLayoutParams(layoutParams);
+            iv.requestLayout();
 
             iv = (ImageView) findViewById(R.id.iv_ddm_e3);
             iv.setImageResource(R.drawable.element_shadow);
+            iv.setLayoutParams(layoutParams);
+            iv.requestLayout();
 
             iv = (ImageView) findViewById(R.id.iv_ddm_e4);
             iv.setImageResource(R.drawable.element_plant);
+            iv.setLayoutParams(layoutParams);
+            iv.requestLayout();
 
-            ((TextView)findViewById(R.id.textViewDDM)).setText("MyDragon");
+            ((TextView)findViewById(R.id.textViewDDM)).setText("Dragon");
+
+
+
+
+
 
 
         } catch (Exception e) {
