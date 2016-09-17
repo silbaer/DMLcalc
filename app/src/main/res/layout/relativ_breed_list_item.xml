@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00ff00">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+
+            android:id="@+id/relativBreedListIntemDragon"
+            android:textStyle="bold"
+
+            android:layout_centerVertical="true"
+            android:paddingEnd="10dp" />
+
+        <de.silbaer.dmlcalc.MyImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:cropToPadding="true"
+            android:id="@+id/iv_relativBreedListIntem_e1"
+            android:layout_centerVertical="true"
+            android:layout_alignTop="@+id/relativBreedListIntemDragon"
+            android:layout_alignBottom="@+id/relativBreedListIntemDragon"
+            android:background="#ff00ff"
+            android:layout_toEndOf="@id/relativBreedListIntemDragon" />
+
+        <de.silbaer.dmlcalc.MyImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:cropToPadding="false"
+            android:id="@+id/iv_relativBreedListIntem_e2"
+            android:layout_centerVertical="true"
+            android:layout_alignTop="@+id/relativBreedListIntemDragon"
+            android:layout_alignBottom="@+id/relativBreedListIntemDragon"
+            android:background="#dd00dd"
+            android:layout_toEndOf="@id/iv_relativBreedListIntem_e1" />
+
+        <de.silbaer.dmlcalc.MyImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:cropToPadding="false"
+            android:id="@+id/iv_relativBreedListIntem_e3"
+            android:layout_centerVertical="true"
+            android:layout_alignTop="@+id/relativBreedListIntemDragon"
+            android:layout_alignBottom="@+id/relativBreedListIntemDragon"
+            android:background="#bb00bb"
+            android:layout_toEndOf="@id/iv_relativBreedListIntem_e2" />
+
+        <de.silbaer.dmlcalc.MyImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:cropToPadding="false"
+            android:id="@+id/iv_relativBreedListIntem_e4"
+            android:layout_centerVertical="true"
+            android:layout_alignTop="@+id/relativBreedListIntemDragon"
+            android:layout_alignBottom="@+id/relativBreedListIntemDragon"
+            android:background="#990099"
+
+            android:layout_toEndOf="@id/iv_relativBreedListIntem_e3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:id="@+id/relativBreedListIntemOdd"
+            android:layout_gravity="right"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" />
+
+
+</RelativeLayout>

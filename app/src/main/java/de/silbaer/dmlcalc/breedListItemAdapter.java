@@ -6,7 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,18 +62,57 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LinearLayout itemView = (LinearLayout) mInflater.inflate(R.layout.breed_list_item, parent, false);
+//        LinearLayout itemView = (LinearLayout) mInflater.inflate(R.layout.breed_list_item, parent, false);
+        RelativeLayout itemView = (RelativeLayout) mInflater.inflate(R.layout.relativ_breed_list_item, parent, false);
         bindView(itemView, position);
         return itemView;
     }
 
-    private void bindView(LinearLayout view, int position) {
+    private void bindView(RelativeLayout view, int position) {
         Dragon d = (Dragon) getItem(position);
         view.setId((int) getItemId(position));
-        TextView dragonTextView = (TextView) view.findViewById(R.id.breedListDargon);
-        TextView oddTextView = (TextView) view.findViewById(R.id.breedListOdd);
+        TextView dragonTextView = (TextView) view.findViewById(R.id.relativBreedListIntemDragon);
+        TextView oddTextView = (TextView) view.findViewById(R.id.relativBreedListIntemOdd);
         dragonTextView.setText(d.lng_de);
         oddTextView.setText(String.format("%.1f%%",d.odd));
+
+        ImageView iv = (ImageView) view.findViewById(R.id.iv_relativBreedListIntem_e1);
+        if(d.element1.equalsIgnoreCase("earth")){
+            iv.setImageResource(R.drawable.element_earth);
+        }
+        if(d.element1.equalsIgnoreCase("energy")){
+            iv.setImageResource(R.drawable.element_energy);
+        }
+        if(d.element1.equalsIgnoreCase("fire")){
+            iv.setImageResource(R.drawable.element_fire);
+        }
+        if(d.element1.equalsIgnoreCase("legendary")){
+            iv.setImageResource(R.drawable.element_legendary);
+        }
+        if(d.element1.equalsIgnoreCase("light")){
+            iv.setImageResource(R.drawable.element_light);
+        }
+        if(d.element1.equalsIgnoreCase("metal")){
+            iv.setImageResource(R.drawable.element_metal);
+        }
+        if(d.element1.equalsIgnoreCase("plant")){
+            iv.setImageResource(R.drawable.element_plant);
+        }
+        if(d.element1.equalsIgnoreCase("shadow")){
+            iv.setImageResource(R.drawable.element_shadow);
+        }
+        if(d.element1.equalsIgnoreCase("void")){
+            iv.setImageResource(R.drawable.element_void);
+        }
+        if(d.element1.equalsIgnoreCase("water")){
+            iv.setImageResource(R.drawable.element_water);
+        }
+        if(d.element1.equalsIgnoreCase("wind")){
+            iv.setImageResource(R.drawable.element_wind);
+        }
+
+
+
     }
 
     @Override

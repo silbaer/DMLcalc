@@ -132,27 +132,41 @@ public class MainActivity extends AppCompatActivity {
             textChild.setOnItemClickListener(onChildItemClick);
             textDad.requestFocus();
 
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(40, 40);
+
+            TextView tv = (TextView) findViewById(R.id.textViewDDMLabel);
+            int h = tv.getLayoutParams().height;
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(h, h);
+
 
             ImageView iv = (ImageView) findViewById(R.id.iv_ddm_e1);
             iv.setImageResource(R.drawable.element_earth);
-            iv.setLayoutParams(layoutParams);
-            iv.requestLayout();
+
+
+            iv.setImageResource(R.drawable.element_earth);
+
+  //          iv.setLayoutParams(layoutParams);
+
+            // geht nicht!
+//            iv.getLayoutParams().height = h;
+//            iv.getLayoutParams().width = h;
+            //           iv.requestLayout();
 
             iv = (ImageView) findViewById(R.id.iv_ddm_e2);
-            iv.setImageResource(R.drawable.element_energy);
-            iv.setLayoutParams(layoutParams);
-            iv.requestLayout();
+                   iv.setImageResource(R.drawable.element_energy);
+//            iv.setLayoutParams(layoutParams);
+//            iv.requestLayout();
 
             iv = (ImageView) findViewById(R.id.iv_ddm_e3);
-            iv.setImageResource(R.drawable.element_shadow);
-            iv.setLayoutParams(layoutParams);
-            iv.requestLayout();
+                     iv.setImageResource(R.drawable.element_shadow);
+            h = tv.getMeasuredHeight();
+//            iv.setLayoutParams(layoutParams);
+
+ //           iv.requestLayout();
 
             iv = (ImageView) findViewById(R.id.iv_ddm_e4);
-            iv.setImageResource(R.drawable.element_plant);
-            iv.setLayoutParams(layoutParams);
-            iv.requestLayout();
+                       iv.setImageResource(R.drawable.element_plant);
+//            iv.setLayoutParams(layoutParams);
+//            iv.requestLayout();
 
             ((TextView)findViewById(R.id.textViewDDM)).setText("Dragon");
 
