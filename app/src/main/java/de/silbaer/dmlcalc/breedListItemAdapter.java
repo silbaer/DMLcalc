@@ -111,8 +111,75 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
             iv.setImageResource(R.drawable.element_wind);
         }
 
+         iv = (ImageView) view.findViewById(R.id.iv_relativBreedListIntem_e2);
+        if(d.element2.equalsIgnoreCase("earth")){
+            iv.setImageResource(R.drawable.element_earth);
+        }
+        if(d.element2.equalsIgnoreCase("energy")){
+            iv.setImageResource(R.drawable.element_energy);
+        }
+        if(d.element2.equalsIgnoreCase("fire")){
+            iv.setImageResource(R.drawable.element_fire);
+        }
+        if(d.element2.equalsIgnoreCase("legendary")){
+            iv.setImageResource(R.drawable.element_legendary);
+        }
+        if(d.element2.equalsIgnoreCase("light")){
+            iv.setImageResource(R.drawable.element_light);
+        }
+        if(d.element2.equalsIgnoreCase("metal")){
+            iv.setImageResource(R.drawable.element_metal);
+        }
+        if(d.element2.equalsIgnoreCase("plant")){
+            iv.setImageResource(R.drawable.element_plant);
+        }
+        if(d.element2.equalsIgnoreCase("shadow")){
+            iv.setImageResource(R.drawable.element_shadow);
+        }
+        if(d.element2.equalsIgnoreCase("void")){
+            iv.setImageResource(R.drawable.element_void);
+        }
+        if(d.element2.equalsIgnoreCase("water")){
+            iv.setImageResource(R.drawable.element_water);
+        }
+        if(d.element2.equalsIgnoreCase("wind")){
+            iv.setImageResource(R.drawable.element_wind);
+        }
 
-
+         iv = (ImageView) view.findViewById(R.id.iv_relativBreedListIntem_e3);
+        if(d.element3.equalsIgnoreCase("earth")){
+            iv.setImageResource(R.drawable.element_earth);
+        }
+        if(d.element3.equalsIgnoreCase("energy")){
+            iv.setImageResource(R.drawable.element_energy);
+        }
+        if(d.element3.equalsIgnoreCase("fire")){
+            iv.setImageResource(R.drawable.element_fire);
+        }
+        if(d.element3.equalsIgnoreCase("legendary")){
+            iv.setImageResource(R.drawable.element_legendary);
+        }
+        if(d.element3.equalsIgnoreCase("light")){
+            iv.setImageResource(R.drawable.element_light);
+        }
+        if(d.element3.equalsIgnoreCase("metal")){
+            iv.setImageResource(R.drawable.element_metal);
+        }
+        if(d.element3.equalsIgnoreCase("plant")){
+            iv.setImageResource(R.drawable.element_plant);
+        }
+        if(d.element3.equalsIgnoreCase("shadow")){
+            iv.setImageResource(R.drawable.element_shadow);
+        }
+        if(d.element3.equalsIgnoreCase("void")){
+            iv.setImageResource(R.drawable.element_void);
+        }
+        if(d.element3.equalsIgnoreCase("water")){
+            iv.setImageResource(R.drawable.element_water);
+        }
+        if(d.element3.equalsIgnoreCase("wind")){
+            iv.setImageResource(R.drawable.element_wind);
+        }
     }
 
     @Override

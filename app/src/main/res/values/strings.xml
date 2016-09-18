@@ -4,4 +4,10 @@
     <string name="DDW">DDW</string>
     <string name="DDW_mom">DDW_mom</string>
     <string name="DDW_dad">DDW_dad</string>
+    <string name="DDM">DDM</string>
+    <string name="DDM_e1">DDM_e1</string>
+    <string name="DDM_e2">DDM_e2</string>
+    <string name="DDM_e3">DDM_e3</string>
+    <string name="DDM_e4">DDM_e4</string>
+
 </resources>

@@ -16,9 +16,9 @@
             android:layout_centerVertical="true"
             android:paddingEnd="10dp" />
 
-        <de.silbaer.dmlcalc.MyImageView
+        <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:scaleType="centerInside"
             android:cropToPadding="true"
@@ -31,7 +31,7 @@
 
         <de.silbaer.dmlcalc.MyImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:scaleType="centerInside"
             android:cropToPadding="false"
@@ -44,7 +44,7 @@
 
         <de.silbaer.dmlcalc.MyImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:scaleType="centerInside"
             android:cropToPadding="false"
@@ -55,9 +55,9 @@
             android:background="#bb00bb"
             android:layout_toEndOf="@id/iv_relativBreedListIntem_e2" />
 
-        <de.silbaer.dmlcalc.MyImageView
+        <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:scaleType="centerInside"
             android:cropToPadding="false"

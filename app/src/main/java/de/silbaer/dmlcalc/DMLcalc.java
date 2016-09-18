@@ -25,8 +25,8 @@ public class DMLcalc extends Application {
 
     private static final String PREFS_NAME = "de.silbaer.dmlcal.appsettings";
 
-    public String DDM;
-    public List<String> DDM_Elements;
+    private String DDM="";
+    private List<String> DDM_Elements;
 
     private String DDW="";
     private String DDW_Mom="";
@@ -45,16 +45,105 @@ public class DMLcalc extends Application {
         odds.put("E",10d);
         odds.put("L", 6d);
         DDM_Elements = new ArrayList<>();
+
     }
 
     public void setDDW(String ddw, String mom, String dad){
+        DDW = ddw;
+        DDW_Dad = dad;
+        DDW_Mom = mom;
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putString(getString(R.string.DDW),ddw);
-        editor.putString(getString(R.string.DDW_mom),mom);
-        editor.putString(getString(R.string.DDW_dad),dad);
+        editor.putString(getString(R.string.DDW),DDW);
+        editor.putString(getString(R.string.DDW_mom),DDW_Mom);
+        editor.putString(getString(R.string.DDW_dad),DDW_Dad);
         editor.commit();
     }
+
+    public void setDDM(String ddm, String e1, String e2, String e3, String e4){
+        DDM = ddm;
+        DDM_Elements.clear();
+        DDM_Elements.add(e1);
+        DDM_Elements.add(e2);
+        DDM_Elements.add(e3);
+        DDM_Elements.add(e4);
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(getString(R.string.DDM),DDM);
+        editor.putString(getString(R.string.DDM_e1),DDM_Elements.get(0));
+        editor.putString(getString(R.string.DDM_e2),DDM_Elements.get(1));
+        editor.putString(getString(R.string.DDM_e3),DDM_Elements.get(2));
+        editor.putString(getString(R.string.DDM_e4),DDM_Elements.get(3));
+        editor.commit();
+    }
+
+    public String getDDM() {
+        if(DDM.isEmpty()){
+            SharedPreferences prefs = getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
+            DDM = prefs.getString(getString(R.string.DDM),"");
+        }
+        return DDM;
+    }
+    private void readDdmElementsFromPreferences(){
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
+        String tmp = prefs.getString(getString(R.string.DDM_e1),"");
+        if(!tmp.isEmpty()){
+            DDM_Elements.add(tmp);
+        }
+        tmp = prefs.getString(getString(R.string.DDM_e2),"");
+        if(!tmp.isEmpty()){
+            DDM_Elements.add(tmp);
+        }
+        tmp = prefs.getString(getString(R.string.DDM_e3),"");
+        if(!tmp.isEmpty()){
+            DDM_Elements.add(tmp);
+        }
+        tmp = prefs.getString(getString(R.string.DDM_e4),"");
+        if(!tmp.isEmpty()){
+            DDM_Elements.add(tmp);
+        }
+        if(DDM_Elements.size() != 4){
+            DDM_Elements.clear();
+        }
+    }
+    public String getDDM_e1() {
+        if(DDM_Elements .isEmpty()){
+            readDdmElementsFromPreferences();
+        }
+        if(DDM_Elements.size() == 4) {
+            return DDM_Elements.get(0);
+        }
+        return "";
+    }
+    public String getDDM_e2() {
+        if(DDM_Elements.isEmpty()){
+            readDdmElementsFromPreferences();
+        }
+        if(DDM_Elements.size() == 4) {
+        return DDM_Elements.get(1);
+        }
+        return "";
+    }
+    public String getDDM_e3() {
+        if(DDM_Elements.isEmpty()){
+            readDdmElementsFromPreferences();
+        }
+        if(DDM_Elements.size() == 4) {
+        return DDM_Elements.get(2);
+        }
+        return "";
+    }
+    public String getDDM_e4() {
+        if(DDM_Elements.isEmpty()){
+            readDdmElementsFromPreferences();
+        }
+        if(DDM_Elements.size() == 4) {
+        return DDM_Elements.get(3);
+        }
+        return "";
+    }
+
+
 
     public String getDDW() {
         if(DDW.isEmpty()){
@@ -126,7 +215,7 @@ public class DMLcalc extends Application {
         odds.put("R",15d);
         odds.put("E",10d);
         odds.put("L", 6d);
-        DDM_Elements = new ArrayList<>();
+
 
         Dragon d;
         String[] lines = dragonJS.split("[\\n]+");

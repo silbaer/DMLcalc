@@ -17,7 +17,7 @@ import android.widget.ImageView;
  */
 public class MyImageView extends ImageView {
     private static final String TAG = MyImageView.class.getSimpleName();
-    int exact = 0;
+    int myHeight = 0;
 
     public MyImageView(Context context) {
         super(context);
@@ -57,13 +57,19 @@ public class MyImageView extends ImageView {
         if(heightMode == MeasureSpec.EXACTLY) hMode = "EXACTLY";
         if(heightMode == MeasureSpec.UNSPECIFIED) hMode = "UNSPECIFIED";
 
-        Log.d(TAG, "onMeasure: " + wMode + " / "  + widthSize + " / "  + hMode + " / "  + heightSize);
+
 
 
         if(heightMode == MeasureSpec.EXACTLY) {
-            exact = heightSize;
+            myHeight = heightSize;
         }
-        setMeasuredDimension(exact, exact);
+        if(heightMode == MeasureSpec.AT_MOST) {
+            if(heightSize < myHeight || myHeight == 0) {
+                myHeight = heightSize;
+            }
+        }
+        Log.d(TAG, "onMeasure: " + wMode + " / "  + widthSize + " / "  + hMode + " / "  + heightSize + " => " + myHeight);
+        setMeasuredDimension(myHeight, myHeight);
     }
 
 }
