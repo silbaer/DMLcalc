@@ -23,6 +23,8 @@ import java.util.TreeMap;
  */
 public class DMLcalc extends Application {
 
+    public ArrayList<String> elements = new ArrayList<>();
+
     private static final String PREFS_NAME = "de.silbaer.dmlcal.appsettings";
 
     private String DDM="";
@@ -45,6 +47,18 @@ public class DMLcalc extends Application {
         odds.put("E",10d);
         odds.put("L", 6d);
         DDM_Elements = new ArrayList<>();
+
+        elements.add("fire");
+        elements.add("wind");
+        elements.add("earth");
+        elements.add("water");
+        elements.add("plant");
+        elements.add("metal");
+        elements.add("energy");
+        elements.add("void");
+        elements.add("light");
+        elements.add("shadow");
+        elements.add("legendary");
 
     }
 

@@ -140,6 +140,11 @@ public class howToItemAdapter extends BaseAdapter implements AdapterView.OnItemC
 //                    Toast.LENGTH_LONG).show();
             Pair<Pair<Dragon,Dragon>,Double> p = (Pair<Pair<Dragon,Dragon>,Double>) getItem(position);
    //         ((MainActivity)context).displayBreedResult(p.first.first,p.first.second);
+
+            if(context instanceof MainActivity){
+                ((MainActivity)context).displayBreedResult(p.first.first,p.first.second);
+            }
+
         } catch (Exception e) {
            // e.printStackTrace();
         }

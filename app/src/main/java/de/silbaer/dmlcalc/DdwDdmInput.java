@@ -17,12 +17,23 @@ public class DdwDdmInput extends AppCompatActivity {
     public AutoCompleteTextView textDDW;
     public AutoCompleteTextView textDDM;
 
+    public AutoCompleteTextView textE1;
+    public AutoCompleteTextView textE2;
+    public AutoCompleteTextView textE3;
+    public AutoCompleteTextView textE4;
+
     public ImageView ddw_e1;
     DMLcalc dml;
 
     private String DDW;
     private String DDW_mom;
     private String DDW_dad;
+
+    private String DDM;
+    private String DDM_e1;
+    private String DDM_e2;
+    private String DDM_e3;
+    private String DDM_e4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +47,11 @@ public class DdwDdmInput extends AppCompatActivity {
         textMom = (AutoCompleteTextView) findViewById(R.id.autoCompleteMom);
         textDDW = (AutoCompleteTextView) findViewById(R.id.autoCompleteDDW);
         textDDM = (AutoCompleteTextView) findViewById(R.id.autoCompleteDDM);
+
+        textE1 = (AutoCompleteTextView) findViewById(R.id.ac_ddmElement1);
+        textE2 = (AutoCompleteTextView) findViewById(R.id.ac_ddmElement2);
+        textE3 = (AutoCompleteTextView) findViewById(R.id.ac_ddmElement3);
+        textE4 = (AutoCompleteTextView) findViewById(R.id.ac_ddmElement4);
 
         dml = (DMLcalc) getApplicationContext();
 
@@ -56,6 +72,7 @@ public class DdwDdmInput extends AppCompatActivity {
         textDDW.setOnItemClickListener(onDDWItemClick);
         textMom.setOnItemClickListener(onDDWMomItemClick);
         textDad.setOnItemClickListener(onDDWDadItemClick);
+        textDDM.setOnItemClickListener(onDDMItemClick);
 
         DDW = dml.getDDW();
         DDW_dad = dml.getDDW_dad();
@@ -78,21 +95,112 @@ public class DdwDdmInput extends AppCompatActivity {
             textDad.setText(d.lng_de);
         }
 
+        ArrayAdapter<String> ade = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item);
 
-     //   ddw_e1 = (ImageView) findViewById(R.id.iv_ddm_e1);
-     //   ddw_e1.setImageResource(R.drawable.element_earth);
+        ade.addAll(dml.elements);
+        textE1.setAdapter(ade);
+        textE1.setThreshold(1);
+        textE1.setOnItemClickListener(onElement1ItemClick);
 
+        textE2.setAdapter(ade);
+        textE2.setThreshold(1);
+        textE2.setOnItemClickListener(onElement2ItemClick);
 
+        textE3.setAdapter(ade);
+        textE3.setThreshold(1);
+        textE3.setOnItemClickListener(onElement3ItemClick);
 
-        textDad.requestFocus();
+        textE4.setAdapter(ade);
+        textE4.setThreshold(1);
+        textE4.setOnItemClickListener(onElement4ItemClick);
+
+        DDM = dml.getDDM();
+        DDM_e1 = dml.getDDM_e1();
+        DDM_e2 = dml.getDDM_e2();
+        DDM_e3 = dml.getDDM_e3();
+        DDM_e4 = dml.getDDM_e4();
+
+        d = dml.dragons.get(DDM);
+        if(d != null) {
+            textDDM.setText(d.lng_de);
+        }
+        textE1.setText(DDM_e1);
+        textE2.setText(DDM_e2);
+        textE3.setText(DDM_e3);
+        textE4.setText(DDM_e4);
+
     }
 
-    @Override
-    public void onStop(){
-        super.onStop();
-        dml.setDDW(DDW,DDW_mom,DDW_dad);
 
-    }
+
+    private AdapterView.OnItemClickListener onElement1ItemClick = new AdapterView.OnItemClickListener() {
+
+        public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(
+                    INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+
+            DDM_e1 = (String) arg0.getItemAtPosition(arg2);
+
+
+            dml.setDDM(DDM,DDM_e1,DDM_e2,DDM_e3,DDM_e4);
+        }
+    };
+    private AdapterView.OnItemClickListener onElement2ItemClick = new AdapterView.OnItemClickListener() {
+
+        public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(
+                    INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+
+            DDM_e2 = (String) arg0.getItemAtPosition(arg2);
+            dml.setDDM(DDM,DDM_e1,DDM_e2,DDM_e3,DDM_e4);
+        }
+    };
+    private AdapterView.OnItemClickListener onElement3ItemClick = new AdapterView.OnItemClickListener() {
+
+        public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(
+                    INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+
+            DDM_e3 = (String) arg0.getItemAtPosition(arg2);
+            dml.setDDM(DDM,DDM_e1,DDM_e2,DDM_e3,DDM_e4);
+        }
+    };
+    private AdapterView.OnItemClickListener onElement4ItemClick = new AdapterView.OnItemClickListener() {
+
+        public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(
+                    INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+
+            DDM_e4 = (String) arg0.getItemAtPosition(arg2);
+            dml.setDDM(DDM,DDM_e1,DDM_e2,DDM_e3,DDM_e4);
+        }
+    };
+
+
+
+    private AdapterView.OnItemClickListener onDDMItemClick = new AdapterView.OnItemClickListener() {
+
+        public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+            Toast.makeText(getBaseContext(), "DDM Dragon:" + arg0.getItemAtPosition(arg2),
+                    Toast.LENGTH_LONG).show();
+
+            InputMethodManager imm = (InputMethodManager) getSystemService(
+                    INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+
+            Dragon d = (Dragon) arg0.getItemAtPosition(arg2);
+
+            DDM = d.id;
+
+            dml.setDDM(DDM,DDM_e1,DDM_e2,DDM_e3,DDM_e4);
+        }
+    };
+
+
 
     private AdapterView.OnItemClickListener onDDWItemClick = new AdapterView.OnItemClickListener() {
 
@@ -107,6 +215,8 @@ public class DdwDdmInput extends AppCompatActivity {
             Dragon d = (Dragon) arg0.getItemAtPosition(arg2);
 
             DDW = d.id;
+            dml.setDDW(DDW,DDW_mom,DDW_dad);
+
         }
     };
     private AdapterView.OnItemClickListener onDDWMomItemClick = new AdapterView.OnItemClickListener() {
@@ -122,6 +232,7 @@ public class DdwDdmInput extends AppCompatActivity {
             Dragon d = (Dragon) arg0.getItemAtPosition(arg2);
 
             DDW_mom = d.id;
+            dml.setDDW(DDW,DDW_mom,DDW_dad);
         }
     };
     private AdapterView.OnItemClickListener onDDWDadItemClick = new AdapterView.OnItemClickListener() {
@@ -137,6 +248,7 @@ public class DdwDdmInput extends AppCompatActivity {
             Dragon d = (Dragon) arg0.getItemAtPosition(arg2);
 
             DDW_dad = d.id;
+            dml.setDDW(DDW,DDW_mom,DDW_dad);
         }
     };
 }

@@ -70,8 +70,72 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
         view.setId((int) getItemId(position));
         TextView dragonTextView = (TextView) view.findViewById(R.id.breedListDargon);
         TextView oddTextView = (TextView) view.findViewById(R.id.breedListOdd);
-        dragonTextView.setText(d.lng_de);
+        String dt = getDragonText(d);
+        dragonTextView.setText(dt);
         oddTextView.setText(String.format("%.1f%%",d.odd));
+    }
+
+    private String getDragonText(Dragon d){
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(d.lng_de);
+        sb.append(" (");
+
+        int tBreed = Integer.parseInt(d.breedingTime);
+        int tHatch = Integer.parseInt(d.hatchingTime);
+        int bDay;
+        int bHour;
+        int bMin;
+        int bSec;
+        int hDay;
+        int hHour;
+        int hMin;
+        int hSec;
+
+        bDay = tBreed / (60*60*24);
+        bHour = (tBreed - bDay*(60*60*24)) / (60*60);
+        bMin = (tBreed - bDay*(60*60*24) - bHour*(60*60)) / (60);
+        bSec =  tBreed - bDay*(60*60*24) - bHour*(60*60) - bMin*60;
+
+        hDay = tHatch / (60*60*24);
+        hHour = (tHatch - hDay*(60*60*24)) / (60*60);
+        hMin = (tHatch - hDay*(60*60*24) - hHour*(60*60)) / (60);
+        hSec =  tHatch - hDay*(60*60*24) - hHour*(60*60) - hMin*60;
+
+        sb.append("B: ");
+        if(bDay > 0){
+            sb.append(bDay + "d, ");
+        }
+        if(bHour > 0){
+            sb.append(bHour + "h, ");
+        }
+        if(bMin > 0){
+            sb.append(bMin + "m, ");
+        }
+        if(bSec > 0){
+            sb.append(bSec + "s, ");
+        }
+        sb.setLength(sb.length()-2);
+
+        sb.append(" / H: ");
+        if(hDay > 0){
+            sb.append(hDay + "d, ");
+        }
+        if(hHour > 0){
+            sb.append(hHour + "h, ");
+        }
+        if(hMin > 0){
+            sb.append(hMin + "m, ");
+        }
+        if(hSec > 0){
+            sb.append(hSec + "s, ");
+        }
+        sb.setLength(sb.length()-2);
+        sb.append(")");
+
+
+
+        return sb.toString();
     }
 
     @Override
@@ -128,8 +192,14 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
             }
             sb.setLength(sb.length()-2);
 
-            Toast.makeText(context, sb.toString(),
-                    Toast.LENGTH_LONG).show();
+//            Toast.makeText(context, sb.toString(),
+//                    Toast.LENGTH_LONG).show();
+            Dragon d = items.get(position);
+
+            if(context instanceof MainActivity){
+                ((MainActivity)context).displayHowToResult(d);
+            }
+
         } catch (Exception e) {
            // e.printStackTrace();
         }

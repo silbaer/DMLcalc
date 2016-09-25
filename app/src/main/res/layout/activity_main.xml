@@ -21,8 +21,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#00ff00">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -53,7 +52,6 @@
                     android:layout_centerVertical="true"
                     android:layout_alignTop="@+id/textViewDDMLabel"
                     android:layout_alignBottom="@+id/textViewDDMLabel"
-                    android:background="#ff00ff"
                     android:layout_toEndOf="@id/textViewDDM" />
 
                 <de.silbaer.dmlcalc.MyImageView
@@ -66,7 +64,6 @@
                     android:layout_centerVertical="true"
                     android:layout_alignTop="@+id/textViewDDMLabel"
                     android:layout_alignBottom="@+id/textViewDDMLabel"
-                    android:background="#dd00dd"
                     android:layout_toEndOf="@id/iv_ddm_e1" />
 
                 <de.silbaer.dmlcalc.MyImageView
@@ -79,7 +76,6 @@
                     android:layout_centerVertical="true"
                     android:layout_alignTop="@+id/textViewDDMLabel"
                     android:layout_alignBottom="@+id/textViewDDMLabel"
-                    android:background="#bb00bb"
                     android:layout_toEndOf="@id/iv_ddm_e2" />
 
                 <de.silbaer.dmlcalc.MyImageView
@@ -92,7 +88,6 @@
                     android:layout_centerVertical="true"
                     android:layout_alignTop="@+id/textViewDDMLabel"
                     android:layout_alignBottom="@+id/textViewDDMLabel"
-                    android:background="#990099"
 
                     android:layout_toEndOf="@id/iv_ddm_e3" />
 
@@ -103,7 +98,8 @@
                     android:text="select"
                     android:id="@+id/button_select_ddm"
                     android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true" />
+                    android:layout_alignParentRight="true"
+                    android:onClick="onDDMClick" />
             </RelativeLayout>
 
             <LinearLayout
@@ -144,18 +140,43 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true">
 
+                <View
+                    android:layout_height="2dp"
+                    android:layout_width="wrap_content"
+                    android:background="#fb1414"
+                    android:layout_weight="1"
+                    android:layout_gravity="top|center_vertical" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="breed: "
-                    android:id="@+id/textView3" />
+                    android:id="@+id/textViewHowToTitle"
+                    android:layout_gravity="center"
+                    android:text="How to breed" />
 
-                <AutoCompleteTextView
+                <View
+                    android:layout_height="2dp"
+                    android:layout_width="wrap_content"
+                    android:background="#fb1414"
+                    android:layout_weight="1"
+                    android:layout_gravity="top|center_vertical" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true">
+
+
+            <AutoCompleteTextView
                     android:id="@+id/autoCompleteTextChild"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
+                android:layout_weight="1"
                     android:hint="Child" />
 
                 <Button
@@ -165,6 +186,37 @@
                     android:id="@+id/buttonHowTo"
                     android:onClick="onHowToClick" />
             </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true">
+
+                <View
+                    android:layout_height="2dp"
+                    android:layout_width="wrap_content"
+                    android:background="#fb1414"
+                    android:layout_weight="1"
+                    android:layout_gravity="top|center_vertical" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/textViewBreedingTitle"
+                    android:layout_gravity="center"
+                    android:text="Breeding" />
+
+                <View
+                    android:layout_height="2dp"
+                    android:layout_width="wrap_content"
+                    android:background="#fb1414"
+                    android:layout_weight="1"
+                    android:layout_gravity="top|center_vertical" />
+
+            </LinearLayout>
+
 
             <LinearLayout
                 android:orientation="horizontal"

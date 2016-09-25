@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -131,19 +132,11 @@ public class MainActivity extends AppCompatActivity {
             textChild.setOnItemClickListener(onChildItemClick);
             textDad.requestFocus();
 
-            ImageView iv = (ImageView) findViewById(R.id.iv_ddm_e1);
-//            iv.setImageResource(R.drawable.element_earth);
 
-            iv = (ImageView) findViewById(R.id.iv_ddm_e2);
-//            iv.setImageResource(R.drawable.element_energy);
+            TextView tv = (TextView) findViewById(R.id.textViewDDMLabel);
+            int h = tv.getLayoutParams().height;
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(h, h);
 
-            iv = (ImageView) findViewById(R.id.iv_ddm_e3);
-//            iv.setImageResource(R.drawable.element_shadow);
-
-            iv = (ImageView) findViewById(R.id.iv_ddm_e4);
-//            iv.setImageResource(R.drawable.element_plant);
-
-            ((TextView)findViewById(R.id.textViewDDM)).setText("MyDragon");
 
 
         } catch (Exception e) {
@@ -185,19 +178,16 @@ public class MainActivity extends AppCompatActivity {
         Intent myIntent = new Intent(this, DdwDdmInput.class);
         startActivity(myIntent);
     }
+    public void onDDMClick(View v){
+        Toast.makeText(getBaseContext(), "onDDMClick",
+                Toast.LENGTH_LONG).show();
+        Intent myIntent = new Intent(this, DdwDdmInput.class);
+        startActivity(myIntent);
+    }
 
     private void displayHowToResult(){
         List<Pair<Pair<Dragon,Dragon>,Double>> htb = dml.howToBreed(child);
 
-
-//        StringBuilder sb = new StringBuilder();
-//        for (Dragon d : result) {
-//            sb.append(d.lng_de + " " + String.format("%.1f",d.odd) + "\n");
-//        }
-//        if (!(sb.length() > 0)) {
-//            sb.append("No result");
-//        }
-//        txtContent.setText(sb.toString());
 
         ListView l = (ListView) findViewById(R.id.listView);
         howToItemAdapter a = new howToItemAdapter(this,htb);
@@ -223,26 +213,40 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    public void displayBreedResult(Dragon mom, Dragon dad){
-        this.mom = mom;
-        this.dad = dad;
-        textDad.setText(dad.lng_de);
-        textMom.setText(mom.lng_de);
-        displayBreedResult();
+    public void displayHowToResult(Dragon child) {
+        try {
+            this.child = child;
+            textChild.setText(child.lng_de);
+            ArrayAdapter<Dragon> ad = (ArrayAdapter) textChild.getAdapter();
+            int i = ad.getPosition(child);
+            textChild.setListSelection(i);
+            displayHowToResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void displayBreedResult(Dragon mom, Dragon dad) {
+        try {
+            this.mom = mom;
+            this.dad = dad;
+            textMom.setText(mom.lng_de);
+            textDad.setText(dad.lng_de);
+            ArrayAdapter<Dragon> ad = (ArrayAdapter) textDad.getAdapter();
+            int i = ad.getPosition(dad);
+            textDad.setListSelection(i);
+            ad = (ArrayAdapter) textMom.getAdapter();
+            i = ad.getPosition(dad);
+            textMom.setListSelection(i);
+            displayBreedResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void displayBreedResult(){
         List<Dragon> result = new ArrayList<Dragon>();
 
         result = dml.breed(dad, mom);
-//        StringBuilder sb = new StringBuilder();
-//        for (Dragon d : result) {
-//            sb.append(d.lng_de + " " + String.format("%.1f",d.odd) + "\n");
-//        }
-//        if (!(sb.length() > 0)) {
-//            sb.append("No result");
-//        }
-//        txtContent.setText(sb.toString());
 
         ListView l = (ListView) findViewById(R.id.listView);
         breedListItemAdapter a = new breedListItemAdapter(this,result);
@@ -271,13 +275,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onBreedClick(View v) {
-        textDad.setText(dad.lng_de);
-        textMom.setText(mom.lng_de);
-        displayBreedResult();
+        displayBreedResult(mom,dad);
     }
     public void onHowToClick(View v) {
-        textChild.setText(child.lng_de);
-        displayHowToResult();
+
+        displayHowToResult(child);
     }
 
     public void onClick(View v) {
@@ -309,12 +311,75 @@ public class MainActivity extends AppCompatActivity {
 //        );
 //        AppIndex.AppIndexApi.start(client, viewAction);
 
-       String ddw = dml.getDDW();
-        if(!ddw.isEmpty()){
-            TextView tv = (TextView) findViewById(R.id.textViewDDW);
-            tv.setText(String.format("%s",dml.dragons.get(ddw).lng_de));
-        }
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+
+        String tmp = dml.getDDW();
+        if(!tmp.isEmpty()){
+            TextView tv = (TextView) findViewById(R.id.textViewDDW);
+            tv.setText(String.format("%s",dml.dragons.get(tmp).lng_de));
+        }
+        tmp = dml.getDDM();
+        if(!tmp.isEmpty()){
+            TextView tv = (TextView) findViewById(R.id.textViewDDM);
+            tv.setText(String.format("%s",dml.dragons.get(tmp).lng_de));
+
+            ImageView iv = (ImageView) findViewById(R.id.iv_ddm_e1);
+            tmp = dml.getDDM_e1();
+            setElement(iv,tmp);
+            iv = (ImageView) findViewById(R.id.iv_ddm_e2);
+            tmp = dml.getDDM_e2();
+            setElement(iv,tmp);
+            iv = (ImageView) findViewById(R.id.iv_ddm_e3);
+            tmp = dml.getDDM_e3();
+            setElement(iv,tmp);
+            iv = (ImageView) findViewById(R.id.iv_ddm_e4);
+            tmp = dml.getDDM_e4();
+            setElement(iv,tmp);
+        }
+    }
+
+
+
+
+    private void setElement(ImageView iv, String element){
+        if(element.equalsIgnoreCase("earth")){
+            iv.setImageResource(R.drawable.element_earth);
+        }
+        if(element.equalsIgnoreCase("energy")){
+            iv.setImageResource(R.drawable.element_energy);
+        }
+        if(element.equalsIgnoreCase("fire")){
+            iv.setImageResource(R.drawable.element_fire);
+        }
+        if(element.equalsIgnoreCase("legendary")){
+            iv.setImageResource(R.drawable.element_legendary);
+        }
+        if(element.equalsIgnoreCase("light")){
+            iv.setImageResource(R.drawable.element_light);
+        }
+        if(element.equalsIgnoreCase("metal")){
+            iv.setImageResource(R.drawable.element_metal);
+        }
+        if(element.equalsIgnoreCase("plant")){
+            iv.setImageResource(R.drawable.element_plant);
+        }
+        if(element.equalsIgnoreCase("shadow")){
+            iv.setImageResource(R.drawable.element_shadow);
+        }
+        if(element.equalsIgnoreCase("void")){
+            iv.setImageResource(R.drawable.element_void);
+        }
+        if(element.equalsIgnoreCase("water")){
+            iv.setImageResource(R.drawable.element_water);
+        }
+        if(element.equalsIgnoreCase("wind")){
+            iv.setImageResource(R.drawable.element_wind);
+        }
     }
 
     @Override
