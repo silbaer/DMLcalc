@@ -15,6 +15,7 @@ public class DdwDdmInput extends AppCompatActivity {
     public AutoCompleteTextView textDad;
     public AutoCompleteTextView textMom;
     public AutoCompleteTextView textDDW;
+    public AutoCompleteTextView textDDM;
 
     public ImageView ddw_e1;
     DMLcalc dml;
@@ -34,6 +35,7 @@ public class DdwDdmInput extends AppCompatActivity {
         textDad = (AutoCompleteTextView) findViewById(R.id.autoCompleteDad);
         textMom = (AutoCompleteTextView) findViewById(R.id.autoCompleteMom);
         textDDW = (AutoCompleteTextView) findViewById(R.id.autoCompleteDDW);
+        textDDM = (AutoCompleteTextView) findViewById(R.id.autoCompleteDDM);
 
         dml = (DMLcalc) getApplicationContext();
 
@@ -47,6 +49,9 @@ public class DdwDdmInput extends AppCompatActivity {
 
         textDDW.setAdapter(ad);
         textDDW.setThreshold(1);
+
+        textDDM.setAdapter(ad);
+        textDDM.setThreshold(1);
 
         textDDW.setOnItemClickListener(onDDWItemClick);
         textMom.setOnItemClickListener(onDDWMomItemClick);
