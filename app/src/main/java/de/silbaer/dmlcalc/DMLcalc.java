@@ -365,6 +365,12 @@ public class DMLcalc extends Application {
 
             // Dragon of the month
             if(child.id.equalsIgnoreCase(DDM)){
+                if(mom.isBoss() || mom.isUnreleased() || mom.islegendary()){
+                    return false;
+                }
+                if(dad.isBoss() || dad.isUnreleased() || dad.islegendary()){
+                    return false;
+                }
                 List<String> MomDadElements = new ArrayList<>();
                 MomDadElements.addAll(mom.elements);
                 MomDadElements.addAll(dad.elements);
