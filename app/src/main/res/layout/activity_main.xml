@@ -27,7 +27,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="DDM: "
+                    android:text="@string/txt_label_ddm"
                     android:id="@+id/textViewDDMLabel"
                     android:textStyle="bold"
                     android:layout_centerVertical="true" />
@@ -95,7 +95,7 @@
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="select"
+                    android:text="@string/txt_button_select"
                     android:id="@+id/button_select_ddm"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
@@ -111,7 +111,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="DDW: "
+                    android:text="@string/txt_label_ddw"
                     android:id="@+id/textViewDDWLabel"
                     android:textStyle="bold"
                     android:clickable="true" />
@@ -127,7 +127,7 @@
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="select"
+                    android:text="@string/txt_button_select"
                     android:id="@+id/button_select_ddw"
                     android:onClick="onDDWClick" />
 
@@ -152,7 +152,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:id="@+id/textViewHowToTitle"
                     android:layout_gravity="center"
-                    android:text="How to breed" />
+                    android:text="@string/txt_label_how_to_breed" />
 
                 <View
                     android:layout_height="2dp"
@@ -177,12 +177,12 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                 android:layout_weight="1"
-                    android:hint="Child" />
+                    android:hint="@string/txt_hint_child" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="show"
+                    android:text="@string/txt_button_show"
                     android:id="@+id/buttonHowTo"
                     android:onClick="onHowToClick" />
             </LinearLayout>
@@ -206,7 +206,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:id="@+id/textViewBreedingTitle"
                     android:layout_gravity="center"
-                    android:text="Breeding" />
+                    android:text="@string/txt_label_breeding" />
 
                 <View
                     android:layout_height="2dp"
@@ -234,7 +234,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:hint="Dad">
+                        android:hint="@string/txt_hint_dad">
                         <requestFocus />
                     </AutoCompleteTextView>
 
@@ -243,7 +243,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:hint="Mom">
+                        android:hint="@string/txt_hint_mom">
                         <requestFocus />
                     </AutoCompleteTextView>
                 </LinearLayout>
@@ -251,7 +251,7 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    android:text="show\nBreed"
+                    android:text="@string/txt_button_show_nbreed"
                     android:id="@+id/buttonBreed"
                     android:clickable="false"
                     android:onClick="onBreedClick" />

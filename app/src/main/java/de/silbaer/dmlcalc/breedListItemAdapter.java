@@ -75,74 +75,14 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
         oddTextView.setText(String.format("%.1f%%",d.odd));
     }
 
-    private String getDragonText(Dragon d){
+    private String getDragonText(Dragon d) {
         StringBuilder sb = new StringBuilder();
-
-        sb.append(d.lng_de);
-        sb.append(" (");
-
-        int tBreed = Integer.parseInt(d.breedingTime);
-        int tHatch = Integer.parseInt(d.hatchingTime);
-        int bDay;
-        int bHour;
-        int bMin;
-        int bSec;
-        int hDay;
-        int hHour;
-        int hMin;
-        int hSec;
-
-        bDay = tBreed / (60*60*24);
-        bHour = (tBreed - bDay*(60*60*24)) / (60*60);
-        bMin = (tBreed - bDay*(60*60*24) - bHour*(60*60)) / (60);
-        bSec =  tBreed - bDay*(60*60*24) - bHour*(60*60) - bMin*60;
-
-        hDay = tHatch / (60*60*24);
-        hHour = (tHatch - hDay*(60*60*24)) / (60*60);
-        hMin = (tHatch - hDay*(60*60*24) - hHour*(60*60)) / (60);
-        hSec =  tHatch - hDay*(60*60*24) - hHour*(60*60) - hMin*60;
-
-        sb.append("B: ");
-        if(bDay > 0){
-            sb.append(bDay + "d, ");
-        }
-        if(bHour > 0){
-            sb.append(bHour + "h, ");
-        }
-        if(bMin > 0){
-            sb.append(bMin + "m, ");
-        }
-        if(bSec > 0){
-            sb.append(bSec + "s, ");
-        }
-        sb.setLength(sb.length()-2);
-
-        sb.append(" / H: ");
-        if(hDay > 0){
-            sb.append(hDay + "d, ");
-        }
-        if(hHour > 0){
-            sb.append(hHour + "h, ");
-        }
-        if(hMin > 0){
-            sb.append(hMin + "m, ");
-        }
-        if(hSec > 0){
-            sb.append(hSec + "s, ");
-        }
-        sb.setLength(sb.length()-2);
-        sb.append(")");
-
-
-
-        return sb.toString();
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         try {
-            int tBreed = Integer.parseInt(items.get(position).breedingTime);
-            int tHatch = Integer.parseInt(items.get(position).hatchingTime);
+            sb.append(d.lng_de);
+            sb.append(" (");
+
+            int tBreed = Integer.parseInt(d.breedingTime);
+            int tHatch = Integer.parseInt(d.hatchingTime);
             int bDay;
             int bHour;
             int bMin;
@@ -152,45 +92,107 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
             int hMin;
             int hSec;
 
-            bDay = tBreed / (60*60*24);
-            bHour = (tBreed - bDay*(60*60*24)) / (60*60);
-            bMin = (tBreed - bDay*(60*60*24) - bHour*(60*60)) / (60);
-            bSec =  tBreed - bDay*(60*60*24) - bHour*(60*60) - bMin*60;
+            bDay = tBreed / (60 * 60 * 24);
+            bHour = (tBreed - bDay * (60 * 60 * 24)) / (60 * 60);
+            bMin = (tBreed - bDay * (60 * 60 * 24) - bHour * (60 * 60)) / (60);
+            bSec = tBreed - bDay * (60 * 60 * 24) - bHour * (60 * 60) - bMin * 60;
 
-            hDay = tHatch / (60*60*24);
-            hHour = (tHatch - hDay*(60*60*24)) / (60*60);
-            hMin = (tHatch - hDay*(60*60*24) - hHour*(60*60)) / (60);
-            hSec =  tHatch - hDay*(60*60*24) - hHour*(60*60) - hMin*60;
+            hDay = tHatch / (60 * 60 * 24);
+            hHour = (tHatch - hDay * (60 * 60 * 24)) / (60 * 60);
+            hMin = (tHatch - hDay * (60 * 60 * 24) - hHour * (60 * 60)) / (60);
+            hSec = tHatch - hDay * (60 * 60 * 24) - hHour * (60 * 60) - hMin * 60;
 
-            StringBuilder sb = new StringBuilder("B: ");
-            if(bDay > 0){
-                sb.append(bDay + " Tag" + (bDay > 1?"e, ":", "));
+            sb.append("B: ");
+            if (bDay > 0) {
+                sb.append(bDay + "d, ");
             }
-            if(bHour > 0){
-                sb.append(bHour + " Stunde" + (bHour > 1?"n, ":", "));
+            if (bHour > 0) {
+                sb.append(bHour + "h, ");
             }
-            if(bMin > 0){
-                sb.append(bMin + " Minute" + (bMin > 1?"n, ":", "));
+            if (bMin > 0) {
+                sb.append(bMin + "m, ");
             }
-            if(bSec > 0){
-                sb.append(bSec + " Sekunde" + (bSec > 1?"n, ":", "));
+            if (bSec > 0) {
+                sb.append(bSec + "s, ");
             }
-            sb.setLength(sb.length()-2);
+            sb.setLength(sb.length() - 2);
 
             sb.append(" / H: ");
-            if(hDay > 0){
-                sb.append(hDay + " Tag" + (hDay > 1?"e, ":", "));
+            if (hDay > 0) {
+                sb.append(hDay + "d, ");
             }
-            if(hHour > 0){
-                sb.append(hHour + " Stunde" + (hHour > 1?"n, ":", "));
+            if (hHour > 0) {
+                sb.append(hHour + "h, ");
             }
-            if(hMin > 0){
-                sb.append(hMin + " Minute" + (hMin > 1?"n, ":", "));
+            if (hMin > 0) {
+                sb.append(hMin + "m, ");
             }
-            if(hSec > 0){
-                sb.append(hSec + " Sekunde" + (hSec > 1?"n, ":", "));
+            if (hSec > 0) {
+                sb.append(hSec + "s, ");
             }
-            sb.setLength(sb.length()-2);
+            sb.setLength(sb.length() - 2);
+            sb.append(")");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return sb.toString();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        try {
+//            int tBreed = Integer.parseInt(items.get(position).breedingTime);
+//            int tHatch = Integer.parseInt(items.get(position).hatchingTime);
+//            int bDay;
+//            int bHour;
+//            int bMin;
+//            int bSec;
+//            int hDay;
+//            int hHour;
+//            int hMin;
+//            int hSec;
+//
+//            bDay = tBreed / (60*60*24);
+//            bHour = (tBreed - bDay*(60*60*24)) / (60*60);
+//            bMin = (tBreed - bDay*(60*60*24) - bHour*(60*60)) / (60);
+//            bSec =  tBreed - bDay*(60*60*24) - bHour*(60*60) - bMin*60;
+//
+//            hDay = tHatch / (60*60*24);
+//            hHour = (tHatch - hDay*(60*60*24)) / (60*60);
+//            hMin = (tHatch - hDay*(60*60*24) - hHour*(60*60)) / (60);
+//            hSec =  tHatch - hDay*(60*60*24) - hHour*(60*60) - hMin*60;
+//
+//            StringBuilder sb = new StringBuilder("B: ");
+//            if(bDay > 0){
+//                sb.append(bDay + " Tag" + (bDay > 1?"e, ":", "));
+//            }
+//            if(bHour > 0){
+//                sb.append(bHour + " Stunde" + (bHour > 1?"n, ":", "));
+//            }
+//            if(bMin > 0){
+//                sb.append(bMin + " Minute" + (bMin > 1?"n, ":", "));
+//            }
+//            if(bSec > 0){
+//                sb.append(bSec + " Sekunde" + (bSec > 1?"n, ":", "));
+//            }
+//            sb.setLength(sb.length()-2);
+//
+//            sb.append(" / H: ");
+//            if(hDay > 0){
+//                sb.append(hDay + " Tag" + (hDay > 1?"e, ":", "));
+//            }
+//            if(hHour > 0){
+//                sb.append(hHour + " Stunde" + (hHour > 1?"n, ":", "));
+//            }
+//            if(hMin > 0){
+//                sb.append(hMin + " Minute" + (hMin > 1?"n, ":", "));
+//            }
+//            if(hSec > 0){
+//                sb.append(hSec + " Sekunde" + (hSec > 1?"n, ":", "));
+//            }
+//            sb.setLength(sb.length()-2);
 
 //            Toast.makeText(context, sb.toString(),
 //                    Toast.LENGTH_LONG).show();

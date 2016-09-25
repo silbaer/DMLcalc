@@ -9,5 +9,28 @@
     <string name="DDM_e2">DDM_e2</string>
     <string name="DDM_e3">DDM_e3</string>
     <string name="DDM_e4">DDM_e4</string>
+    <string name="txt_button_select">select</string>
+    <string name="txt_label_ddm">DDM:</string>
+    <string name="txt_label_ddw">DDW:</string>
+    <string name="txt_label_how_to_breed">How to breed</string>
+    <string name="txt_button_show">show</string>
+    <string name="txt_hint_child">Child</string>
+    <string name="txt_label_breeding">Breeding</string>
+    <string name="txt_hint_dad">Dad</string>
+    <string name="txt_hint_mom">Mom</string>
+    <string name="txt_button_show_nbreed">show\nBreed</string>
+    <string name="txt_hint_insert_ddw_here">Insert DDW here</string>
+    <string name="txt_label_mom">Mom:</string>
+    <string name="txt_hint_insert_mom_here">Insert Mom here</string>
+    <string name="txt_label_dad">Dad:</string>
+    <string name="txt_hint_insert_dad_here">Insert Dad here</string>
+    <string name="txt_hint_insert_ddm_here">Insert DDM here</string>
+    <string name="txt_label_element_1">Element 1:</string>
+    <string name="txt_label_element_2">Element 2:</string>
+    <string name="txt_label_element_3">Element 3:</string>
+    <string name="txt_label_element_4">Element 4:</string>
+    <string name="txt_hint_select_element_4">select element 4</string>
+    <string name="txt_hint_select_element_3">select element 3</string>
+    <string name="txt_hint_select_element_2">select element 2</string>
 
 </resources>
