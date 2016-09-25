@@ -8,8 +8,9 @@ android {
         applicationId "de.silbaer.dmlcalc"
         minSdkVersion 19
         targetSdkVersion 23
-        versionCode 4
-        versionName "0.0.1 Alpha 4"
+        versionCode 4  // increment with every release
+        versionName "0.0.1 Alpha 4" // change with every release
+        setProperty("archivesBaseName","DMLcalc-$versionName")
     }
     buildTypes {
         release {
