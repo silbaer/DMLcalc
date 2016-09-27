@@ -115,7 +115,7 @@
 				["steel", "Steel_Dragon", "./img/dragons/Steel_Dragon.png", "metal", "void", "", "E", "N/A", "69600", "R", "222", "60", "465", "A&ccedil;o", "Acier", "Acciaio", "Stahl"],
 				["blueflame", "Blueflame_Dragon", "./img/dragons/Blueflame_Dragon.png", "water", "void", "fire", "", "64800", "93600", "E", "209", "65", "470", "Chama Azul", "Flamme Bleue", "Fiamma blu", "Blauflamm"],
 				["aurora", "Aurora_Dragon", "./img/dragons/Aurora_Dragon.png", "metal", "energy", "void", "", "86400", "100800", "E", "214", "66", "615", "Aurora", "Aurore", "Aurora", "Aurora"],
-				["toxic", "Toxic_Dragon", "./img/dragons/Toxic_Dragon.png", "plant", "energy", "void", "", "86400", "100800", "E", "205", "69", "600", "Tóxico", "Toxic_Dragon", "Tossico", "Vipern"],
+				["toxic", "Toxic_Dragon", "./img/dragons/Toxic_Dragon.png", "plant", "energy", "void", "", "86400", "100800", "E", "205", "69", "600", "Tóxico", "Toxic_Dragon", "Tossico", "Toxin"],
 				["storm", "Storm_Dragon", "./img/dragons/Storm_Dragon.png", "energy", "wind", "void", "", "79200", "104400", "E", "196", "69", "560", "Tempestade", "Tempête", "Tempesta", "Sturm"],
 				["dracula", "Dracula_Dragon", "./img/dragons/Dracula_Dragon.png", "void", "metal", "wind", "", "72000", "93600", "E", "220", "62", "535", "Dr&aacute;cula", "Dracula", "Dracula", "Vampir"],
 				["swamp", "Swamp_Dragon", "./img/dragons/Swamp_Dragon.png", "void", "earth", "plant", "", "72000", "93600", "E", "227", "61", "530", "P&acirc;ntano", "Marais", "Palude", "Sumpf"],
