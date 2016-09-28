@@ -60,7 +60,10 @@ public class DMLcalc extends Application {
         elements.add("shadow");
         elements.add("legendary");
 
+
+
     }
+
 
     public void setDDW(String ddw, String mom, String dad){
         DDW = ddw;
@@ -155,6 +158,12 @@ public class DMLcalc extends Application {
         return DDM_Elements.get(3);
         }
         return "";
+    }
+    public List<String> getDdmElements() {
+        if (DDM_Elements.isEmpty()) {
+            readDdmElementsFromPreferences();
+        }
+        return DDM_Elements;
     }
 
 
@@ -350,9 +359,9 @@ public class DMLcalc extends Application {
 
         if (!child.boss_vip.isEmpty()  && !child.boss_vip.equals("V")) { // nicht VIP, aber Boss oder Event oder unreleased
             // Drogon of the week
-            if(child.id.equalsIgnoreCase(DDW)){
-                if(mom.id.equalsIgnoreCase(DDW_Mom) && dad.id.equalsIgnoreCase(DDW_Dad)
-                        || dad.id.equalsIgnoreCase(DDW_Mom) && mom.id.equalsIgnoreCase(DDW_Dad) ){
+            if(child.id.equalsIgnoreCase(getDDW())){
+                if(mom.id.equalsIgnoreCase(getDDW_mom()) && dad.id.equalsIgnoreCase(getDDW_dad())
+                        || dad.id.equalsIgnoreCase(getDDW_mom()) && mom.id.equalsIgnoreCase(getDDW_dad()) ){
                     return true;
                 }
             }
@@ -364,7 +373,7 @@ public class DMLcalc extends Application {
 
 
             // Dragon of the month
-            if(child.id.equalsIgnoreCase(DDM)){
+            if(child.id.equalsIgnoreCase(getDDM())){
                 if(mom.isBoss() || mom.isUnreleased() || mom.islegendary()){
                     return false;
                 }
@@ -374,8 +383,8 @@ public class DMLcalc extends Application {
                 List<String> MomDadElements = new ArrayList<>();
                 MomDadElements.addAll(mom.elements);
                 MomDadElements.addAll(dad.elements);
-                if(DDM_Elements.size() > 0) {
-                  if(MomDadElements.containsAll(DDM_Elements)){
+                if(getDdmElements().size() > 0) {
+                  if(MomDadElements.containsAll(getDdmElements())){
                       return true;
                   }
                 }
