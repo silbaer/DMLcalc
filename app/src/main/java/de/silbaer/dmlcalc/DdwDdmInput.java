@@ -82,17 +82,17 @@ public class DdwDdmInput extends AppCompatActivity {
 
         d = dml.dragons.get(DDW);
         if(d != null) {
-            textDDW.setText(d.lng_de);
+            textDDW.setText(d.toString());
         }
 
         d = dml.dragons.get(DDW_mom);
         if(d != null) {
-            textMom.setText(d.lng_de);
+            textMom.setText(d.toString());
         }
 
         d = dml.dragons.get(DDW_dad);
         if(d != null) {
-            textDad.setText(d.lng_de);
+            textDad.setText(d.toString());
         }
 
         ArrayAdapter<String> ade = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item);
@@ -122,7 +122,7 @@ public class DdwDdmInput extends AppCompatActivity {
 
         d = dml.dragons.get(DDM);
         if(d != null) {
-            textDDM.setText(d.lng_de);
+            textDDM.setText(d.toString());
         }
         textE1.setText(DDM_e1);
         textE2.setText(DDM_e2);

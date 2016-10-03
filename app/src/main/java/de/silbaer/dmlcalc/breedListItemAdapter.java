@@ -78,7 +78,7 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
     private String getDragonText(Dragon d) {
         StringBuilder sb = new StringBuilder();
         try {
-            sb.append(d.lng_de);
+            sb.append(d.toString());
             sb.append(" (");
 
             int tBreed = Integer.parseInt(d.breedingTime);

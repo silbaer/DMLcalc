@@ -216,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
     public void displayHowToResult(Dragon child) {
         try {
             this.child = child;
-            textChild.setText(child.lng_de);
+            textChild.setText(child.toString());
             ArrayAdapter<Dragon> ad = (ArrayAdapter) textChild.getAdapter();
             int i = ad.getPosition(child);
             textChild.setListSelection(i);
@@ -229,8 +229,8 @@ public class MainActivity extends AppCompatActivity {
         try {
             this.mom = mom;
             this.dad = dad;
-            textMom.setText(mom.lng_de);
-            textDad.setText(dad.lng_de);
+            textMom.setText(mom.toString());
+            textDad.setText(dad.toString());
             ArrayAdapter<Dragon> ad = (ArrayAdapter) textDad.getAdapter();
             int i = ad.getPosition(dad);
             textDad.setListSelection(i);
@@ -321,12 +321,12 @@ public class MainActivity extends AppCompatActivity {
         String tmp = dml.getDDW();
         if(!tmp.isEmpty()){
             TextView tv = (TextView) findViewById(R.id.textViewDDW);
-            tv.setText(String.format("%s",dml.dragons.get(tmp).lng_de));
+            tv.setText(String.format("%s",dml.dragons.get(tmp).toString()));
         }
         tmp = dml.getDDM();
         if(!tmp.isEmpty()){
             TextView tv = (TextView) findViewById(R.id.textViewDDM);
-            tv.setText(String.format("%s",dml.dragons.get(tmp).lng_de));
+            tv.setText(String.format("%s",dml.dragons.get(tmp).toString()));
 
             ImageView iv = (ImageView) findViewById(R.id.iv_ddm_e1);
             tmp = dml.getDDM_e1();

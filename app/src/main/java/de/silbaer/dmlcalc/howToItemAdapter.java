@@ -78,7 +78,7 @@ public class howToItemAdapter extends BaseAdapter implements AdapterView.OnItemC
         view.setId((int) getItemId(position));
         TextView dragonTextView = (TextView) view.findViewById(R.id.breedListDargon);
         TextView oddTextView = (TextView) view.findViewById(R.id.breedListOdd);
-        dragonTextView.setText(p.first.first.lng_de + " & " + p.first.second.lng_de);
+        dragonTextView.setText(p.first.first.toString() + " & " + p.first.second.toString());
         oddTextView.setText(String.format("%.1f%%",p.second));
     }
 
