@@ -1,6 +1,7 @@
 package de.silbaer.dmlcalc;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.net.Uri;
@@ -74,6 +75,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.action_settings) {
 
+
+            return true;
+        }
+        if (id == R.id.action_info) {
+
+            new AlertDialog.Builder(this).setTitle(R.string.action_info).setMessage("Version " + BuildConfig.VERSION_NAME ).setNeutralButton("OK", null).show();
             return true;
         }
 

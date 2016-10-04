@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">DMLcalc</string>
     <string name="action_settings">Settings</string>
+    <string name="action_info">Info</string>
     <string name="DDW">DDW</string>
     <string name="DDW_mom">DDW_mom</string>
     <string name="DDW_dad">DDW_dad</string>
@@ -32,5 +33,6 @@
     <string name="txt_hint_select_element_4">select element 4</string>
     <string name="txt_hint_select_element_3">select element 3</string>
     <string name="txt_hint_select_element_2">select element 2</string>
+    <string name="txt_button_about_ok">OK</string>
 
 </resources>
