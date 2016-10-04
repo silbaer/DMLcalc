@@ -77,32 +77,31 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
 
     private String getDragonText(Dragon d) {
         StringBuilder sb = new StringBuilder();
+        int tBreed ;
+        int tHatch ;
+        int bDay;
+        int bHour;
+        int bMin;
+        int bSec;
+        int hDay;
+        int hHour;
+        int hMin;
+        int hSec;
         try {
             sb.append(d.toString());
             sb.append(" (");
+            sb.append("B: ");
+             tBreed = Integer.parseInt(d.breedingTime);
 
-            int tBreed = Integer.parseInt(d.breedingTime);
-            int tHatch = Integer.parseInt(d.hatchingTime);
-            int bDay;
-            int bHour;
-            int bMin;
-            int bSec;
-            int hDay;
-            int hHour;
-            int hMin;
-            int hSec;
 
             bDay = tBreed / (60 * 60 * 24);
             bHour = (tBreed - bDay * (60 * 60 * 24)) / (60 * 60);
             bMin = (tBreed - bDay * (60 * 60 * 24) - bHour * (60 * 60)) / (60);
             bSec = tBreed - bDay * (60 * 60 * 24) - bHour * (60 * 60) - bMin * 60;
 
-            hDay = tHatch / (60 * 60 * 24);
-            hHour = (tHatch - hDay * (60 * 60 * 24)) / (60 * 60);
-            hMin = (tHatch - hDay * (60 * 60 * 24) - hHour * (60 * 60)) / (60);
-            hSec = tHatch - hDay * (60 * 60 * 24) - hHour * (60 * 60) - hMin * 60;
 
-            sb.append("B: ");
+
+
             if (bDay > 0) {
                 sb.append(bDay + "d, ");
             }
@@ -116,8 +115,20 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
                 sb.append(bSec + "s, ");
             }
             sb.setLength(sb.length() - 2);
-
+        } catch (Exception e) {
+            sb.append("N/A");
+            e.printStackTrace();
+        }
+        try {
             sb.append(" / H: ");
+            tHatch = Integer.parseInt(d.hatchingTime);
+
+            hDay = tHatch / (60 * 60 * 24);
+            hHour = (tHatch - hDay * (60 * 60 * 24)) / (60 * 60);
+            hMin = (tHatch - hDay * (60 * 60 * 24) - hHour * (60 * 60)) / (60);
+            hSec = tHatch - hDay * (60 * 60 * 24) - hHour * (60 * 60) - hMin * 60;
+
+
             if (hDay > 0) {
                 sb.append(hDay + "d, ");
             }
@@ -131,10 +142,12 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
                 sb.append(hSec + "s, ");
             }
             sb.setLength(sb.length() - 2);
-            sb.append(")");
+
         } catch (Exception e) {
+            sb.append("N/A");
             e.printStackTrace();
         }
+        sb.append(")");
 
 
         return sb.toString();
