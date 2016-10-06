@@ -334,4 +334,9 @@
 				["cheerleader", "Cheerleader_Dragon", "./img/dragons/Cheerleader_Dragon.png", "energy", "fire", "wind", "E", "N/A", "N/A", "E", "184", "70", "450", "Cheerleader", "Cheerleader", "Cheerleader", "Cheerleader"],
 				["scribble", "Scribble_Dragon", "./img/dragons/Scribble_Dragon.png", "wind", "earth", "plant", "E", "N/A", "N/A", "E", "220", "61", "410", "Scribble", "Scribble", "Scribble", "Scribble"],
 				["chemistry", "Chemistry_Dragon", "./img/dragons/Chemistry_Dragon.png", "void", "plant", "energy", "E", "N/A", "N/A", "E", "206", "69", "600", "Chemistry", "Chemistry", "Chemistry", "Chemistry"]
-				
+				["stinky", "Stinky", "./img/dragons/Stinky.png", "fire", "plant", "metal", "B", "N/A", "Instant", "B", "218", "250", "+10%", "Stinky", "Stinky", "Stinky", "Stinky"],
+				["mini", "Mini", "./img/dragons/Mini.png", "void", "metal", "earth", "B", "N/A", "Instant", "B", "236", "235", "+10%", "Mini", "Mini", "Mini", "Mini"],
+				["floe", "Floe", "./img/dragons/Floe.png", "shadow", "light", "void", "B", "N/A", "Instant", "B", "200", "283", "+10%", "Floe", "Floe", "Floe", "Floe"],
+				["dusty", "Dusty", "./img/dragons/Dusty.png", "shadow", "light", "void", "B", "N/A", "Instant", "B", "208", "286", "+10%", "Dusty", "Dusty", "Dusty", "Dusty"],
+				["school_bus", "School_Bus_Dragon", "./img/dragons/School_Bus_Dragon.png", "light", "earth", "metal", "E", "N/A", "Instant", "B", "238", "59", "585", "School Bus", "School Bus", "School Bus", "School Bus"]
+
