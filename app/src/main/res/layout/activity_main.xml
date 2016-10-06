@@ -30,7 +30,8 @@
                     android:text="@string/txt_label_ddm"
                     android:id="@+id/textViewDDMLabel"
                     android:textStyle="bold"
-                    android:layout_centerVertical="true" />
+                    android:layout_centerVertical="true"
+                    android:onClick="onDDMClick" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -40,7 +41,8 @@
 
                     android:layout_toEndOf="@id/textViewDDMLabel"
                     android:layout_centerVertical="true"
-                    android:paddingEnd="10dp" />
+                    android:paddingEnd="10dp"
+                    android:onClick="onDDMClick" />
 
                 <de.silbaer.dmlcalc.MyImageView
                     android:layout_width="wrap_content"
@@ -52,7 +54,8 @@
                     android:layout_centerVertical="true"
                     android:layout_alignTop="@+id/textViewDDMLabel"
                     android:layout_alignBottom="@+id/textViewDDMLabel"
-                    android:layout_toEndOf="@id/textViewDDM" />
+                    android:layout_toEndOf="@id/textViewDDM"
+                    android:onClick="onDDMClick" />
 
                 <de.silbaer.dmlcalc.MyImageView
                     android:layout_width="wrap_content"
@@ -64,7 +67,8 @@
                     android:layout_centerVertical="true"
                     android:layout_alignTop="@+id/textViewDDMLabel"
                     android:layout_alignBottom="@+id/textViewDDMLabel"
-                    android:layout_toEndOf="@id/iv_ddm_e1" />
+                    android:layout_toEndOf="@id/iv_ddm_e1"
+                    android:onClick="onDDMClick" />
 
                 <de.silbaer.dmlcalc.MyImageView
                     android:layout_width="wrap_content"
@@ -76,7 +80,8 @@
                     android:layout_centerVertical="true"
                     android:layout_alignTop="@+id/textViewDDMLabel"
                     android:layout_alignBottom="@+id/textViewDDMLabel"
-                    android:layout_toEndOf="@id/iv_ddm_e2" />
+                    android:layout_toEndOf="@id/iv_ddm_e2"
+                    android:onClick="onDDMClick" />
 
                 <de.silbaer.dmlcalc.MyImageView
                     android:layout_width="wrap_content"
@@ -89,7 +94,8 @@
                     android:layout_alignTop="@+id/textViewDDMLabel"
                     android:layout_alignBottom="@+id/textViewDDMLabel"
 
-                    android:layout_toEndOf="@id/iv_ddm_e3" />
+                    android:layout_toEndOf="@id/iv_ddm_e3"
+                    android:onClick="onDDMClick" />
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -99,7 +105,7 @@
                     android:id="@+id/button_select_ddm"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
-                    android:onClick="onDDMClick" />
+                    android:onClick="onDDMButtonClick" />
             </RelativeLayout>
 
             <LinearLayout
@@ -114,14 +120,16 @@
                     android:text="@string/txt_label_ddw"
                     android:id="@+id/textViewDDWLabel"
                     android:textStyle="bold"
-                    android:clickable="true" />
+                    android:clickable="true"
+                    android:onClick="onDDWClick" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:id="@+id/textViewDDW"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:onClick="onDDWClick" />
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -129,7 +137,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/txt_button_select"
                     android:id="@+id/button_select_ddw"
-                    android:onClick="onDDWClick" />
+                    android:onClick="onDDWButtonClick" />
 
             </LinearLayout>
 

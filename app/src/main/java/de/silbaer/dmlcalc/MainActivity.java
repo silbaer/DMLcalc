@@ -179,17 +179,36 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    public void onDDWClick(View v){
-        Toast.makeText(getBaseContext(), "onDDWClick",
+    public void onDDWButtonClick(View v){
+        Toast.makeText(getBaseContext(), "onDDWButtonClick",
                 Toast.LENGTH_LONG).show();
         Intent myIntent = new Intent(this, DdwDdmInput.class);
         startActivity(myIntent);
     }
-    public void onDDMClick(View v){
-        Toast.makeText(getBaseContext(), "onDDMClick",
+    public void onDDMButtonClick(View v){
+        Toast.makeText(getBaseContext(), "onDDMButtonClick",
                 Toast.LENGTH_LONG).show();
         Intent myIntent = new Intent(this, DdwDdmInput.class);
         startActivity(myIntent);
+    }
+
+    public void onDDMClick(View v) {
+        String ds = dml.getDDM();
+        if(!ds.isEmpty()){
+            Dragon d = dml.dragons.get(ds);
+            if(d != null){
+                displayHowToResult(d);
+            }
+        }
+    }
+    public void onDDWClick(View v) {
+        String ds = dml.getDDW();
+        if(!ds.isEmpty()){
+            Dragon d = dml.dragons.get(ds);
+            if(d != null){
+                displayHowToResult(d);
+            }
+        }
     }
 
     private void displayHowToResult(){
