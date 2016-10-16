@@ -8,9 +8,9 @@ android {
         applicationId "de.silbaer.dmlcalc"
         minSdkVersion 19
         targetSdkVersion 23
-        versionCode 6  // increment with every release
-        versionName "0.0.1 Alpha 6" // change with every release
-        setProperty("archivesBaseName","DMLcalc-$versionName")
+        versionCode 7  // increment with every release
+        versionName "0.0.1 Alpha 7" // change with every release
+        setProperty("archivesBaseName", "DMLcalc-$versionName")
     }
     buildTypes {
         release {
@@ -25,4 +25,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
+    compile 'com.android.support:support-v4:23.4.0'
 }

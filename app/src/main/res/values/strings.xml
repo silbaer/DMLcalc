@@ -34,5 +34,6 @@
     <string name="txt_hint_select_element_3">select element 3</string>
     <string name="txt_hint_select_element_2">select element 2</string>
     <string name="txt_button_about_ok">OK</string>
+    <string name="txt_Info_Message">Version %1$s\nAnregungen/Kritik an:\nsilbaer@gmail.com</string>
 
 </resources>

@@ -2,6 +2,8 @@ package de.silbaer.dmlcalc;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.net.Uri;
@@ -18,6 +20,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -73,14 +76,17 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
 
-
-            return true;
-        }
         if (id == R.id.action_info) {
 
-            new AlertDialog.Builder(this).setTitle(R.string.action_info).setMessage("Version " + BuildConfig.VERSION_NAME ).setNeutralButton("OK", null).show();
+   //         new AlertDialog.Builder(this).setTitle(R.string.action_info).setMessage("Version " + BuildConfig.VERSION_NAME + "\nAnregungen/Kritik/Wünsche an \nsilbaer@gmail.com" ).setNeutralButton("OK", null).show();
+
+            InfoDialogFragment newFragment = new InfoDialogFragment();
+            newFragment.show(getSupportFragmentManager(), "Info");
+
             return true;
         }
 
