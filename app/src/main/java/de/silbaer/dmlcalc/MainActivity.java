@@ -225,9 +225,12 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
 
     public void howToResult(List<Pair<Pair<Dragon,Dragon>,Double>> result){
         ListView l = (ListView) findViewById(R.id.listView);
-        howToItemAdapter a = new howToItemAdapter(getBaseContext(), result);
+        howToItemAdapter a = new howToItemAdapter(this, result);
         l.setAdapter(a);
         l.setOnItemClickListener(a);
+        InputMethodManager imm = (InputMethodManager) getSystemService(
+                INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
     }
 
     private AdapterView.OnItemClickListener onDadItemClick = new AdapterView.OnItemClickListener(){
@@ -282,6 +285,9 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
         breedListItemAdapter a = new breedListItemAdapter(this,result);
         l.setAdapter(a);
         l.setOnItemClickListener(a);
+        InputMethodManager imm = (InputMethodManager) getSystemService(
+                INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
     }
 
     private void displayBreedResult(){

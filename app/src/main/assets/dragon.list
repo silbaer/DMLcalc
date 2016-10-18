@@ -197,7 +197,7 @@
 				["crystal", "Crystal_Dragon", "./img/dragons/Crystal_Dragon.png", "legendary", "light", "earth", "", "172800", "205200", "L", "262", "73", "860", "Cristal", "Cristal", "Cristallo", "Kristall"],
 				["bronze", "Bronze_Dragon", "./img/dragons/Bronze_Dragon.png", "light", "metal", "shadow", "", "100800", "111600", "E", "218", "67", "735", "Bronze", "Bronze", "Bronzeo", "Bronze"],
 				["cherry_blossom", "Cherry_Blossom_Dragon", "./img/dragons/Cherry_Blossom_Dragon.png", "water", "plant", "fire", "E", "57600", "84600", "E", "211", "64", "390", "Cerejeira", "Fleur de cerisier", "Fiore di ciliegio", "Kirschblüten"],
-				["crusader", "Crusader_Dragon", "./img/dragons/Crusader_Dragon.png", "shadow", "metal", "", "E", "N/A", "84600", "C", "224", "59", "435", "Cruzado", "Croisé", "Crociato", "Crusader"],
+				["crusader", "Crusader_Dragon", "./img/dragons/Crusader_Dragon.png", "shadow", "metal", "", "E", "N/A", "84600", "C", "224", "59", "435", "Cruzado", "Croisé", "Crociato", "Kreuzritter"],
 				["empress", "Empress_Dragon", "./img/dragons/Empress_Dragon.png", "energy", "shadow", "plant", "", "93600", "108000", "E", "194", "72", "640", "Imperatriz", "Impératrice", "Imperatrice", "Kaiserin"],
 				["fireball", "Fireball_Dragon", "./img/dragons/Fireball_Dragon.png", "fire", "wind", "", "E", "2700", "4800", "U", "191", "64", "240", "Bola de Fogo", "Boule de feu", "Palla di fuoco", "Feuerball"],
 				["heavy_metal", "Heavy_Metal_Dragon", "./img/dragons/Heavy_Metal_Dragon.png", "metal", "shadow", "", "E", "57600", "84600", "R", "209", "64", "505", "Heavy Metal", "Heavy Metal", "Heavy Metal", "Heavy Metal"],
