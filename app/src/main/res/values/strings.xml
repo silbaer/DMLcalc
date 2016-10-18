@@ -35,5 +35,9 @@
     <string name="txt_hint_select_element_2">select element 2</string>
     <string name="txt_button_about_ok">OK</string>
     <string name="txt_Info_Message">Version %1$s\nAnregungen/Kritik an:\nsilbaer@gmail.com</string>
+    <string name="txt_howProgressTitle">Please wait...</string>
+    <string name="txt_howProgressMsg">Calculating...</string>
+    <string name="txt_breedProgressTitle">Please wait...</string>
+    <string name="txt_breedProgressMsg">Calculating...</string>
 
 </resources>

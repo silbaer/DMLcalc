@@ -330,7 +330,7 @@ public class DMLcalc extends Application {
 
         @Override
         protected void onPreExecute(){
-            ringProgressDialog = ProgressDialog.show( (Context)delegate , "Please wait...","Calculating...",true);
+            ringProgressDialog = ProgressDialog.show( (Context)delegate , getString(R.string.txt_howProgressTitle),getString(R.string.txt_howProgressMsg),true);
             ringProgressDialog.setCancelable(false);
         }
 
@@ -366,7 +366,7 @@ public class DMLcalc extends Application {
 
         @Override
         protected void onPreExecute(){
-            ringProgressDialog = ProgressDialog.show( (Context)delegate , "Please wait...","Calculating...",true);
+            ringProgressDialog = ProgressDialog.show( (Context)delegate , getString(R.string.txt_breedProgressTitle),getString(R.string.txt_breedProgressMsg),true);
             ringProgressDialog.setCancelable(false);
         }
 
