@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.net.Uri;
@@ -43,7 +44,7 @@ import java.util.Map;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DMLcalc.howToResponse, DMLcalc.breedingResponse {
 
     DMLcalc dml;
     private static final int RQS_OPEN_IMAGE = 1;
@@ -218,14 +219,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayHowToResult(){
-        List<Pair<Pair<Dragon,Dragon>,Double>> htb = dml.howToBreed(child);
 
+        dml.howToBreed(this,child);
+    }
 
+    public void howToResult(List<Pair<Pair<Dragon,Dragon>,Double>> result){
         ListView l = (ListView) findViewById(R.id.listView);
-        howToItemAdapter a = new howToItemAdapter(this,htb);
+        howToItemAdapter a = new howToItemAdapter(getBaseContext(), result);
         l.setAdapter(a);
         l.setOnItemClickListener(a);
-
     }
 
     private AdapterView.OnItemClickListener onDadItemClick = new AdapterView.OnItemClickListener(){
@@ -275,15 +277,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void displayBreedResult(){
-        List<Dragon> result = new ArrayList<Dragon>();
-
-        result = dml.breed(dad, mom);
-
+    public void breedingResult(List<Dragon> result){
         ListView l = (ListView) findViewById(R.id.listView);
         breedListItemAdapter a = new breedListItemAdapter(this,result);
         l.setAdapter(a);
         l.setOnItemClickListener(a);
+    }
+
+    private void displayBreedResult(){
+
+        dml.breed(this,dad, mom);
 
     }
 

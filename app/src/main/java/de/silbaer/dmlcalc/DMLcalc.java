@@ -2,9 +2,11 @@ package de.silbaer.dmlcalc;
 
 
 import android.app.Application;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
+import android.os.AsyncTask;
 import android.util.Pair;
 
 import java.io.BufferedReader;
@@ -22,6 +24,14 @@ import java.util.TreeMap;
  * Created by silbaer on 13.06.16.
  */
 public class DMLcalc extends Application {
+
+    public interface breedingResponse{
+        void breedingResult(List<Dragon> result);
+    }
+    public interface howToResponse{
+        void howToResult(List<Pair<Pair<Dragon,Dragon>,Double>> result);
+    }
+
 
     public ArrayList<String> elements = new ArrayList<>();
 
@@ -306,8 +316,76 @@ public class DMLcalc extends Application {
         }
     }
 
+    public void howToBreed(howToResponse resultDelegate, Dragon son){
+        howToAsyncTask task = new howToAsyncTask(resultDelegate);
+        task.execute(son);
+    }
+    private class howToAsyncTask extends AsyncTask<Dragon,Void, List<Pair<Pair<Dragon,Dragon>,Double>> >{
+        private howToResponse delegate = null;
+        ProgressDialog ringProgressDialog ;
 
-    public List<Pair<Pair<Dragon,Dragon>,Double>> howToBreed(Dragon son) {
+        public howToAsyncTask(howToResponse asyncResponse){
+            delegate = asyncResponse;
+        }
+
+        @Override
+        protected void onPreExecute(){
+            ringProgressDialog = ProgressDialog.show( (Context)delegate , "Please wait...","Calculating...",true);
+            ringProgressDialog.setCancelable(false);
+        }
+
+        @Override
+        protected List<Pair<Pair<Dragon,Dragon>,Double>> doInBackground(Dragon... params){
+            return _howToBreed(params[0]);
+        }
+
+        @Override
+        protected void onPostExecute(List<Pair<Pair<Dragon,Dragon>,Double>> result){
+            ringProgressDialog.dismiss();
+            if(delegate != null){
+                delegate.howToResult(result);
+            }
+        }
+
+    }
+
+    public void breed(breedingResponse resultDelegate, Dragon mom, Dragon dad){
+        breedAsyncTask task = new breedAsyncTask(resultDelegate);
+        task.execute(mom,dad);
+    }
+
+    // http://stackoverflow.com/questions/12575068/how-to-get-the-result-of-onpostexecute-to-main-activity-because-asynctask-is-a
+
+    private class breedAsyncTask extends AsyncTask<Dragon,Void, List<Dragon> >{
+        private breedingResponse delegate = null;
+        ProgressDialog ringProgressDialog ;
+
+        public breedAsyncTask(breedingResponse asyncResponse){
+            delegate = asyncResponse;
+        }
+
+        @Override
+        protected void onPreExecute(){
+            ringProgressDialog = ProgressDialog.show( (Context)delegate , "Please wait...","Calculating...",true);
+            ringProgressDialog.setCancelable(false);
+        }
+
+        @Override
+        protected List<Dragon> doInBackground(Dragon... params){
+            return _breed(params[0],params[1]);
+        }
+
+        @Override
+        protected void onPostExecute(List<Dragon> result){
+            ringProgressDialog.dismiss();
+            if(delegate != null){
+                delegate.breedingResult(result);
+            }
+        }
+
+    }
+
+    private List<Pair<Pair<Dragon,Dragon>,Double>> _howToBreed(Dragon son) {
         List<Pair<Pair<Dragon,Dragon>,Double>> retval = new ArrayList<>();
         ArrayList< Dragon> dl = new ArrayList<>(dragons.values());
         for(int x = 0; x < dl.size()-1; x++){
@@ -315,7 +393,7 @@ public class DMLcalc extends Application {
                 if(!dl.get(x).id.equalsIgnoreCase(son.id)
                         && !dl.get(y).id.equalsIgnoreCase(son.id)) {
                     if (isChild(dl.get(x), dl.get(y),son)) {
-                        List<Dragon> tmp = breed(dl.get(x), dl.get(y));
+                        List<Dragon> tmp = _breed(dl.get(x), dl.get(y));
                         for (Dragon d : tmp) {
                             if (d.id.equalsIgnoreCase(son.id)) {
                                 retval.add(new Pair<Pair<Dragon,Dragon>,Double>(new Pair<Dragon, Dragon>(dl.get(x), dl.get(y)), d.odd));
@@ -328,7 +406,7 @@ public class DMLcalc extends Application {
         return retval;
     }
 
-    public List<Dragon> breed(Dragon mom, Dragon dad) {
+    private List<Dragon> _breed(Dragon mom, Dragon dad) {
         List<Dragon> retval = new ArrayList<Dragon>();
         if (dad != null && mom != null && !mom.id.equals(dad.id)) {
             for (Dragon d : dragons.values()) {
@@ -341,7 +419,7 @@ public class DMLcalc extends Application {
         return retval;
     }
 
-    public boolean isChild(Dragon mom, Dragon dad, Dragon child) {
+    private boolean isChild(Dragon mom, Dragon dad, Dragon child) {
         Boolean retval = false;
 
         Boolean dotmcontrol = false;
