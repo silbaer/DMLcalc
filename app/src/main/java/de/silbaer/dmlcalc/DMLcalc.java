@@ -37,12 +37,12 @@ public class DMLcalc extends Application {
 
     private static final String PREFS_NAME = "de.silbaer.dmlcal.appsettings";
 
-    private String DDM="";
+    private String DDM= null;
     private List<String> DDM_Elements;
 
-    private String DDW="";
-    private String DDW_Mom="";
-    private String DDW_Dad="";
+    private String DDW=null;
+    private String DDW_Mom=null;
+    private String DDW_Dad=null;
 
     public Map<String,Dragon> dragons = new Hashtable<String,Dragon>();
 //    public Dictionary<string, Element> elements = new Dictionary<string,Element>();
@@ -105,7 +105,7 @@ public class DMLcalc extends Application {
     }
 
     public String getDDM() {
-        if(DDM.isEmpty()){
+        if(DDM == null){
             SharedPreferences prefs = getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
             DDM = prefs.getString(getString(R.string.DDM),"");
         }
@@ -130,14 +130,14 @@ public class DMLcalc extends Application {
             DDM_Elements.add(tmp);
         }
         if(DDM_Elements.size() != 4){
-            DDM_Elements.clear();
+       //     DDM_Elements.clear();
         }
     }
     public String getDDM_e1() {
         if(DDM_Elements .isEmpty()){
             readDdmElementsFromPreferences();
         }
-        if(DDM_Elements.size() == 4) {
+        if(DDM_Elements.size() > 0) {
             return DDM_Elements.get(0);
         }
         return "";
@@ -146,7 +146,7 @@ public class DMLcalc extends Application {
         if(DDM_Elements.isEmpty()){
             readDdmElementsFromPreferences();
         }
-        if(DDM_Elements.size() == 4) {
+        if(DDM_Elements.size() >1 ) {
         return DDM_Elements.get(1);
         }
         return "";
@@ -155,7 +155,7 @@ public class DMLcalc extends Application {
         if(DDM_Elements.isEmpty()){
             readDdmElementsFromPreferences();
         }
-        if(DDM_Elements.size() == 4) {
+        if(DDM_Elements.size() > 2) {
         return DDM_Elements.get(2);
         }
         return "";
@@ -164,7 +164,7 @@ public class DMLcalc extends Application {
         if(DDM_Elements.isEmpty()){
             readDdmElementsFromPreferences();
         }
-        if(DDM_Elements.size() == 4) {
+        if(DDM_Elements.size() > 3) {
         return DDM_Elements.get(3);
         }
         return "";
@@ -179,21 +179,21 @@ public class DMLcalc extends Application {
 
 
     public String getDDW() {
-        if(DDW.isEmpty()){
+        if(DDW == null){
             SharedPreferences prefs = getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
             DDW = prefs.getString(getString(R.string.DDW),"");
         }
         return DDW;
     }
     public String getDDW_mom() {
-        if(DDW_Mom.isEmpty()){
+        if(DDW_Mom == null){
             SharedPreferences prefs = getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
             DDW_Mom = prefs.getString(getString(R.string.DDW_mom),"");
         }
         return DDW_Mom;
     }
     public String getDDW_dad() {
-        if(DDW_Dad.isEmpty()){
+        if(DDW_Dad == null){
             SharedPreferences prefs = getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
             DDW_Dad = prefs.getString(getString(R.string.DDW_dad),"");
         }
@@ -431,13 +431,19 @@ public class DMLcalc extends Application {
             return false;
         }
 
-        if(child.isUnreleased()){
+        if(child.isUnreleased() || mom.isUnreleased() || dad.isUnreleased()){
              return false;
         }
+        if (child.isBoss() || dad.isBoss() || mom.isBoss()) {
+            return false;
+        }
 
-        if (!child.boss_vip.isEmpty()  && !child.boss_vip.equals("V")) { // nicht VIP, aber Boss oder Event oder unreleased
+
+//        if (!child.boss_vip.isEmpty()  && !child.boss_vip.equals("V")) { // nicht VIP, aber Boss oder Event oder unreleased
             // Drogon of the week
-            if(child.id.equalsIgnoreCase(getDDW())){
+            String tmp = getDDW();
+
+            if(child.id.equalsIgnoreCase(tmp)){
                 if(mom.id.equalsIgnoreCase(getDDW_mom()) && dad.id.equalsIgnoreCase(getDDW_dad())
                         || dad.id.equalsIgnoreCase(getDDW_mom()) && mom.id.equalsIgnoreCase(getDDW_dad()) ){
                     return true;
@@ -478,8 +484,12 @@ public class DMLcalc extends Application {
             ////}
             //}
 
+        if(child.isEvent()){
             return false;
         }
+
+ //           return false;
+ //       }
 
         /** SPECIAL BREED **/
         //breed with legendary
@@ -613,6 +623,7 @@ public class DMLcalc extends Application {
                 }
             }
         }
-        return retval;    }
+        return retval;
+    }
 
 }
