@@ -68,7 +68,7 @@ public class MyImageView extends ImageView {
                 myHeight = heightSize;
             }
         }
-        Log.d(TAG, "onMeasure: " + wMode + " / "  + widthSize + " / "  + hMode + " / "  + heightSize + " => " + myHeight);
+     //   Log.d(TAG, "onMeasure: " + wMode + " / "  + widthSize + " / "  + hMode + " / "  + heightSize + " => " + myHeight);
         setMeasuredDimension(myHeight, myHeight);
     }
 

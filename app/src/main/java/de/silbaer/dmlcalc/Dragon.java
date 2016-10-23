@@ -38,7 +38,15 @@ public class Dragon {
     public Boolean isVIP() {  return this.boss_vip.trim().equalsIgnoreCase("V");  }
     public Boolean isUnreleased() {  return this.boss_vip.trim().equalsIgnoreCase("UN");  }
 
-    public String toString(){ return lng_de;}
+    public String toString(){
+        if(isVIP()){
+            return lng_de + "*";
+        }
+        if(isEvent()){
+            return lng_de +"+";
+        }
+        return lng_de;
+    }
 
     public Dragon(String jsZeile) {
 

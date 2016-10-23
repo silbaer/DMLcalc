@@ -85,59 +85,6 @@ public class howToItemAdapter extends BaseAdapter implements AdapterView.OnItemC
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         try {
-//            int tBreed = Integer.parseInt(items.get(position).breedingTime);
-//            int tHatch = Integer.parseInt(items.get(position).hatchingTime);
-//            int bDay;
-//            int bHour;
-//            int bMin;
-//            int bSec;
-//            int hDay;
-//            int hHour;
-//            int hMin;
-//            int hSec;
-//
-//            bDay = tBreed / (60*60*24);
-//            bHour = (tBreed - bDay*(60*60*24)) / (60*60);
-//            bMin = (tBreed - bDay*(60*60*24) - bHour*(60*60)) / (60);
-//            bSec =  tBreed - bDay*(60*60*24) - bHour*(60*60) - bMin*60;
-//
-//            hDay = tHatch / (60*60*24);
-//            hHour = (tHatch - hDay*(60*60*24)) / (60*60);
-//            hMin = (tHatch - hDay*(60*60*24) - hHour*(60*60)) / (60);
-//            hSec =  tHatch - hDay*(60*60*24) - hHour*(60*60) - hMin*60;
-//
-//            StringBuilder sb = new StringBuilder("B: ");
-//            if(bDay > 0){
-//                sb.append(bDay + " Tag" + (bDay > 1?"e, ":", "));
-//            }
-//            if(bHour > 0){
-//                sb.append(bHour + " Stunde" + (bHour > 1?"n, ":", "));
-//            }
-//            if(bMin > 0){
-//                sb.append(bMin + " Minute" + (bMin > 1?"n, ":", "));
-//            }
-//            if(bSec > 0){
-//                sb.append(bSec + " Sekunde" + (bSec > 1?"n, ":", "));
-//            }
-//            sb.setLength(sb.length()-2);
-//
-//            sb.append(" / H: ");
-//            if(hDay > 0){
-//                sb.append(hDay + " Tag" + (hDay > 1?"e, ":", "));
-//            }
-//            if(hHour > 0){
-//                sb.append(hHour + " Stunde" + (hHour > 1?"n, ":", "));
-//            }
-//            if(hMin > 0){
-//                sb.append(hMin + " Minute" + (hMin > 1?"n, ":", "));
-//            }
-//            if(hSec > 0){
-//                sb.append(hSec + " Sekunde" + (hSec > 1?"n, ":", "));
-//            }
-//            sb.setLength(sb.length()-2);
-//
-//            Toast.makeText(context, sb.toString(),
-//                    Toast.LENGTH_LONG).show();
             Pair<Pair<Dragon,Dragon>,Double> p = (Pair<Pair<Dragon,Dragon>,Double>) getItem(position);
    //         ((MainActivity)context).displayBreedResult(p.first.first,p.first.second);
 
