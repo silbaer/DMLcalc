@@ -1,6 +1,8 @@
 package de.silbaer.dmlcalc;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +23,8 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
     private final LayoutInflater mInflater;
     private List<Dragon> items;
     private final Context context;
+    Boolean vipTimes = false;
+    private   String PREFS_NAME;
 
     public class DragonOddComparator implements Comparator<Dragon> {
         @Override
@@ -42,6 +46,10 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
         this.items = dragons;
         Collections.sort(items, new DragonOddComparator());
         this.context = context;
+        PREFS_NAME =  context.getResources().getString(R.string.PREFS_NAME);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        vipTimes = sharedPref.getBoolean("pref_timedisplay",false);
+
     }
     @Override
     public int getCount() {
@@ -92,6 +100,9 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
             sb.append(" (");
             sb.append("B: ");
              tBreed = Integer.parseInt(d.breedingTime);
+            if(vipTimes){
+                tBreed = tBreed * 80/100;
+            }
 
 
             bDay = tBreed / (60 * 60 * 24);
@@ -122,6 +133,10 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
         try {
             sb.append(" / H: ");
             tHatch = Integer.parseInt(d.hatchingTime);
+            if(vipTimes){
+                tHatch = tHatch * 80/100;
+            }
+
 
             hDay = tHatch / (60 * 60 * 24);
             hHour = (tHatch - hDay * (60 * 60 * 24)) / (60 * 60);

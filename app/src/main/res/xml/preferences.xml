@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="@string/txt_vip_settings"
+        android:key="pref_vip_settings">
+
+        <SwitchPreference
+            android:key="pref_timedisplay"
+            android:summaryOff="@string/txt_DisplayNormalTimes"
+            android:summaryOn="@string/txt_DisplayVipTimes"
+            android:title="@string/txt_timedisplay"
+            android:defaultValue="false"/>
+
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

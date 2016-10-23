@@ -35,7 +35,7 @@ public class DMLcalc extends Application {
 
     public ArrayList<String> elements = new ArrayList<>();
 
-    private static final String PREFS_NAME = "de.silbaer.dmlcal.appsettings";
+    private   String PREFS_NAME ;
 
     private String DDM= null;
     private List<String> DDM_Elements;
@@ -239,6 +239,9 @@ public class DMLcalc extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        PREFS_NAME =  getResources().getString(R.string.PREFS_NAME);
+
     }
 
     private DMLcalc(String dragonJS){
