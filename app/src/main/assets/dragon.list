@@ -235,7 +235,7 @@
 				["stache", "Stache_Dragon", "./img/dragons/Stache_Dragon.png", "legendary", "earth", "plant", "E", "172800", "205200", "L", "262", "71", "740", "Bigode", "Moustache", "Baffone", "Schnurrbart"],
 				["mech", "Mech_Dragon", "./img/dragons/Mech_Dragon.png", "metal", "light", "", "R", "N/A", "75000", "E", "224", "61", "505", "Mecha", "Mech", "Mech", "Mech"],
 				["submarine", "Submarine_Dragon", "./img/dragons/Submarine_Dragon.png", "water", "shadow", "", "E", "57600", "78000", "R", "204", "66", "430", "Submarino", "Sous-marine", "Sottomarino", "U-Boot"],
-				["treater", "Treater_Dragon", "./img/dragons/Treater_Dragon.png", "void", "shadow", "", "E", "N/A", "82800", "E", "200", "68", "620", "Travesso", "Treater", "Scherzetto", "Treater"],
+				["treater", "Treater_Dragon", "./img/dragons/Treater_Dragon.png", "void", "shadow", "", "E", "72000", "82800", "E", "200", "68", "620", "Travesso", "Treater", "Scherzetto", "Nasch"],
 				["gobbler", "Gobbler_Dragon", "./img/dragons/Gobbler_Dragon.png", "wind", "earth", "water", "E", "N/A", "81000", "E", "222", "60", "350", "Peru", "Dinde", "Tacchino", "Gobbler"],
 				["pumpkin", "Pumpkin_Dragon", "./img/dragons/Pumpkin_Dragon.png", "plant", "earth", "fire", "E", "N/A", "84600", "E", "216", "62", "420", "Abódora", "Citrouille", "Zucca", "Kürbis"],
 				["calavera", "Calavera_Dragon", "./img/dragons/Calavera_Dragon.png", "void", "wind", "earth", "V", "64800", "93600", "E", "218", "62", "490", "Caveira", "Calavera", "Calavera", "Calavera"],
