@@ -6,8 +6,10 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 
 import android.os.Bundle;
@@ -47,7 +49,10 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements DMLcalc.howToResponse, DMLcalc.breedingResponse {
 
     DMLcalc dml;
-    private static final int RQS_OPEN_IMAGE = 1;
+
+//    Boolean vipDragons;
+    static final int RQS_Open_Settings = 1;  // The request code
+
 
 
     public AutoCompleteTextView textDad;
@@ -79,7 +84,9 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
 
         if (id == R.id.action_settings) {
             Intent modifySettings=new Intent(MainActivity.this,SettingsActivity.class);
-            startActivity(modifySettings);
+            startActivityForResult(modifySettings,RQS_Open_Settings);
+
+            return true;
         }
 
         if (id == R.id.action_info) {
@@ -94,6 +101,39 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == RQS_Open_Settings) {
+            updateArrayAdapter();
+        }
+    }
+
+    private void updateArrayAdapter(){
+        ArrayAdapter<Dragon> breed = new ArrayAdapter<Dragon>(this, R.layout.support_simple_spinner_dropdown_item);
+        ArrayAdapter<Dragon> howTo = new ArrayAdapter<Dragon>(this, R.layout.support_simple_spinner_dropdown_item);
+        //      dml.dragons.values()
+        howTo.addAll(dml.getDragonsToShow());
+        breed.addAll(dml.getDragonsToUse());
+
+
+
+        //   spinnerDad.setAdapter(adapter);
+        // spinnerMom.setAdapter(adapter);
+
+        textDad.setAdapter(breed);
+        textDad.setThreshold(1);
+
+        textMom.setAdapter(breed);
+        textMom.setThreshold(1);
+
+        textChild.setAdapter(howTo);
+        textChild.setThreshold(1);
+
+
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,32 +155,7 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
 
             dml = (DMLcalc) getApplicationContext();
 
-            ArrayAdapter<Dragon> breed = new ArrayAdapter<Dragon>(this, R.layout.support_simple_spinner_dropdown_item);
-            ArrayAdapter<Dragon> howTo = new ArrayAdapter<Dragon>(this, R.layout.support_simple_spinner_dropdown_item);
-            //      dml.dragons.values()
-            howTo.addAll(dml.dragons.values());
-            breed.addAll(dml.dragons.values());
-            for(int i = breed.getCount()-1; i >= 0; i--){
-                Dragon d = breed.getItem(i);
-                if(d.isBoss() || d.islegendary()){
-                    breed.remove(d);
-                }
-            }
-
-         //   spinnerDad.setAdapter(adapter);
-           // spinnerMom.setAdapter(adapter);
-
-            textDad.setAdapter(breed);
-            textDad.setThreshold(1);
-
-            textMom.setAdapter(breed);
-            textMom.setThreshold(1);
-
-            textChild.setAdapter(howTo);
-            textChild.setThreshold(1);
-
-            //         textMom.setOnItemSelectedListener(this);
-     //       textDad.setOnItemSelectedListener(this);
+            updateArrayAdapter();
 
             textDad.setOnItemClickListener(onDadItemClick);
             textMom.setOnItemClickListener(onMomItemClick);
@@ -324,15 +339,6 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
         displayHowToResult(child);
     }
 
-    public void onClick(View v) {
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("*/*");
-
-        startActivityForResult(intent, RQS_OPEN_IMAGE);
-    }
-
 
     @Override
     public void onStart() {
@@ -443,4 +449,5 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
     }
+
 }

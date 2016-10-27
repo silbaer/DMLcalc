@@ -11,6 +11,13 @@
             android:title="@string/txt_timedisplay"
             android:defaultValue="false"/>
 
+        <SwitchPreference
+            android:key="pref_vipdragons"
+            android:summaryOn="@string/txt_UseVipDragons"
+            android:summaryOff="@string/txt_NotUseVipDragons"
+            android:title="@string/txt_VipDrachen"
+            android:defaultValue="true"/>
+
 
     </PreferenceCategory>
 

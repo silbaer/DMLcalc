@@ -45,6 +45,9 @@
     <string name="txt_timedisplay">Zeit Anzeige</string>
     <string name="txt_DisplayVipTimes">VIP-Zeiten</string>
     <string name="txt_DisplayNormalTimes">Normale Zeiten</string>
+    <string name="txt_UseVipDragons">Benutze VIP Drachen</string>
+    <string name="txt_NotUseVipDragons">VIP Drachen nicht benutzen</string>
+    <string name="txt_VipDrachen">VIP Drachen</string>
 
 
 </resources>
