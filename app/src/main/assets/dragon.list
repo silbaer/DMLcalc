@@ -40,7 +40,7 @@
 				["faun", "Faun_Dragon", "./img/dragons/Faun_Dragon.png", "plant", "earth", "", "E", "N/A", "70800", "E", "222", "59", "390", "Fauno", "Faune", "Fauno", "Faun"],
 				["ash", "Ash_Dragon", "./img/dragons/Ash_Dragon.png", "fire", "plant", "wind", "E", "57600", "84600", "E", "200", "66", "410", "Cinzas", "Cendre", "Cenere", "Aschen"],
 				["kangaroo", "Kangaroo_Dragon", "./img/dragons/Kangaroo_Dragon.png", "wind", "fire", "plant", "E", "N/A", "84600", "E", "200", "66", "410", "Canguru", "Kangourou", "Canguro", "Känguru"],
-				["werewolf", "Werewolf_Dragon", "./img/dragons/Werewolf_Dragon.png", "fire", "earth", "plant", "E", "57600", "84600", "E", "216", "62", "420", "Lobisomem", "Loup garou", "Licantropo", "Werfolf"],
+				["werewolf", "Werewolf_Dragon", "./img/dragons/Werewolf_Dragon.png", "fire", "earth", "plant", "E", "57600", "84600", "E", "216", "62", "420", "Lobisomem", "Loup garou", "Licantropo", "Werwolf"],
 				["redflower", "Redflower_Dragon", "./img/dragons/Redflower_Dragon.png", "plant", "fire", "water", "E", "57600", "84600", "E", "211", "64", "390", "Flor Vermelha", "Rose rouge", "Fiore rosso", "Rotblumen"],
 				["cottontail", "Cottontail_Dragon", "./img/dragons/Cottontail_Dragon.png", "plant", "earth", "water", "E", "N/A", "84600", "E", "231", "59", "390", "Calda de Algodão", "Queue de coton", "Coniglio", "Watteschwanz"],
 				["kitsune", "Kitsune_Dragon", "./img/dragons/Kitsune_Dragon.png", "water", "earth", "plant", "E", "N/A", "84600", "E", "231", "59", "390", "Kitsune", "Kitsune", "Kitsune", "Kitsune"],
