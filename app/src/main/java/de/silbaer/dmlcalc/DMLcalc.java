@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.util.Pair;
 
 import java.io.BufferedReader;
@@ -23,7 +24,13 @@ import java.util.TreeMap;
 /**
  * Created by silbaer on 13.06.16.
  */
-public class DMLcalc extends Application {
+public class DMLcalc extends Application implements SharedPreferences.OnSharedPreferenceChangeListener{
+
+    private SharedPreferences sharedPref;
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        vipDragons = sharedPreferences.getBoolean("pref_vipdragons",false);
+    }
 
     public interface breedingResponse{
         void breedingResult(List<Dragon> result);
@@ -43,6 +50,8 @@ public class DMLcalc extends Application {
     private String DDW=null;
     private String DDW_Mom=null;
     private String DDW_Dad=null;
+
+    private Boolean vipDragons;
 
     public Map<String,Dragon> dragons = new Hashtable<String,Dragon>();
 //    public Dictionary<string, Element> elements = new Dictionary<string,Element>();
@@ -200,6 +209,35 @@ public class DMLcalc extends Application {
         return DDW_Dad;
     }
 
+    public ArrayList<Dragon> getDragonsToUse() {
+        ArrayList<Dragon> retval = new ArrayList<Dragon>();
+        retval.addAll(dragons.values());
+        for(int i = retval.size()-1; i >= 0; i--){
+            Dragon d = retval.get(i);
+            if(d.isBoss() || d.islegendary() || d.isUnreleased()){
+                retval.remove(d);
+            }
+            if(!vipDragons  &&  d.isVIP()){
+                retval.remove(d);
+            }
+        }
+        return retval;
+    }
+
+    public ArrayList<Dragon> getDragonsToShow() {
+        ArrayList<Dragon> retval = new ArrayList<Dragon>();
+        retval.addAll(dragons.values());
+        for(int i = retval.size()-1; i >= 0; i--){
+            Dragon d = retval.get(i);
+            if(d.isBoss() || d.isUnreleased()){
+                retval.remove(d);
+            }
+            if(!vipDragons  &&  d.isVIP()){
+                retval.remove(d);
+            }
+        }
+        return retval;
+    }
 
     @Override
     public void onCreate(){
@@ -236,6 +274,10 @@ public class DMLcalc extends Application {
                     dragons.put(d.id,d);
                 }
             }
+            Context context =   getBaseContext();
+            sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+            sharedPref.registerOnSharedPreferenceChangeListener(this);
+            vipDragons = sharedPref.getBoolean("pref_vipdragons",false);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -313,9 +355,6 @@ public class DMLcalc extends Application {
                 return 1;
             else
                 return -compare;
-
-
-
         }
     }
 
@@ -390,7 +429,10 @@ public class DMLcalc extends Application {
 
     private List<Pair<Pair<Dragon,Dragon>,Double>> _howToBreed(Dragon son) {
         List<Pair<Pair<Dragon,Dragon>,Double>> retval = new ArrayList<>();
-        ArrayList< Dragon> dl = new ArrayList<>(dragons.values());
+
+//        ArrayList< Dragon> dl = new ArrayList<>(dragons.values());
+        ArrayList< Dragon> dl = getDragonsToUse();
+
         for(int x = 0; x < dl.size()-1; x++){
             for(int y = x+1; y < dl.size();y++){
                 if(!dl.get(x).id.equalsIgnoreCase(son.id)
@@ -412,7 +454,8 @@ public class DMLcalc extends Application {
     private List<Dragon> _breed(Dragon mom, Dragon dad) {
         List<Dragon> retval = new ArrayList<Dragon>();
         if (dad != null && mom != null && !mom.id.equals(dad.id)) {
-            for (Dragon d : dragons.values()) {
+            ArrayList<Dragon> drags = getDragonsToShow();
+            for (Dragon d : drags) {
                 if (isChild(mom, dad,d)) {
                     retval.add(d);
                 }
