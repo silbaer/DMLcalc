@@ -288,7 +288,7 @@
 				["gorilla", "Gorilla_Dragon", "./img/dragons/Gorilla_Dragon.png", "plant", "shadow", "earth", "E", "N/A", "100800", "E", "216", "65", "570", "Gorilla", "Gorilla", "Gorilla", "Gorilla"],
 				["matriarch", "Matriarch_Dragon", "./img/dragons/Matriarch_Dragon.png", "fire", "plant", "energy", "E", "N/A", "93600", "E", "194", "70", "490", "Matriarch", "Matriarch", "Matriarch", "Matriarch"],
 				["champion", "Champion_Dragon", "./img/dragons/Champion_Dragon.png", "earth", "plant", "fire", "E", "57600", "84600", "E", "216", "62", "420", "Champion", "Champion", "Champion", "Champion"],
-				["liberty", "Liberty_Dragon", "./img/dragons/Liberty_Dragon.png", "light", "wind", "metal", "E", "79200", "100800", "E", "222", "63", "575", "Liberty", "Liberty", "Liberty", "Liberty"],
+				["liberty", "Liberty_Dragon", "./img/dragons/Liberty_Dragon.png", "light", "wind", "metal", "E", "79200", "100800", "E", "222", "63", "575", "Liberty", "Liberty", "Liberty", "Freiheits"],
 				["elephant", "Elephant_Dragon", "./img/dragons/Elephant_Dragon.png", "earth", "fire", "wind", "E", "N/A", "69600", "E", "206", "63", "380", "Elephant", "Elephant", "Elephant", "Elephant"],
 				["duanwu", "Duanwu_Dragon", "./img/dragons/Duanwu_Dragon.png", "metal", "fire", "shadow", "E", "N/A", "100800", "E", "204", "67", "585", "Duanwu", "Duanwu", "Duanwu", "Duanwu"]
                 ["arctic", "Arctic_Dragon", "./img/dragons/Arctic_Dragon.png", "wind", "water", "metal", "E", "N/A", "N/A", "E", "224", "60", "395", "Arctic", "Arctic", "Arctic", "Arctic"],
