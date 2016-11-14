@@ -37,7 +37,7 @@
                         android:id="@+id/ddw_input_lblDDW" />
 
                     <AutoCompleteTextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/txt_hint_insert_ddw_here"
                         android:id="@+id/autoCompleteDDW"
@@ -58,7 +58,7 @@
                         android:id="@+id/textView2" />
 
                     <AutoCompleteTextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/txt_hint_insert_mom_here"
                         android:id="@+id/autoCompleteMom" />
@@ -78,7 +78,7 @@
                         android:id="@+id/textView4" />
 
                     <AutoCompleteTextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/txt_hint_insert_dad_here"
                         android:id="@+id/autoCompleteDad" />
@@ -108,11 +108,10 @@
                         android:id="@+id/ddw_input_lblDDM" />
 
                     <AutoCompleteTextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/txt_hint_insert_ddm_here"
                         android:id="@+id/autoCompleteDDM"
-                        />
+                        android:hint="@string/txt_hint_insert_ddm_here" />
 
                 </LinearLayout>
 
@@ -129,9 +128,9 @@
                         android:id="@+id/lb_ddmElement1" />
 
                     <AutoCompleteTextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:hint="select element 1"
+                        android:hint="@string/txt_hint_select_element_1"
                         android:id="@+id/ac_ddmElement1" />
 
                 </LinearLayout>
@@ -148,7 +147,7 @@
                         android:id="@+id/lb_ddmElement2" />
 
                     <AutoCompleteTextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/txt_hint_select_element_2"
                         android:id="@+id/ac_ddmElement2" />
@@ -167,7 +166,7 @@
                         android:id="@+id/lb_ddmElement3" />
 
                     <AutoCompleteTextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/txt_hint_select_element_3"
                         android:id="@+id/ac_ddmElement3" />
@@ -186,7 +185,7 @@
                         android:id="@+id/lb_ddmElement4" />
 
                     <AutoCompleteTextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/txt_hint_select_element_4"
                         android:id="@+id/ac_ddmElement4" />

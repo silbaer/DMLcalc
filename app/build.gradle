@@ -37,7 +37,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 23
         versionCode getVersionCode()  // increment with every release
-        versionName  getVersionName() // "0.0.1 Alpha 13" // change with every release
+        versionName   getVersionName() // "0.0.1 Alpha 13" // change with every release
         setProperty("archivesBaseName", "DMLcalc-$versionName")
     }
     buildTypes {
