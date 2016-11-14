@@ -278,7 +278,7 @@
 				["rock_snake", "Rock_Snake_Dragon", "./img/dragons/Rock_Snake_Dragon.png", "metal", "shadow", "", "E", "N/A", "75000", "R", "210", "64", "505", "Rock_Snake", "Rock_Snake", "Rock_Snake", "Rock_Snake"],
 				["echo", "Echo_Dragon", "./img/dragons/Echo_Dragon.png", "shadow", "fire", "wind", "E", "72000", "100800", "E", "186", "71", "530", "Echo", "Echo", "Echo", "Echo"],
 				["sentinel", "Sentinel_Dragon", "./img/dragons/Sentinel_Dragon.png", "shadow", "energy", "metal", "E", "N/A", "100800", "E", "202", "70", "655", "Sentinel", "Sentinel", "Sentinel", "Sentinel"],
-				["unicorn", "Unicorn_Dragon", "./img/dragons/Unicorn_Dragon.png", "light", "wind", "earth", "E", "N/A", "100800", "E", "220", "63", "530", "Unicorn", "Unicorn", "Unicorn", "Einhorn"],
+				["unicorn", "Unicorn_Dragon", "./img/dragons/Unicorn_Dragon.png", "light", "wind", "earth", "E", "72000", "100800", "E", "220", "63", "530", "Unicorn", "Unicorn", "Unicorn", "Einhorn"],
 				["arboreal", "Arboreal_Dragon", "./img/dragons/Arboreal_Dragon.png", "earth", "water", "plant", "E", "57600", "84600", "E", "232", "59", "390", "Arboreal", "Arboreal", "Arboreal", "Bäumchen"],
 				["sea_turtle", "Sea_Turtle_Dragon", "./img/dragons/Sea_Turtle_Dragon.png", "water", "plant", "energy", "E", "N/A", "93600", "E", "210", "67", "460", "Sea_Turtle", "Sea_Turtle", "Sea_Turtle", "Sea Turtle"],
 				["rhino", "Rhino_Dragon", "./img/dragons/Rhino_Dragon.png", "metal", "earth", "void", "E", "N/A", "93600", "E", "236", "59", "545", "Rhino", "Rhino", "Rhino", "Rhino"],
