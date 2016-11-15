@@ -59,7 +59,7 @@
 				["rust", "Rust_Dragon", "./img/dragons/Rust_Dragon.png", "metal", "water", "earth", "", "50400", "74400", "R", "240", "56", "355", "Ferrugem", "Rouille", "Ruggine", "Rost"],
 				["regal", "Regal_Dragon", "./img/dragons/Regal_Dragon.png", "wind", "metal", "water", "", "57600", "84600", "E", "224", "59", "395", "Real", "Roval", "Regale", "Majestät"],
 				["steampunk", "Steampunk_Dragon", "./img/dragons/Steampunk_Dragon.png", "metal", "wind", "water", "E", "57600", "84600", "E", "224", "59", "395", "Steampunk", "Steampunk", "Steampunk", "Steampunk"],
-				["black_armor", "Black_Armor_Dragon", "./img/dragons/Black_Armor_Dragon.png", "earth", "wind", "metal", "", "57600", "84600", "E", "227", "58", "425", "Armadura Negra", "Armure noire", "Armatura nera", "Schwarzpaner"],
+				["black_armor", "Black_Armor_Dragon", "./img/dragons/Black_Armor_Dragon.png", "earth", "wind", "metal", "", "57600", "84600", "E", "227", "58", "425", "Armadura Negra", "Armure noire", "Armatura nera", "Schwarzpanzer"],
 				["coral", "Coral_Dragon", "./img/dragons/Coral_Dragon.png", "metal", "plant", "water", "", "64800", "86400", "E", "233", "59", "435", "Coral", "Corail", "Corallo", "Korallen"],
 				["golden", "Golden_Dragon", "./img/dragons/Golden_Dragon.png", "fire", "metal", "", "E", "43200", "60600", "R", "209", "61", "355", "Ouro", "Or", "Oro", "Gold"],
 				["torpedo", "Torpedo_Dragon", "./img/dragons/Torpedo_Dragon.png", "metal", "fire", "water", "E", "N/A", "84600", "E", "220", "61", "405", "Torpedo", "Torpille", "Torpedo", "Torpedo"],
