@@ -34,11 +34,15 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".ddwInputActivity"
-            android:parentActivityName=".MainActivity">
-            ></activity>
+            android:parentActivityName=".MainActivity"
+            android:label="@string/txt_ddw_imput_title"
+            >
+            </activity>
         <activity android:name=".ddmInputActivity"
-            android:parentActivityName=".MainActivity">
-            ></activity>
+            android:parentActivityName=".MainActivity"
+            android:label="@string/txt_ddm_imput_title"
+            >
+            </activity>
     </application>
 
 </manifest>
