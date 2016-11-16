@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.silbaer.dmlcalc">
 
-    <!--         <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> -->
+    <!-- <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> -->
     <application
         android:name=".DMLcalc"
         android:allowBackup="true"
@@ -18,15 +18,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DdwDdmInput"
-            android:label="Enter DDW / DDM"
-            android:parentActivityName=".MainActivity">
-        </activity>
-        <activity
             android:name=".SettingsActivity"
             android:label="Settings"
-            android:parentActivityName=".MainActivity">
-        </activity>
+            android:parentActivityName=".MainActivity"></activity>
         <!--
      ATTENTION: This was auto-generated to add Google Play services to your project for
          App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -35,7 +29,16 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-
+        <activity android:name=".ddwInputActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="@string/txt_ddw_imput_title"
+            >
+            </activity>
+        <activity android:name=".ddmInputActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="@string/txt_ddm_imput_title"
+            >
+            </activity>
     </application>
 
 </manifest>

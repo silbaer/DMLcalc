@@ -97,15 +97,6 @@
                     android:layout_toEndOf="@id/iv_ddm_e3"
                     android:onClick="onDDMClick" />
 
-                <Button
-                    style="?android:attr/buttonStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/txt_button_select"
-                    android:id="@+id/button_select_ddm"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:onClick="onDDMButtonClick" />
             </RelativeLayout>
 
             <LinearLayout
@@ -130,14 +121,6 @@
                     android:id="@+id/textViewDDW"
                     android:layout_weight="1"
                     android:onClick="onDDWClick" />
-
-                <Button
-                    style="?android:attr/buttonStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/txt_button_select"
-                    android:id="@+id/button_select_ddw"
-                    android:onClick="onDDWButtonClick" />
 
             </LinearLayout>
 

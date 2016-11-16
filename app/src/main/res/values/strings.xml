@@ -49,5 +49,12 @@
     <string name="txt_NotUseVipDragons">VIP Drachen nicht benutzen</string>
     <string name="txt_VipDrachen">VIP Drachen</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="action_ddw">Wochendrache eingeben</string>
+    <string name="action_ddm">Monatsdrache eingeben</string>
+    <string name="txt_ddm_imput_title">Monatsdrache eingeben</string>
+    <string name="txt_ddw_imput_title">Wochendrache eingeben</string>
+
 
 </resources>
