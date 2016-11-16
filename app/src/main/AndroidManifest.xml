@@ -18,10 +18,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DdwDdmInput"
-            android:label="Enter DDW / DDM"
-            android:parentActivityName=".MainActivity"></activity>
-        <activity
             android:name=".SettingsActivity"
             android:label="Settings"
             android:parentActivityName=".MainActivity"></activity>

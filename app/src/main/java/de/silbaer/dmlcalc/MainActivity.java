@@ -211,19 +211,6 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
         }
     };
 
-    public void onDDWButtonClick(View v){
-        Toast.makeText(getBaseContext(), "onDDWButtonClick",
-                Toast.LENGTH_LONG).show();
-        Intent myIntent = new Intent(this, DdwDdmInput.class);
-        startActivity(myIntent);
-    }
-    public void onDDMButtonClick(View v){
-        Toast.makeText(getBaseContext(), "onDDMButtonClick",
-                Toast.LENGTH_LONG).show();
-        Intent myIntent = new Intent(this, DdwDdmInput.class);
-        startActivity(myIntent);
-    }
-
     public void onDDMClick(View v) {
         String ds = dml.getDDM();
         if(!ds.isEmpty()){
