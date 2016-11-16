@@ -49,5 +49,10 @@
     <string name="txt_NotUseVipDragons">VIP Drachen nicht benutzen</string>
     <string name="txt_VipDrachen">VIP Drachen</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="action_ddw">DDW</string>
+    <string name="action_ddm">DDM</string>
+
 
 </resources>

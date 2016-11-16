@@ -26,6 +26,12 @@ import java.util.TreeMap;
  */
 public class DMLcalc extends Application implements SharedPreferences.OnSharedPreferenceChangeListener{
 
+
+    // Singleton
+    private static DMLcalc _instance;
+    public static DMLcalc Instance() {return _instance;}
+
+
     private SharedPreferences sharedPref;
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
@@ -79,7 +85,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         elements.add("shadow");
         elements.add("legendary");
 
-
+        _instance = this;
 
     }
 
