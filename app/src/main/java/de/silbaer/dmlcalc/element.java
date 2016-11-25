@@ -20,6 +20,7 @@ public class element{
                     retval = c.getStringResourceByName("element_" + id);
                 }
             } catch (Exception ex) {
+                String e = ex.toString();
             }
         } catch (Exception eex) {
             String e = eex.toString();
