@@ -157,12 +157,9 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
         textMom = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextMom);
         textChild = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextChild);
 
-
-
-
         try {
 
-            dml = (DMLcalc) getApplicationContext();
+            dml = DMLcalc.Instance();
 
             updateArrayAdapter();
 

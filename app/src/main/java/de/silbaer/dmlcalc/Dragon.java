@@ -39,6 +39,7 @@ public class Dragon {
     public Boolean isUnreleased() {  return this.boss_vip.trim().equalsIgnoreCase("UN");  }
 
     public String toString(){
+
         if(isVIP()){
             return lng_de + "*";
         }

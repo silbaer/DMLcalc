@@ -1,5 +1,6 @@
 package de.silbaer.dmlcalc;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -127,7 +128,7 @@ public class ddmInputFragment extends Fragment {
         textDDM.setThreshold(1);
         textDDM.setOnItemClickListener(onDDMItemClick);
 
-        ArrayAdapter<String> ade = new ArrayAdapter<String>(view.getContext(), R.layout.support_simple_spinner_dropdown_item);
+        ArrayAdapter<element> ade = new ArrayAdapter<element>(view.getContext(), R.layout.support_simple_spinner_dropdown_item);
 
         ade.addAll(DMLcalc.Instance().elements);
         textE1.setAdapter(ade);
@@ -156,53 +157,65 @@ public class ddmInputFragment extends Fragment {
         if(d != null) {
             textDDM.setText(d.toString());
         }
-        textE1.setText(DDM_e1);
-        textE2.setText(DDM_e2);
-        textE3.setText(DDM_e3);
-        textE4.setText(DDM_e4);
+        element e1 = new element(DDM_e1);
+        element e2 = new element(DDM_e2);
+        element e3 = new element(DDM_e3);
+        element e4 = new element(DDM_e4);
+        textE1.setText(e1.toString());
+        textE2.setText(e2.toString());
+        textE3.setText(e3.toString());
+        textE4.setText(e4.toString());
     }
 
     private AdapterView.OnItemClickListener onElement1ItemClick = new AdapterView.OnItemClickListener() {
 
         public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-//            InputMethodManager imm = (InputMethodManager) getSystemService(
-//                    INPUT_METHOD_SERVICE);
-//            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            Activity  a = getActivity();
+            InputMethodManager imm = (InputMethodManager) a.getSystemService(
+                    a.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow( a.getCurrentFocus().getWindowToken(), 0);
 
-            DDM_e1 = (String) arg0.getItemAtPosition(arg2);
+            element e = (element)  arg0.getItemAtPosition(arg2);
+            DDM_e1 = e.id;
             DMLcalc.Instance().setDDM(DDM,DDM_e1,DDM_e2,DDM_e3,DDM_e4);
         }
     };
     private AdapterView.OnItemClickListener onElement2ItemClick = new AdapterView.OnItemClickListener() {
 
         public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-//            InputMethodManager imm = (InputMethodManager) getSystemService(
-//                    INPUT_METHOD_SERVICE);
-//            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            Activity  a = getActivity();
+            InputMethodManager imm = (InputMethodManager) a.getSystemService(
+                    a.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow( a.getCurrentFocus().getWindowToken(), 0);
 
-            DDM_e2 = (String) arg0.getItemAtPosition(arg2);
+            element e = (element)  arg0.getItemAtPosition(arg2);
+            DDM_e2 = e.id;
             DMLcalc.Instance().setDDM(DDM,DDM_e1,DDM_e2,DDM_e3,DDM_e4);
         }
     };
     private AdapterView.OnItemClickListener onElement3ItemClick = new AdapterView.OnItemClickListener() {
 
         public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-//            InputMethodManager imm = (InputMethodManager) getSystemService(
-//                    INPUT_METHOD_SERVICE);
-//            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            Activity  a = getActivity();
+            InputMethodManager imm = (InputMethodManager) a.getSystemService(
+                    a.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow( a.getCurrentFocus().getWindowToken(), 0);
 
-            DDM_e3 = (String) arg0.getItemAtPosition(arg2);
+            element e = (element)  arg0.getItemAtPosition(arg2);
+            DDM_e3 = e.id;
             DMLcalc.Instance().setDDM(DDM,DDM_e1,DDM_e2,DDM_e3,DDM_e4);
         }
     };
     private AdapterView.OnItemClickListener onElement4ItemClick = new AdapterView.OnItemClickListener() {
 
         public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-//            InputMethodManager imm = (InputMethodManager) getSystemService(
-//                    INPUT_METHOD_SERVICE);
-//            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            Activity  a = getActivity();
+            InputMethodManager imm = (InputMethodManager) a.getSystemService(
+                    a.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow( a.getCurrentFocus().getWindowToken(), 0);
 
-            DDM_e4 = (String) arg0.getItemAtPosition(arg2);
+            element e = (element)  arg0.getItemAtPosition(arg2);
+            DDM_e4 = e.id;
             DMLcalc.Instance().setDDM(DDM,DDM_e1,DDM_e2,DDM_e3,DDM_e4);
         }
     };
@@ -213,9 +226,10 @@ public class ddmInputFragment extends Fragment {
 
         public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 
-//            InputMethodManager imm = (InputMethodManager) getSystemService(
-//                    INPUT_METHOD_SERVICE);
-//            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            Activity  a = getActivity();
+            InputMethodManager imm = (InputMethodManager) a.getSystemService(
+                    a.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow( a.getCurrentFocus().getWindowToken(), 0);
 
             Dragon d = (Dragon) arg0.getItemAtPosition(arg2);
 

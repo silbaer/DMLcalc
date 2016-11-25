@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.util.Pair;
@@ -27,6 +28,25 @@ import java.util.TreeMap;
 public class DMLcalc extends Application implements SharedPreferences.OnSharedPreferenceChangeListener{
 
 
+    public String getStringResourceByName(String aString) {
+        String packageName = getContext().getPackageName();
+        int resId = getResources().getIdentifier(aString, "string", packageName);
+        if(resId == 0) {
+            return aString;
+
+        }
+        return getString(resId);
+    }
+
+    public static Application getApplication() {
+        return _instance;
+    }
+
+    public static Context getContext() {
+        return getApplication().getApplicationContext();
+    }
+
+
     // Singleton
     private static DMLcalc _instance;
     public static DMLcalc Instance() {return _instance;}
@@ -46,7 +66,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
     }
 
 
-    public ArrayList<String> elements = new ArrayList<>();
+    public ArrayList<element> elements = new ArrayList<>();
 
     private   String PREFS_NAME ;
 
@@ -65,27 +85,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
     Map<String,Double> odds;
 
     public DMLcalc() {
-        odds = new Hashtable<String,Double>();
-        odds.put("C",48d);
-        odds.put("U",21d);
-        odds.put("R",15d);
-        odds.put("E",10d);
-        odds.put("L", 6d);
-        DDM_Elements = new ArrayList<>();
 
-        elements.add("fire");
-        elements.add("wind");
-        elements.add("earth");
-        elements.add("water");
-        elements.add("plant");
-        elements.add("metal");
-        elements.add("energy");
-        elements.add("void");
-        elements.add("light");
-        elements.add("shadow");
-        elements.add("legendary");
-
-        _instance = this;
 
     }
 
@@ -248,6 +248,28 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
     @Override
     public void onCreate(){
         super.onCreate();
+        _instance = this;
+        odds = new Hashtable<String,Double>();
+        odds.put("C",48d);
+        odds.put("U",21d);
+        odds.put("R",15d);
+        odds.put("E",10d);
+        odds.put("L", 6d);
+        DDM_Elements = new ArrayList<>();
+
+        elements.add(new element("fire"));
+        elements.add(new element("wind"));
+        elements.add(new element("earth"));
+        elements.add(new element("water"));
+        elements.add(new element("plant"));
+        elements.add(new element("metal"));
+        elements.add(new element("energy"));
+        elements.add(new element("void"));
+        elements.add(new element("light"));
+        elements.add(new element("shadow"));
+        elements.add(new element("legendary"));
+
+
 
         AssetManager assetManager = getAssets();
 
@@ -289,6 +311,8 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         }
 
         PREFS_NAME =  getResources().getString(R.string.PREFS_NAME);
+
+
 
     }
 
