@@ -127,7 +127,7 @@ public class ddmInputFragment extends Fragment {
         textDDM.setThreshold(1);
         textDDM.setOnItemClickListener(onDDMItemClick);
 
-        ArrayAdapter<String> ade = new ArrayAdapter<String>(view.getContext(), R.layout.support_simple_spinner_dropdown_item);
+        ArrayAdapter<element> ade = new ArrayAdapter<element>(view.getContext(), R.layout.support_simple_spinner_dropdown_item);
 
         ade.addAll(DMLcalc.Instance().elements);
         textE1.setAdapter(ade);
@@ -156,10 +156,14 @@ public class ddmInputFragment extends Fragment {
         if(d != null) {
             textDDM.setText(d.toString());
         }
-        textE1.setText(DDM_e1);
-        textE2.setText(DDM_e2);
-        textE3.setText(DDM_e3);
-        textE4.setText(DDM_e4);
+        element e1 = new element(DDM_e1);
+        element e2 = new element(DDM_e2);
+        element e3 = new element(DDM_e3);
+        element e4 = new element(DDM_e4);
+        textE1.setText(e1.toString());
+        textE2.setText(e2.toString());
+        textE3.setText(e3.toString());
+        textE4.setText(e4.toString());
     }
 
     private AdapterView.OnItemClickListener onElement1ItemClick = new AdapterView.OnItemClickListener() {

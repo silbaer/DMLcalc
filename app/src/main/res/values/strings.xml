@@ -56,5 +56,18 @@
     <string name="txt_ddm_imput_title">Monatsdrache eingeben</string>
     <string name="txt_ddw_imput_title">Wochendrache eingeben</string>
 
+    <!-- Elemente -->
+    <string name="txt_fire">Feuer</string>
+    <string name="txt_wind">Wind</string>
+    <string name="txt_earth">Erde</string>
+    <string name="txt_water">Wasser</string>
+    <string name="txt_plant">Pflanze</string>
+    <string name="txt_metal">Metall</string>
+    <string name="txt_energy">Energie</string>
+    <string name="txt_void">Leere</string>
+    <string name="txt_light">Licht</string>
+    <string name="txt_shadow">Schatten</string>
+    <string name="txt_legendary">Legendär</string>
+
 
 </resources>
