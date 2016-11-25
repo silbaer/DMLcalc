@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="element_fire">Feuer</string>
+    <string name="element_wind">Wind</string>
+    <string name="element_earth">Erde</string>
+    <string name="element_water">Wasser</string>
+    <string name="element_plant">Pflanze</string>
+    <string name="element_metal">Metall</string>
+    <string name="element_energy">Energie</string>
+    <string name="element_void">Leere</string>
+    <string name="element_light">Licht</string>
+    <string name="element_shadow">Schatten</string>
+    <string name="element_legendary">Legendär</string>
+
+</resources>

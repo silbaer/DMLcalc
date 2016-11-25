@@ -157,10 +157,6 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
         textMom = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextMom);
         textChild = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextChild);
 
-        String packageName = getPackageName();
-        int resId = getResources().getIdentifier("txt_fire", "string", packageName);
-        int resId2 = R.string.txt_fire;
-
         try {
 
             dml = DMLcalc.Instance();
