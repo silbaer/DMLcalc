@@ -55,8 +55,10 @@
     <string name="action_ddm">Monatsdrache eingeben</string>
     <string name="txt_ddm_imput_title">Monatsdrache eingeben</string>
     <string name="txt_ddw_imput_title">Wochendrache eingeben</string>
-
-
+    <string name="txt_misc_settings">Weitere Einstellungen</string>
+    <string name="txt_EnchantBreed">Verzauberte Zucht</string>
+    <string name="txt_NotUseEnchantBreed">Verzauberte Zucht nicht benutzen</string>
+    <string name="txt_UseEnchantBreed">Verzauberte Zucht benutzen</string>
 
 
 </resources>
