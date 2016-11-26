@@ -17,8 +17,16 @@
             android:summaryOff="@string/txt_NotUseVipDragons"
             android:title="@string/txt_VipDrachen"
             android:defaultValue="true"/>
-
-
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/txt_misc_settings"
+        android:key="pref_misc_settings">
+        <SwitchPreference
+            android:key="pref_enchantbreed"
+            android:summaryOn="@string/txt_UseEnchantBreed"
+            android:summaryOff="@string/txt_NotUseEnchantBreed"
+            android:title="@string/txt_EnchantBreed"
+            android:defaultValue="false"/>
     </PreferenceCategory>
 
 </PreferenceScreen>
