@@ -165,7 +165,7 @@
 				["sparkler", "Sparkler_Dragon", "./img/dragons/Sparkler_Dragon.png", "fire", "metal", "energy", "E", "72000", "93600", "E", "202", "66", "505", "Fa&igrave;sca", "Etincelle", "Luccichio", "Glitzer"],
 				["maple_leaf", "Maple_Leaf_Dragon", "./img/dragons/Maple_Leaf_Dragon.png", "plant", "fire", "earth", "E", "N/A", "84600", "E", "216", "62", "420", "Folha de Bordo", "Feuille d'érable", "Foglia d'acero", "Maple Leaf"],
 				["tricolor", "Tricolor_Dragon", "./img/dragons/Tricolor_Dragon.png", "water", "metal", "", "E", "N/A", "60600", "R", "225", "58", "325", "Tricolor_Dragon", "Tricolore", "Tricolore", "Trikoloren"],
-				["star_stripe", "Star_Stripe_Dragon", "./img/dragons/Star_Stripe_Dragon.png", "metal", "energy", "fire", "E", "N/A", "93600", "E", "201", "66", "505", "Linha e Estrela", "Bannière étoilé", "Stelle e strisce", "Sternstreifen"],
+				["star_stripe", "Star_Stripe_Dragon", "./img/dragons/Star_Stripe_Dragon.png", "metal", "energy", "fire", "E", "72000", "93600", "E", "201", "66", "505", "Linha e Estrela", "Bannière étoilé", "Stelle e strisce", "Sternstreifen"],
 				["academic", "Academic_Dragon", "./img/dragons/Academic_Dragon.png", "earth", "plant", "wind", "E", "57600", "84600", "E", "220", "61", "410", "Acadêmico", "Académique", "Accademico", "Academic"],
 				["gentleman", "Gentleman_Dragon", "./img/dragons/Gentleman_Dragon.png", "plant", "earth", "metal", "E", "64800", "86400", "E", "238", "57", "465", "Cavalheiro", "Gentleman", "Gentleman", "Gentleman"],
 				["lunar", "Lunar_Dragon", "./img/dragons/Lunar_Dragon.png", "void", "wind", "energy", "E", "79200", "104400", "E", "196", "69", "560", "Lunar", "Lunaire", "Lunare", "Mond"],
