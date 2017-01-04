@@ -29,9 +29,9 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
     public class DragonOddComparator implements Comparator<Dragon> {
         @Override
         public int compare(Dragon o1, Dragon o2) {
-            if(o1.odd < o2.odd){
+            if(o1.getOdd() < o2.getOdd()){
                 return 1;
-            } else if(o1.odd > o2.odd){
+            } else if(o1.getOdd() > o2.getOdd()){
               return -1;
             } else {
             return 0;
@@ -80,7 +80,7 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
         TextView oddTextView = (TextView) view.findViewById(R.id.breedListOdd);
         String dt = getDragonText(d);
         dragonTextView.setText(dt);
-        oddTextView.setText(String.format("%.1f%%",d.odd));
+        oddTextView.setText(String.format("%.1f%%",d.getOdd()));
     }
 
     private String getDragonText(Dragon d) {
@@ -99,7 +99,7 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
             sb.append(d.toString());
             sb.append(" (");
             sb.append("B: ");
-             tBreed = Integer.parseInt(d.breedingTime);
+             tBreed = Integer.parseInt(d.getBreedingTime());
             if(vipTimes){
                 tBreed = tBreed * 80/100;
             }
@@ -132,7 +132,7 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
         }
         try {
             sb.append(" / H: ");
-            tHatch = Integer.parseInt(d.hatchingTime);
+            tHatch = Integer.parseInt(d.getHatchingTime());
             if(vipTimes){
                 tHatch = tHatch * 80/100;
             }
