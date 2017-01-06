@@ -19,9 +19,9 @@ public class Dragon {
     private  String element2;
     private  String element3;
     private  String boss_vip;
-    private  String breedingTime;
-    private  String hatchingTime;
-    private  String type;
+    private  String breedingTime;  // Seconds (Integer)
+    private  String hatchingTime;  // Seconds (Integer)
+    private  String type; // C,U,R,E,L,B
     private  String health;
     private  String attack;
     private  String gold;
@@ -29,16 +29,43 @@ public class Dragon {
     private  String lng_fr;
     private  String lng_it;
     private  String lng_de;
-
     private List<String> elements;
+    private double odd;  // Odd for breading. Calculated every breed
 
-    private double odd;
+    // New extended properties from
 
-    public Boolean isBoss() { return this.boss_vip.trim().equalsIgnoreCase("B"); }
-    public Boolean islegendary() { return this.element1.trim().equalsIgnoreCase("legendary"); }
-    public Boolean isEvent() { return this.boss_vip.trim().equalsIgnoreCase("E");  }
-    public Boolean isVIP() {  return this.boss_vip.trim().equalsIgnoreCase("V");  }
-    public Boolean isUnreleased() {  return this.boss_vip.trim().equalsIgnoreCase("UN");  }
+    private boolean LimitedTime;
+    private boolean ClanShop;
+    private boolean Vip;
+    private boolean Dungeon;
+    private boolean Seasonal;
+    private boolean DailyQuestPuzzle;
+    private boolean FriendShipTotem;
+    private boolean Referal;
+    private boolean DailyLogin;
+    private int DailyLoginCount;
+    private boolean EnchatmentBreed;
+    private boolean EnchatmentLeague;
+    private boolean Arena;
+    private boolean Unreleased;
+
+    private String Cost;
+    private String CostType;
+
+
+
+
+    public Boolean isBoss() { return this.type.trim().equalsIgnoreCase("B"); }
+    public Boolean islegendary() { return this.type.trim().equalsIgnoreCase("L"); }
+    public Boolean isEvent() { return this.LimitedTime || this.ClanShop || Dungeon || Seasonal || DailyLogin || DailyQuestPuzzle || FriendShipTotem || Referal || Arena ;  }
+    public Boolean isVIP() {  return this.Vip;  }
+    public Boolean isUnreleased() {  return this.Unreleased;  }
+
+    private Boolean _isBoss() { return this.boss_vip.trim().equalsIgnoreCase("B"); }
+    private Boolean _islegendary() { return this.element1.trim().equalsIgnoreCase("legendary"); }
+    private Boolean _isEvent() { return this.boss_vip.trim().equalsIgnoreCase("E");  }
+    private Boolean _isVIP() {  return this.boss_vip.trim().equalsIgnoreCase("V");  }
+    private Boolean _isUnreleased() {  return this.boss_vip.trim().equalsIgnoreCase("UN");  }
 
     public String getId() {return id;}
     public String getType() {return type;}
@@ -53,7 +80,7 @@ public class Dragon {
 
     public String toString(){
 
-        String retval = lng_de;
+        String retval = id;
 
         try {
             DMLcalc c = DMLcalc.Instance();
@@ -82,7 +109,61 @@ public class Dragon {
         return retval;
     }
 
-    public Dragon(String jsZeile) {
+    public Dragon(String zeile, boolean newFormat) {
+        if(newFormat){
+            parseNewFormat(zeile);
+        } else {
+          parseOldFormat(zeile);
+        }
+    }
+
+    private void parseNewFormat(String zeile) {
+        String[] splits = zeile.split(";");
+        if (splits.length == 25) {
+            id = splits[0].trim();
+//            icon = splits[1].trim();
+            String tmp = splits[2].trim();
+            type = tmp.substring(0,1);
+            tmp = splits[3].trim();
+            String[] tmpSplits = tmp.split("/");
+            elements = new ArrayList<String>();
+            for (String e: tmpSplits) {
+                elements.add(e);
+            }
+            if(elements.size()>0) {
+                element1 = elements.get(0);
+            }
+            if(elements.size()>1) {
+                element2 = elements.get(1);
+            }
+            if(elements.size()>2) {
+                element3 = elements.get(2);
+            }
+            attack = splits[4];
+            health = splits[5];
+            gold = splits[6];
+            breedingTime = splits[7];
+            hatchingTime = splits[8];
+            Cost = splits[9];
+            CostType = splits[10];
+            LimitedTime = Boolean.parseBoolean(splits[11]);
+            ClanShop = Boolean.parseBoolean(splits[12]);
+            Vip = Boolean.parseBoolean(splits[13]);
+            Dungeon = Boolean.parseBoolean(splits[14]);
+            Seasonal = Boolean.parseBoolean(splits[15]);
+            DailyQuestPuzzle = Boolean.parseBoolean(splits[16]);
+            FriendShipTotem = Boolean.parseBoolean(splits[17]);
+            Referal = Boolean.parseBoolean(splits[18]);
+            DailyLogin = Boolean.parseBoolean(splits[19]);
+            DailyLoginCount = Integer.parseInt( splits[20]);
+            EnchatmentBreed = Boolean.parseBoolean(splits[21]);
+            EnchatmentLeague =Boolean.parseBoolean( splits[22]);
+            Arena = Boolean.parseBoolean(splits[23]);
+            Unreleased = Boolean.parseBoolean(splits[24]);
+        }
+    }
+
+    private void  parseOldFormat(String jsZeile) {
 
         jsZeile = jsZeile.replace("[","").replace("]","").replace("\"","").trim();
 
@@ -124,6 +205,11 @@ public class Dragon {
         if (!element3.isEmpty()) {
             elements.add(element3);
         }
+
+        LimitedTime = _isEvent();
+        Vip = _isVIP();
+        Unreleased = _isUnreleased();
+
 
     }
 //

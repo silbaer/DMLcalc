@@ -276,7 +276,8 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         AssetManager assetManager = getAssets();
 
         try {
-            InputStreamReader is = new InputStreamReader(getAssets().open("dragon.list"));
+//            InputStreamReader is = new InputStreamReader(getAssets().open("dragon.list"));
+            InputStreamReader is = new InputStreamReader(getAssets().open("newDragon.list"));
 //
 //        BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
 //        BufferedReader br = null;
@@ -300,7 +301,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             for (String jsline : lines) {
                 String l = jsline.trim();
                 if(!l.isEmpty()){
-                    d = new Dragon(l);
+                    d = new Dragon(l,true);
                     dragons.put(d.getId(),d);
                 }
             }
@@ -333,7 +334,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         for (String line : lines) {
             String l = line.trim();
             if(!l.isEmpty()){
-                d = new Dragon(l);
+                d = new Dragon(l,true);
                 dragons.put(d.getId(),d);
             }
         }
