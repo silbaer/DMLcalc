@@ -48,6 +48,7 @@ public class Dragon {
     private boolean EnchatmentLeague;
     private boolean Arena;
     private boolean Unreleased;
+    private boolean Breadable;
 
     private String Cost;
     private String CostType;
@@ -57,7 +58,7 @@ public class Dragon {
 
     public Boolean isBoss() { return this.type.trim().equalsIgnoreCase("B"); }
     public Boolean islegendary() { return this.type.trim().equalsIgnoreCase("L"); }
-    public Boolean isEvent() { return this.LimitedTime || this.ClanShop || Dungeon || Seasonal || DailyLogin || DailyQuestPuzzle || FriendShipTotem || Referal || Arena ;  }
+    public Boolean isBreadable() { return this.Breadable && !EnchatmentBreed;  }
     public Boolean isVIP() {  return this.Vip;  }
     public Boolean isUnreleased() {  return this.Unreleased;  }
 
@@ -103,7 +104,7 @@ public class Dragon {
 
         if(isVIP()){
             retval += "*";
-        } else  if(isEvent()){
+        } else  if(!isBreadable()){
             retval += "+";
         }
         return retval;
@@ -119,7 +120,7 @@ public class Dragon {
 
     private void parseNewFormat(String zeile) {
         String[] splits = zeile.split(";");
-        if (splits.length == 25) {
+        if (splits.length >= 26) {
             id = splits[0].trim();
 //            icon = splits[1].trim();
             String tmp = splits[2].trim();
@@ -160,6 +161,7 @@ public class Dragon {
             EnchatmentLeague =Boolean.parseBoolean( splits[22]);
             Arena = Boolean.parseBoolean(splits[23]);
             Unreleased = Boolean.parseBoolean(splits[24]);
+            Breadable = Boolean.parseBoolean(splits[25]);
         }
     }
 

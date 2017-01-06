@@ -566,7 +566,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
 
 
-        if(child.isEvent()){
+        if(!child.isBreadable()){
             if(enchantDragons) {
                 return isSpecialBreed(mom, dad, child);
             }
