@@ -276,7 +276,8 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         AssetManager assetManager = getAssets();
 
         try {
-            InputStreamReader is = new InputStreamReader(getAssets().open("dragon.list"));
+//            InputStreamReader is = new InputStreamReader(getAssets().open("dragon.list"));
+            InputStreamReader is = new InputStreamReader(getAssets().open("newDragon.list"));
 //
 //        BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
 //        BufferedReader br = null;
@@ -300,8 +301,8 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             for (String jsline : lines) {
                 String l = jsline.trim();
                 if(!l.isEmpty()){
-                    d = new Dragon(l);
-                    dragons.put(d.id,d);
+                    d = new Dragon(l,true);
+                    dragons.put(d.getId(),d);
                 }
             }
             Context context =   getBaseContext();
@@ -333,8 +334,8 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         for (String line : lines) {
             String l = line.trim();
             if(!l.isEmpty()){
-                d = new Dragon(l);
-                dragons.put(d.id,d);
+                d = new Dragon(l,true);
+                dragons.put(d.getId(),d);
             }
         }
     }
@@ -349,14 +350,14 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
                     //    && !d.isEvent()
                     && !d.isVIP()
                     ) {
-                if (odds.containsKey(d.type)) {
-                    sum += odds.get(d.type);
+                if (odds.containsKey(d.getType())) {
+                    sum += odds.get(d.getType());
                 }
             }
         }
         for (Dragon d : resultList) {
-            if (odds.containsKey(d.type)) {
-                d.odd =  100/sum * odds.get(d.type);
+            if (odds.containsKey(d.getType())) {
+                d.setOdd(  100/sum * odds.get(d.getType()));
             }
         }
     }
@@ -468,13 +469,13 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
         for(int x = 0; x < dl.size()-1; x++){
             for(int y = x+1; y < dl.size();y++){
-                if(!dl.get(x).id.equalsIgnoreCase(son.id)
-                        && !dl.get(y).id.equalsIgnoreCase(son.id)) {
+                if(!dl.get(x).getId().equalsIgnoreCase(son.getId())
+                        && !dl.get(y).getId().equalsIgnoreCase(son.getId())) {
                     if (isChild(dl.get(x), dl.get(y),son)) {
                         List<Dragon> tmp = _breed(dl.get(x), dl.get(y));
                         for (Dragon d : tmp) {
-                            if (d.id.equalsIgnoreCase(son.id)) {
-                                retval.add(new Pair<Pair<Dragon,Dragon>,Double>(new Pair<Dragon, Dragon>(dl.get(x), dl.get(y)), d.odd));
+                            if (d.getId().equalsIgnoreCase(son.getId())) {
+                                retval.add(new Pair<Pair<Dragon,Dragon>,Double>(new Pair<Dragon, Dragon>(dl.get(x), dl.get(y)), d.getOdd()));
                             }
                         }
                     }
@@ -486,7 +487,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
     private List<Dragon> _breed(Dragon mom, Dragon dad) {
         List<Dragon> retval = new ArrayList<Dragon>();
-        if (dad != null && mom != null && !mom.id.equals(dad.id)) {
+        if (dad != null && mom != null && !mom.getId().equals(dad.getId())) {
             ArrayList<Dragon> drags = getDragonsToShow();
             for (Dragon d : drags) {
                 if (isChild(mom, dad,d)) {
@@ -505,7 +506,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         Boolean mumLegendary = false;
         Boolean dadLegendary = false;
 
-        if (mom.id.equals(dad.id)) {
+        if (mom.getId().equals(dad.getId())) {
             // gleiche drachen geht nicht
             return false;
         }
@@ -522,9 +523,9 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             // Drogon of the week
             String tmp = getDDW();
 
-            if(child.id.equalsIgnoreCase(tmp)){
-                if(mom.id.equalsIgnoreCase(getDDW_mom()) && dad.id.equalsIgnoreCase(getDDW_dad())
-                        || dad.id.equalsIgnoreCase(getDDW_mom()) && mom.id.equalsIgnoreCase(getDDW_dad()) ){
+            if(child.getId().equalsIgnoreCase(tmp)){
+                if(mom.getId().equalsIgnoreCase(getDDW_mom()) && dad.getId().equalsIgnoreCase(getDDW_dad())
+                        || dad.getId().equalsIgnoreCase(getDDW_mom()) && mom.getId().equalsIgnoreCase(getDDW_dad()) ){
                     return true;
                 }
             }
@@ -536,7 +537,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
 
             // Dragon of the month
-            if(child.id.equalsIgnoreCase(getDDM())){
+            if(child.getId().equalsIgnoreCase(getDDM())){
                 if(mom.isBoss() || mom.isUnreleased() || mom.islegendary()){
                     return false;
                 }
@@ -544,8 +545,8 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
                     return false;
                 }
                 List<String> MomDadElements = new ArrayList<>();
-                MomDadElements.addAll(mom.elements);
-                MomDadElements.addAll(dad.elements);
+                MomDadElements.addAll(mom.getElements());
+                MomDadElements.addAll(dad.getElements());
                 if(getDdmElements().size() > 0) {
                   if(MomDadElements.containsAll(getDdmElements())){
                       return true;
@@ -565,7 +566,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
 
 
-        if(child.isEvent()){
+        if(!child.isBreadable()){
             if(enchantDragons) {
                 return isSpecialBreed(mom, dad, child);
             }
@@ -613,48 +614,48 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         } else {
             //sunflower, mercury, lightning, magnet, emperor
 
-            if (child.id.equalsIgnoreCase("sunflower") ||
-                    child.id.equalsIgnoreCase("mercury") ||
-                    child.id.equalsIgnoreCase("lightning") ||
-                    child.id.equalsIgnoreCase("magnet") ||
-                    child.id.equalsIgnoreCase("emperor")) {
+            if (child.getId().equalsIgnoreCase("sunflower") ||
+                    child.getId().equalsIgnoreCase("mercury") ||
+                    child.getId().equalsIgnoreCase("lightning") ||
+                    child.getId().equalsIgnoreCase("magnet") ||
+                    child.getId().equalsIgnoreCase("emperor")) {
 
                 // Inkompatible Elemente ?
-                if (mom.elements.size() == 1 || dad.elements.size() == 1) {
+                if (mom.getElements().size() == 1 || dad.getElements().size() == 1) {
                     return false;
                 }
             }
             //siren,pixie,dark machine,vortex,titan,narwhale
-            if (child.id.equalsIgnoreCase("siren") && ((mom.id.equalsIgnoreCase("sunflower") && dad.id.equalsIgnoreCase("mercury")) || (dad.id.equalsIgnoreCase("sunflower") && mom.id.equalsIgnoreCase("mercury")))) {
+            if (child.getId().equalsIgnoreCase("siren") && ((mom.getId().equalsIgnoreCase("sunflower") && dad.getId().equalsIgnoreCase("mercury")) || (dad.getId().equalsIgnoreCase("sunflower") && mom.getId().equalsIgnoreCase("mercury")))) {
                 return true;
             }
-            if (child.id.equalsIgnoreCase("pixie") && ((mom.id.equalsIgnoreCase("sunflower") && dad.id.equalsIgnoreCase("lightning")) || (dad.id.equalsIgnoreCase("sunflower") && mom.id.equalsIgnoreCase("lightning")))) {
+            if (child.getId().equalsIgnoreCase("pixie") && ((mom.getId().equalsIgnoreCase("sunflower") && dad.getId().equalsIgnoreCase("lightning")) || (dad.getId().equalsIgnoreCase("sunflower") && mom.getId().equalsIgnoreCase("lightning")))) {
                 return true;
             }
-            if (child.id.equalsIgnoreCase("dark_machine") && ((mom.id.equalsIgnoreCase("sunflower") && dad.id.equalsIgnoreCase("magnet")) || (dad.id.equalsIgnoreCase("sunflower") && mom.id.equalsIgnoreCase("magnet")))) {
+            if (child.getId().equalsIgnoreCase("dark_machine") && ((mom.getId().equalsIgnoreCase("sunflower") && dad.getId().equalsIgnoreCase("magnet")) || (dad.getId().equalsIgnoreCase("sunflower") && mom.getId().equalsIgnoreCase("magnet")))) {
                 return true;
             }
-            if (child.id.equalsIgnoreCase("vortex") && ((mom.id.equalsIgnoreCase("lightning") && dad.id.equalsIgnoreCase("mercury")) || (dad.id.equalsIgnoreCase("lightning") && mom.id.equalsIgnoreCase("mercury")))) {
+            if (child.getId().equalsIgnoreCase("vortex") && ((mom.getId().equalsIgnoreCase("lightning") && dad.getId().equalsIgnoreCase("mercury")) || (dad.getId().equalsIgnoreCase("lightning") && mom.getId().equalsIgnoreCase("mercury")))) {
                 return true;
             }
-            if (child.id.equalsIgnoreCase("titan") && ((mom.id.equalsIgnoreCase("magnet") && dad.id.equalsIgnoreCase("mercury")) || (dad.id.equalsIgnoreCase("magnet") && mom.id.equalsIgnoreCase("mercury")))) {
+            if (child.getId().equalsIgnoreCase("titan") && ((mom.getId().equalsIgnoreCase("magnet") && dad.getId().equalsIgnoreCase("mercury")) || (dad.getId().equalsIgnoreCase("magnet") && mom.getId().equalsIgnoreCase("mercury")))) {
                 return true;
             }
-            if (child.id.equalsIgnoreCase("narwhale") && ((mom.id.equalsIgnoreCase("magnet") && dad.id.equalsIgnoreCase("lightning")) || (dad.id.equalsIgnoreCase("magnet") && mom.id.equalsIgnoreCase("lightning")))) {
+            if (child.getId().equalsIgnoreCase("narwhale") && ((mom.getId().equalsIgnoreCase("magnet") && dad.getId().equalsIgnoreCase("lightning")) || (dad.getId().equalsIgnoreCase("magnet") && mom.getId().equalsIgnoreCase("lightning")))) {
                 return true;
             }
-            if (child.id.equalsIgnoreCase("crystal") && ((mom.id.equalsIgnoreCase("emperor") && dad.id.equalsIgnoreCase("magnet")) || (dad.id.equalsIgnoreCase("emperor") && mom.id.equalsIgnoreCase("magnet")))) {
+            if (child.getId().equalsIgnoreCase("crystal") && ((mom.getId().equalsIgnoreCase("emperor") && dad.getId().equalsIgnoreCase("magnet")) || (dad.getId().equalsIgnoreCase("emperor") && mom.getId().equalsIgnoreCase("magnet")))) {
                 return true;
             }
-            if (child.elements.size() == 1) {
+            if (child.getElements().size() == 1) {
                 //1 elements => mum & dad must have element
-                if (mom.elements.contains(child.element1) && dad.elements.contains(child.element1)) {
+                if (mom.getElements().contains(child.getElement1()) && dad.getElements().contains(child.getElement1())) {
                     return true;
                 } else {
                     // JS ist hier schrott. Immer false
                     return false;
                 }
-            } else if (child.elements.size() == 2) {
+            } else if (child.getElements().size() == 2) {
                 //2 elements => mum & dad can have his element
                 // Auch hier ist das JS kaputt:
                 //if ((mumHasFirstElem && dadHasFirstElem && mumHasSecondElem && dadHasSecondElem) || (mumHasFirstElem && dadHasSecondElem) || (mumHasSecondElem && dadHasFirstElem)) {
@@ -662,12 +663,13 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
                 //}
                 // Das erste ist ein Sonderfall und wird duch zweiten und dritten Therm aufgefangen
 
-                if ((mom.elements.contains(child.element1) && dad.elements.contains(child.element2)) || (mom.elements.contains(child.element2) && dad.elements.contains(child.element1))) {
+                if ((mom.getElements().contains(child.getElement1()) && dad.getElements().contains(child.getElement2()))
+                        || (mom.getElements().contains(child.getElement2()) && dad.getElements().contains(child.getElement1()))) {
                     return true;
                 }
 
 
-            } else if (child.elements.size() == 3) {
+            } else if (child.getElements().size() == 3) {
                 //3 elements => mum and dad must have all the elements
                 if (child.islegendary()) {
                     return false;
@@ -677,27 +679,27 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
                 Boolean e3 = false;
                 Boolean m = false;
                 Boolean d = false;
-                if (mom.elements.contains(child.element1)) {
+                if (mom.getElements().contains(child.getElement1())) {
                     m = true;
                     e1 = true;
                 }
-                if (mom.elements.contains(child.element2)) {
+                if (mom.getElements().contains(child.getElement2())) {
                     m = true;
                     e2 = true;
                 }
-                if (mom.elements.contains(child.element3)) {
+                if (mom.getElements().contains(child.getElement3())) {
                     m = true;
                     e3 = true;
                 }
-                if (dad.elements.contains(child.element1)) {
+                if (dad.getElements().contains(child.getElement1())) {
                     d = true;
                     e1 = true;
                 }
-                if (dad.elements.contains(child.element2)) {
+                if (dad.getElements().contains(child.getElement2())) {
                     d = true;
                     e2 = true;
                 }
-                if (dad.elements.contains(child.element3)) {
+                if (dad.getElements().contains(child.getElement3())) {
                     d = true;
                     e3 = true;
                 }
@@ -711,9 +713,9 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
     }
 
     private boolean isSpecialBreed(Dragon mom, Dragon dad, Dragon child) {
-        if(child.id.equalsIgnoreCase("amber")){
-            if(mom.id.equalsIgnoreCase("bee") && dad.id.equalsIgnoreCase("tree")
-                    || dad.id.equalsIgnoreCase("bee") && mom.id.equalsIgnoreCase("tree") ){
+        if(child.getId().equalsIgnoreCase("amber")){
+            if(mom.getId().equalsIgnoreCase("bee") && dad.getId().equalsIgnoreCase("tree")
+                    || dad.getId().equalsIgnoreCase("bee") && mom.getId().equalsIgnoreCase("tree") ){
                 return true;
             }
         }
@@ -738,9 +740,9 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
     }
 
     private boolean checkMomDad(Dragon mom, Dragon dad, Dragon child, String sMom, String sDad, String sChild) {
-        if(child.id.equalsIgnoreCase(sChild)){
-            if(mom.id.equalsIgnoreCase(sMom) && dad.id.equalsIgnoreCase(sDad)
-                    || dad.id.equalsIgnoreCase(sMom) && mom.id.equalsIgnoreCase(sDad) ){
+        if(child.getId().equalsIgnoreCase(sChild)){
+            if(mom.getId().equalsIgnoreCase(sMom) && dad.getId().equalsIgnoreCase(sDad)
+                    || dad.getId().equalsIgnoreCase(sMom) && mom.getId().equalsIgnoreCase(sDad) ){
                 return true;
             }
         }

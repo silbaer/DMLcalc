@@ -165,7 +165,7 @@ public class ddwInputFragment extends Fragment {
 
             Dragon d = (Dragon) arg0.getItemAtPosition(arg2);
 
-            DDW = d.id;
+            DDW = d.getId();
             DMLcalc.Instance().setDDW(DDW,DDW_mom,DDW_dad);
 
         }
@@ -182,7 +182,7 @@ public class ddwInputFragment extends Fragment {
 
             Dragon d = (Dragon) arg0.getItemAtPosition(arg2);
 
-            DDW_mom = d.id;
+            DDW_mom = d.getId();
             DMLcalc.Instance().setDDW(DDW,DDW_mom,DDW_dad);
         }
     };
@@ -198,7 +198,7 @@ public class ddwInputFragment extends Fragment {
 
             Dragon d = (Dragon) arg0.getItemAtPosition(arg2);
 
-            DDW_dad = d.id;
+            DDW_dad = d.getId();
             DMLcalc.Instance().setDDW(DDW,DDW_mom,DDW_dad);
         }
     };

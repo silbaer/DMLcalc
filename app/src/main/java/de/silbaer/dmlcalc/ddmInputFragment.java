@@ -233,7 +233,7 @@ public class ddmInputFragment extends Fragment {
 
             Dragon d = (Dragon) arg0.getItemAtPosition(arg2);
 
-            DDM = d.id;
+            DDM = d.getId();
 
             DMLcalc.Instance().setDDM(DDM,DDM_e1,DDM_e2,DDM_e3,DDM_e4);
         }
