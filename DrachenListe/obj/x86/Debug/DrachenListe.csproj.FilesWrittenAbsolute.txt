@@ -1,0 +1,6 @@
+/home/silbaer/AndroidStudioProjects/DMLcalc/DrachenListe/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/silbaer/AndroidStudioProjects/DMLcalc/DrachenListe/obj/x86/Debug/DrachenListe.gtk-gui.gui.stetic
+/home/silbaer/AndroidStudioProjects/DMLcalc/DrachenListe/bin/Debug/DrachenListe.exe.mdb
+/home/silbaer/AndroidStudioProjects/DMLcalc/DrachenListe/bin/Debug/DrachenListe.exe
+/home/silbaer/AndroidStudioProjects/DMLcalc/DrachenListe/obj/x86/Debug/DrachenListe.exe
+/home/silbaer/AndroidStudioProjects/DMLcalc/DrachenListe/obj/x86/Debug/DrachenListe.exe.mdb

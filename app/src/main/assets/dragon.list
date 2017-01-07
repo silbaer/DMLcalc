@@ -258,7 +258,7 @@
 				["kongming", "Kongming_Dragon", "./img/dragons/Kongming_Dragon.png", "light", "shadow", "fire", "E", "N/A", "118800", "E", "196", "72", "690", "Kongming", "Kongming", "Kongming", "Kongming"],
 				["sunrise", "Sunrise_Dragon", "./img/dragons/Sunrise_Dragon.png", "light", "shadow", "wind", "E", "N/A", "118800", "E", "200", "70", "680", "Alvorada", "Aube", "Alba", "Sonnenaufgangs"],
 				["carnival", "Carnival_Dragon", "./img/dragons/Carnival_Dragon.png", "fire", "energy", "light", "E", "86400", "111600", "E", "194", "71", "610", "Carnaval", "Carnival", "Carnival", "Karnevals"],
-				["ceremony", "Ceremony_Dragon", "./img/dragons/Ceremony_Dragon.png", "fire", "plant", "", "E", "N/A", "600", "C", "202", "64", "270", "Cerimônia", "Ceremony", "Ceremony", "Ceremony"],
+				["ceremony", "Ceremony_Dragon", "./img/dragons/Ceremony_Dragon.png", "fire", "plant", "", "E", "N/A", "600", "C", "202", "64", "270", "Cerimônia", "Ceremony", "Ceremony", "Zeremonien"],
 				["cupid", "Cupid_Dragon", "./img/dragons/Cupid_Dragon.png", "energy", "fire", "water", "E", "N/A", "93600", "E", "196", "68", "430", "Cupido", "Cupid", "Cupid", "Cupido"],
 				["dainty", "Dainty_Dragon", "./img/dragons/Dainty_Dragon.png", "light", "fire", "water", "E", "72000", "100800", "E", "211", "66", "510", "Delicado", "Dainty", "Dainty", "Anmuts"],
 				["genie", "Genie_Dragon", "./img/dragons/Genie_Dragon.png", "water", "light", "", "E", "N/A", "N/A", "R", "240", "77", "820", "Gênio", "Genie", "Genie", "Genie"],
