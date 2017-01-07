@@ -547,8 +547,9 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
                 List<String> MomDadElements = new ArrayList<>();
                 MomDadElements.addAll(mom.getElements());
                 MomDadElements.addAll(dad.getElements());
-                if(getDdmElements().size() > 0) {
-                  if(MomDadElements.containsAll(getDdmElements())){
+                List<String> ddmElements = getDdmElements();
+                if(ddmElements.size() > 0) {
+                  if(MomDadElements.containsAll(ddmElements)){
                       return true;
                   }
                 }
