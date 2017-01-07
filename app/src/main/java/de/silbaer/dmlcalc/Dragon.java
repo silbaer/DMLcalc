@@ -129,7 +129,7 @@ public class Dragon {
             String[] tmpSplits = tmp.split("/");
             elements = new ArrayList<String>();
             for (String e: tmpSplits) {
-                elements.add(e);
+                elements.add(e.toLowerCase());
             }
             if(elements.size()>0) {
                 element1 = elements.get(0);
