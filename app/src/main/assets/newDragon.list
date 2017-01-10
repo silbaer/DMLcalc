@@ -241,7 +241,7 @@ assassin;Assassin Dragon Icon.png;Uncommon;Void/Metal;61;222;405;0;52200;;;False
 goblin;Goblin Dragon Icon.png;Common;Earth/Wind;60;212;230;0;23400;;;False;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 robocluck;Robocluck Dragon Icon.png;Epic;Metal/Void/Energy;66;214;615;0;100800;;;False;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 shamrock;Shamrock Dragon Icon.png;Epic;Metal/Fire/Earth;59;224;435;0;84600;1635;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
-li'l_chick;Li'l Chick Dragon Icon.png;Rare;Plant/Wind;63;206;330;0;60600;936;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
+lil_chick;Li'l Chick Dragon Icon.png;Rare;Plant/Wind;63;206;330;0;60600;936;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 sweet_treat;Sweet Treat Dragon Icon.png;Epic;Energy/Plant/Water;67;210;460;0;93600;1899;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 jester;Jester Dragon Icon.png;Epic;Fire/Shadow/Plant;70;196;570;0;100800;1789;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 panda;Panda Dragon Icon.png;Epic;Earth/Plant/Water;59;232;390;0;84600;1685;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
@@ -318,7 +318,7 @@ cupcake;Cupcake Dragon Icon.png;Epic;Fire/Water/Light;66;212;510;0;100800;;;True
 fluffy;Fluffy Dragon Icon.png;Epic;Wind/Water/Shadow;68;202;500;0;100800;;;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 hazmat;Hazmat Dragon Icon.png;Rare;Plant/Shadow;67;202;490;0;75000;;;False;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 knight;Knight Dragon Icon.png;Rare;Metal/Energy;64;208;365;0;52200;;;False;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
-li'l_angel;Li'l Angel Dragon Icon.png;Epic;Light/Plant/Earth;62;230;570;0;100800;1900;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
+lil_angel;Li'l Angel Dragon Icon.png;Epic;Light/Plant/Earth;62;230;570;0;100800;1900;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 orc;Orc Dragon Icon.png;Rare;Earth/Wind/Fire;63;206;330;0;69600;;;False;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 posh;Posh Dragon Icon.png;Epic;Energy/Metal/Void;66;214;615;0;100800;;;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 present;Present Dragon Icon.png;Epic;Energy/Earth/Light;67;214;610;0;100800;2000;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
