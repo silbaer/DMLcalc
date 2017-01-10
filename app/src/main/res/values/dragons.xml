@@ -94,7 +94,6 @@
     <string name="dragon_mutant">Mutanten</string>
     <string name="dragon_machine">Maschinen</string>
     <string name="dragon_wind_up">Aufzieh</string>
-    <string name="dragon_wind-up">Aufzieh</string>
     <string name="dragon_robot">Roboter</string>
     <string name="dragon_thunder_wolf">Donnerwolf</string>
     <string name="dragon_la_fontaine">Fontäne</string>
@@ -344,7 +343,7 @@
     <string name="dragon_sylvan">Waldgeist</string>
     <string name="dragon_school_bus">School Bus</string>
     <string name="dragon_cupcake">Törtchen</string>
-    <string name="dragon_x-ray">Röntgen</string>
+    <string name="dragon_x_ray">Röntgen</string>
 
     <string name="dragon_present">Geschenk</string>
     <string name="dragon_gloom_lady">Düsterdamen</string>

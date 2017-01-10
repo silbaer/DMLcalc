@@ -102,7 +102,7 @@ balloon;Balloon Dragon Icon.png;Epic;Fire/Wind/Energy;70;184;450;0;93600;1625;Ge
 luck;Luck Dragon Icon.png;Epic;Wind/Plant/Energy;68;198;480;72000;93600;1777;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 mutant;Mutant Dragon Icon.png;Epic;Plant/Fire/Energy;70;194;490;72000;93600;1400;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 machine;Machine Dragon Icon.png;Epic;Metal/Wind/Energy;65;206;495;72000;93600;1600;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
-wind-up;Wind-Up Dragon Icon.png;Epic;Energy/Metal/Wind;65;206;495;72000;93600;1750;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
+wind_up;Wind-Up Dragon Icon.png;Epic;Energy/Metal/Wind;65;206;495;72000;93600;1750;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 robot;Robot Dragon Icon.png;Epic;Metal/Energy/Earth;62;222;505;0;93600;;;False;False;False;True;False;False;False;False;False;0;False;False;False;False;False;
 thunder_wolf;Thunder Wolf Icon.png;Boss;Energy/Metal;254;208;+10%;0;0;865;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;True;
 la_fontaine;La Fontaine Icon.png;Boss;Fire/Water/Energy;274;196;+10%;0;0;450;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;True;
@@ -167,7 +167,7 @@ yeti;Yeti Dragon Icon.png;Common;Light/Metal;61;224;435;43200;49800;395;Gems;Fal
 missile;Missile Dragon Icon.png;Common;Light/Energy;68;200;460;50400;58200;435;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;True;
 jungle;Jungle Dragon Icon.png;Common;Light/Plant;64;216;420;43200;49800;415;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;True;
 classical;Classical Dragon Icon.png;Common;Light/Wind;65;206;380;36000;48600;335;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;True;
-x-ray;X-Ray Dragon Icon.png;Common;Light/Void;65;214;500;50400;58200;444;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;True;
+x_ray;X-Ray Dragon Icon.png;Common;Light/Void;65;214;500;50400;58200;444;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;True;
 solar;Solar Dragon Icon.png;Common;Light/Fire;66;202;390;36000;48600;310;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;True;
 snowball;Snowball Icon.png;Boss;Light/Metal;245;224;+10%;0;0;1900;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;True;
 sulfur;Sulfur Dragon Icon.png;Rare;Fire/Light;66;202;460;57600;78000;1240;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
