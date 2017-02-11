@@ -302,7 +302,7 @@
     <string name="dragon_dark_mech">Dark_Mech</string>
     <string name="dragon_chameleon">Chameleon</string>
     <string name="dragon_brunhilda">Brunhilda</string>
-    <string name="dragon_armadillo">Armadillo</string>
+    <string name="dragon_armadillo">Gürteltier</string>
     <string name="dragon_medalist">Medailliengewinner</string>
     <string name="dragon_hellfire">Höllenfeuer</string>
     <string name="dragon_cockatoo">Kakadu</string>
@@ -322,7 +322,7 @@
     <string name="dragon_torch">Fackel</string>
     <string name="dragon_briar">Dornen</string>
     <string name="dragon_boxer">Boxer</string>
-    <string name="dragon_amber">Amber</string>
+    <string name="dragon_amber">Bernstein</string>
     <string name="dragon_yarn">Yarn</string>
     <string name="dragon_wolf">Wolf</string>
     <string name="dragon_sumo">Sumo</string>
@@ -356,4 +356,6 @@
     <string name="dragon_scarecrow">Vogelscheuchen</string>
     <string name="dragon_snowman">Schneemann</string>
     <string name="dragon_skater">Rollschuh</string>
+    <string name="dragon_sage">Weisheit</string>
+    <string name="dragon_jiang">Jiang</string>
 </resources>

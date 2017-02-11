@@ -98,6 +98,12 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
             return true;
         }
 
+        if (id == R.id.action_ClearCache) {
+            DMLcalc.Instance().clearCache();
+            Toast.makeText(getBaseContext(), "Cache cleared",
+                    Toast.LENGTH_LONG).show();
+        }
+
         if (id == R.id.action_info) {
 
    //         new AlertDialog.Builder(this).setTitle(R.string.action_info).setMessage("Version " + BuildConfig.VERSION_NAME + "\nAnregungen/Kritik/Wünsche an \nsilbaer@gmail.com" ).setNeutralButton("OK", null).show();
@@ -142,6 +148,7 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
 
 
     }
+
 
 
     @Override
@@ -334,40 +341,9 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
 
 
     @Override
-    public void onStart() {
-        super.onStart();
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-//        client.connect();
-//        Action viewAction = Action.newAction(
-//                Action.TYPE_VIEW, // TODO: choose an action type.
-//                "Main Page", // TODO: Define a title for the content shown.
-//                // TODO: If you have web page content that matches this app activity's content,
-//                // make sure this auto-generated web page URL is correct.
-//                // Otherwise, set the URL to null.
-//                Uri.parse("http://host/path"),
-//                // TODO: Make sure this auto-generated app URL is correct.
-//                Uri.parse("android-app://de.silbaer.dmlcalc/http/host/path")
-//        );
-//        AppIndex.AppIndexApi.start(client, viewAction);
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction2 = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Main Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://de.silbaer.dmlcalc/http/host/path")
-        );
-        AppIndex.AppIndexApi.start(client, viewAction2);
+    protected void onPause() {
+        super.onPause();
+        DMLcalc.Instance().saveCache();
     }
 
     @Override

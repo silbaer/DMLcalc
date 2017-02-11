@@ -3,6 +3,7 @@
     <string name="PREFS_NAME">de.silbaer.dmlcal.appsettings</string>
     <string name="action_settings">Settings</string>
     <string name="action_info">Info</string>
+    <string name="action_clearCache">Cache löschen</string>
     <string name="DDW">DDW</string>
     <string name="DDW_mom">DDW_mom</string>
     <string name="DDW_dad">DDW_dad</string>

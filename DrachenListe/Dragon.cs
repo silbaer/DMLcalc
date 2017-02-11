@@ -105,7 +105,7 @@ namespace DragonImport {
 	public override string ToString (){
 			StringBuilder retval = new StringBuilder ();
 			string csv = ";";
-      retval.Append (id).Replace (" ", "_").Replace (".", "").Append (csv);
+      retval.Append (id).Replace (" ", "_").Replace ("-", "_").Replace (".", "").Replace ("'", "").Append (csv);
 			retval.Append (icon).Append (csv);
 			retval.Append (DragonType.ToString ()).Append (csv);
 			foreach (var e in Elements) {

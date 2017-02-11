@@ -3,13 +3,18 @@ package de.silbaer.dmlcalc;
 
 import android.app.Application;
 import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.util.Pair;
+
+import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -85,6 +90,9 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 //    public Dictionary<string, Element> elements = new Dictionary<string,Element>();
 
     Map<String,Double> odds;
+
+ //   private Hashtable<String,Object> _howToCache;
+    private Hashtable<String,Object> _breedCache;
 
     public DMLcalc() {
 
@@ -247,6 +255,89 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         return retval;
     }
 
+    public void clearCache(){
+        _breedCache.clear();
+    }
+    public void saveCache(){
+
+
+//        SharedPreferences prefs = getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = prefs.edit();
+//        Gson gson = new Gson();
+//        String json = gson.toJson(_breedCache);
+//        editor.putString("breedCache",json);
+//        editor.commit();
+
+    }
+    public void loadCache(){
+//        SharedPreferences prefs = getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
+//        Gson gson = new Gson();
+//        String json = prefs.getString("breedCache","");
+//        _breedCache = gson.fromJson(json,Hashtable.class);
+//        if(_breedCache == null){
+//            _breedCache = new Hashtable<>();
+//        }
+//        w_db = mDbHelper.getWritableDatabase();
+//        r_db = mDbHelper.getReadableDatabase();
+        _breedCache = new Hashtable<>();
+    }
+
+//    BreedCacheDbHelper mDbHelper;
+//    SQLiteDatabase w_db;
+//    SQLiteDatabase r_db;
+
+    private Object getFromDb(String key) {
+        Object retval = null;
+//        String value="";
+//      String[] projection = {
+//              BreedCacheContract.BreedCacheEntry._ID,
+//              BreedCacheContract.BreedCacheEntry.COLUMN_NAME_KEY,
+//              BreedCacheContract.BreedCacheEntry.COLUMN_NAME_VALUE
+//      };
+//        String selection = BreedCacheContract.BreedCacheEntry.COLUMN_NAME_KEY + " = ?";
+//        String[] selectionArgs = { key };
+//        String sortOrder = BreedCacheContract.BreedCacheEntry.COLUMN_NAME_KEY + " DESC";
+//        Cursor cursor = r_db.query(
+//                BreedCacheContract.BreedCacheEntry.TABLE_NAME,
+//                projection,
+//                selection,
+//                selectionArgs,
+//                null,
+//                null,
+//                sortOrder
+//        );
+//
+//        if(cursor.moveToNext()){
+//        value = cursor.getString(
+//                cursor.getColumnIndexOrThrow(BreedCacheContract.BreedCacheEntry.COLUMN_NAME_VALUE));
+//        }
+//        cursor.close();
+//        Gson gson = new Gson();
+//        retval = gson.fromJson(value,List.class);
+        if(_breedCache.containsKey(key)){
+            retval = _breedCache.get(key);
+        }
+
+      return retval;
+    }
+
+    private void saveInDb(String key, Object value){
+        // Gets the data repository in write mode
+ //       SQLiteDatabase db = mDbHelper.getWritableDatabase();
+//
+//// Create a new map of values, where column names are the keys
+//        ContentValues values = new ContentValues();
+//        values.put(BreedCacheContract.BreedCacheEntry.COLUMN_NAME_KEY,key);
+//        Gson gson = new Gson();
+//        String json = gson.toJson(value);
+//
+//        values.put(BreedCacheContract.BreedCacheEntry.COLUMN_NAME_VALUE, json);
+//
+//// Insert the new row, returning the primary key value of the new row
+//        long newRowId = w_db.insert(BreedCacheContract.BreedCacheEntry.TABLE_NAME, null, values);
+        _breedCache.put(key,value);
+    }
+
     @Override
     public void onCreate(){
         super.onCreate();
@@ -270,6 +361,12 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         elements.add(new element("light"));
         elements.add(new element("shadow"));
         elements.add(new element("legendary"));
+
+        //_breedCache = new Hashtable<> ();
+        // loadCache();
+
+    //    mDbHelper = new BreedCacheDbHelper(getContext());
+        loadCache();
 
 
 
@@ -462,40 +559,53 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
     }
 
     private List<Pair<Pair<Dragon,Dragon>,Double>> _howToBreed(Dragon son) {
-        List<Pair<Pair<Dragon,Dragon>,Double>> retval = new ArrayList<>();
+        List<Pair<Pair<Dragon,Dragon>,Double>> retval;
 
+        retval = (List<Pair<Pair<Dragon,Dragon>,Double>>) getFromDb(son.getId());
+
+        if(retval == null){
+            retval = new ArrayList<>();
 //        ArrayList< Dragon> dl = new ArrayList<>(dragons.values());
-        ArrayList< Dragon> dl = getDragonsToUse();
+            ArrayList<Dragon> dl = getDragonsToUse();
 
-        for(int x = 0; x < dl.size()-1; x++){
-            for(int y = x+1; y < dl.size();y++){
-                if(!dl.get(x).getId().equalsIgnoreCase(son.getId())
-                        && !dl.get(y).getId().equalsIgnoreCase(son.getId())) {
-                    if (isChild(dl.get(x), dl.get(y),son)) {
-                        List<Dragon> tmp = _breed(dl.get(x), dl.get(y));
-                        for (Dragon d : tmp) {
-                            if (d.getId().equalsIgnoreCase(son.getId())) {
-                                retval.add(new Pair<Pair<Dragon,Dragon>,Double>(new Pair<Dragon, Dragon>(dl.get(x), dl.get(y)), d.getOdd()));
+            for (int x = 0; x < dl.size() - 1; x++) {
+                for (int y = x + 1; y < dl.size(); y++) {
+                    if (!dl.get(x).getId().equalsIgnoreCase(son.getId())
+                            && !dl.get(y).getId().equalsIgnoreCase(son.getId())) {
+                        if (isChild(dl.get(x), dl.get(y), son)) {
+                            List<Dragon> tmp = _breed(dl.get(x), dl.get(y));
+                            for (Dragon d : tmp) {
+                                if (d.getId().equalsIgnoreCase(son.getId())) {
+                                    retval.add(new Pair<Pair<Dragon, Dragon>, Double>(new Pair<Dragon, Dragon>(dl.get(x), dl.get(y)), d.getOdd()));
+                                }
                             }
                         }
                     }
                 }
             }
+            saveInDb(son.getId(),retval);
         }
         return retval;
     }
 
     private List<Dragon> _breed(Dragon mom, Dragon dad) {
-        List<Dragon> retval = new ArrayList<Dragon>();
-        if (dad != null && mom != null && !mom.getId().equals(dad.getId())) {
-            ArrayList<Dragon> drags = getDragonsToShow();
-            for (Dragon d : drags) {
-                if (isChild(mom, dad,d)) {
-                    retval.add(d);
+        List<Dragon> retval;
+        String key = mom.getId() + dad.getId();
+        retval = (List<Dragon>) getFromDb(key);
+        if (retval == null) {
+            retval = new ArrayList<Dragon>();
+            if (dad != null && mom != null && !mom.getId().equals(dad.getId())) {
+                ArrayList<Dragon> drags = getDragonsToShow();
+                for (Dragon d : drags) {
+                    if (isChild(mom, dad, d)) {
+                        retval.add(d);
+                    }
                 }
+                CalcOdds(retval);
             }
-            CalcOdds(retval);
+            saveInDb(key, retval);
         }
+
         return retval;
     }
 
