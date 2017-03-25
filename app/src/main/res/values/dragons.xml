@@ -165,7 +165,7 @@
     <string name="dragon_mountain">Berg</string>
     <string name="dragon_balloon">Ballon</string>
     <string name="dragon_sparkler">Glitzer</string>
-    <string name="dragon_maple_leaf">Maple Leaf</string>
+    <string name="dragon_maple_leaf">Ahornblatt</string>
     <string name="dragon_tricolor">Trikoloren</string>
     <string name="dragon_star_stripe">Sternstreifen</string>
     <string name="dragon_academic">Academic</string>
@@ -271,7 +271,7 @@
     <string name="dragon_shamrock">Kleeblatt</string>
     <string name="dragon_lil_chick">Hühnchen</string>
     <string name="dragon_sweet_treat">Süßkram</string>
-    <string name="dragon_jester">Jester</string>
+    <string name="dragon_jester">Narren</string>
     <string name="dragon_panda">Panda</string>
     <string name="dragon_astronaut">Astronaut</string>
     <string name="dragon_castle">Schloss</string>
@@ -294,12 +294,12 @@
     <string name="dragon_elephant">Elefanten</string>
     <string name="dragon_duanwu">Duanwu</string>
     <string name="dragon_arctic">Arctic</string>
-    <string name="dragon_perfume">Perfume</string>
-    <string name="dragon_sandcastle">Sandcastle</string>
+    <string name="dragon_perfume">Parfüm</string>
+    <string name="dragon_sandcastle">Sandburg</string>
     <string name="dragon_superhero">Superhelden</string>
     <string name="dragon_pineapple">Pineapple</string>
     <string name="dragon_hypoestes">Punktblume</string>
-    <string name="dragon_dark_mech">Dark_Mech</string>
+    <string name="dragon_dark_mech">Dunkelmech</string>
     <string name="dragon_chameleon">Chameleon</string>
     <string name="dragon_brunhilda">Brunhilda</string>
     <string name="dragon_armadillo">Gürteltier</string>
@@ -332,7 +332,7 @@
     <string name="dragon_box">Karton</string>
     <string name="dragon_bloom">Blüten</string>
     <string name="dragon_ant">Ameisen</string>
-    <string name="dragon_droid">Droid</string>
+    <string name="dragon_droid">Droiden</string>
     <string name="dragon_cheerleader">Cheerleader</string>
     <string name="dragon_scribble">Kritzel</string>
     <string name="dragon_chemistry">Chemie</string>
@@ -358,4 +358,8 @@
     <string name="dragon_skater">Rollschuh</string>
     <string name="dragon_sage">Weisheit</string>
     <string name="dragon_jiang">Jiang</string>
+
+    <string name="dragon_hearts">Herz</string>
+    <string name="dragon_orc">Ork</string>
+    <string name="dragon_burger">Burger</string>
 </resources>
