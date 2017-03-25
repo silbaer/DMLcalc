@@ -3,9 +3,9 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Dragon.cs">
     <Files>
       <File FileName="DragonList.cs" Line="1" Column="1" />
-      <File FileName="MainWindow.cs" Line="63" Column="53" />
-      <File FileName="Dragon.cs" Line="98" Column="28" />
-      <File FileName="MobaImport.cs" Line="1" Column="1" />
+      <File FileName="MainWindow.cs" Line="165" Column="5" />
+      <File FileName="Dragon.cs" Line="43" Column="5" />
+      <File FileName="MobaImport.cs" Line="46" Column="24" />
       <File FileName="EditDragonDialog.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>

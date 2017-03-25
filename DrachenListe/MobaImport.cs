@@ -16,7 +16,7 @@ namespace DragonImport {
 			string[] splits = data.Split (new String[] { Environment.NewLine }, StringSplitOptions.None);
 			foreach (var line in splits) {
 				string[] lineSplits = line.Split (new char[] { '\t' });
-				if (lineSplits.Count () == 11) {
+				if (lineSplits.Count () >= 11) {
 					try {
 						Dragon d = new Dragon ();
 						//dragon / ID
@@ -42,10 +42,11 @@ namespace DragonImport {
 						if (lineSplits [2].StartsWith ("Boss", StringComparison.InvariantCultureIgnoreCase)) {
 							d.DragonType = Dragon.DragonTypeEnum.Boss;
 						}
-            if(lineSplits[2].Contains("Exclusive")){
-              d.isNormalBreadable = false;
-            } else {
+            if(string.IsNullOrWhiteSpace(lineSplits[3]) || 
+              lineSplits [3].Contains ("Enchantment Icon")){
               d.isNormalBreadable = true;
+            } else {
+              d.isNormalBreadable = false;
             }
 						// Notes
 						if (lineSplits [3].Contains ("LTD Icon")) {

@@ -4,6 +4,46 @@ namespace DrachenListe
 {
 	public partial class EditDragonDialog
 	{
+		private global::Gtk.Fixed fixed1;
+		
+		private global::Gtk.Entry entry2;
+		
+		private global::Gtk.CheckButton checkbutton1;
+		
+		private global::Gtk.CheckButton checkbutton2;
+		
+		private global::Gtk.CheckButton checkbutton3;
+		
+		private global::Gtk.CheckButton checkbutton4;
+		
+		private global::Gtk.CheckButton checkbutton5;
+		
+		private global::Gtk.CheckButton checkbutton6;
+		
+		private global::Gtk.CheckButton checkbutton7;
+		
+		private global::Gtk.CheckButton checkbutton8;
+		
+		private global::Gtk.CheckButton checkbutton9;
+		
+		private global::Gtk.Entry entry3;
+		
+		private global::Gtk.Label label2;
+		
+		private global::Gtk.Label label3;
+		
+		private global::Gtk.Entry entry4;
+		
+		private global::Gtk.CheckButton checkbutton10;
+		
+		private global::Gtk.CheckButton checkbutton11;
+		
+		private global::Gtk.CheckButton checkbutton12;
+		
+		private global::Gtk.CheckButton checkbutton13;
+		
+		private global::Gtk.CheckButton checkbutton14;
+		
 		private global::Gtk.Button buttonCancel;
 		
 		private global::Gtk.Button buttonOk;
@@ -18,13 +58,221 @@ namespace DrachenListe
 			// Internal child DrachenListe.EditDragonDialog.VBox
 			global::Gtk.VBox w1 = this.VBox;
 			w1.Name = "dialog1_VBox";
-			w1.BorderWidth = ((uint)(2));
+			// Container child dialog1_VBox.Gtk.Box+BoxChild
+			this.fixed1 = new global::Gtk.Fixed ();
+			this.fixed1.Name = "fixed1";
+			this.fixed1.HasWindow = false;
+			// Container child fixed1.Gtk.Fixed+FixedChild
+			this.entry2 = new global::Gtk.Entry ();
+			this.entry2.CanFocus = true;
+			this.entry2.Name = "entry2";
+			this.entry2.IsEditable = true;
+			this.entry2.InvisibleChar = '●';
+			this.fixed1.Add (this.entry2);
+			global::Gtk.Fixed.FixedChild w2 = ((global::Gtk.Fixed.FixedChild)(this.fixed1 [this.entry2]));
+			w2.X = 100;
+			w2.Y = 11;
+			// Container child fixed1.Gtk.Fixed+FixedChild
+			this.checkbutton1 = new global::Gtk.CheckButton ();
+			this.checkbutton1.CanFocus = true;
+			this.checkbutton1.Name = "checkbutton1";
+			this.checkbutton1.Label = global::Mono.Unix.Catalog.GetString ("Limited Time");
+			this.checkbutton1.DrawIndicator = true;
+			this.checkbutton1.UseUnderline = true;
+			this.fixed1.Add (this.checkbutton1);
+			global::Gtk.Fixed.FixedChild w3 = ((global::Gtk.Fixed.FixedChild)(this.fixed1 [this.checkbutton1]));
+			w3.X = 482;
+			w3.Y = 24;
+			// Container child fixed1.Gtk.Fixed+FixedChild
+			this.checkbutton2 = new global::Gtk.CheckButton ();
+			this.checkbutton2.CanFocus = true;
+			this.checkbutton2.Name = "checkbutton2";
+			this.checkbutton2.Label = global::Mono.Unix.Catalog.GetString ("Clan Shop");
+			this.checkbutton2.DrawIndicator = true;
+			this.checkbutton2.UseUnderline = true;
+			this.fixed1.Add (this.checkbutton2);
+			global::Gtk.Fixed.FixedChild w4 = ((global::Gtk.Fixed.FixedChild)(this.fixed1 [this.checkbutton2]));
+			w4.X = 484;
+			w4.Y = 70;
+			// Container child fixed1.Gtk.Fixed+FixedChild
+			this.checkbutton3 = new global::Gtk.CheckButton ();
+			this.checkbutton3.CanFocus = true;
+			this.checkbutton3.Name = "checkbutton3";
+			this.checkbutton3.Label = global::Mono.Unix.Catalog.GetString ("VIP");
+			this.checkbutton3.DrawIndicator = true;
+			this.checkbutton3.UseUnderline = true;
+			this.fixed1.Add (this.checkbutton3);
+			global::Gtk.Fixed.FixedChild w5 = ((global::Gtk.Fixed.FixedChild)(this.fixed1 [this.checkbutton3]));
+			w5.X = 469;
+			w5.Y = 113;
+			// Container child fixed1.Gtk.Fixed+FixedChild
+			this.checkbutton4 = new global::Gtk.CheckButton ();
+			this.checkbutton4.CanFocus = true;
+			this.checkbutton4.Name = "checkbutton4";
+			this.checkbutton4.Label = global::Mono.Unix.Catalog.GetString ("Dungeon");
+			this.checkbutton4.DrawIndicator = true;
+			this.checkbutton4.UseUnderline = true;
+			this.fixed1.Add (this.checkbutton4);
+			global::Gtk.Fixed.FixedChild w6 = ((global::Gtk.Fixed.FixedChild)(this.fixed1 [this.checkbutton4]));
+			w6.X = 492;
+			w6.Y = 157;
+			// Container child fixed1.Gtk.Fixed+FixedChild
+			this.checkbutton5 = new global::Gtk.CheckButton ();
+			this.checkbutton5.CanFocus = true;
+			this.checkbutton5.Name = "checkbutton5";
+			this.checkbutton5.Label = global::Mono.Unix.Catalog.GetString ("Seasonal");
+			this.checkbutton5.DrawIndicator = true;
+			this.checkbutton5.UseUnderline = true;
+			this.fixed1.Add (this.checkbutton5);
+			global::Gtk.Fixed.FixedChild w7 = ((global::Gtk.Fixed.FixedChild)(this.fixed1 [this.checkbutton5]));
+			w7.X = 481;
+			w7.Y = 220;
+			// Container child fixed1.Gtk.Fixed+FixedChild
+			this.checkbutton6 = new global::Gtk.CheckButton ();
+			this.checkbutton6.CanFocus = true;
+			this.checkbutton6.Name = "checkbutton6";
+			this.checkbutton6.Label = global::Mono.Unix.Catalog.GetString ("DailyQuestPuzzle");
+			this.checkbutton6.DrawIndicator = true;
+			this.checkbutton6.UseUnderline = true;
+			this.fixed1.Add (this.checkbutton6);
+			global::Gtk.Fixed.FixedChild w8 = ((global::Gtk.Fixed.FixedChild)(this.fixed1 [this.checkbutton6]));
+			w8.X = 480;
+			w8.Y = 265;
+			// Container child fixed1.Gtk.Fixed+FixedChild
+			this.checkbutton7 = new global::Gtk.CheckButton ();
+			this.checkbutton7.CanFocus = true;
+			this.checkbutton7.Name = "checkbutton7";
+			this.checkbutton7.Label = global::Mono.Unix.Catalog.GetString ("Fiendship Totem");
+			this.checkbutton7.DrawIndicator = true;
+			this.checkbutton7.UseUnderline = true;
+			this.fixed1.Add (this.checkbutton7);
+			global::Gtk.Fixed.FixedChild w9 = ((global::Gtk.Fixed.FixedChild)(this.fixed1 [this.checkbutton7]));
+			w9.X = 486;
+			w9.Y = 303;
+			// Container child fixed1.Gtk.Fixed+FixedChild
+			this.checkbutton8 = new global::Gtk.CheckButton ();
+			this.checkbutton8.CanFocus = true;
+			this.checkbutton8.Name = "checkbutton8";
+			this.checkbutton8.Label = global::Mono.Unix.Catalog.GetString ("Referal");
+			this.checkbutton8.DrawIndicator = true;
+			this.checkbutton8.UseUnderline = true;
+			this.fixed1.Add (this.checkbutton8);
+			global::Gtk.Fixed.FixedChild w10 = ((global::Gtk.Fixed.FixedChild)(this.fixed1 [this.checkbutton8]));
+			w10.X = 483;
+			w10.Y = 348;
+			// Container child fixed1.Gtk.Fixed+FixedChild
+			this.checkbutton9 = new global::Gtk.CheckButton ();
+			this.checkbutton9.CanFocus = true;
+			this.checkbutton9.Name = "checkbutton9";
+			this.checkbutton9.Label = global::Mono.Unix.Catalog.GetString ("Daily Login");
+			this.checkbutton9.DrawIndicator = true;
+			this.checkbutton9.UseUnderline = true;
+			this.fixed1.Add (this.checkbutton9);
+			global::Gtk.Fixed.FixedChild w11 = ((global::Gtk.Fixed.FixedChild)(this.fixed1 [this.checkbutton9]));
+			w11.X = 487;
+			w11.Y = 388;
+			// Container child fixed1.Gtk.Fixed+FixedChild
+			this.entry3 = new global::Gtk.Entry ();
+			this.entry3.CanFocus = true;
+			this.entry3.Name = "entry3";
+			this.entry3.IsEditable = true;
+			this.entry3.InvisibleChar = '●';
+			this.fixed1.Add (this.entry3);
+			global::Gtk.Fixed.FixedChild w12 = ((global::Gtk.Fixed.FixedChild)(this.fixed1 [this.entry3]));
+			w12.X = 111;
+			w12.Y = 77;
+			// Container child fixed1.Gtk.Fixed+FixedChild
+			this.label2 = new global::Gtk.Label ();
+			this.label2.Name = "label2";
+			this.label2.Xalign = 0F;
+			this.label2.LabelProp = global::Mono.Unix.Catalog.GetString ("ID");
+			this.fixed1.Add (this.label2);
+			global::Gtk.Fixed.FixedChild w13 = ((global::Gtk.Fixed.FixedChild)(this.fixed1 [this.label2]));
+			w13.X = 10;
+			w13.Y = 12;
+			// Container child fixed1.Gtk.Fixed+FixedChild
+			this.label3 = new global::Gtk.Label ();
+			this.label3.Name = "label3";
+			this.label3.Xalign = 0F;
+			this.label3.LabelProp = global::Mono.Unix.Catalog.GetString ("label3");
+			this.fixed1.Add (this.label3);
+			global::Gtk.Fixed.FixedChild w14 = ((global::Gtk.Fixed.FixedChild)(this.fixed1 [this.label3]));
+			w14.X = 13;
+			w14.Y = 76;
+			// Container child fixed1.Gtk.Fixed+FixedChild
+			this.entry4 = new global::Gtk.Entry ();
+			this.entry4.CanFocus = true;
+			this.entry4.Name = "entry4";
+			this.entry4.IsEditable = true;
+			this.entry4.InvisibleChar = '●';
+			this.fixed1.Add (this.entry4);
+			global::Gtk.Fixed.FixedChild w15 = ((global::Gtk.Fixed.FixedChild)(this.fixed1 [this.entry4]));
+			w15.X = 609;
+			w15.Y = 382;
+			// Container child fixed1.Gtk.Fixed+FixedChild
+			this.checkbutton10 = new global::Gtk.CheckButton ();
+			this.checkbutton10.CanFocus = true;
+			this.checkbutton10.Name = "checkbutton10";
+			this.checkbutton10.Label = global::Mono.Unix.Catalog.GetString ("Echantment Breed");
+			this.checkbutton10.DrawIndicator = true;
+			this.checkbutton10.UseUnderline = true;
+			this.fixed1.Add (this.checkbutton10);
+			global::Gtk.Fixed.FixedChild w16 = ((global::Gtk.Fixed.FixedChild)(this.fixed1 [this.checkbutton10]));
+			w16.X = 486;
+			w16.Y = 430;
+			// Container child fixed1.Gtk.Fixed+FixedChild
+			this.checkbutton11 = new global::Gtk.CheckButton ();
+			this.checkbutton11.CanFocus = true;
+			this.checkbutton11.Name = "checkbutton11";
+			this.checkbutton11.Label = global::Mono.Unix.Catalog.GetString ("checkbutton11");
+			this.checkbutton11.DrawIndicator = true;
+			this.checkbutton11.UseUnderline = true;
+			this.fixed1.Add (this.checkbutton11);
+			global::Gtk.Fixed.FixedChild w17 = ((global::Gtk.Fixed.FixedChild)(this.fixed1 [this.checkbutton11]));
+			w17.X = 263;
+			w17.Y = 158;
+			// Container child fixed1.Gtk.Fixed+FixedChild
+			this.checkbutton12 = new global::Gtk.CheckButton ();
+			this.checkbutton12.CanFocus = true;
+			this.checkbutton12.Name = "checkbutton12";
+			this.checkbutton12.Label = global::Mono.Unix.Catalog.GetString ("checkbutton12");
+			this.checkbutton12.DrawIndicator = true;
+			this.checkbutton12.UseUnderline = true;
+			this.fixed1.Add (this.checkbutton12);
+			global::Gtk.Fixed.FixedChild w18 = ((global::Gtk.Fixed.FixedChild)(this.fixed1 [this.checkbutton12]));
+			w18.X = 263;
+			w18.Y = 190;
+			// Container child fixed1.Gtk.Fixed+FixedChild
+			this.checkbutton13 = new global::Gtk.CheckButton ();
+			this.checkbutton13.CanFocus = true;
+			this.checkbutton13.Name = "checkbutton13";
+			this.checkbutton13.Label = global::Mono.Unix.Catalog.GetString ("checkbutton13");
+			this.checkbutton13.DrawIndicator = true;
+			this.checkbutton13.UseUnderline = true;
+			this.fixed1.Add (this.checkbutton13);
+			global::Gtk.Fixed.FixedChild w19 = ((global::Gtk.Fixed.FixedChild)(this.fixed1 [this.checkbutton13]));
+			w19.X = 270;
+			w19.Y = 226;
+			// Container child fixed1.Gtk.Fixed+FixedChild
+			this.checkbutton14 = new global::Gtk.CheckButton ();
+			this.checkbutton14.CanFocus = true;
+			this.checkbutton14.Name = "checkbutton14";
+			this.checkbutton14.Label = global::Mono.Unix.Catalog.GetString ("checkbutton14");
+			this.checkbutton14.DrawIndicator = true;
+			this.checkbutton14.UseUnderline = true;
+			this.fixed1.Add (this.checkbutton14);
+			global::Gtk.Fixed.FixedChild w20 = ((global::Gtk.Fixed.FixedChild)(this.fixed1 [this.checkbutton14]));
+			w20.X = 270;
+			w20.Y = 264;
+			w1.Add (this.fixed1);
+			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(w1 [this.fixed1]));
+			w21.Position = 0;
 			// Internal child DrachenListe.EditDragonDialog.ActionArea
-			global::Gtk.HButtonBox w2 = this.ActionArea;
-			w2.Name = "dialog1_ActionArea";
-			w2.Spacing = 10;
-			w2.BorderWidth = ((uint)(5));
-			w2.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
+			global::Gtk.HButtonBox w22 = this.ActionArea;
+			w22.Name = "dialog1_ActionArea";
+			w22.Spacing = 10;
+			w22.BorderWidth = ((uint)(5));
+			w22.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.buttonCancel = new global::Gtk.Button ();
 			this.buttonCancel.CanDefault = true;
@@ -34,9 +282,9 @@ namespace DrachenListe
 			this.buttonCancel.UseUnderline = true;
 			this.buttonCancel.Label = "gtk-cancel";
 			this.AddActionWidget (this.buttonCancel, -6);
-			global::Gtk.ButtonBox.ButtonBoxChild w3 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w2 [this.buttonCancel]));
-			w3.Expand = false;
-			w3.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w23 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w22 [this.buttonCancel]));
+			w23.Expand = false;
+			w23.Fill = false;
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.buttonOk = new global::Gtk.Button ();
 			this.buttonOk.CanDefault = true;
@@ -46,15 +294,15 @@ namespace DrachenListe
 			this.buttonOk.UseUnderline = true;
 			this.buttonOk.Label = "gtk-ok";
 			this.AddActionWidget (this.buttonOk, -5);
-			global::Gtk.ButtonBox.ButtonBoxChild w4 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w2 [this.buttonOk]));
-			w4.Position = 1;
-			w4.Expand = false;
-			w4.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w24 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w22 [this.buttonOk]));
+			w24.Position = 1;
+			w24.Expand = false;
+			w24.Fill = false;
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.DefaultWidth = 400;
-			this.DefaultHeight = 300;
+			this.DefaultWidth = 769;
+			this.DefaultHeight = 564;
 			this.Show ();
 		}
 	}

@@ -10,8 +10,8 @@ namespace DragonImport {
   [DataContract]
   public class Dragon {
 
-    [DataMember]
-    public Dictionary<String, String> Names = new Dictionary<string,string>();
+//    [DataMember]
+//    public Dictionary<String, String> Names = new Dictionary<string,string>();
 
 		public enum DragonTypeEnum {
 			Common,
@@ -24,13 +24,31 @@ namespace DragonImport {
 
     [DataMember]
     public string id;
+    [DataMember]
+    public DragonTypeEnum DragonType;
+    [DataMember]
+    public string Hatching;
+    [DataMember]
+    public string Breeding;
+    [DataMember]
+    public List<string> Elements;
+    [DataMember]
+    public bool isNormalBreadable;
+    [DataMember]
+    public bool isEnchatmentBreed;
+    [DataMember]
+    public bool isVip;
+    [DataMember]
+    public bool isUnreleased = false;
+
+
+
+
 
     [DataMember]
     public bool isLimitedTime;
     [DataMember]
     public bool isClanShop;
-    [DataMember]
-    public bool isVip;
     [DataMember]
     public bool isDungeon;
     [DataMember]
@@ -46,14 +64,10 @@ namespace DragonImport {
     [DataMember]
     public int dailyLoginCount;
     [DataMember]
-    public bool isEnchatmentBreed;
-    [DataMember]
     public bool isEnchatmentLeague;
     [DataMember]
     public bool isArena;
 
-    [DataMember]
-    public DragonTypeEnum DragonType;
 
     [DataMember]
     public string Gold;
@@ -66,18 +80,8 @@ namespace DragonImport {
     [DataMember]
     public string CostType;
     [DataMember]
-    public string Hatching;
-    [DataMember]
-    public string Breeding;
-    [DataMember]
-    public List<string> Elements;
-    [DataMember]
     public string icon;
 
-    [DataMember]
-    public bool isUnreleased = false;
-    [DataMember]
-    public bool isNormalBreadable;
 
 
 
@@ -101,8 +105,53 @@ namespace DragonImport {
       }
       return retval;
     }
-    
-	public override string ToString (){
+
+    public  string ToIonicClassString (){
+      //     this.dragonList["fire"] = new Dragon("fire dragon",DragonRarity.COMMON,Element.FIRE,null,null,30,30);
+      StringBuilder retval = new StringBuilder ();
+      retval.AppendFormat("this.dragonList[\"{0}\"] =", id);
+      retval.AppendFormat(" new Dragon(\"{0}\",", id);
+     
+      switch (DragonType) {
+        case DragonTypeEnum.Common:
+          retval.Append("DragonRarity.COMMON,");
+          break;
+        case DragonTypeEnum.Uncommon:
+          retval.Append("DragonRarity.UNCOMMON,");
+          break;
+        case DragonTypeEnum.Rare:
+          retval.Append("DragonRarity.RARE,");
+          break;
+        case DragonTypeEnum.Epic:
+          retval.Append("DragonRarity.EPIC,");
+          break;
+        case DragonTypeEnum.Legendary:
+          retval.Append("DragonRarity.LEGENDARY,");
+          break;
+        default:
+          retval.Append("null,");
+          break;
+      } 
+      if (Elements.Count > 0) {
+        retval.AppendFormat("Element.{0},", Elements[0].ToUpperInvariant());
+      } else {
+        retval.Append("null,");
+      }
+      if (Elements.Count > 1) {
+        retval.AppendFormat("Element.{0},", Elements[1].ToUpperInvariant());
+      } else {
+        retval.Append("null,");
+      }
+      if (Elements.Count > 2) {
+        retval.AppendFormat("Element.{0},", Elements[2].ToUpperInvariant());
+      } else {
+        retval.Append("null,");
+      }
+      retval.AppendFormat("\"{0}\",\"{1}\");", Hatching, Breeding);
+      return retval.ToString();
+    }
+
+    public override string ToString (){
 			StringBuilder retval = new StringBuilder ();
 			string csv = ";";
       retval.Append (id).Replace (" ", "_").Replace ("-", "_").Replace (".", "").Replace ("'", "").Append (csv);
