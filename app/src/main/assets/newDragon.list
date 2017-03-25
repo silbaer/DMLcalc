@@ -7,7 +7,7 @@ dust;Dust Dragon Icon.png;Common;Wind/Earth;60;212;230;7200;12000;60;Gems;False;
 lava;Lava Dragon Icon.png;Common;Earth/Fire;61;208;240;3600;5400;35;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;True;
 salamander;Salamander Dragon Icon.png;Uncommon;Fire/Earth;61;208;250;5400;7200;300;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;True;
 tribal;Tribal Dragon Icon.png;Rare;Fire/Earth/Wind;63;206;330;43200;300;850;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;True;
-shooting_star;Shooting Star Dragon Icon.png;Rare;Fire/Earth;61;208;310;0;57600;900;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
+shooting_star;Shooting Star Dragon Icon.png;Rare;Fire/Earth;61;208;310;36000;57600;900;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 tick_tock;Tick Tock Dragon Icon.png;Rare;Earth/Wind;60;212;300;0;28800;;;False;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 prairie;Prairie Dragon Icon.png;Rare;Earth/Wind/Fire;63;206;330;0;300;820;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 water;Water Dragon Icon.png;Common;Water;60;210;180;300;300;10000;Gold;False;False;False;False;False;False;False;False;False;0;False;False;False;False;True;
