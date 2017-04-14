@@ -230,7 +230,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         retval.addAll(dragons.values());
         for(int i = retval.size()-1; i >= 0; i--){
             Dragon d = retval.get(i);
-            if(d.isBoss() || d.islegendary() || d.isUnreleased()){
+            if((d.isBoss() || d.islegendary() || d.isUnreleased()) && !d.getId().equalsIgnoreCase(getDDW_dad()) && !d.getId().equalsIgnoreCase(getDDW_mom())){
                 retval.remove(d);
             }
             if(!vipDragons  &&  d.isVIP()){

@@ -5,6 +5,7 @@ package de.silbaer.dmlcalc;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -69,15 +70,58 @@ public class Dragon {
     private Boolean _isUnreleased() {  return this.boss_vip.trim().equalsIgnoreCase("UN");  }
 
     public String getId() {return id;}
-    public String getType() {return type;}
+    public String getType() {return type.trim();}
     public double getOdd() {return odd;}
     public void setOdd(double Odd) {odd=Odd;}
     public List<String> getElements() {return elements;}
     public String getElement1() {return element1;}
     public String getElement2() {return element2;}
     public String getElement3() {return element3;}
-    public String getBreedingTime(){return breedingTime;}
     public String getHatchingTime(){return hatchingTime;}
+    public String getBreedingTime(){
+        if("0".equalsIgnoreCase(breedingTime)) {
+            if(!"fireball".equalsIgnoreCase(this.getId())){
+                Integer bt = 0;
+                if(islegendary()) {
+                     bt = 48*60*60;
+                } else {
+                    if(this.getType().equalsIgnoreCase("U")){
+                        bt = bt + 2*60*60;
+                    } else if(this.getType().equalsIgnoreCase("R")){
+                        bt = bt + 6*60*60;
+                    } else if(this.getType().equalsIgnoreCase("E")){
+                        bt = bt + 8*60*60;
+                    }
+                    for (Iterator<String> it = this.getElements().iterator(); it.hasNext();){
+                        String e = it.next();
+                        if(e.equalsIgnoreCase("fire")){
+                            bt = bt + 2*60*60;
+                        } else if(e.equalsIgnoreCase("wind")){
+                            bt = bt + 2*60*60;
+                        } else if(e.equalsIgnoreCase("earth")){
+                            bt = bt + 2*60*60;
+                        } else if(e.equalsIgnoreCase("water")){
+                            bt = bt + 2*60*60;
+                        } else if(e.equalsIgnoreCase("plant")){
+                            bt = bt + 4*60*60;
+                        } else if(e.equalsIgnoreCase("metal")){
+                            bt = bt + 4*60*60;
+                        } else if(e.equalsIgnoreCase("energy")){
+                            bt = bt + 6*60*60;
+                        } else if(e.equalsIgnoreCase("void")){
+                            bt = bt + 6*60*60;
+                        } else if(e.equalsIgnoreCase("light")){
+                            bt = bt + 8*60*60;
+                        } else if(e.equalsIgnoreCase("shadow")){
+                            bt = bt + 8*60*60;
+                        }
+                    }
+                }
+                breedingTime = bt.toString();
+            }
+        }
+        return breedingTime;
+    }
 
     public String toString(){
 
