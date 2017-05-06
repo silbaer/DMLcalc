@@ -110,6 +110,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         editor.putString(getString(R.string.DDW_mom),DDW_Mom);
         editor.putString(getString(R.string.DDW_dad),DDW_Dad);
         editor.commit();
+        this.clearCache();
     }
 
     public void setDDM(String ddm, String e1, String e2, String e3, String e4){
@@ -127,6 +128,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         editor.putString(getString(R.string.DDM_e3),DDM_Elements.get(2));
         editor.putString(getString(R.string.DDM_e4),DDM_Elements.get(3));
         editor.commit();
+        this.clearCache();
     }
 
     public String getDDM() {

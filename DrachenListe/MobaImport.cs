@@ -42,8 +42,7 @@ namespace DragonImport {
 						if (lineSplits [2].StartsWith ("Boss", StringComparison.InvariantCultureIgnoreCase)) {
 							d.DragonType = Dragon.DragonTypeEnum.Boss;
 						}
-            if(string.IsNullOrWhiteSpace(lineSplits[3]) || 
-              lineSplits [3].Contains ("Enchantment Icon")){
+            if(string.IsNullOrWhiteSpace(lineSplits[3]) ){
               d.isNormalBreadable = true;
             } else {
               d.isNormalBreadable = false;
@@ -111,10 +110,10 @@ namespace DragonImport {
 						if (lineSplits [3].Contains ("VIP Dragon Icon")) {
 							d.isVip = true;
 						}
-						if (lineSplits [3].Contains ("Enchantment Icon")) {
+            if (lineSplits [3].Contains ("Enchanted Breeding")) {
 							d.isEnchatmentBreed = true;
 						}
-						if (lineSplits [3].Contains ("Enchantment League")) {
+            if (lineSplits [3].Contains ("League Button")) {
 							d.isEnchatmentLeague = true;
 						}
 						// elements
