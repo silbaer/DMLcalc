@@ -59,7 +59,7 @@ public class Dragon {
 
     public Boolean isBoss() { return this.type.trim().equalsIgnoreCase("B"); }
     public Boolean islegendary() { return this.type.trim().equalsIgnoreCase("L"); }
-    public Boolean isBreadable() { return this.Breadable && !EnchatmentBreed;  }
+    public Boolean isBreadable() { return (this.Breadable || this.Vip) && !EnchatmentBreed;  }
     public Boolean isVIP() {  return this.Vip;  }
     public Boolean isUnreleased() {  return this.Unreleased;  }
 
