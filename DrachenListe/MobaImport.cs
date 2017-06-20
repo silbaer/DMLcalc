@@ -107,7 +107,7 @@ namespace DragonImport {
 						if (lineSplits [3].Contains ("Limited Arena Prize Icon")) {
 							d.isArena = true;
 						}
-						if (lineSplits [3].Contains ("VIP Dragon Icon")) {
+						if (lineSplits [3].Contains ("VIP")) {
 							d.isVip = true;
 						}
             if (lineSplits [3].Contains ("Enchanted Breeding")) {

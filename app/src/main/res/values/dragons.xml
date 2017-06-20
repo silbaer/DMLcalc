@@ -254,7 +254,7 @@
     <string name="dragon_helper">Helfer</string>
     <string name="dragon_holly">Stechpalme</string>
     <string name="dragon_ginger">Lebkuchen</string>
-    <string name="dragon_spruce">Spruce</string>
+    <string name="dragon_spruce">Fichte</string>
     <string name="dragon_bundt">Gugelhupf</string>
     <string name="dragon_horn">Horn</string>
     <string name="dragon_kongming">Kongming</string>
@@ -362,4 +362,23 @@
     <string name="dragon_hearts">Herz</string>
     <string name="dragon_orc">Ork</string>
     <string name="dragon_burger">Burger</string>
+    <string name="dragon_apocalypse">Apokalypse</string>
+    <string name="dragon_armory">Rüstung</string>
+    <string name="dragon_block">Block</string>
+    <string name="dragon_blossom">Blütenpracht</string>
+    <string name="dragon_clover">Klee</string>
+    <string name="dragon_crash">Dummy</string>
+    <string name="dragon_enchantress">Circe</string>
+    <string name="dragon_felted">Filz</string>
+    <string name="dragon_gargoyle">Gargoyle</string>
+    <string name="dragon_jinqiu">Jinqiu</string>
+    <string name="dragon_kitty">Kitty</string>
+    <string name="dragon_painted">Verzierungs</string>
+    <string name="dragon_pipe">Rohr</string>
+    <string name="dragon_rosie">Rosi</string>
+
+    <string name="dragon_sweetie_bunny">Schokohäschen</string>
+    <string name="dragon_wooly">Woll</string>
+    <string name="dragon_xuanzang">Xuanzang</string>
+    <string name="dragon_xylophone">Xylophon</string>
 </resources>
