@@ -30,11 +30,11 @@ def getVersionName = { ->
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "de.silbaer.dmlcalc"
-        minSdkVersion 19
+        minSdkVersion 17
         targetSdkVersion 23
         versionCode getVersionCode()  // increment with every release
         versionName getVersionName() // "0.0.1 Alpha 13" // change with every release

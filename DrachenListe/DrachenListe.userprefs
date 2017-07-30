@@ -4,8 +4,8 @@
     <Files>
       <File FileName="DragonList.cs" Line="1" Column="1" />
       <File FileName="MainWindow.cs" Line="1" Column="1" />
-      <File FileName="Dragon.cs" Line="188" Column="32" />
-      <File FileName="MobaImport.cs" Line="54" Column="51" />
+      <File FileName="Dragon.cs" Line="195" Column="28" />
+      <File FileName="MobaImport.cs" Line="58" Column="19" />
       <File FileName="EditDragonDialog.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
