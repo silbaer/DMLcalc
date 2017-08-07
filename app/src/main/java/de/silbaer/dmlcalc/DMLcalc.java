@@ -65,7 +65,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
     }
 
     public interface breedingResponse{
-        void breedingResult(List<Dragon> result);
+        void breedingResult(List<Pair<Dragon,Double>> result);
     }
     public interface howToResponse{
         void howToResult(List<Pair<Pair<Dragon,Dragon>,Double>> result);
@@ -441,8 +441,9 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
 
 
-    public void CalcOdds( List<Dragon> resultList) {
+    public List<Pair<Dragon,Double>> CalcOdds( List<Dragon> resultList) {
         double sum = 0;
+        List<Pair<Dragon,Double>> retval = new ArrayList<>();
         for (Dragon d : resultList) {
             if (!d.isUnreleased()
                     && !d.isBoss()
@@ -456,9 +457,11 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         }
         for (Dragon d : resultList) {
             if (odds.containsKey(d.getType())) {
-                d.setOdd(  100/sum * odds.get(d.getType()));
+                retval.add(new Pair<>(d,100/sum * odds.get(d.getType())));
+         //       d.setOdd(  100/sum * odds.get(d.getType()));
             }
         }
+        return retval;
     }
 
 
@@ -531,7 +534,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
     // http://stackoverflow.com/questions/12575068/how-to-get-the-result-of-onpostexecute-to-main-activity-because-asynctask-is-a
 
-    private class breedAsyncTask extends AsyncTask<Dragon,Void, List<Dragon> >{
+    private class breedAsyncTask extends AsyncTask<Dragon,Void, List<Pair<Dragon,Double>> >{
         private breedingResponse delegate = null;
         ProgressDialog ringProgressDialog ;
 
@@ -546,12 +549,12 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         }
 
         @Override
-        protected List<Dragon> doInBackground(Dragon... params){
+        protected List<Pair<Dragon,Double>> doInBackground(Dragon... params){
             return _breed(params[0],params[1]);
         }
 
         @Override
-        protected void onPostExecute(List<Dragon> result){
+        protected void onPostExecute(List<Pair<Dragon,Double>> result){
             ringProgressDialog.dismiss();
             if(delegate != null){
                 delegate.breedingResult(result);
@@ -575,10 +578,10 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
                     if (!dl.get(x).getId().equalsIgnoreCase(son.getId())
                             && !dl.get(y).getId().equalsIgnoreCase(son.getId())) {
                         if (isChild(dl.get(x), dl.get(y), son)) {
-                            List<Dragon> tmp = _breed(dl.get(x), dl.get(y));
-                            for (Dragon d : tmp) {
-                                if (d.getId().equalsIgnoreCase(son.getId())) {
-                                    retval.add(new Pair<Pair<Dragon, Dragon>, Double>(new Pair<Dragon, Dragon>(dl.get(x), dl.get(y)), d.getOdd()));
+                            List<Pair<Dragon,Double>> tmp = _breed(dl.get(x), dl.get(y));
+                            for (Pair<Dragon,Double> dp : tmp) {
+                                if (dp.first.getId().equalsIgnoreCase(son.getId())) {
+                                    retval.add(new Pair<Pair<Dragon, Dragon>, Double>(new Pair<Dragon, Dragon>(dl.get(x), dl.get(y)), dp.second));
                                 }
                             }
                         }
@@ -590,20 +593,21 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         return retval;
     }
 
-    private List<Dragon> _breed(Dragon mom, Dragon dad) {
-        List<Dragon> retval;
+    private  List<Pair<Dragon,Double>> _breed(Dragon mom, Dragon dad) {
+        List<Pair<Dragon,Double>> retval;
+        List<Dragon> dragList;
         String key = mom.getId() + dad.getId();
-        retval = (List<Dragon>) getFromDb(key);
+        retval = (List<Pair<Dragon,Double>>) getFromDb(key);
         if (retval == null) {
-            retval = new ArrayList<Dragon>();
+            dragList = new ArrayList<Dragon>();
             if (dad != null && mom != null && !mom.getId().equals(dad.getId())) {
                 ArrayList<Dragon> drags = getDragonsToShow();
                 for (Dragon d : drags) {
                     if (isChild(mom, dad, d)) {
-                        retval.add(d);
+                        dragList.add(d);
                     }
                 }
-                CalcOdds(retval);
+                retval =  CalcOdds(dragList);
             }
             saveInDb(key, retval);
         }

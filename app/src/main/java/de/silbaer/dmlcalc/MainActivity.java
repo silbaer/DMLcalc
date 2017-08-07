@@ -296,7 +296,7 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
         }
     }
 
-    public void breedingResult(List<Dragon> result){
+    public void breedingResult(List<Pair<Dragon,Double>> result){
         ListView l = (ListView) findViewById(R.id.listView);
         breedListItemAdapter a = new breedListItemAdapter(this,result);
         l.setAdapter(a);

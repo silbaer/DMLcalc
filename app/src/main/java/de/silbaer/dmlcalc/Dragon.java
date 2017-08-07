@@ -31,7 +31,7 @@ public class Dragon {
     private  String lng_it;
     private  String lng_de;
     private List<String> elements;
-    private double odd;  // Odd for breading. Calculated every breed
+//    private double odd;  // Odd for breading. Calculated every breed
 
     // New extended properties from
 
@@ -71,8 +71,8 @@ public class Dragon {
 
     public String getId() {return id;}
     public String getType() {return type.trim();}
-    public double getOdd() {return odd;}
-    public void setOdd(double Odd) {odd=Odd;}
+//    public double getOdd() {return odd;}
+//    public void setOdd(double Odd) {odd=Odd;}
     public List<String> getElements() {return elements;}
     public String getElement1() {return element1;}
     public String getElement2() {return element2;}

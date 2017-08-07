@@ -3,6 +3,7 @@ package de.silbaer.dmlcalc;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,17 +22,17 @@ import java.util.List;
  */
 public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnItemClickListener {
     private final LayoutInflater mInflater;
-    private List<Dragon> items;
+    private List<Pair<Dragon,Double>> items;
     private final Context context;
     Boolean vipTimes = false;
     private   String PREFS_NAME;
 
-    public class DragonOddComparator implements Comparator<Dragon> {
+    public class DragonOddComparator implements Comparator<Pair<Dragon,Double>> {
         @Override
-        public int compare(Dragon o1, Dragon o2) {
-            if(o1.getOdd() < o2.getOdd()){
+        public int compare(Pair<Dragon,Double> o1, Pair<Dragon,Double> o2) {
+            if(o1.second < o2.second){
                 return 1;
-            } else if(o1.getOdd() > o2.getOdd()){
+            } else if(o1.second > o2.second){
               return -1;
             } else {
             return 0;
@@ -41,7 +42,7 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
     }
 
 
-    public breedListItemAdapter (Context context, List<Dragon> dragons) {
+    public breedListItemAdapter (Context context, List<Pair<Dragon,Double>> dragons) {
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.items = dragons;
         Collections.sort(items, new DragonOddComparator());
@@ -74,13 +75,13 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
     }
 
     private void bindView(LinearLayout view, int position) {
-        Dragon d = (Dragon) getItem(position);
+        Pair<Dragon,Double> d = (Pair<Dragon,Double>) getItem(position);
         view.setId((int) getItemId(position));
         TextView dragonTextView = (TextView) view.findViewById(R.id.breedListDargon);
         TextView oddTextView = (TextView) view.findViewById(R.id.breedListOdd);
-        String dt = getDragonText(d);
+        String dt = getDragonText(d.first);
         dragonTextView.setText(dt);
-        oddTextView.setText(String.format("%.1f%%",d.getOdd()));
+        oddTextView.setText(String.format("%.1f%%",d.second));
     }
 
     private String getDragonText(Dragon d) {
@@ -224,10 +225,10 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
 
 //            Toast.makeText(context, sb.toString(),
 //                    Toast.LENGTH_LONG).show();
-            Dragon d = items.get(position);
+            Pair<Dragon,Double> d = items.get(position);
 
             if(context instanceof MainActivity){
-                ((MainActivity)context).displayHowToResult(d);
+                ((MainActivity)context).displayHowToResult(d.first);
             }
 
         } catch (Exception e) {
