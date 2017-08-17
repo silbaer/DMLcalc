@@ -297,7 +297,7 @@
     <string name="dragon_perfume">Parfüm</string>
     <string name="dragon_sandcastle">Sandburg</string>
     <string name="dragon_superhero">Superhelden</string>
-    <string name="dragon_pineapple">Pineapple</string>
+
     <string name="dragon_hypoestes">Punktblume</string>
     <string name="dragon_dark_mech">Dunkelmech</string>
     <string name="dragon_chameleon">Chameleon</string>
@@ -314,7 +314,7 @@
     <string name="dragon_aquatic">Wasser (Episch)</string>
     <string name="dragon_poison">Gift</string>
     <string name="dragon_pinata">Pinata</string>
-    <string name="dragon_herald">Herald</string>
+
     <string name="dragon_frosty">Frost</string>
     <string name="dragon_fossil">Fossil</string>
     <string name="dragon_beetle">Käfer</string>
@@ -323,7 +323,7 @@
     <string name="dragon_briar">Dornen</string>
     <string name="dragon_boxer">Boxer</string>
     <string name="dragon_amber">Bernstein</string>
-    <string name="dragon_yarn">Yarn</string>
+
     <string name="dragon_wolf">Wolf</string>
     <string name="dragon_sumo">Sumo</string>
     <string name="dragon_origami">Origami</string>
@@ -341,7 +341,7 @@
     <string name="dragon_floe">Floe</string>
     <string name="dragon_dusty">Dusty</string>
     <string name="dragon_sylvan">Waldgeist</string>
-    <string name="dragon_school_bus">School Bus</string>
+    <string name="dragon_school_bus">Schulbus</string>
     <string name="dragon_cupcake">Törtchen</string>
     <string name="dragon_x_ray">Röntgen</string>
 
@@ -381,4 +381,26 @@
     <string name="dragon_wooly">Woll</string>
     <string name="dragon_xuanzang">Xuanzang</string>
     <string name="dragon_xylophone">Xylophon</string>
+
+    <string name="dragon_aloha">Aloha</string>
+    <string name="dragon_black_hole">Schwarzes-Loch</string>
+    <string name="dragon_blazebird">Feuervogel</string>
+    <string name="dragon_circus">Zirkus</string>
+    <string name="dragon_fluffy">Flausch</string>
+    <string name="dragon_mosaic">Mosaik</string>
+    <string name="dragon_noble">Edel</string>
+    <string name="dragon_pineapple">Ananas</string>
+    <string name="dragon_posh">Eleganz</string>
+    <string name="dragon_quake">Erdbeben</string>
+    <string name="dragon_raptor">Raptor</string>
+    <string name="dragon_realm">Reichs</string>
+    <string name="dragon_runestone">Runenstein</string>
+    <string name="dragon_shuriken">Shuriken</string>
+    <string name="dragon_treasure">Schatz</string>
+    <string name="dragon_trickster">Gaukler</string>
+    <string name="dragon_turf">Rasen</string>
+    <string name="dragon_vulture">Geier</string>
+    <string name="dragon_yarn">Garn</string>
+    <string name="dragon_herald">Herold</string>
+
 </resources>

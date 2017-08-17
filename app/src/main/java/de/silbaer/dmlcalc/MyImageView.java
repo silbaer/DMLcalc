@@ -40,22 +40,20 @@ public class MyImageView extends ImageView {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        String wMode = "??";
-        String hMode = "??";
-
-        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        Drawable mDrawable = getDrawable();
+        if (mDrawable == null) {
+            super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+            return;
+        }
+        int mDrawableWidth = mDrawable.getIntrinsicWidth();
+        int mDrawableHeight = mDrawable.getIntrinsicHeight();
+        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
-        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
 
-        if(widthMode == MeasureSpec.AT_MOST) wMode = "AT_MOST";
-        if(widthMode == MeasureSpec.EXACTLY) wMode = "EXACTLY";
-        if(widthMode == MeasureSpec.UNSPECIFIED) wMode = "UNSPECIFIED";
 
-        if(heightMode == MeasureSpec.AT_MOST) hMode = "AT_MOST";
-        if(heightMode == MeasureSpec.EXACTLY) hMode = "EXACTLY";
-        if(heightMode == MeasureSpec.UNSPECIFIED) hMode = "UNSPECIFIED";
+
 
 
 
@@ -69,6 +67,8 @@ public class MyImageView extends ImageView {
             }
         }
      //   Log.d(TAG, "onMeasure: " + wMode + " / "  + widthSize + " / "  + hMode + " / "  + heightSize + " => " + myHeight);
+     //   Log.d("atga", myHeight + " !! " +  mDrawableHeight + "/" + mDrawableWidth + " "  + MeasureSpec.toString(heightMode) + " (" + heightSize + ")" + " / "  + MeasureSpec.toString(widthMode) + " (" + widthSize + ")");
+
         setMeasuredDimension(myHeight, myHeight);
     }
 

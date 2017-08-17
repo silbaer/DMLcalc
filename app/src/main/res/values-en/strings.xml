@@ -1,4 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">DMLcalc</string>
+    <string name="PREFS_NAME">de.silbaer.dmlcal.appsettings</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_info">Info</string>
+    <string name="action_clearCache">Clear cache</string>
+    <string name="DDW">DDW</string>
+    <string name="DDW_mom">DDW_mom</string>
+    <string name="DDW_dad">DDW_dad</string>
+    <string name="DDM">DDM</string>
+    <string name="DDM_e1">DDM_e1</string>
+    <string name="DDM_e2">DDM_e2</string>
+    <string name="DDM_e3">DDM_e3</string>
+    <string name="DDM_e4">DDM_e4</string>
+    <string name="txt_button_select">select</string>
+    <string name="txt_label_ddm">DDM:</string>
+    <string name="txt_label_ddw">DDW:</string>
+    <string name="txt_label_how_to_breed">How to breed</string>
+    <string name="txt_button_show">show</string>
+    <string name="txt_hint_child">Child</string>
+    <string name="txt_label_breeding">Breeding</string>
+    <string name="txt_hint_dad">Father</string>
+    <string name="txt_hint_mom">Mother</string>
+    <string name="txt_button_show_nbreed">Show\nresults</string>
+    <string name="txt_hint_insert_ddw_here">Dragon of the week</string>
+    <string name="txt_label_mom">Mother:</string>
+    <string name="txt_hint_insert_mom_here">Mother dragon</string>
+    <string name="txt_label_dad">Father:</string>
+    <string name="txt_hint_insert_dad_here">Father dragon</string>
+    <string name="txt_hint_insert_ddm_here">Dragon of the month</string>
+    <string name="txt_label_element_1">Element 1:</string>
+    <string name="txt_label_element_2">Element 2:</string>
+    <string name="txt_label_element_3">Element 3:</string>
+    <string name="txt_label_element_4">Element 4:</string>
+    <string name="txt_hint_select_element_4">Element 4</string>
+    <string name="txt_hint_select_element_3">Element 3</string>
+    <string name="txt_hint_select_element_2">Element 2</string>
+    <string name="txt_hint_select_element_1">Element 1</string>
+    <string name="txt_button_about_ok">OK</string>
+    <string name="txt_Info_Message">Version %1$s\nComments to:\nsilbaer@gmail.com</string>
+    <string name="txt_howProgressTitle">Please wait...</string>
+    <string name="txt_howProgressMsg">Calculating...</string>
+    <string name="txt_breedProgressTitle">Please wait...</string>
+    <string name="txt_breedProgressMsg">Calculating...</string>
+    <string name="txt_vip_settings">VIP-Settings</string>
+    <string name="txt_timedisplay">Time display</string>
+    <string name="txt_DisplayVipTimes">VIP times</string>
+    <string name="txt_DisplayNormalTimes">Normal times</string>
+    <string name="txt_UseVipDragons">Use VIP dragons</string>
+    <string name="txt_NotUseVipDragons">Breed without VIP dragons</string>
+    <string name="txt_VipDrachen">VIP dragons</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="action_ddw">Enter DDW</string>
+    <string name="action_ddm">Enter DDM</string>
+    <string name="txt_ddm_imput_title">Enter Dragon of the month</string>
+    <string name="txt_ddw_imput_title">Enter Dragon of the week</string>
+    <string name="txt_misc_settings">More settings</string>
+    <string name="txt_EnchantBreed">Enchant breeding</string>
+    <string name="txt_NotUseEnchantBreed">Do not use enchant breeding</string>
+    <string name="txt_UseEnchantBreed">Use enchant breeding</string>
 </resources>

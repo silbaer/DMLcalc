@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -70,6 +72,7 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LinearLayout itemView = (LinearLayout) mInflater.inflate(R.layout.breed_list_item, parent, false);
+//        LinearLayout itemView = (LinearLayout) mInflater.inflate(R.layout.relativ_breed_list_item, parent, false);
         bindView(itemView, position);
         return itemView;
     }
@@ -78,11 +81,66 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
         Pair<Dragon,Double> d = (Pair<Dragon,Double>) getItem(position);
         view.setId((int) getItemId(position));
         TextView dragonTextView = (TextView) view.findViewById(R.id.breedListDargon);
+//        TextView dragonTextView = (TextView) view.findViewById(R.id.relativBreedListIntemDragon);
         TextView oddTextView = (TextView) view.findViewById(R.id.breedListOdd);
+//        TextView oddTextView = (TextView) view.findViewById(R.id.relativBreedListIntemOdd);
         String dt = getDragonText(d.first);
         dragonTextView.setText(dt);
         oddTextView.setText(String.format("%.1f%%",d.second));
+
+//        String tmp;
+//        ImageView iv = (ImageView) view.findViewById(R.id.iv_relativBreedListIntem_e1);
+//        tmp = d.first.getElement1();
+//        setElement(iv,tmp);
+//        iv = (ImageView) view.findViewById(R.id.iv_relativBreedListIntem_e2);
+//        tmp = d.first.getElement2();
+//        setElement(iv,tmp);
+//        iv = (ImageView) view.findViewById(R.id.iv_relativBreedListIntem_e3);
+//        tmp = d.first.getElement3();
+//        setElement(iv,tmp);
+
+
+
+
     }
+
+    private void setElement(ImageView iv, String element){
+        if(element == null) return;
+        if(element.equalsIgnoreCase("earth")){
+            iv.setImageResource(R.drawable.element_earth);
+        }
+        if(element.equalsIgnoreCase("energy")){
+            iv.setImageResource(R.drawable.element_energy);
+        }
+        if(element.equalsIgnoreCase("fire")){
+            iv.setImageResource(R.drawable.element_fire);
+        }
+        if(element.equalsIgnoreCase("legendary")){
+            iv.setImageResource(R.drawable.element_legendary);
+        }
+        if(element.equalsIgnoreCase("light")){
+            iv.setImageResource(R.drawable.element_light);
+        }
+        if(element.equalsIgnoreCase("metal")){
+            iv.setImageResource(R.drawable.element_metal);
+        }
+        if(element.equalsIgnoreCase("plant")){
+            iv.setImageResource(R.drawable.element_plant);
+        }
+        if(element.equalsIgnoreCase("shadow")){
+            iv.setImageResource(R.drawable.element_shadow);
+        }
+        if(element.equalsIgnoreCase("void")){
+            iv.setImageResource(R.drawable.element_void);
+        }
+        if(element.equalsIgnoreCase("water")){
+            iv.setImageResource(R.drawable.element_water);
+        }
+        if(element.equalsIgnoreCase("wind")){
+            iv.setImageResource(R.drawable.element_wind);
+        }
+    }
+
 
     private String getDragonText(Dragon d) {
         StringBuilder sb = new StringBuilder();
