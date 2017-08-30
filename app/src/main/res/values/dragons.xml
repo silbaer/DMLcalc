@@ -59,7 +59,7 @@
     <string name="dragon_armored">Panzer</string>
     <string name="dragon_mercury">Quecksilber</string>
     <string name="dragon_rust">Rost</string>
-    <string name="dragon_regal">Majestät</string>
+    <string name="dragon_regal">Prinzen</string>
     <string name="dragon_steampunk">Steampunk</string>
     <string name="dragon_black_armor">Schwarzpanzer</string>
     <string name="dragon_coral">Korallen</string>
@@ -113,7 +113,7 @@
     <string name="dragon_doom">Verderbnis</string>
     <string name="dragon_magnet">Magnet</string>
     <string name="dragon_gladiator">Gladiator</string>
-    <string name="dragon_cosplay">Otaku</string>
+    <string name="dragon_cosplay">Kostümspiel</string>
     <string name="dragon_steel">Stahl</string>
     <string name="dragon_blueflame">Blauflamm</string>
     <string name="dragon_aurora">Aurora</string>
@@ -164,11 +164,11 @@
     <string name="dragon_warlord">Kriegsherr</string>
     <string name="dragon_mountain">Berg</string>
     <string name="dragon_balloon">Ballon</string>
-    <string name="dragon_sparkler">Glitzer</string>
+    <string name="dragon_sparkler">Wunderkerzen</string>
     <string name="dragon_maple_leaf">Ahornblatt</string>
     <string name="dragon_tricolor">Trikoloren</string>
     <string name="dragon_star_stripe">Sternstreifen</string>
-    <string name="dragon_academic">Academic</string>
+    <string name="dragon_academic">Akademiker</string>
     <string name="dragon_gentleman">Gentleman</string>
     <string name="dragon_lunar">Mond</string>
     <string name="dragon_ace">Ass</string>
@@ -279,10 +279,10 @@
     <string name="dragon_verdant">Grün</string>
     <string name="dragon_rock_snake">Felsschlangen</string>
     <string name="dragon_echo">Echo</string>
-    <string name="dragon_sentinel">Sentinel</string>
+    <string name="dragon_sentinel">Wache</string>
     <string name="dragon_unicorn">Einhorn</string>
     <string name="dragon_arboreal">Bäumchen</string>
-    <string name="dragon_sea_turtle">Meeresschildkröte</string>
+    <string name="dragon_sea_turtle">Seeschildkröten</string>
     <string name="dragon_rhino">Nashorn</string>
     <string name="dragon_polar_bear">Eisbär</string>
     <string name="dragon_orca">Orca</string>F
@@ -310,8 +310,8 @@
     <string name="dragon_ladybug">Marienkäfer</string>
     <string name="dragon_firefly">Glühwürmchen</string>
     <string name="dragon_crumbly">Bröckel</string>
-    <string name="dragon_bighorn">Bighorn</string>
-    <string name="dragon_aquatic">Wasser (Episch)</string>
+    <string name="dragon_bighorn">Grosshorn</string>
+    <string name="dragon_aquatic">Aqua</string>
     <string name="dragon_poison">Gift</string>
     <string name="dragon_pinata">Pinata</string>
 
@@ -402,5 +402,22 @@
     <string name="dragon_vulture">Geier</string>
     <string name="dragon_yarn">Garn</string>
     <string name="dragon_herald">Herold</string>
+
+    <string name="dragon_blackberry">Brombeer</string>
+    <string name="dragon_foxglove">Fingerhut</string>
+    <string name="dragon_gondola">Gondel</string>
+    <string name="dragon_memorial">Denkmal</string>
+    <string name="dragon_patriot">Patrioten</string>
+    <string name="dragon_cappuccino">Cappuccino</string>
+    <string name="dragon_gryphon">Greif</string>
+    <string name="dragon_heliotrope">Sonnwind</string>
+    <string name="dragon_hellion">Satans</string>
+    <string name="dragon_leviathan">Leviathan</string>
+    <string name="dragon_medusa">Medusa</string>
+    <string name="dragon_molten">Schmelz</string>
+    <string name="dragon_revelry">Party</string>
+    <string name="dragon_scarab">Skarabäus</string>
+    <string name="dragon_springtime">Frühlings</string>
+    <string name="dragon_sunset">Abendrot</string>
 
 </resources>

@@ -403,4 +403,21 @@
 <string name="dragon_yarn">Yarn</string>
 <string name="dragon_herald">Herald</string>
 
+    <string name="dragon_blackberry">Blackberry</string>
+    <string name="dragon_foxglove">Foxglove</string>
+    <string name="dragon_gondola">Gondola</string>
+    <string name="dragon_memorial">Memorial</string>
+    <string name="dragon_patriot">Patriot</string>
+    <string name="dragon_cappuccino">Cappuccino</string>
+    <string name="dragon_gryphon">gryphon</string>
+    <string name="dragon_heliotrope">Heliotrope</string>
+    <string name="dragon_hellion">Hellion</string>
+    <string name="dragon_leviathan">Leviathan</string>
+    <string name="dragon_medusa">Medusa</string>
+    <string name="dragon_molten">Molten</string>
+    <string name="dragon_revelry">Revelry</string>
+    <string name="dragon_scarab">Scarab</string>
+    <string name="dragon_springtime">Springtime</string>
+    <string name="dragon_sunset">Sunset</string>
+
 </resources>
