@@ -2,8 +2,12 @@ package de.silbaer.dmlcalc;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.preference.PreferenceManager;
+import android.support.v4.content.res.ResourcesCompat;
+import android.util.Log;
 import android.util.Pair;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,6 +85,14 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
     private void bindView(LinearLayout view, int position) {
         Pair<Dragon,Double> d = (Pair<Dragon,Double>) getItem(position);
         view.setId((int) getItemId(position));
+
+        if (position % 2 == 0) {
+            view.setBackgroundColor(ResourcesCompat.getColor(context.getResources(), R.color.colorListEven, null));
+        } else {
+            view.setBackgroundColor(ResourcesCompat.getColor(context.getResources(), R.color.colorListOdd, null));
+        }
+
+
         TextView dragonTextView = (TextView) view.findViewById(R.id.text1);
         TextView timeTextView = (TextView) view.findViewById(R.id.text2);
 //        TextView dragonTextView = (TextView) view.findViewById(R.id.relativBreedListIntemDragon);
