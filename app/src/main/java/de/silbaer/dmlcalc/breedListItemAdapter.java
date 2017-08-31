@@ -71,8 +71,9 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LinearLayout itemView = (LinearLayout) mInflater.inflate(R.layout.breed_list_item, parent, false);
-//        LinearLayout itemView = (LinearLayout) mInflater.inflate(R.layout.relativ_breed_list_item, parent, false);
+//        LinearLayout itemView = (LinearLayout) mInflater.inflate(R.layout.breed_list_item, parent, false);
+//        RelativeLayout itemView = (RelativeLayout) mInflater.inflate(R.layout.dev_relativ, parent, false);
+        LinearLayout itemView = (LinearLayout) mInflater.inflate(R.layout.dev_linear, parent, false);
         bindView(itemView, position);
         return itemView;
     }
@@ -80,24 +81,26 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
     private void bindView(LinearLayout view, int position) {
         Pair<Dragon,Double> d = (Pair<Dragon,Double>) getItem(position);
         view.setId((int) getItemId(position));
-        TextView dragonTextView = (TextView) view.findViewById(R.id.breedListDargon);
+        TextView dragonTextView = (TextView) view.findViewById(R.id.text1);
+        TextView timeTextView = (TextView) view.findViewById(R.id.text2);
 //        TextView dragonTextView = (TextView) view.findViewById(R.id.relativBreedListIntemDragon);
-        TextView oddTextView = (TextView) view.findViewById(R.id.breedListOdd);
+        TextView oddTextView = (TextView) view.findViewById(R.id.text3);
 //        TextView oddTextView = (TextView) view.findViewById(R.id.relativBreedListIntemOdd);
         String dt = getDragonText(d.first);
-        dragonTextView.setText(dt);
+        dragonTextView.setText(d.first.toString());
+        timeTextView.setText(dt);
         oddTextView.setText(String.format("%.1f%%",d.second));
 
-//        String tmp;
-//        ImageView iv = (ImageView) view.findViewById(R.id.iv_relativBreedListIntem_e1);
-//        tmp = d.first.getElement1();
-//        setElement(iv,tmp);
-//        iv = (ImageView) view.findViewById(R.id.iv_relativBreedListIntem_e2);
-//        tmp = d.first.getElement2();
-//        setElement(iv,tmp);
-//        iv = (ImageView) view.findViewById(R.id.iv_relativBreedListIntem_e3);
-//        tmp = d.first.getElement3();
-//        setElement(iv,tmp);
+        String tmp;
+        ImageView iv = (ImageView) view.findViewById(R.id.ele1);
+        tmp = d.first.getElement1();
+        setElement(iv,tmp);
+        iv = (ImageView) view.findViewById(R.id.ele2);
+        tmp = d.first.getElement2();
+        setElement(iv,tmp);
+        iv = (ImageView) view.findViewById(R.id.ele3);
+        tmp = d.first.getElement3();
+        setElement(iv,tmp);
 
 
 
@@ -155,8 +158,8 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
         int hMin;
         int hSec;
         try {
-            sb.append(d.toString());
-            sb.append(" (");
+//            sb.append(d.toString());
+//            sb.append(" (");
             sb.append("B: ");
              tBreed = Integer.parseInt(d.getBreedingTime());
             if(vipTimes){
@@ -221,7 +224,7 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
             sb.append("N/A");
             e.printStackTrace();
         }
-        sb.append(")");
+//        sb.append(")");
 
 
         return sb.toString();
