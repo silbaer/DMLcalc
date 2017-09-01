@@ -88,7 +88,10 @@ public class howToItemAdapter extends BaseAdapter implements AdapterView.OnItemC
     }
 
     private void setElement(ImageView iv, String element){
-        if(element == null) return;
+        if(element == null){
+            iv.setImageDrawable(null);
+            return;
+        }
         if(element.equalsIgnoreCase("earth")){
             iv.setImageResource(R.drawable.element_earth);
         }
