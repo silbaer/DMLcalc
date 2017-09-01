@@ -21,6 +21,11 @@
         android:title="@string/action_ddm"
         android:orderInCategory="205"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_dragonlist"
+        android:title="@string/action_dragonlist"
+        android:orderInCategory="400"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/action_ClearCache"

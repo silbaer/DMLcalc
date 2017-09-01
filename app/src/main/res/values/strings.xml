@@ -4,6 +4,7 @@
     <string name="action_settings">Settings</string>
     <string name="action_info">Info</string>
     <string name="action_clearCache">Cache löschen</string>
+    <string name="action_dragonlist">Drachenliste</string>
     <string name="DDW">DDW</string>
     <string name="DDW_mom">DDW_mom</string>
     <string name="DDW_dad">DDW_dad</string>
@@ -56,10 +57,14 @@
     <string name="action_ddm">Monatsdrache eingeben</string>
     <string name="txt_ddm_imput_title">Monatsdrache eingeben</string>
     <string name="txt_ddw_imput_title">Wochendrache eingeben</string>
+    <string name="txt_dragonlist_title">Drachenliste</string>
+
     <string name="txt_misc_settings">Weitere Einstellungen</string>
     <string name="txt_EnchantBreed">Verzauberte Zucht</string>
     <string name="txt_NotUseEnchantBreed">Verzauberte Zucht nicht benutzen</string>
     <string name="txt_UseEnchantBreed">Verzauberte Zucht benutzen</string>
+
+
 
 
 </resources>

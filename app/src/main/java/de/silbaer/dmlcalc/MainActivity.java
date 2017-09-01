@@ -97,6 +97,10 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
             startActivity(new Intent(this,ddmInputActivity.class));
             return true;
         }
+        if (id == R.id.action_dragonlist) {
+            startActivity(new Intent(this,dragonlistActivity.class));
+            return true;
+        }
 
         if (id == R.id.action_ClearCache) {
             DMLcalc.Instance().clearCache();

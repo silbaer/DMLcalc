@@ -38,7 +38,12 @@
             android:parentActivityName=".MainActivity"
             android:label="@string/txt_ddm_imput_title"
             >
-            </activity>
+        </activity>
+        <activity android:name=".dragonlistActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="@string/txt_dragonlist_title"
+            >
+        </activity>
     </application>
 
 </manifest>
