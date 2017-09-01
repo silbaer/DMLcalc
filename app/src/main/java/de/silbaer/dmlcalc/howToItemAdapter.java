@@ -1,11 +1,8 @@
 package de.silbaer.dmlcalc;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v4.content.res.ResourcesCompat;
-import android.util.Log;
 import android.util.Pair;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +11,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by silbaer on 04.09.16.
@@ -72,7 +67,7 @@ public class howToItemAdapter extends BaseAdapter implements AdapterView.OnItemC
 
         itemView = (LinearLayout) convertView;
         if(itemView == null) {
-            itemView = (LinearLayout) mInflater.inflate(R.layout.dev_howto_linear, parent, false);
+            itemView = (LinearLayout) mInflater.inflate(R.layout.list_howtoresult, parent, false);
 //
 //            if (position % 2 == 0) {
 //                Log.d("Position","Pos: " + position + " => BLUE");
@@ -130,12 +125,6 @@ public class howToItemAdapter extends BaseAdapter implements AdapterView.OnItemC
 
     private void bindView(LinearLayout view, int position) {
         if (position % 2 == 0) {
-//            Log.d("Position","Pos: " + position + " => BLUE");
-//            TypedValue typedValue = new TypedValue();
-//            if (context.getTheme().resolveAttribute(R.attr.colorSwitchThumbNormal, typedValue, true))
-//                view.setBackgroundColor( typedValue.data);
-//            else
-//                view.setBackgroundColor( Color.RED);
 
             view.setBackgroundColor(ResourcesCompat.getColor(context.getResources(), R.color.colorListEven, null));
 
@@ -145,25 +134,16 @@ public class howToItemAdapter extends BaseAdapter implements AdapterView.OnItemC
         }
         Pair<Pair<Dragon,Dragon>,Double> p = (Pair<Pair<Dragon,Dragon>,Double>) getItem(position);
         view.setId((int) getItemId(position));
- //       TextView dragonTextView = (TextView) view.findViewById(R.id.breedListDargon);
-//        TextView oddTextView = (TextView) view.findViewById(R.id.breedListOdd);
-//        dragonTextView.setText(p.first.first.toString() + " & " + p.first.second.toString());
-//        oddTextView.setText(String.format("%.1f%%",p.second));
-
-
-
 
 
         Pair<Dragon,Double> d = (Pair<Dragon,Double>) getItem(position);
         view.setId((int) getItemId(position));
-        TextView dragonTextView1 = (TextView) view.findViewById(R.id.text11);
+        TextView dragonTextView1 = (TextView) view.findViewById(R.id.textDragonName1);
 
-        TextView dragonTextView2 = (TextView) view.findViewById(R.id.text21);
+        TextView dragonTextView2 = (TextView) view.findViewById(R.id.textDragonName2);
 
-//        TextView dragonTextView = (TextView) view.findViewById(R.id.relativBreedListIntemDragon);
-        TextView oddTextView = (TextView) view.findViewById(R.id.text3);
-//        TextView oddTextView = (TextView) view.findViewById(R.id.relativBreedListIntemOdd);
-       // String dt = getDragonText(d.first);
+        TextView oddTextView = (TextView) view.findViewById(R.id.textOdd);
+
         dragonTextView1.setText(p.first.first.toString());
         dragonTextView2.setText(p.first.second.toString());
         oddTextView.setText(String.format("%.1f%%",p.second));

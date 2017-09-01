@@ -23,7 +23,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/text1"
+                android:id="@+id/textDragonName1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -33,7 +33,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <ImageView
-                android:id="@+id/ele1"
+                android:id="@+id/ele11"
 
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -46,7 +46,7 @@
                 android:minWidth="24sp" />
 
             <ImageView
-                android:id="@+id/ele2"
+                android:id="@+id/ele12"
 
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -59,7 +59,7 @@
                 android:minWidth="24sp" />
 
             <ImageView
-                android:id="@+id/ele3"
+                android:id="@+id/ele13"
 
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -73,7 +73,7 @@
                 android:minWidth="24sp" />
 
             <TextView
-                android:id="@+id/editText5"
+                android:id="@+id/spacer1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
@@ -83,20 +83,79 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/text2"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:background="@null"
-            android:gravity="left|fill_horizontal"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textDragonName2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_gravity="left"
+                android:layout_marginEnd="1sp"
+                android:background="@null"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <ImageView
+                android:id="@+id/ele21"
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1sp"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:maxHeight="24sp"
+                android:maxWidth="24sp"
+                android:minHeight="24sp"
+                android:minWidth="24sp" />
+
+            <ImageView
+                android:id="@+id/ele22"
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1sp"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:maxHeight="24sp"
+                android:maxWidth="24sp"
+                android:minHeight="24sp"
+                android:minWidth="24sp" />
+
+            <ImageView
+                android:id="@+id/ele23"
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+
+                android:layout_margin="1sp"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:maxHeight="24sp"
+                android:maxWidth="24sp"
+                android:minHeight="24sp"
+                android:minWidth="24sp" />
+
+            <TextView
+                android:id="@+id/spcer2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="fill_horizontal" />
+
+        </LinearLayout>
+
 
     </LinearLayout>
 
 
     <TextView
-        android:id="@+id/text3"
+        android:id="@+id/textOdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right|center_vertical"
