@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
 
                 android:layout_gravity="left"
-                android:layout_marginEnd="1sp"
+                android:layout_marginEnd="10sp"
                 android:background="@null"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
