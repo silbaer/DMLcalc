@@ -232,7 +232,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         retval.addAll(dragons.values());
         for(int i = retval.size()-1; i >= 0; i--){
             Dragon d = retval.get(i);
-            if((d.isBoss() || d.islegendary() || d.isUnreleased()) && !d.getId().equalsIgnoreCase(getDDW_dad()) && !d.getId().equalsIgnoreCase(getDDW_mom())){
+            if((d.isBoss() || d.islegendary() || d.isdivine() || d.isUnreleased()) && !d.getId().equalsIgnoreCase(getDDW_dad()) && !d.getId().equalsIgnoreCase(getDDW_mom())){
                 retval.remove(d);
             }
             if(!vipDragons  &&  d.isVIP()){
@@ -350,6 +350,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         odds.put("R",15d);
         odds.put("E",10d);
         odds.put("L", 6d);
+        odds.put("D", 6d);
         DDM_Elements = new ArrayList<>();
 
         elements.add(new element("fire"));
@@ -363,6 +364,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         elements.add(new element("light"));
         elements.add(new element("shadow"));
         elements.add(new element("legendary"));
+        elements.add(new element("divine"));
 
         //_breedCache = new Hashtable<> ();
         // loadCache();
@@ -654,10 +656,10 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
             // Dragon of the month
             if(child.getId().equalsIgnoreCase(getDDM())){
-                if(mom.isBoss() || mom.isUnreleased() || mom.islegendary()){
+                if(mom.isBoss() || mom.isUnreleased() || mom.islegendary() || mom.isdivine()){
                     return false;
                 }
-                if(dad.isBoss() || dad.isUnreleased() || dad.islegendary()){
+                if(dad.isBoss() || dad.isUnreleased() || dad.islegendary() || dad.isdivine()){
                     return false;
                 }
                 List<String> MomDadElements = new ArrayList<>();
@@ -722,7 +724,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 //                }
 //            }
         }
-        if (dad.islegendary() || mom.islegendary()) {
+        if (dad.islegendary() || mom.islegendary() || dad.isdivine() || mom.isdivine() ) {
             return false; // Lassen wir mal weg....
 //            if (!this.islegendary()) {
 //            } else {
@@ -788,7 +790,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
             } else if (child.getElements().size() == 3) {
                 //3 elements => mum and dad must have all the elements
-                if (child.islegendary()) {
+                if (child.islegendary() || child.isdivine()) {
                     return false;
                 }
                 Boolean e1 = false;

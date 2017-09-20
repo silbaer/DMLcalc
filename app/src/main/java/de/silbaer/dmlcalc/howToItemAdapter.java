@@ -120,6 +120,9 @@ public class howToItemAdapter extends BaseAdapter implements AdapterView.OnItemC
         if(element.equalsIgnoreCase("wind")){
             iv.setImageResource(R.drawable.element_wind);
         }
+        if(element.equalsIgnoreCase("divine")){
+            iv.setImageResource(R.drawable.element_divine);
+        }
     }
 
 

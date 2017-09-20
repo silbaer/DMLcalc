@@ -419,5 +419,14 @@
     <string name="dragon_scarab">Skarabäus</string>
     <string name="dragon_springtime">Frühlings</string>
     <string name="dragon_sunset">Abendrot</string>
+    <string name="dragon_aphrodite">Aphrodite</string>
+    <string name="dragon_apollo">Apollo</string>
+    <string name="dragon_ares">Ares</string>
+    <string name="dragon_hades">Hades</string>
+    <string name="dragon_hephaestus">Hephaestus</string>
+    <string name="dragon_hermes">Hermes</string>
+    <string name="dragon_hypnos">Hypnos</string>
+    <string name="dragon_poseidon">Poseidon</string>
+    <string name="dragon_zeus">Zeus</string>
 
 </resources>

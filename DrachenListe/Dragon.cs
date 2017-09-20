@@ -19,7 +19,8 @@ namespace DragonImport {
 			Rare,
 			Epic,
 			Legendary,
-			Boss
+			Boss,
+      Divine
 		}
 
     [DataMember]

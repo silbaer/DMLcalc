@@ -22,7 +22,7 @@ public class Dragon {
     private  String boss_vip;
     private  String breedingTime;  // Seconds (Integer)
     private  String hatchingTime;  // Seconds (Integer)
-    private  String type; // C,U,R,E,L,B
+    private  String type; // C,U,R,E,L,B,D
     private  String health;
     private  String attack;
     private  String gold;
@@ -59,6 +59,7 @@ public class Dragon {
 
     public Boolean isBoss() { return this.type.trim().equalsIgnoreCase("B"); }
     public Boolean islegendary() { return this.type.trim().equalsIgnoreCase("L"); }
+    public Boolean isdivine() { return this.type.trim().equalsIgnoreCase("D"); }
     public Boolean isBreadable() { return (this.Breadable || this.Vip) && !EnchatmentBreed;  }
     public Boolean isVIP() {  return this.Vip;  }
     public Boolean isUnreleased() {  return this.Unreleased;  }

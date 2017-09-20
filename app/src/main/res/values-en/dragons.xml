@@ -420,4 +420,15 @@
     <string name="dragon_springtime">Springtime</string>
     <string name="dragon_sunset">Sunset</string>
 
+    <string name="dragon_aphrodite">Aphrodite</string>
+    <string name="dragon_apollo">Apollo</string>
+    <string name="dragon_ares">Ares</string>
+    <string name="dragon_hades">Hades</string>
+    <string name="dragon_hephaestus">Hephaestus</string>
+    <string name="dragon_hermes">Hermes</string>
+    <string name="dragon_hypnos">Hypnos</string>
+    <string name="dragon_poseidon">Poseidon</string>
+    <string name="dragon_zeus">Zeus</string>
+
+
 </resources>
