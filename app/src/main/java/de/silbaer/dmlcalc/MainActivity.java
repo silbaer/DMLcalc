@@ -413,6 +413,9 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
         if(element.equalsIgnoreCase("wind")){
             iv.setImageResource(R.drawable.element_wind);
         }
+        if(element.equalsIgnoreCase("divine")){
+            iv.setImageResource(R.drawable.element_divine);
+        }
     }
 
     @Override

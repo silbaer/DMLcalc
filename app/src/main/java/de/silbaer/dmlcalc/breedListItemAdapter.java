@@ -157,6 +157,9 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
         if(element.equalsIgnoreCase("wind")){
             iv.setImageResource(R.drawable.element_wind);
         }
+        if(element.equalsIgnoreCase("divine")){
+            iv.setImageResource(R.drawable.element_divine);
+        }
     }
 
 

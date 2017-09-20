@@ -39,9 +39,12 @@ namespace DragonImport {
 						if (lineSplits [2].StartsWith ("Legendary", StringComparison.InvariantCultureIgnoreCase)) {
 							d.DragonType = Dragon.DragonTypeEnum.Legendary;
 						}
-						if (lineSplits [2].StartsWith ("Boss", StringComparison.InvariantCultureIgnoreCase)) {
-							d.DragonType = Dragon.DragonTypeEnum.Boss;
-						}
+            if (lineSplits [2].StartsWith ("Boss", StringComparison.InvariantCultureIgnoreCase)) {
+              d.DragonType = Dragon.DragonTypeEnum.Boss;
+            }
+            if (lineSplits [2].StartsWith ("Divine", StringComparison.InvariantCultureIgnoreCase)) {
+              d.DragonType = Dragon.DragonTypeEnum.Divine;
+            }
             if(string.IsNullOrWhiteSpace(lineSplits[3]) ){
               d.isNormalBreadable = true;
             } else {

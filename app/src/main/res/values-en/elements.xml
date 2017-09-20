@@ -11,5 +11,7 @@
     <string name="element_light">Light</string>
     <string name="element_shadow">Shadow</string>
     <string name="element_legendary">Legendary</string>
+    <string name="element_divine">Divine</string>
+
 
 </resources>
