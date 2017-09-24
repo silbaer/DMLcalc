@@ -123,6 +123,10 @@ public class Dragon {
         }
         return breedingTime;
     }
+    public String getBaseAttack() {return attack;}
+    public String getBaseHealth() {return health;}
+    public String getBaseGold() {return gold;}
+
 
     public String toString(){
 

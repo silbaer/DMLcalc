@@ -15,7 +15,7 @@ implements dragonListFragment.OnListFragmentInteractionListener {
         setContentView(R.layout.activity_dradonlist);
     }
     @Override
-    public  void  onListFragmentInteraction(DummyContent.DummyItem itm){
+    public  void  onListFragmentInteraction(Dragon itm){
         //you can leave it empty
     }
 }

@@ -18,10 +18,10 @@ import java.util.List;
  */
 public class MyDragonRecyclerViewAdapter extends RecyclerView.Adapter<MyDragonRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<Dragon> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyDragonRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public MyDragonRecyclerViewAdapter(List<Dragon> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -36,8 +36,8 @@ public class MyDragonRecyclerViewAdapter extends RecyclerView.Adapter<MyDragonRe
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.mIdView.setText(mValues.get(position).getId());
+        holder.mContentView.setText(mValues.get(position).toString());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,15 +58,16 @@ public class MyDragonRecyclerViewAdapter extends RecyclerView.Adapter<MyDragonRe
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
-        public DummyItem mItem;
+        public final TextView mIdView = null;
+        public final TextView mContentView = null;
+        public Dragon mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.id);
-            mContentView = (TextView) view.findViewById(R.id.content);
+        //    mIdView = (TextView) view.findViewById(R.id.id);
+        //    mContentView = (TextView) view.findViewById(R.id.content);
+
         }
 
         @Override

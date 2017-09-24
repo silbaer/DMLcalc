@@ -1,20 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dev_linear_root"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+
     android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:textAppearance="?attr/textAppearanceListItem" />
+    <ImageView
+        android:id="@+id/dragonPic"
 
-    <TextView
-        android:id="@+id/content"
         android:layout_width="wrap_content"
+
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:textAppearance="?attr/textAppearanceListItem" />
+        android:layout_gravity="left|center_vertical"
+        android:layout_marginBottom="1sp"
+        android:layout_marginTop="1sp"
+
+        android:adjustViewBounds="true"
+        android:maxHeight="48sp"
+        android:maxWidth="48sp"
+        android:minHeight="48sp"
+        android:minWidth="48sp"
+
+        />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_weight="1"
+        android:gravity="fill_horizontal"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textDragonName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_gravity="left"
+                android:layout_marginEnd="10sp"
+                android:background="@null"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <ImageView
+                android:id="@+id/ele1"
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="1sp"
+                android:layout_marginTop="1sp"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:maxHeight="24sp"
+                android:maxWidth="24sp"
+                android:minHeight="24sp"
+                android:minWidth="24sp" />
+
+            <ImageView
+                android:id="@+id/ele2"
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="1sp"
+                android:layout_marginTop="1sp"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:maxHeight="24sp"
+                android:maxWidth="24sp"
+                android:minHeight="24sp"
+                android:minWidth="24sp" />
+
+            <ImageView
+                android:id="@+id/ele3"
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+
+                android:layout_marginBottom="1sp"
+                android:layout_marginTop="1sp"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:maxHeight="24sp"
+                android:maxWidth="24sp"
+                android:minHeight="24sp"
+                android:minWidth="24sp" />
+
+            <TextView
+                android:id="@+id/spacer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="fill_horizontal" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textStats"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:background="@null"
+            android:gravity="left|fill_horizontal"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </LinearLayout>
+    <!--
+      <TextView
+         android:id="@+id/spacer2"
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
+         android:layout_gravity="right"
+         android:layout_weight="1"
+         android:background="@null"
+         android:gravity="fill_horizontal" />
+
+
+     <TextView
+         android:id="@+id/textOdd"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_gravity="right|center_vertical"
+
+         android:background="@null"
+         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+         -->
+
 </LinearLayout>

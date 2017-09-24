@@ -10,37 +10,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import de.silbaer.dmlcalc.dummy.DummyContent;
-import de.silbaer.dmlcalc.dummy.DummyContent.DummyItem;
-
 /**
  * A fragment representing a list of Items.
  * <p/>
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class dragonListFragment extends Fragment {
+public class dragonListFragment2 extends Fragment {
 
     // TODO: Customize parameter argument names
-    private static final String ARG_COLUMN_COUNT = "column-count";
+//    private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
-    private int mColumnCount = 1;
-    private OnListFragmentInteractionListener mListener;
+//    private int mColumnCount = 1;
+//    private OnListFragmentInteractionListener mListener;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public dragonListFragment() {
+    public dragonListFragment2() {
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static dragonListFragment newInstance(int columnCount) {
-        dragonListFragment fragment = new dragonListFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
-        fragment.setArguments(args);
+    public static dragonListFragment2 newInstance() {
+        dragonListFragment2 fragment = new dragonListFragment2();
+//        Bundle args = new Bundle();
+//        args.putInt(ARG_COLUMN_COUNT, columnCount);
+//        fragment.setArguments(args);
         return fragment;
     }
 
@@ -48,9 +45,9 @@ public class dragonListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
-        }
+  //      if (getArguments() != null) {
+  //          mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
+  //      }
     }
 
     @Override
@@ -62,12 +59,12 @@ public class dragonListFragment extends Fragment {
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-            }
-            recyclerView.setAdapter(new MyDragonRecyclerViewAdapter(DMLcalc.Instance().getDragonsToShow(), mListener));
+  //          if (mColumnCount <= 1) {
+  //              recyclerView.setLayoutManager(new LinearLayoutManager(context));
+  //          } else {
+  //              recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+ //           }
+            recyclerView.setAdapter(new DragonListViewAdapter(DMLcalc.Instance().getDragonsToShow()));
         }
         return view;
     }
@@ -76,18 +73,18 @@ public class dragonListFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnListFragmentInteractionListener) {
-            mListener = (OnListFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnListFragmentInteractionListener");
-        }
+//        if (context instanceof OnListFragmentInteractionListener) {
+//            mListener = (OnListFragmentInteractionListener) context;
+//        } else {
+//            throw new RuntimeException(context.toString()
+//                    + " must implement OnListFragmentInteractionListener");
+//        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
+//        mListener = null;
     }
 
     /**
@@ -100,8 +97,8 @@ public class dragonListFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnListFragmentInteractionListener {
+//    public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(Dragon item);
-    }
+//        void onListFragmentInteraction(Dragon item);
+//    }
 }
