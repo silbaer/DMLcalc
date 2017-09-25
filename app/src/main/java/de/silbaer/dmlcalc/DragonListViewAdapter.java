@@ -1,5 +1,7 @@
 package de.silbaer.dmlcalc;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,8 @@ public class DragonListViewAdapter extends RecyclerView.Adapter<DragonListViewAd
 
     private final List<Dragon> mValues;
  //   private final OnListFragmentInteractionListener mListener;
+    private  Context myContext;
+
 
     public DragonListViewAdapter(List<Dragon> items) {
         mValues = items;
@@ -29,6 +33,7 @@ public class DragonListViewAdapter extends RecyclerView.Adapter<DragonListViewAd
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        myContext = parent.getContext();
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_dragon, parent, false);
         return new ViewHolder(view);
@@ -36,11 +41,20 @@ public class DragonListViewAdapter extends RecyclerView.Adapter<DragonListViewAd
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
+
         holder.mItem = mValues.get(position);
 //        holder.mIdView.setText(mValues.get(position).getId());
 //        holder.mContentView.setText(mValues.get(position).toString());
 //        iv.setImageResource(R.drawable.element_earth);
-        holder.mDragonImage.setImageResource(R.drawable.element_boss);
+       // holder.mDragonImage.setImageResource(R.drawable.element_boss);
+
+        String resName = holder.mItem.getId() + "_icon" ;
+        Resources resources = myContext.getResources();
+        final int resourceId = resources.getIdentifier(resName, "drawable",
+                myContext.getPackageName());
+        holder.mDragonImage.setImageResource( resourceId);
+
+
         holder.mDragonName.setText(holder.mItem.toString());
         setElement(holder.mElement1,holder.mItem.getElement1());
         setElement(holder.mElement2,holder.mItem.getElement2());
