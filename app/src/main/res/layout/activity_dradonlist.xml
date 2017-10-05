@@ -7,10 +7,20 @@
     android:orientation="vertical"
     tools:context="de.silbaer.dmlcalc.dragonlistActivity">
 
-    <fragment
-        android:id="@+id/dragonListFragment"
-        android:name="de.silbaer.dmlcalc.dragonListFragment2"
+    <EditText
+        android:id="@+id/editText"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name" />
+
+    <LinearLayout
+        android:id="@+id/dragonListFragment"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        />
 
 </LinearLayout>

@@ -22,13 +22,13 @@ import de.silbaer.dmlcalc.dummy.DummyContent.DummyItem;
 public class DragonListViewAdapter extends RecyclerView.Adapter<DragonListViewAdapter.ViewHolder> {
 
     private final List<Dragon> mValues;
- //   private final OnListFragmentInteractionListener mListener;
+    private final OnListFragmentInteractionListener mListener;
     private  Context myContext;
 
 
-    public DragonListViewAdapter(List<Dragon> items) {
+    public DragonListViewAdapter(List<Dragon> items, OnListFragmentInteractionListener listener ) {
         mValues = items;
-      //  mListener = listener;
+        mListener = listener;
     }
 
     @Override
@@ -62,16 +62,16 @@ public class DragonListViewAdapter extends RecyclerView.Adapter<DragonListViewAd
         holder.mDragonStats.setText(holder.mItem.getBaseHealth() + " / " + holder.mItem.getBaseAttack() + " / " + holder.mItem.getBaseGold() );
 
 
-//        holder.mView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (null != mListener) {
-//                    // Notify the active callbacks interface (the activity, if the
-//                    // fragment is attached to one) that an item has been selected.
-//                    mListener.onListFragmentInteraction(holder.mItem);
-//                }
-//            }
-//        });
+        holder.mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (null != mListener) {
+                    // Notify the active callbacks interface (the activity, if the
+                    // fragment is attached to one) that an item has been selected.
+                    mListener.onListFragmentInteraction(holder.mItem);
+                }
+            }
+        });
     }
     private void setElement(ImageView iv, String element){
         if(element == null){
