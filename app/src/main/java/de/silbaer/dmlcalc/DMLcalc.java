@@ -631,8 +631,8 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         String key = mom.getId() + dad.getId();
         retval = (List<Pair<Dragon,Double>>) getFromDb(key);
 
-        retval2 = _breed2( mom,  dad);
-/*
+      //  retval2 = _breed2( mom,  dad);
+
         if (retval == null) {
             dragList = new ArrayList<Dragon>();
             if (dad != null && mom != null && !mom.getId().equals(dad.getId())) {
@@ -646,8 +646,8 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             }
             saveInDb(key, retval);
         }
-*/
-        return retval2;
+
+        return retval;
     }
 
     public String getElementKey(String e1, String e2) {

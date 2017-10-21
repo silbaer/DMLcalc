@@ -21,7 +21,7 @@ import de.silbaer.dmlcalc.dummy.DummyContent.DummyItem;
  */
 public class DragonListViewAdapter extends RecyclerView.Adapter<DragonListViewAdapter.ViewHolder> {
 
-    private final List<Dragon> mValues;
+    private  List<Dragon> mValues;
     private final OnListFragmentInteractionListener mListener;
     private  Context myContext;
 
@@ -119,6 +119,11 @@ public class DragonListViewAdapter extends RecyclerView.Adapter<DragonListViewAd
     @Override
     public int getItemCount() {
         return mValues.size();
+    }
+
+    public void updateList(List<Dragon> list){
+        mValues = list;
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

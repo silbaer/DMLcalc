@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.silbaer.dmlcalc.dummy.DummyContent;
@@ -29,6 +30,8 @@ public class dragonListFragment extends Fragment {
 //    private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
     private  RecyclerView recyclerView;
+    private DragonListViewAdapter da;
+    private List<Dragon> displayList;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -51,7 +54,7 @@ public class dragonListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        displayList = DMLcalc.Instance().getDragonsToShow();
 //        if (getArguments() != null) {
 //            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
 //        }
@@ -72,14 +75,24 @@ public class dragonListFragment extends Fragment {
 //                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
 //            }
 //            recyclerView.setAdapter(new MyDragonRecyclerViewAdapter(DMLcalc.Instance().getDragonsToShow(), mListener));
-            recyclerView.setAdapter(new DragonListViewAdapter(DMLcalc.Instance().getDragonsToShow(), mListener));
+            da = new DragonListViewAdapter(displayList, mListener);
+            recyclerView.setAdapter(da);
         }
+
         return view;
     }
 
-    public void setList(List<Dragon> items) {
-        recyclerView.setAdapter(new DragonListViewAdapter(items, mListener));
+    public void filterByName(String text){
+        List<Dragon> tmp = new ArrayList<>();
+        for(Dragon d: displayList){
+            if(d.toString().toLowerCase().contains(text.toLowerCase())){
+                tmp.add(d);
+            }
+        }
+        da.updateList(tmp);
     }
+
+
 
     @Override
     public void onAttach(Context context) {

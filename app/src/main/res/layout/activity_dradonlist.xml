@@ -8,12 +8,11 @@
     tools:context="de.silbaer.dmlcalc.dragonlistActivity">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/nameFilter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:inputType="text" />
 
     <LinearLayout
         android:id="@+id/dragonListFragment"
