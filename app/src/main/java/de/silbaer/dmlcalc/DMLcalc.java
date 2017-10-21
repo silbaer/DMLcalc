@@ -12,6 +12,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
+import android.util.ArraySet;
 import android.util.Pair;
 
 import com.google.gson.Gson;
@@ -22,6 +23,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
@@ -93,6 +95,9 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
  //   private Hashtable<String,Object> _howToCache;
     private Hashtable<String,Object> _breedCache;
+
+    private Hashtable<String,ArrayList<Dragon>> dragonsByElementkey;
+    private Hashtable<String,ArrayList<Dragon>> breedresultsByElementkey;
 
     public DMLcalc() {
 
@@ -242,6 +247,22 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         return retval;
     }
 
+    private void updateBreedResults() {
+        breedresultsByElementkey = new Hashtable<>();
+
+        for (Dragon d : dragons.values()) {
+
+            if(d.isBreadable() || (!vipDragons && d.isVIP()) || d.getId().equalsIgnoreCase(getDDM())  ) {
+                String elementKey = d.getElementKey();
+                if (!breedresultsByElementkey.containsKey(elementKey)) {
+                    breedresultsByElementkey.put(elementKey, new ArrayList<Dragon>());
+                }
+                breedresultsByElementkey.get(elementKey).add(d);
+            }
+        }
+
+    }
+
     public ArrayList<Dragon> getDragonsToShow() {
         ArrayList<Dragon> retval = new ArrayList<Dragon>();
         retval.addAll(dragons.values());
@@ -342,6 +363,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
     @Override
     public void onCreate(){
+        PREFS_NAME =  getResources().getString(R.string.PREFS_NAME);
         super.onCreate();
         _instance = this;
         odds = new Hashtable<String,Double>();
@@ -396,6 +418,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 //            }
             String dragonJS = sb.toString();
 
+            dragonsByElementkey = new Hashtable<>();
 
             Dragon d;
             String[] lines = dragonJS.split("[\\n]+");
@@ -404,6 +427,11 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
                 if(!l.isEmpty()){
                     d = new Dragon(l,true);
                     dragons.put(d.getId(),d);
+                    String elementKey = d.getElementKey();
+                    if(!dragonsByElementkey.containsKey(elementKey)){
+                        dragonsByElementkey.put(elementKey,new ArrayList<Dragon>());
+                    }
+                    dragonsByElementkey.get(elementKey).add(d);
                 }
             }
             Context context =   getBaseContext();
@@ -415,8 +443,9 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             e.printStackTrace();
         }
 
-        PREFS_NAME =  getResources().getString(R.string.PREFS_NAME);
 
+
+        updateBreedResults();
 
 
     }
@@ -597,9 +626,13 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
     private  List<Pair<Dragon,Double>> _breed(Dragon mom, Dragon dad) {
         List<Pair<Dragon,Double>> retval;
+        List<Pair<Dragon,Double>> retval2;
         List<Dragon> dragList;
         String key = mom.getId() + dad.getId();
         retval = (List<Pair<Dragon,Double>>) getFromDb(key);
+
+        retval2 = _breed2( mom,  dad);
+/*
         if (retval == null) {
             dragList = new ArrayList<Dragon>();
             if (dad != null && mom != null && !mom.getId().equals(dad.getId())) {
@@ -613,9 +646,164 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             }
             saveInDb(key, retval);
         }
+*/
+        return retval2;
+    }
 
+    public String getElementKey(String e1, String e2) {
+        ArrayList<String> al = new ArrayList<>();
+        al.add(e1);
+        al.add(e2);
+        return getElementKey(al);
+    }
+
+    public String getElementKey(String e1, String e2, String e3) {
+        ArrayList<String> al = new ArrayList<>();
+        al.add(e1);
+        al.add(e2);
+        al.add(e3);
+        return getElementKey(al);
+    }
+
+    public String getElementKey(String e1, String e2, String e3, String e4) {
+        ArrayList<String> al = new ArrayList<>();
+        al.add(e1);
+        al.add(e2);
+        al.add(e3);
+        al.add(e4);
+        return getElementKey(al);
+    }
+
+    public String getElementKey(List<String> myElements) {
+        String retval = "";
+        int elementCount = elements.size();
+        String tmp;
+        for(int i = 0; i < elementCount; i++){
+            tmp = elements.get(i).id;
+            if(myElements.contains( tmp)){
+                retval = retval + tmp;
+            }
+        }
         return retval;
     }
+
+    private  List<Pair<Dragon,Double>> _breed2(Dragon mom, Dragon dad) {
+        HashSet<String> elementKeys = new HashSet<String>();
+        List<Dragon> dragList;
+        List<Pair<Dragon,Double>> retval;
+        int iM, iD, i;
+        for( iM = 0; iM < mom.getElements().size(); iM++){
+            for( iD = 0; iD < dad.getElements().size(); iD++){
+                elementKeys.add(getElementKey(mom.getElements().get(iM),dad.getElements().get(iD)));
+            }
+        }
+        if(mom.getElements().size() == 2){
+            for( iD = 0; iD < dad.getElements().size(); iD++){
+                elementKeys.add(getElementKey(dad.getElements().get(iD),mom.getElement1(),mom.getElement2()));
+            }
+        }
+        if(mom.getElements().size() == 3){
+            for( iD = 0; iD < dad.getElements().size(); iD++){
+                elementKeys.add(getElementKey(dad.getElements().get(iD),mom.getElement1(),mom.getElement2()));
+                elementKeys.add(getElementKey(dad.getElements().get(iD),mom.getElement1(),mom.getElement3()));
+                elementKeys.add(getElementKey(dad.getElements().get(iD),mom.getElement2(),mom.getElement3()));
+            }
+        }
+        if(dad.getElements().size() == 2){
+            for( iM = 0; iM < mom.getElements().size(); iM++){
+                elementKeys.add(getElementKey(mom.getElements().get(iM),dad.getElement1(),dad.getElement2()));
+            }
+        }
+        if(dad.getElements().size() == 3){
+            for( iM = 0; iM < mom.getElements().size(); iM++){
+                elementKeys.add(getElementKey(mom.getElements().get(iM),dad.getElement1(),dad.getElement2()));
+                elementKeys.add(getElementKey(mom.getElements().get(iM),dad.getElement1(),dad.getElement3()));
+                elementKeys.add(getElementKey(mom.getElements().get(iM),dad.getElement2(),dad.getElement3()));
+            }
+        }
+
+        //DDM
+        if(mom.getElements().size() == 1 && dad.getElements().size() == 3) {
+            elementKeys.add(getElementKey(mom.getElement1(),dad.getElement1(),dad.getElement2(),dad.getElement3()));
+        }
+        if(dad.getElements().size() == 1 && mom.getElements().size() == 3) {
+            elementKeys.add(getElementKey(dad.getElement1(),mom.getElement1(),mom.getElement2(),mom.getElement3()));
+        }
+        if(mom.getElements().size() == 2) {
+            if (dad.getElements().size() == 2) {
+                elementKeys.add(getElementKey(mom.getElement1(), dad.getElement1(), dad.getElement2(), mom.getElement2()));
+            } else if(dad.getElements().size() == 3){
+                elementKeys.add(getElementKey(mom.getElement1(),dad.getElement1(),dad.getElement2(),dad.getElement3()));
+                elementKeys.add(getElementKey(mom.getElement2(),dad.getElement1(),dad.getElement2(),dad.getElement3()));
+            }
+        }
+        if(mom.getElements().size() == 3) {
+            if (dad.getElements().size() == 2) {
+                elementKeys.add(getElementKey(dad.getElement1(),mom.getElement1(),mom.getElement2(),mom.getElement3()));
+                elementKeys.add(getElementKey(dad.getElement2(),mom.getElement1(),mom.getElement2(),mom.getElement3()));
+            } else if (dad.getElements().size() == 3) {
+                // 1/2 & 1/2
+                // 1/2 & 1/3
+                // 1/2 & 2/3
+                elementKeys.add(getElementKey(mom.getElement1(), mom.getElement2(), dad.getElement1(), dad.getElement2()));
+                elementKeys.add(getElementKey(mom.getElement1(), mom.getElement2(), dad.getElement1(), dad.getElement3()));
+                elementKeys.add(getElementKey(mom.getElement1(), mom.getElement2(), dad.getElement2(), dad.getElement3()));
+
+                // 1/3 & 1/2
+                // 1/3 & 1/3
+                // 1/3 & 2/3
+                elementKeys.add(getElementKey(mom.getElement1(), mom.getElement3(), dad.getElement1(), dad.getElement2()));
+                elementKeys.add(getElementKey(mom.getElement1(), mom.getElement3(), dad.getElement1(), dad.getElement3()));
+                elementKeys.add(getElementKey(mom.getElement1(), mom.getElement3(), dad.getElement2(), dad.getElement3()));
+
+                // 2/3 & 1/2
+                // 2/3 & 1/3
+                // 2/3 & 2/3
+                elementKeys.add(getElementKey(mom.getElement2(), mom.getElement3(), dad.getElement1(), dad.getElement2()));
+                elementKeys.add(getElementKey(mom.getElement2(), mom.getElement3(), dad.getElement1(), dad.getElement3()));
+                elementKeys.add(getElementKey(mom.getElement2(), mom.getElement3(), dad.getElement2(), dad.getElement3()));
+
+                for( i = 0; iM < 3; i++){
+                    elementKeys.add(getElementKey(mom.getElements().get(i),dad.getElement1(),dad.getElement2(),dad.getElement3()));
+                    elementKeys.add(getElementKey(dad.getElements().get(i),mom.getElement1(),mom.getElement2(),mom.getElement3()));
+                }
+
+            }
+        }
+
+
+
+//        elements.add(new element("fire"));
+//        elements.add(new element("wind"));
+//        elements.add(new element("earth"));
+//        elements.add(new element("water"));
+//        elements.add(new element("plant"));
+//        elements.add(new element("metal"));
+//        elements.add(new element("energy"));
+//        elements.add(new element("void"));
+//        elements.add(new element("light"));
+//        elements.add(new element("shadow"));
+//        elements.add(new element("legendary"));
+//        elements.add(new element("divine"));
+
+        if(dad.getElements().size() == 1 || mom.getElements().size() == 1){
+            elementKeys.remove(getElementKey("fire","plant"));
+            elementKeys.remove(getElementKey("wind","energy"));
+            elementKeys.remove(getElementKey("water","metal"));
+            elementKeys.remove(getElementKey("earth","void"));
+            elementKeys.remove(getElementKey("shadow","light"));
+        }
+
+        dragList = new ArrayList<>();
+        for (String s : elementKeys){
+            if(breedresultsByElementkey.containsKey(s)) {
+                dragList.addAll(breedresultsByElementkey.get(s));
+            }
+        }
+        retval =  CalcOdds(dragList);
+        return retval;
+    }
+
 
     private boolean isChild(Dragon mom, Dragon dad, Dragon child) {
         Boolean retval = false;

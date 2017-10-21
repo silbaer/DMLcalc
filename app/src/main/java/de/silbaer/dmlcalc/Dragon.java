@@ -2,11 +2,14 @@ package de.silbaer.dmlcalc;
 
 // import android.os.Bundle;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  * Created by silbaer on 13.06.16.
@@ -127,6 +130,24 @@ public class Dragon {
     public String getBaseHealth() {return health;}
     public String getBaseGold() {return gold;}
 
+    public String getElementKey() {
+        String retval = "";
+        int elementCount = DMLcalc.Instance().elements.size();
+        String tmp;
+        List<String> myElemets = new ArrayList<>();
+        if(DMLcalc.Instance().getDDM().equalsIgnoreCase(this.id)){
+            myElemets.addAll(DMLcalc.Instance().getDdmElements());
+        } else {
+            myElemets.addAll(elements);
+        }
+        for(int i = 0; i < elementCount; i++){
+            tmp = DMLcalc.Instance().elements.get(i).id;
+            if(myElemets.contains( tmp)){
+                retval = retval + tmp;
+            }
+        }
+        return retval;
+    }
 
     public String toString(){
 
