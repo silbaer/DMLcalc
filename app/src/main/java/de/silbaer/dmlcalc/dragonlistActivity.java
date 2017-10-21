@@ -1,6 +1,7 @@
 package de.silbaer.dmlcalc;
 
 import android.content.Context;
+import android.os.IBinder;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentManager;
 import android.net.Uri;
@@ -11,6 +12,9 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.support.v4.app.Fragment;
@@ -21,6 +25,20 @@ implements dragonListFragment.OnListFragmentInteractionListener {
 
     private dragonListFragment frag;
     private EditText inputSearch;
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+//        InputMethodManager imm = (InputMethodManager) getSystemService(
+//                INPUT_METHOD_SERVICE);
+//        View v = getCurrentFocus();
+//        IBinder b = v.getWindowToken();
+//        imm.hideSoftInputFromWindow(b, 0);
+        Window w = getWindow();
+        w.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +82,11 @@ implements dragonListFragment.OnListFragmentInteractionListener {
 
     @Override
     public  void  onListFragmentInteraction(Dragon itm){
+        InputMethodManager imm = (InputMethodManager) getSystemService(
+                INPUT_METHOD_SERVICE);
+        View v = getCurrentFocus();
+        IBinder b = v.getWindowToken();
+        imm.hideSoftInputFromWindow(b, 0);
         Toast.makeText(getBaseContext(), itm.toString() , Toast.LENGTH_SHORT).show();
 //        Context c = getBaseContext();
 //        Context c2 = getApplicationContext();
