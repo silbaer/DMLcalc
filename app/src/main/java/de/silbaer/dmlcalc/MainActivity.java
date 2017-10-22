@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
         ArrayList<Dragon> breedList = new ArrayList<Dragon>();
 //initilaze this array with your data
         howToList.addAll(dml.getDragonsToShow());
-        breedList.addAll(dml.getDragonsToShow());
+        breedList.addAll(dml.getDragonsToUse());
         AutoColpleteDragonAdapter howToAdapter = new AutoColpleteDragonAdapter(this, R.layout.fragment_dragon,  howToList);
         AutoColpleteDragonAdapter breedAdapter = new AutoColpleteDragonAdapter(this, R.layout.fragment_dragon,  breedList);
 
