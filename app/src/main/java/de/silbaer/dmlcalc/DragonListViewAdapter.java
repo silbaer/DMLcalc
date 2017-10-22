@@ -50,8 +50,7 @@ public class DragonListViewAdapter extends RecyclerView.Adapter<DragonListViewAd
 
         String resName = holder.mItem.getId() + "_icon" ;
         Resources resources = myContext.getResources();
-        final int resourceId = resources.getIdentifier(resName, "drawable",
-                myContext.getPackageName());
+        final int resourceId = resources.getIdentifier(resName, "drawable", myContext.getPackageName());
         holder.mDragonImage.setImageResource( resourceId);
 
 

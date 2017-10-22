@@ -2,6 +2,7 @@ package de.silbaer.dmlcalc;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.preference.PreferenceManager;
 import android.support.v4.content.res.ResourcesCompat;
 import android.util.Pair;
@@ -108,7 +109,11 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
         tmp = d.first.getElement3();
         setElement(iv,tmp);
 
-
+        ImageView mDragonImage = (ImageView) view.findViewById(R.id.dragonPic);
+        String resName = d.first.getId() + "_icon" ;
+        Resources resources = context.getResources();
+        final int resourceId = resources.getIdentifier(resName, "drawable", context.getPackageName());
+        mDragonImage.setImageResource( resourceId);
 
 
     }
