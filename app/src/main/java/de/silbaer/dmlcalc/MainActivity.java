@@ -130,27 +130,33 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
     }
 
     private void updateArrayAdapter(){
-        ArrayAdapter<Dragon> breed = new ArrayAdapter<Dragon>(this, R.layout.support_simple_spinner_dropdown_item);
-        ArrayAdapter<Dragon> howTo = new ArrayAdapter<Dragon>(this, R.layout.support_simple_spinner_dropdown_item);
+        ArrayList<Dragon> howToList = new ArrayList<Dragon>();
+        ArrayList<Dragon> breedList = new ArrayList<Dragon>();
+//initilaze this array with your data
+        howToList.addAll(dml.getDragonsToShow());
+        breedList.addAll(dml.getDragonsToShow());
+        AutoColpleteDragonAdapter howToAdapter = new AutoColpleteDragonAdapter(this, R.layout.fragment_dragon,  howToList);
+        AutoColpleteDragonAdapter breedAdapter = new AutoColpleteDragonAdapter(this, R.layout.fragment_dragon,  breedList);
+
+ //       ArrayAdapter<Dragon> breed = new ArrayAdapter<Dragon>(this, R.layout.support_simple_spinner_dropdown_item);
+ //       ArrayAdapter<Dragon> howTo = new ArrayAdapter<Dragon>(this, R.layout.support_simple_spinner_dropdown_item);
         //      dml.dragons.values()
-        howTo.addAll(dml.getDragonsToShow());
-        breed.addAll(dml.getDragonsToUse());
+//        howTo.addAll(dml.getDragonsToShow());
+//        breed.addAll(dml.getDragonsToUse());
 
 
 
         //   spinnerDad.setAdapter(adapter);
         // spinnerMom.setAdapter(adapter);
 
-        textDad.setAdapter(breed);
-        textDad.setThreshold(1);
+        textDad.setAdapter(breedAdapter);
+        textDad.setThreshold(2);
 
-        textMom.setAdapter(breed);
-        textMom.setThreshold(1);
+        textMom.setAdapter(breedAdapter);
+        textMom.setThreshold(2);
 
-        textChild.setAdapter(howTo);
-        textChild.setThreshold(1);
-
-
+        textChild.setAdapter(howToAdapter);
+        textChild.setThreshold(2);
     }
 
 
@@ -274,7 +280,7 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
         try {
             this.child = child;
             textChild.setText(child.toString());
-            ArrayAdapter<Dragon> ad = (ArrayAdapter) textChild.getAdapter();
+            AutoColpleteDragonAdapter ad = (AutoColpleteDragonAdapter) textChild.getAdapter();
             int i = ad.getPosition(child);
             textChild.setListSelection(i);
             displayHowToResult();
@@ -288,10 +294,10 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
             this.dad = dad;
             textMom.setText(mom.toString());
             textDad.setText(dad.toString());
-            ArrayAdapter<Dragon> ad = (ArrayAdapter) textDad.getAdapter();
+            AutoColpleteDragonAdapter ad = (AutoColpleteDragonAdapter) textDad.getAdapter();
             int i = ad.getPosition(dad);
             textDad.setListSelection(i);
-            ad = (ArrayAdapter) textMom.getAdapter();
+            ad = (AutoColpleteDragonAdapter) textMom.getAdapter();
             i = ad.getPosition(dad);
             textMom.setListSelection(i);
             displayBreedResult();
