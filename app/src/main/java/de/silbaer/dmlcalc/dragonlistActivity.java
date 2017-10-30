@@ -16,8 +16,15 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.support.v4.app.Fragment;
+
+import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
 
 
 public class dragonlistActivity extends AppCompatActivity
@@ -25,6 +32,8 @@ implements dragonListFragment.OnListFragmentInteractionListener {
 
     private dragonListFragment frag;
     private EditText inputSearch;
+    private List<String> elementFilter;
+    private Map<String,ImageView> filterViews;
 
     @Override
     protected void onStart(){
@@ -70,13 +79,84 @@ implements dragonListFragment.OnListFragmentInteractionListener {
                 frag.filterByName(s.toString());
             }
         });
+        filterViews = new Hashtable<>() ;
+        filterViews.put("fire", (ImageView) findViewById(R.id.FireFilterImageView));
+        filterViews.put("wind", (ImageView) findViewById(R.id.WindFilterImageView));
+        filterViews.put("water", (ImageView) findViewById(R.id.WaterFilterImageView));
+        filterViews.put("earth", (ImageView) findViewById(R.id.EarthFilterImageView));
+        filterViews.put("plant", (ImageView) findViewById(R.id.PlantFilterImageView));
+        filterViews.put("metal", (ImageView) findViewById(R.id.MetalFilterImageView));
+        filterViews.put("energy", (ImageView) findViewById(R.id.EnergyFilterImageView));
+        filterViews.put("void", (ImageView) findViewById(R.id.VoidFilterImageView));
+        filterViews.put("light", (ImageView) findViewById(R.id.LightFilterImageView));
+        filterViews.put("shadow", (ImageView) findViewById(R.id.ShadowFilterImageView));
+        filterViews.put("legendary", (ImageView) findViewById(R.id.LegendaryFilterImageView));
+        filterViews.put("divine", (ImageView) findViewById(R.id.DivineFilterImageView));
+        elementFilter =new ArrayList<>();
+
+
     }
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState) {
-//        View view = inflater.inflate(R.layout.activity_dradonlist, container, false);
-//        return view;
-//    }
+
+
+    private void setFilter(String e){
+        if(elementFilter.contains(e)){
+            elementFilter.remove(e);
+            filterViews.get(e).setImageResource(DMLcalc.Instance().getDrawableIdentifierByName("element_"+e+"_dis"));
+            frag.filterRemoveElement(e);
+        } else {
+            elementFilter.add(e);
+            filterViews.get(e).setImageResource(DMLcalc.Instance().getDrawableIdentifierByName("element_"+e));
+            frag.filterAddElement(e);
+        }
+    }
+
+    public void onClickFire(View v){
+        setFilter("fire");
+    }
+
+    public void onClickWind(View v){
+        setFilter("wind");
+    }
+
+    public void onClickWater(View v){
+        setFilter("water");
+    }
+
+    public void onClickEarth(View v){
+        setFilter("earth");
+    }
+
+    public void onClickPlant(View v){
+        setFilter("plant");
+    }
+
+    public void onClickMetal(View v){
+        setFilter("metal");
+    }
+
+    public void onClickEnergy(View v){
+        setFilter("energy");
+    }
+
+    public void onClickVoid(View v){
+        setFilter("void");
+    }
+
+    public void onClickLight(View v){
+        setFilter("light");
+    }
+
+    public void onClickShadow(View v){
+        setFilter("shadow");
+    }
+
+    public void onClickLegendary(View v){
+        setFilter("legendary");
+    }
+
+    public void onClickDivine(View v){
+        setFilter("divine");
+    }
 
 
 
