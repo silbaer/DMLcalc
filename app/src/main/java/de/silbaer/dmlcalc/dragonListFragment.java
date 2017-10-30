@@ -32,6 +32,7 @@ public class dragonListFragment extends Fragment {
     private  RecyclerView recyclerView;
     private DragonListViewAdapter da;
     private List<Dragon> displayList;
+    private List<String> elementFilter;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -58,6 +59,11 @@ public class dragonListFragment extends Fragment {
 //        if (getArguments() != null) {
 //            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
 //        }
+        elementFilter =new ArrayList<>();
+        for (element e: DMLcalc.Instance().elements) {
+    //        elementFilter.add(e.id);
+
+        }
     }
 
     @Override
@@ -92,6 +98,54 @@ public class dragonListFragment extends Fragment {
         da.updateList(tmp);
     }
 
+    private void updateElementFilter(){
+        List<Dragon> tmp = new ArrayList<>();
+//        tmp.addAll(displayList);
+//        for (int i = tmp.size()-1; i >= 0; i--) {
+//            Dragon d = tmp.get(i);
+//            for(String e : d.getElements())
+//                if (!elementFilter.contains(e)) {
+//                    tmp.remove(d);
+//                    break;
+//                }
+//        }
+
+//        for(Dragon d: displayList){
+//            for(String e : d.getElements()){
+//                if(elementFilter.contains(e)){
+//                    tmp.add(d);
+//                    break;
+//                }
+//            }
+//        }
+
+        tmp.addAll(displayList);
+        for (int i = tmp.size()-1; i >= 0; i--) {
+            Dragon d = tmp.get(i);
+            for(String e : elementFilter)
+                if (!d.getElements().contains(e)) {
+                    tmp.remove(d);
+                    break;
+                }
+        }
+
+        da.updateList(tmp);
+
+    }
+
+    public void filterRemoveElement(String id){
+        if(elementFilter.contains(id)) {
+            elementFilter.remove(id);
+            updateElementFilter();
+        }
+    }
+
+    public void filterAddElement(String id){
+        if(!elementFilter.contains(id)) {
+            elementFilter.add(id);
+            updateElementFilter();
+        }
+    }
 
 
     @Override

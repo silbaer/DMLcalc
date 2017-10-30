@@ -45,6 +45,13 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         return getString(resId);
     }
 
+    public int getDrawableIdentifierByName(String aString) {
+        String packageName = getContext().getPackageName();
+        int resId = getResources().getIdentifier(aString, "drawable", packageName);
+
+        return resId;
+    }
+
     public static Application getApplication() {
         return _instance;
     }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,6 +14,194 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="text" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/FireFilterImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="5dp"
+            android:adjustViewBounds="true"
+            android:clickable="true"
+            android:maxHeight="28dp"
+            android:maxWidth="28dp"
+            android:minHeight="28dp"
+            android:minWidth="28dp"
+            android:onClick="onClickFire"
+            app:srcCompat="@drawable/element_fire_dis" />
+
+        <ImageView
+            android:id="@+id/WindFilterImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="5dp"
+            android:adjustViewBounds="true"
+            android:maxHeight="28dp"
+            android:maxWidth="28dp"
+            android:minHeight="28dp"
+            android:minWidth="28dp"
+            android:onClick="onClickWind"
+            app:srcCompat="@drawable/element_wind_dis" />
+
+        <ImageView
+            android:id="@+id/WaterFilterImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="5dp"
+            android:adjustViewBounds="true"
+            android:maxHeight="28dp"
+            android:maxWidth="28dp"
+            android:minHeight="28dp"
+            android:minWidth="28dp"
+            android:onClick="onClickWater"
+            app:srcCompat="@drawable/element_water_dis" />
+
+        <ImageView
+            android:id="@+id/EarthFilterImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="5dp"
+            android:adjustViewBounds="true"
+            android:maxHeight="28dp"
+            android:maxWidth="28dp"
+            android:minHeight="28dp"
+            android:minWidth="28dp"
+            android:onClick="onClickEarth"
+            app:srcCompat="@drawable/element_earth_dis" />
+
+        <ImageView
+            android:id="@+id/PlantFilterImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="5dp"
+            android:adjustViewBounds="true"
+            android:maxHeight="28dp"
+            android:maxWidth="28dp"
+            android:minHeight="28dp"
+            android:minWidth="28dp"
+            android:onClick="onClickPlant"
+            app:srcCompat="@drawable/element_plant_dis" />
+
+        <ImageView
+            android:id="@+id/MetalFilterImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="5dp"
+            android:adjustViewBounds="true"
+            android:maxHeight="28dp"
+            android:maxWidth="28dp"
+            android:minHeight="28dp"
+            android:minWidth="28dp"
+            android:onClick="onClickMetal"
+            app:srcCompat="@drawable/element_metal_dis" />
+
+        <ImageView
+            android:id="@+id/EnergyFilterImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="5dp"
+            android:adjustViewBounds="true"
+            android:maxHeight="28dp"
+            android:maxWidth="28dp"
+            android:minHeight="28dp"
+            android:minWidth="28dp"
+            android:onClick="onClickEnergy"
+            app:srcCompat="@drawable/element_energy_dis" />
+
+        <ImageView
+            android:id="@+id/VoidFilterImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="5dp"
+            android:adjustViewBounds="true"
+            android:maxHeight="28dp"
+            android:maxWidth="28dp"
+            android:minHeight="28dp"
+            android:minWidth="28dp"
+            android:onClick="onClickVoid"
+            app:srcCompat="@drawable/element_void_dis" />
+
+        <ImageView
+            android:id="@+id/LightFilterImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="5dp"
+            android:adjustViewBounds="true"
+            android:maxHeight="28dp"
+            android:maxWidth="28dp"
+            android:minHeight="28dp"
+            android:minWidth="28dp"
+            android:onClick="onClickLight"
+            app:srcCompat="@drawable/element_light_dis" />
+
+        <ImageView
+            android:id="@+id/ShadowFilterImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="5dp"
+            android:adjustViewBounds="true"
+            android:maxHeight="28dp"
+            android:maxWidth="28dp"
+            android:minHeight="28dp"
+            android:minWidth="28dp"
+            android:onClick="onClickShadow"
+            app:srcCompat="@drawable/element_shadow_dis" />
+
+        <ImageView
+            android:id="@+id/LegendaryFilterImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="5dp"
+            android:adjustViewBounds="true"
+            android:maxHeight="28dp"
+            android:maxWidth="28dp"
+            android:minHeight="28dp"
+            android:minWidth="28dp"
+            android:onClick="onClickLegendary"
+            app:srcCompat="@drawable/element_legendary_dis" />
+
+        <ImageView
+            android:id="@+id/DivineFilterImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="5dp"
+            android:adjustViewBounds="true"
+            android:maxHeight="28dp"
+            android:maxWidth="28dp"
+            android:minHeight="28dp"
+            android:minWidth="28dp"
+            android:onClick="onClickDivine"
+            app:srcCompat="@drawable/element_divine_dis" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/dragonListFragment"
