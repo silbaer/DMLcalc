@@ -71,6 +71,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
         vipDragons = sharedPreferences.getBoolean("pref_vipdragons",false);
         enchantDragons = sharedPreferences.getBoolean("pref_enchantbreed",false);
+        this.clearCache();
     }
 
     public interface breedingResponse{
