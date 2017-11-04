@@ -13,8 +13,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.silbaer.dmlcalc.dummy.DummyContent;
-import de.silbaer.dmlcalc.dummy.DummyContent.DummyItem;
+
 
 /**
  * A fragment representing a list of Items.
@@ -55,7 +54,7 @@ public class dragonListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        displayList = DMLcalc.Instance().getDragonsToShow();
+        displayList = DMLcalc.Instance().getDragons(); // .getDragonsToShow();
 //        if (getArguments() != null) {
 //            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
 //        }

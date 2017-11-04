@@ -66,6 +66,7 @@ public class Dragon {
     public Boolean isBreadable() { return (this.Breadable || this.Vip) && !EnchatmentBreed;  }
     public Boolean isVIP() {  return this.Vip;  }
     public Boolean isUnreleased() {  return this.Unreleased;  }
+    public Boolean isEnchatmentBreed() {  return this.EnchatmentBreed;  }
 
     private Boolean _isBoss() { return this.boss_vip.trim().equalsIgnoreCase("B"); }
     private Boolean _islegendary() { return this.element1.trim().equalsIgnoreCase("legendary"); }
@@ -174,6 +175,8 @@ public class Dragon {
 
         if(isVIP()){
             retval += "*";
+        } else  if(isEnchatmentBreed()){
+            retval += "&";
         } else  if(!isBreadable()){
             retval += "+";
         }
