@@ -13,8 +13,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.silbaer.dmlcalc.dummy.DummyContent;
-import de.silbaer.dmlcalc.dummy.DummyContent.DummyItem;
+
 
 /**
  * A fragment representing a list of Items.

@@ -2,6 +2,7 @@ package de.silbaer.dmlcalc;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import de.silbaer.dmlcalc.dragonListFragment.OnListFragmentInteractionListener;
-import de.silbaer.dmlcalc.dummy.DummyContent.DummyItem;
+
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
@@ -47,6 +48,11 @@ public class DragonListViewAdapter extends RecyclerView.Adapter<DragonListViewAd
 //        holder.mContentView.setText(mValues.get(position).toString());
 //        iv.setImageResource(R.drawable.element_earth);
        // holder.mDragonImage.setImageResource(R.drawable.element_boss);
+        if (position % 2 == 0) {
+            holder.mView.setBackgroundColor(ResourcesCompat.getColor(myContext.getResources(), R.color.colorListEven, null));
+        } else {
+            holder.mView.setBackgroundColor(ResourcesCompat.getColor(myContext.getResources(), R.color.colorListOdd, null));
+        }
 
         String resName = holder.mItem.getId() + "_icon" ;
         Resources resources = myContext.getResources();
