@@ -5,8 +5,11 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -15,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -57,6 +61,28 @@ public class InfoDialogFragment extends DialogFragment {
 
         // create a WebView with the current stats
         WebView webView = new WebView(context);
+
+        webView.setWebViewClient(new WebViewClient() {
+
+                                     @Override
+                                     public boolean shouldOverrideUrlLoading(WebView view, String url) {
+
+                                         if (url.startsWith("tel:")) {
+                                             startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(url)));
+
+                                         } else if (url.startsWith("mailto:")) {
+                                             startActivity(new Intent(Intent.ACTION_SENDTO, Uri.parse(url)));
+
+                                         } else {
+                                             view.loadUrl(url);
+                                         }
+
+                                         return true;
+                                     }
+                                 });
+
+
+        webView.setBackgroundColor(Color.TRANSPARENT);
         webView.loadData(summary, "text/html", null);
 
 
