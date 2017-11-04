@@ -240,20 +240,122 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         return DDW_Dad;
     }
 
-    public ArrayList<Dragon> getDragonsToUse() {
+    public ArrayList<Dragon> getDragons(boolean withVIP, boolean withEnchanted, boolean withDDWparents, boolean withDdwDdm, boolean filterBreedable) {
         ArrayList<Dragon> retval = new ArrayList<Dragon>();
         retval.addAll(dragons.values());
         for(int i = retval.size()-1; i >= 0; i--){
             Dragon d = retval.get(i);
-            if((d.isBoss() || d.islegendary() || d.isdivine() || d.isUnreleased()) && !d.getId().equalsIgnoreCase(getDDW_dad()) && !d.getId().equalsIgnoreCase(getDDW_mom())){
+            if((d.isBoss() || d.islegendary() || d.isdivine() || d.isUnreleased() || (filterBreedable && !d.isBreadable())) ){
+                if((withDDWparents && !( d.getId().equalsIgnoreCase(getDDW_dad()) || d.getId().equalsIgnoreCase(getDDW_mom())))
+                    || (withDdwDdm && !( d.getId().equalsIgnoreCase(getDDW()) || d.getId().equalsIgnoreCase(getDDM()) )))
                 retval.remove(d);
             }
-            if(!vipDragons  &&  d.isVIP()){
+            if(!withVIP  &&  d.isVIP()){
+                retval.remove(d);
+            }
+            if(!withEnchanted  &&  d.isEnchatmentBreed()){
                 retval.remove(d);
             }
         }
         return retval;
     }
+
+    public ArrayList<Dragon> getDragons4HowtoCombo() {
+
+        return getDragons(vipDragons,enchantDragons,false,true,true);
+        // Abweichend von unten immer VIP
+
+//        ArrayList<Dragon> retval = new ArrayList<Dragon>();
+//        retval.addAll(dragons.values());
+//        for(int i = retval.size()-1; i >= 0; i--){
+//            Dragon d = retval.get(i);
+//            if((d.isBoss() || d.islegendary() || d.isdivine() || d.isUnreleased()) && !d.getId().equalsIgnoreCase(getDDW_dad()) && !d.getId().equalsIgnoreCase(getDDW_mom())){
+//                retval.remove(d);
+//            }
+//            if(!vipDragons  &&  d.isVIP()){
+//                retval.remove(d);
+//            }
+//        }
+//        return retval;
+
+    }
+    public ArrayList<Dragon> getDragons4BreedCombo() {
+
+        return getDragons(true,true,true,false,false);
+
+//        ArrayList<Dragon> retval = new ArrayList<Dragon>();
+//        retval.addAll(dragons.values());
+//        for(int i = retval.size()-1; i >= 0; i--){
+//            Dragon d = retval.get(i);
+//            if(d.isBoss() || d.islegendary() || d.isdivine() || d.isUnreleased()){
+//                retval.remove(d);
+//            }
+////            if(!vipDragons  &&  d.isVIP()){
+////                retval.remove(d);
+////            }
+//        }
+//        return retval;
+
+
+    }
+//    public ArrayList<Dragon> getDragons4HowtoResult() {
+//
+//        return getDragons(vipDragons,true,false,true);
+//
+////        ArrayList<Dragon> retval = new ArrayList<Dragon>();
+////        retval.addAll(dragons.values());
+////        for(int i = retval.size()-1; i >= 0; i--){
+////            Dragon d = retval.get(i);
+////            if((d.isBoss() || d.islegendary() || d.isdivine() || d.isUnreleased()) && !d.getId().equalsIgnoreCase(getDDW_dad()) && !d.getId().equalsIgnoreCase(getDDW_mom())){
+////                retval.remove(d);
+////            }
+//////            if(!vipDragons  &&  d.isVIP()){
+//////                retval.remove(d);
+//////            }
+//////            if(!enchantDragons  &&  d.isEnchatmentBreed()){
+//////                retval.remove(d);
+//////            }
+////        }
+////        return retval;
+//    }
+//    public ArrayList<Dragon> getDragons4BreedResult() {
+//
+//        return getDragons(vipDragons,true,false,true);
+////        ArrayList<Dragon> retval = new ArrayList<Dragon>();
+////        retval.addAll(dragons.values());
+////        for(int i = retval.size()-1; i >= 0; i--){
+////            Dragon d = retval.get(i);
+////            if((d.isBoss() || d.islegendary() || d.isdivine() || d.isUnreleased()) && !d.getId().equalsIgnoreCase(getDDW_dad()) && !d.getId().equalsIgnoreCase(getDDW_mom())){
+////                retval.remove(d);
+////            }
+////            if(!vipDragons  &&  d.isVIP()){
+////                retval.remove(d);
+////            }
+////            if(!enchantDragons  &&  d.isEnchatmentBreed()){
+////                retval.remove(d);
+////            }
+////        }
+////        return retval;
+//    }
+    public ArrayList<Dragon> getDragons() {
+        ArrayList<Dragon> retval = new ArrayList<Dragon>();
+        retval.addAll(dragons.values());
+        return retval;
+    }
+//    public ArrayList<Dragon> getDragonsToUse() {
+//        ArrayList<Dragon> retval = new ArrayList<Dragon>();
+//        retval.addAll(dragons.values());
+//        for(int i = retval.size()-1; i >= 0; i--){
+//            Dragon d = retval.get(i);
+//            if((d.isBoss() || d.islegendary() || d.isdivine() || d.isUnreleased()) && !d.getId().equalsIgnoreCase(getDDW_dad()) && !d.getId().equalsIgnoreCase(getDDW_mom())){
+//                retval.remove(d);
+//            }
+//            if(!vipDragons  &&  d.isVIP()){
+//                retval.remove(d);
+//            }
+//        }
+//        return retval;
+//    }
 
     private void updateBreedResults() {
         breedresultsByElementkey = new Hashtable<>();
@@ -271,20 +373,20 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
     }
 
-    public ArrayList<Dragon> getDragonsToShow() {
-        ArrayList<Dragon> retval = new ArrayList<Dragon>();
-        retval.addAll(dragons.values());
-        for(int i = retval.size()-1; i >= 0; i--){
-            Dragon d = retval.get(i);
-            if(d.isBoss() || d.isUnreleased()){
-                retval.remove(d);
-            }
-            if(!vipDragons  &&  d.isVIP()){
-                retval.remove(d);
-            }
-        }
-        return retval;
-    }
+//    public ArrayList<Dragon> getDragonsToShow() {
+//        ArrayList<Dragon> retval = new ArrayList<Dragon>();
+//        retval.addAll(dragons.values());
+//        for(int i = retval.size()-1; i >= 0; i--){
+//            Dragon d = retval.get(i);
+//            if(d.isBoss() || d.isUnreleased()){
+//                retval.remove(d);
+//            }
+//            if(!vipDragons  &&  d.isVIP()){
+//                retval.remove(d);
+//            }
+//        }
+//        return retval;
+//    }
 
     public void clearCache(){
         _breedCache.clear();
@@ -610,14 +712,14 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         if(retval == null){
             retval = new ArrayList<>();
 //        ArrayList< Dragon> dl = new ArrayList<>(dragons.values());
-            ArrayList<Dragon> dl = getDragonsToUse();
+            ArrayList<Dragon> dl = getDragons(vipDragons,true,true,true,false);
 
             for (int x = 0; x < dl.size() - 1; x++) {
                 for (int y = x + 1; y < dl.size(); y++) {
                     if (!dl.get(x).getId().equalsIgnoreCase(son.getId())
                             && !dl.get(y).getId().equalsIgnoreCase(son.getId())) {
                         if (isChild(dl.get(x), dl.get(y), son)) {
-                            List<Pair<Dragon,Double>> tmp = _breed(dl.get(x), dl.get(y));
+                            List<Pair<Dragon,Double>> tmp = _breed(dl.get(x), dl.get(y),true);
                             for (Pair<Dragon,Double> dp : tmp) {
                                 if (dp.first.getId().equalsIgnoreCase(son.getId())) {
                                     retval.add(new Pair<Pair<Dragon, Dragon>, Double>(new Pair<Dragon, Dragon>(dl.get(x), dl.get(y)), dp.second));
@@ -633,6 +735,10 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
     }
 
     private  List<Pair<Dragon,Double>> _breed(Dragon mom, Dragon dad) {
+        return _breed(mom,dad,enchantDragons);
+    }
+
+    private  List<Pair<Dragon,Double>> _breed(Dragon mom, Dragon dad, boolean withEnchantment) {
         List<Pair<Dragon,Double>> retval;
         List<Pair<Dragon,Double>> retval2;
         List<Dragon> dragList;
@@ -644,7 +750,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         if (retval == null) {
             dragList = new ArrayList<Dragon>();
             if (dad != null && mom != null && !mom.getId().equals(dad.getId())) {
-                ArrayList<Dragon> drags = getDragonsToShow();
+                ArrayList<Dragon> drags = getDragons(vipDragons,withEnchantment,false,true,true);
                 for (Dragon d : drags) {
                     if (isChild(mom, dad, d)) {
                         dragList.add(d);
@@ -882,10 +988,10 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
 
         if(!child.isBreadable()){
-            if(enchantDragons) {
+//            if(enchantDragons) {
                 return isSpecialBreed(mom, dad, child);
-            }
-            return false;
+//            }
+//            return false;
         }
 
  //           return false;

@@ -54,7 +54,7 @@ public class dragonListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        displayList = DMLcalc.Instance().getDragonsToShow();
+        displayList = DMLcalc.Instance().getDragons(); // .getDragonsToShow();
 //        if (getArguments() != null) {
 //            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
 //        }
