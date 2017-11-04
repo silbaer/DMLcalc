@@ -2,6 +2,8 @@ package de.silbaer.dmlcalc;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -56,8 +58,43 @@ public class DragonListViewAdapter extends RecyclerView.Adapter<DragonListViewAd
 
         String resName = holder.mItem.getId() + "_icon" ;
         Resources resources = myContext.getResources();
-        final int resourceId = resources.getIdentifier(resName, "drawable", myContext.getPackageName());
-        holder.mDragonImage.setImageResource( resourceId);
+        int resourceId = resources.getIdentifier(resName, "drawable", myContext.getPackageName());
+
+     //   holder.mDragonImage.setImageResource( resourceId);
+
+
+        Drawable[] layers = new Drawable[2];
+
+        layers[0] = resources.getDrawable(resourceId);
+
+        String type = holder.mItem.getType();
+        if("C".equalsIgnoreCase(type)){
+            resourceId = resources.getIdentifier("classification_corner_common", "drawable", myContext.getPackageName());
+            layers[1] = resources.getDrawable(resourceId);
+        } else if("D".equalsIgnoreCase(type)){
+            resourceId = resources.getIdentifier("classification_corner_divine", "drawable", myContext.getPackageName());
+            layers[1] = resources.getDrawable(resourceId);
+        } else if("E".equalsIgnoreCase(type)){
+            resourceId = resources.getIdentifier("classification_corner_epic", "drawable", myContext.getPackageName());
+            layers[1] = resources.getDrawable(resourceId);
+        } else if("L".equalsIgnoreCase(type)){
+            resourceId = resources.getIdentifier("classification_corner_legendary", "drawable", myContext.getPackageName());
+            layers[1] = resources.getDrawable(resourceId);
+        } else if("R".equalsIgnoreCase(type)){
+            resourceId = resources.getIdentifier("classification_corner_rare", "drawable", myContext.getPackageName());
+            layers[1] = resources.getDrawable(resourceId);
+        } else if("U".equalsIgnoreCase(type)){
+            resourceId = resources.getIdentifier("classification_corner_uncommon", "drawable", myContext.getPackageName());
+            layers[1] = resources.getDrawable(resourceId);
+        } else {
+            resourceId = resources.getIdentifier("classification_corner_empty", "drawable", myContext.getPackageName());
+            layers[1] = resources.getDrawable(resourceId);
+        }
+
+            LayerDrawable layerDrawable = new LayerDrawable(layers);
+        layerDrawable.setLayerInset(1,200,0,0,200);
+        holder.mDragonImage.setImageDrawable(layerDrawable);
+
 
 
         holder.mDragonName.setText(holder.mItem.toString());
