@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Hashtable;
@@ -245,9 +246,29 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         retval.addAll(dragons.values());
         for(int i = retval.size()-1; i >= 0; i--){
             Dragon d = retval.get(i);
-            if((d.isBoss() || d.islegendary() || d.isdivine() || d.isUnreleased() || (filterBreedable && !d.isBreadable())) ){
-                if((withDDWparents && !( d.getId().equalsIgnoreCase(getDDW_dad()) || d.getId().equalsIgnoreCase(getDDW_mom())))
-                    || (withDdwDdm && !( d.getId().equalsIgnoreCase(getDDW()) || d.getId().equalsIgnoreCase(getDDM()) )))
+            if(d.isBoss() || d.isUnreleased()){
+                retval.remove(d);
+                continue;
+            }
+            if(filterBreedable && !d.isBreadable()){
+                if(withDDWparents && d.getId().equalsIgnoreCase(getDDW_dad())){
+                    continue;
+                }
+                if(withDDWparents && d.getId().equalsIgnoreCase(getDDW_mom())){
+                    continue;
+                }
+                if(withDdwDdm && d.getId().equalsIgnoreCase(getDDW())){
+                    continue;
+                }
+                if(withDdwDdm && d.getId().equalsIgnoreCase(getDDM())){
+                    continue;
+                }
+                if(withVIP  &&  d.isVIP()){
+                    continue;
+                }
+                if(withEnchanted  &&  d.isEnchatmentBreed()){
+                    continue;
+                }
                 retval.remove(d);
             }
             if(!withVIP  &&  d.isVIP()){
@@ -715,6 +736,9 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             ArrayList<Dragon> dl = getDragons(vipDragons,true,true,true,false);
 
             for (int x = 0; x < dl.size() - 1; x++) {
+                if(!canBeDad(dl.get(x),son)){
+                    continue;
+                }
                 for (int y = x + 1; y < dl.size(); y++) {
                     if (!dl.get(x).getId().equalsIgnoreCase(son.getId())
                             && !dl.get(y).getId().equalsIgnoreCase(son.getId())) {
@@ -733,6 +757,18 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         }
         return retval;
     }
+    private boolean canBeDad(Dragon dad, Dragon son) {
+        boolean retval = false;
+        if(dad.getId().equalsIgnoreCase( getDDW_mom()) || dad.getId().equalsIgnoreCase(getDDW_dad()) ) {
+            retval = true;
+        }
+        for (String e : son.getElements()) {
+            if(dad.getElements().contains(e)){
+                retval = true;
+            }
+        }
+        return retval;
+    }
 
     private  List<Pair<Dragon,Double>> _breed(Dragon mom, Dragon dad) {
         return _breed(mom,dad,enchantDragons);
@@ -746,20 +782,31 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         retval = (List<Pair<Dragon,Double>>) getFromDb(key);
 
       //  retval2 = _breed2( mom,  dad);
+      //  Date start = new Date();
 
         if (retval == null) {
-            dragList = new ArrayList<Dragon>();
-            if (dad != null && mom != null && !mom.getId().equals(dad.getId())) {
-                ArrayList<Dragon> drags = getDragons(vipDragons,withEnchantment,false,true,true);
-                for (Dragon d : drags) {
-                    if (isChild(mom, dad, d)) {
-                        dragList.add(d);
-                    }
-                }
-                retval =  CalcOdds(dragList);
-            }
+            retval = _breed2( mom,  dad,withEnchantment);
+
+//            dragList = new ArrayList<Dragon>();
+//            if (dad != null && mom != null && !mom.getId().equals(dad.getId())) {
+//                ArrayList<Dragon> drags = getDragons(vipDragons,withEnchantment,false,true,true);
+//                for (Dragon d : drags) {
+//                    if (isChild(mom, dad, d)) {
+//                        dragList.add(d);
+//                    }
+//                }
+//                retval =  CalcOdds(dragList);
+//            }
+
             saveInDb(key, retval);
         }
+//        Date mid = new Date();
+//        retval2 = _breed2( mom,  dad);
+//        Date end = new Date();
+//
+//        long b1 = mid.getTime() - start.getTime();
+//        long b2 = end.getTime() - mid.getTime();
+
 
         return retval;
     }
@@ -802,6 +849,10 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
     }
 
     private  List<Pair<Dragon,Double>> _breed2(Dragon mom, Dragon dad) {
+        return _breed2(mom,dad,enchantDragons);
+    }
+
+    private  List<Pair<Dragon,Double>> _breed2(Dragon mom, Dragon dad, boolean withEchant) {
         HashSet<String> elementKeys = new HashSet<String>();
         List<Dragon> dragList;
         List<Pair<Dragon,Double>> retval;
@@ -887,6 +938,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
 
 
+
 //        elements.add(new element("fire"));
 //        elements.add(new element("wind"));
 //        elements.add(new element("earth"));
@@ -912,6 +964,18 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         for (String s : elementKeys){
             if(breedresultsByElementkey.containsKey(s)) {
                 dragList.addAll(breedresultsByElementkey.get(s));
+            }
+        }
+        if( (mom.getId().equalsIgnoreCase(getDDW_mom()) && dad.getId().equalsIgnoreCase(getDDW_dad()))
+                || (mom.getId().equalsIgnoreCase(getDDW_dad()) && dad.getId().equalsIgnoreCase(getDDW_mom())) ){
+            dragList.add(dragons.get(getDDW()));
+        }
+
+        if(!withEchant) {
+            for (i = dragList.size() - 1; i >= 0; i--) {
+                if (dragList.get(i).isEnchatmentBreed()) {
+                    dragList.remove(i);
+                }
             }
         }
         retval =  CalcOdds(dragList);
@@ -1002,30 +1066,30 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
 //        List<string> mumOrDadLegendaryListElements = new List<string>();
 
-        if (mom.islegendary()) {
-//            mumOrDadLegendaryListElements.AddRange(mom.elements);
-        }
-        if (dad.islegendary()) {
-//            mumOrDadLegendaryListElements.AddRange(dad.elements);
-        }
-//        mumOrDadLegendaryListElements.RemoveAll(m => m == "legendary");
-
-        if (mom.islegendary() && dad.islegendary()) {
-//            if (this.isBoss() || this.isEvent() || this.islegendary) {
-//                return false;
-//            } else {
-//                if (this.elements.Count == 2 &&
-//                        this.id != "sunflower" &&
-//                        this.id != "mercury" &&
-//                        this.id != "lightning" &&
-//                        this.id != "magnet" &&
-//                        this.id != "emperor") {
-//                    return true;
-//                } else {
-//                    return false;
-//                }
-//            }
-        }
+//        if (mom.islegendary()) {
+////            mumOrDadLegendaryListElements.AddRange(mom.elements);
+//        }
+//        if (dad.islegendary()) {
+////            mumOrDadLegendaryListElements.AddRange(dad.elements);
+//        }
+////        mumOrDadLegendaryListElements.RemoveAll(m => m == "legendary");
+//
+//        if (mom.islegendary() && dad.islegendary()) {
+////            if (this.isBoss() || this.isEvent() || this.islegendary) {
+////                return false;
+////            } else {
+////                if (this.elements.Count == 2 &&
+////                        this.id != "sunflower" &&
+////                        this.id != "mercury" &&
+////                        this.id != "lightning" &&
+////                        this.id != "magnet" &&
+////                        this.id != "emperor") {
+////                    return true;
+////                } else {
+////                    return false;
+////                }
+////            }
+//        }
         if (dad.islegendary() || mom.islegendary() || dad.isdivine() || mom.isdivine() ) {
             return false; // Lassen wir mal weg....
 //            if (!this.islegendary()) {
