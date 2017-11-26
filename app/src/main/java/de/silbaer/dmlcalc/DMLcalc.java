@@ -97,6 +97,8 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
     private Boolean vipDragons;
     private Boolean enchantDragons;
 
+    private List<String> specialChilds = null;
+
     public Map<String,Dragon> dragons = new Hashtable<String,Dragon>();
 //    public Dictionary<string, Element> elements = new Dictionary<string,Element>();
 
@@ -570,6 +572,38 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             sharedPref.registerOnSharedPreferenceChangeListener(this);
             vipDragons = sharedPref.getBoolean("pref_vipdragons",false);
             enchantDragons = sharedPref.getBoolean("pref_enchantbreed",false);
+
+            specialChilds = new ArrayList<>();
+            // Breadable legendary
+            specialChilds.add("crystal");
+            specialChilds.add("dark_machine");
+            specialChilds.add("narwhale");
+            specialChilds.add("pixie");
+            specialChilds.add("siren");
+            specialChilds.add("titan");
+            specialChilds.add("vortex");
+            // enchantend breed
+            specialChilds.add("amber");
+            specialChilds.add("ant");
+            specialChilds.add("beetle");
+            specialChilds.add("bloom");
+            specialChilds.add("box");
+            specialChilds.add("briar");
+            specialChilds.add("cockatoo");
+            specialChilds.add("crumbly");
+            specialChilds.add("dark_mech");
+            specialChilds.add("disco_ball");
+            specialChilds.add("fossil");
+            specialChilds.add("frosty");
+            specialChilds.add("hellfire");
+            specialChilds.add("hypoestes");
+            specialChilds.add("origami");
+            specialChilds.add("owl");
+            specialChilds.add("plushie");
+            specialChilds.add("superhero");
+
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -765,14 +799,13 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             return true;
           //  retval = true;
         }
-        if(getDDM().equalsIgnoreCase(son.getId())){
+        if(getDDM().equalsIgnoreCase(son.getId())) {
             for (String e : getDdmElements()) {
-                if(dad.getElements().contains(e)){
-               //     retval = true;
+                if (dad.getElements().contains(e)) {
+                    //     retval = true;
                     return true;
                 }
             }
-
         } else {
             for (String e : son.getElements()) {
                 if (dad.getElements().contains(e)) {
@@ -781,6 +814,11 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
                 }
             }
         }
+        String sonID = son.getId();
+        if(specialChilds.contains(sonID)){
+            return true;
+        }
+
         //return retval;
         return false;
     }
@@ -1028,6 +1066,22 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
                 dragList.add(dragons.get("superhero"));
             }
 
+        }
+
+        if (checkMomDad(mom, dad, "emperor", "magnet")) {
+            dragList.add(dragons.get("crystal"));
+        } else if (checkMomDad(mom, dad, "magnet", "sunflower")) {
+            dragList.add(dragons.get("dark_machine"));
+        } else if (checkMomDad(mom, dad, "lightning", "magnet")) {
+            dragList.add(dragons.get("narwhale"));
+        } else if (checkMomDad(mom, dad, "lightning", "sunflower")) {
+            dragList.add(dragons.get("pixie"));
+        } else if (checkMomDad(mom, dad, "mercury", "sunflower")) {
+            dragList.add(dragons.get("siren"));
+        } else if (checkMomDad(mom, dad, "magnet", "mercury")) {
+            dragList.add(dragons.get("titan"));
+        } else if (checkMomDad(mom, dad, "lightning", "mercury")) {
+            dragList.add(dragons.get("vortex"));
         }
 
         if(!vipDragons) {
