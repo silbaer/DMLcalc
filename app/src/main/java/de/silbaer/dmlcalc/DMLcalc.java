@@ -734,11 +734,13 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             retval = new ArrayList<>();
 //        ArrayList< Dragon> dl = new ArrayList<>(dragons.values());
             ArrayList<Dragon> dl = getDragons(vipDragons,true,true,true,false);
-
-            for (int x = 0; x < dl.size() - 1; x++) {
+            for (int x = dl.size() - 1; x >= 0 ; x--) {
                 if(!canBeDad(dl.get(x),son)){
-                    continue;
+                    dl.remove(x);
                 }
+            }
+            for (int x = 0; x < dl.size() - 1; x++) {
+
                 for (int y = x + 1; y < dl.size(); y++) {
                     if (!dl.get(x).getId().equalsIgnoreCase(son.getId())
                             && !dl.get(y).getId().equalsIgnoreCase(son.getId())) {
