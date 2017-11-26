@@ -966,14 +966,58 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
                 dragList.addAll(breedresultsByElementkey.get(s));
             }
         }
-        if( (mom.getId().equalsIgnoreCase(getDDW_mom()) && dad.getId().equalsIgnoreCase(getDDW_dad()))
-                || (mom.getId().equalsIgnoreCase(getDDW_dad()) && dad.getId().equalsIgnoreCase(getDDW_mom())) ){
+//        if( (mom.getId().equalsIgnoreCase(getDDW_mom()) && dad.getId().equalsIgnoreCase(getDDW_dad()))
+//                || (mom.getId().equalsIgnoreCase(getDDW_dad()) && dad.getId().equalsIgnoreCase(getDDW_mom())) ){
+//            dragList.add(dragons.get(getDDW()));
+//        }
+        if (checkMomDad(mom, dad, getDDW_mom(), getDDW_dad())) {
             dragList.add(dragons.get(getDDW()));
         }
+        if(withEchant) {
 
-        if(!withEchant) {
+            if (checkMomDad(mom, dad, "bee", "tree")) {
+                dragList.add(dragons.get("amber"));
+            } else if (checkMomDad(mom, dad, "clay", "toxic")) {
+                dragList.add(dragons.get("ant"));
+            } else if (checkMomDad(mom, dad, "orange", "venom")) {
+                dragList.add(dragons.get("beetle"));
+            } else if (checkMomDad(mom, dad, "cloud", "agave")) {
+                dragList.add(dragons.get("bloom"));
+            } else if (checkMomDad(mom, dad, "clownfish", "seed")) {
+                dragList.add(dragons.get("box"));
+            } else if (checkMomDad(mom, dad, "dark_mech", "cockatoo")) {
+                dragList.add(dragons.get("briar"));
+            } else if (checkMomDad(mom, dad, "mist", "golden_crow")) {
+                dragList.add(dragons.get("cockatoo"));
+            } else if (checkMomDad(mom, dad, "frosty", "fossil")) {
+                dragList.add(dragons.get("crumbly"));
+            } else if (checkMomDad(mom, dad, "armored", "alien")) {
+                dragList.add(dragons.get("dark_mech"));
+            } else if (checkMomDad(mom, dad, "magnet", "rocker")) {
+                dragList.add(dragons.get("disco_ball"));
+            } else if (checkMomDad(mom, dad, "lightfish", "brick")) {
+                dragList.add(dragons.get("fossil"));
+            } else if (checkMomDad(mom, dad, "frostbite", "yeti")) {
+                dragList.add(dragons.get("frosty"));
+            } else if (checkMomDad(mom, dad, "blueflame", "lava")) {
+                dragList.add(dragons.get("hellfire"));
+            } else if (checkMomDad(mom, dad, "witch", "elemental")) {
+                dragList.add(dragons.get("hypoestes"));
+            } else if (checkMomDad(mom, dad, "ice", "geiger")) {
+                dragList.add(dragons.get("origami"));
+            } else if (checkMomDad(mom, dad, "tribal", "sunflower")) {
+                dragList.add(dragons.get("owl"));
+            } else if (checkMomDad(mom, dad, "superhero", "disco_ball")) {
+                dragList.add(dragons.get("plushie"));
+            } else if (checkMomDad(mom, dad, "tiger", "jelly")) {
+                dragList.add(dragons.get("superhero"));
+            }
+
+        }
+
+        if(!vipDragons) {
             for (i = dragList.size() - 1; i >= 0; i--) {
-                if (dragList.get(i).isEnchatmentBreed()) {
+                if (dragList.get(i).isVIP()) {
                     dragList.remove(i);
                 }
             }
@@ -1198,39 +1242,44 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
     }
 
     private boolean isSpecialBreed(Dragon mom, Dragon dad, Dragon child) {
-        if(child.getId().equalsIgnoreCase("amber")){
-            if(mom.getId().equalsIgnoreCase("bee") && dad.getId().equalsIgnoreCase("tree")
-                    || dad.getId().equalsIgnoreCase("bee") && mom.getId().equalsIgnoreCase("tree") ){
-                return true;
-            }
-        }
-        if(checkMomDad(mom,dad,child,"clay","toxic","ant")) return true;
-        if(checkMomDad(mom,dad,child,"orange","venom","beetle")) return true;
-        if(checkMomDad(mom,dad,child,"cloud","agave","bloom")) return true;
-        if(checkMomDad(mom,dad,child,"clownfish","seed","box")) return true;
-        if(checkMomDad(mom,dad,child,"dark_mech","cockatoo","briar")) return true;
-        if(checkMomDad(mom,dad,child,"mist","golden_crow","cockatoo")) return true;
-        if(checkMomDad(mom,dad,child,"frosty","fossil","crumbly")) return true;
-        if(checkMomDad(mom,dad,child,"armored","alien","dark_mech")) return true;
-        if(checkMomDad(mom,dad,child,"magnet","rocker","disco_ball")) return true;
-        if(checkMomDad(mom,dad,child,"lightfish","brick","fossil")) return true;
-        if(checkMomDad(mom,dad,child,"frostbite","yeti","frosty")) return true;
-        if(checkMomDad(mom,dad,child,"blueflame","lava","hellfire")) return true;
-        if(checkMomDad(mom,dad,child,"witch","elemental","hypoestes")) return true;
-        if(checkMomDad(mom,dad,child,"ice","geiger","origami")) return true;
-        if(checkMomDad(mom,dad,child,"tribal","sunflower","owl")) return true;
-        if(checkMomDad(mom,dad,child,"superhero","disco_ball","plushie")) return true;
-        if(checkMomDad(mom,dad,child,"tiger","jelly","superhero")) return true;
+        if(checkMomDadChild(mom,dad,child,"bee","tree","amber")) return true;
+        if(checkMomDadChild(mom,dad,child,"clay","toxic","ant")) return true;
+        if(checkMomDadChild(mom,dad,child,"orange","venom","beetle")) return true;
+        if(checkMomDadChild(mom,dad,child,"cloud","agave","bloom")) return true;
+        if(checkMomDadChild(mom,dad,child,"clownfish","seed","box")) return true;
+        if(checkMomDadChild(mom,dad,child,"dark_mech","cockatoo","briar")) return true;
+        if(checkMomDadChild(mom,dad,child,"mist","golden_crow","cockatoo")) return true;
+        if(checkMomDadChild(mom,dad,child,"frosty","fossil","crumbly")) return true;
+        if(checkMomDadChild(mom,dad,child,"armored","alien","dark_mech")) return true;
+        if(checkMomDadChild(mom,dad,child,"magnet","rocker","disco_ball")) return true;
+        if(checkMomDadChild(mom,dad,child,"lightfish","brick","fossil")) return true;
+        if(checkMomDadChild(mom,dad,child,"frostbite","yeti","frosty")) return true;
+        if(checkMomDadChild(mom,dad,child,"blueflame","lava","hellfire")) return true;
+        if(checkMomDadChild(mom,dad,child,"witch","elemental","hypoestes")) return true;
+        if(checkMomDadChild(mom,dad,child,"ice","geiger","origami")) return true;
+        if(checkMomDadChild(mom,dad,child,"tribal","sunflower","owl")) return true;
+        if(checkMomDadChild(mom,dad,child,"superhero","disco_ball","plushie")) return true;
+        if(checkMomDadChild(mom,dad,child,"tiger","jelly","superhero")) return true;
         return false;
     }
 
-    private boolean checkMomDad(Dragon mom, Dragon dad, Dragon child, String sMom, String sDad, String sChild) {
+    private boolean checkMomDadChild(Dragon mom, Dragon dad, Dragon child, String sMom, String sDad, String sChild) {
         if(child.getId().equalsIgnoreCase(sChild)){
             if(mom.getId().equalsIgnoreCase(sMom) && dad.getId().equalsIgnoreCase(sDad)
                     || dad.getId().equalsIgnoreCase(sMom) && mom.getId().equalsIgnoreCase(sDad) ){
                 return true;
             }
         }
+        return false;
+    }
+
+    private boolean checkMomDad(Dragon mom, Dragon dad, String sMom, String sDad) {
+
+            if(mom.getId().equalsIgnoreCase(sMom) && dad.getId().equalsIgnoreCase(sDad)
+                    || dad.getId().equalsIgnoreCase(sMom) && mom.getId().equalsIgnoreCase(sDad) ){
+                return true;
+            }
+
         return false;
     }
 

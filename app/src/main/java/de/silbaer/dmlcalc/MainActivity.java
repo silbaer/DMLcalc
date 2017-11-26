@@ -24,6 +24,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -137,17 +138,6 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
         breedList.addAll(dml.getDragons4BreedCombo());
         AutoColpleteDragonAdapter howToAdapter = new AutoColpleteDragonAdapter(this, R.layout.fragment_dragon,  howToList);
         AutoColpleteDragonAdapter breedAdapter = new AutoColpleteDragonAdapter(this, R.layout.fragment_dragon,  breedList);
-
- //       ArrayAdapter<Dragon> breed = new ArrayAdapter<Dragon>(this, R.layout.support_simple_spinner_dropdown_item);
- //       ArrayAdapter<Dragon> howTo = new ArrayAdapter<Dragon>(this, R.layout.support_simple_spinner_dropdown_item);
-        //      dml.dragons.values()
-//        howTo.addAll(dml.getDragonsToShow());
-//        breed.addAll(dml.getDragonsToUse());
-
-
-
-        //   spinnerDad.setAdapter(adapter);
-        // spinnerMom.setAdapter(adapter);
 
         textDad.setAdapter(breedAdapter);
         textDad.setThreshold(2);
@@ -294,12 +284,7 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
             this.dad = dad;
             textMom.setText(mom.toString());
             textDad.setText(dad.toString());
-            AutoColpleteDragonAdapter ad = (AutoColpleteDragonAdapter) textDad.getAdapter();
-            int i = ad.getPosition(dad);
-            textDad.setListSelection(i);
-            ad = (AutoColpleteDragonAdapter) textMom.getAdapter();
-            i = ad.getPosition(dad);
-            textMom.setListSelection(i);
+
             displayBreedResult();
         } catch (Exception e) {
             e.printStackTrace();
@@ -342,6 +327,7 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
 
 
     public void onBreedClick(View v) {
+
         displayBreedResult(mom,dad);
     }
     public void onHowToClick(View v) {
@@ -359,8 +345,9 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
     @Override
     public void onResume() {
         super.onResume();
-
-
+        if(mom != null) {
+            String momName = mom.toString();
+        }
         String tmp = dml.getDDW();
         if(!tmp.isEmpty()){
             TextView tv = (TextView) findViewById(R.id.textViewDDW);
@@ -432,20 +419,6 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
     public void onStop() {
         super.onStop();
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Main Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://de.silbaer.dmlcalc/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
     }
 
 }
