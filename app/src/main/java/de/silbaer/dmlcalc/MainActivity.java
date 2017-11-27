@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
         if (id == R.id.action_ClearCache) {
             DMLcalc.Instance().clearCache();
             Toast.makeText(getBaseContext(), "Cache cleared",
-                    Toast.LENGTH_LONG).show();
+                    Toast.LENGTH_SHORT).show();
         }
 
         if (id == R.id.action_info) {
@@ -200,8 +200,8 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
     private AdapterView.OnItemClickListener onChildItemClick = new AdapterView.OnItemClickListener() {
 
         public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-            Toast.makeText(getBaseContext(), "Child Dragon:" + arg0.getItemAtPosition(arg2),
-                    Toast.LENGTH_LONG).show();
+//            Toast.makeText(getBaseContext(), "Child Dragon:" + arg0.getItemAtPosition(arg2),
+//                    Toast.LENGTH_SHORT).show();
 
             InputMethodManager imm = (InputMethodManager) getSystemService(
                     INPUT_METHOD_SERVICE);
@@ -252,8 +252,8 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
     private AdapterView.OnItemClickListener onDadItemClick = new AdapterView.OnItemClickListener(){
 
         public void  onItemClick (AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-            Toast.makeText(getBaseContext(), "Dad Dragon:"+arg0.getItemAtPosition(arg2),
-                    Toast.LENGTH_LONG).show();
+//            Toast.makeText(getBaseContext(), "Dad Dragon:"+arg0.getItemAtPosition(arg2),
+//                    Toast.LENGTH_SHORT).show();
 
             InputMethodManager imm = (InputMethodManager) getSystemService(
                     INPUT_METHOD_SERVICE);
@@ -310,8 +310,8 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
     private AdapterView.OnItemClickListener onMomItemClick = new AdapterView.OnItemClickListener(){
 
         public void  onItemClick (AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-            Toast.makeText(getBaseContext(), "Mom  Dragon:" + arg0.getItemAtPosition(arg2),
-                    Toast.LENGTH_LONG).show();
+//            Toast.makeText(getBaseContext(), "Mom  Dragon:" + arg0.getItemAtPosition(arg2),
+//                    Toast.LENGTH_SHORT).show();
 
             InputMethodManager imm = (InputMethodManager) getSystemService(
                     INPUT_METHOD_SERVICE);

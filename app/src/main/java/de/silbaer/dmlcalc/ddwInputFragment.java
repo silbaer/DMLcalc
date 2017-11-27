@@ -13,6 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -114,16 +116,18 @@ public class ddwInputFragment extends Fragment {
         textDDW = (AutoCompleteTextView) view.findViewById(R.id.ddw_inputFragment_autoCompleteDDW);
 
 
-        ArrayAdapter<Dragon> ad = new ArrayAdapter<Dragon>(view.getContext(), R.layout.support_simple_spinner_dropdown_item);
-        ad.addAll(DMLcalc.Instance().dragons.values());
-        textDad.setAdapter(ad);
-        textDad.setThreshold(1);
+        ArrayList<Dragon> dragonList = new ArrayList<Dragon>();
+        dragonList.addAll(DMLcalc.Instance().dragons.values());
+        AutoColpleteDragonAdapter dragonAdapter = new AutoColpleteDragonAdapter(view.getContext(), R.layout.fragment_dragon,  dragonList);
 
-        textMom.setAdapter(ad);
-        textMom.setThreshold(1);
+        textDad.setAdapter(dragonAdapter);
+        textDad.setThreshold(2);
 
-        textDDW.setAdapter(ad);
-        textDDW.setThreshold(1);
+        textMom.setAdapter(dragonAdapter);
+        textMom.setThreshold(2);
+
+        textDDW.setAdapter(dragonAdapter);
+        textDDW.setThreshold(2);
 
         textDDW.setOnItemClickListener(onDDWItemClick);
         textMom.setOnItemClickListener(onDDWMomItemClick);

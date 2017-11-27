@@ -306,79 +306,16 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
         return getDragons(true,true,true,false,false);
 
-//        ArrayList<Dragon> retval = new ArrayList<Dragon>();
-//        retval.addAll(dragons.values());
-//        for(int i = retval.size()-1; i >= 0; i--){
-//            Dragon d = retval.get(i);
-//            if(d.isBoss() || d.islegendary() || d.isdivine() || d.isUnreleased()){
-//                retval.remove(d);
-//            }
-////            if(!vipDragons  &&  d.isVIP()){
-////                retval.remove(d);
-////            }
-//        }
-//        return retval;
 
 
     }
-//    public ArrayList<Dragon> getDragons4HowtoResult() {
-//
-//        return getDragons(vipDragons,true,false,true);
-//
-////        ArrayList<Dragon> retval = new ArrayList<Dragon>();
-////        retval.addAll(dragons.values());
-////        for(int i = retval.size()-1; i >= 0; i--){
-////            Dragon d = retval.get(i);
-////            if((d.isBoss() || d.islegendary() || d.isdivine() || d.isUnreleased()) && !d.getId().equalsIgnoreCase(getDDW_dad()) && !d.getId().equalsIgnoreCase(getDDW_mom())){
-////                retval.remove(d);
-////            }
-//////            if(!vipDragons  &&  d.isVIP()){
-//////                retval.remove(d);
-//////            }
-//////            if(!enchantDragons  &&  d.isEnchatmentBreed()){
-//////                retval.remove(d);
-//////            }
-////        }
-////        return retval;
-//    }
-//    public ArrayList<Dragon> getDragons4BreedResult() {
-//
-//        return getDragons(vipDragons,true,false,true);
-////        ArrayList<Dragon> retval = new ArrayList<Dragon>();
-////        retval.addAll(dragons.values());
-////        for(int i = retval.size()-1; i >= 0; i--){
-////            Dragon d = retval.get(i);
-////            if((d.isBoss() || d.islegendary() || d.isdivine() || d.isUnreleased()) && !d.getId().equalsIgnoreCase(getDDW_dad()) && !d.getId().equalsIgnoreCase(getDDW_mom())){
-////                retval.remove(d);
-////            }
-////            if(!vipDragons  &&  d.isVIP()){
-////                retval.remove(d);
-////            }
-////            if(!enchantDragons  &&  d.isEnchatmentBreed()){
-////                retval.remove(d);
-////            }
-////        }
-////        return retval;
-//    }
+
     public ArrayList<Dragon> getDragons() {
-        ArrayList<Dragon> retval = new ArrayList<Dragon>();
-        retval.addAll(dragons.values());
-        return retval;
-    }
-//    public ArrayList<Dragon> getDragonsToUse() {
+        return getDragons(true,true,true,true,false);
 //        ArrayList<Dragon> retval = new ArrayList<Dragon>();
 //        retval.addAll(dragons.values());
-//        for(int i = retval.size()-1; i >= 0; i--){
-//            Dragon d = retval.get(i);
-//            if((d.isBoss() || d.islegendary() || d.isdivine() || d.isUnreleased()) && !d.getId().equalsIgnoreCase(getDDW_dad()) && !d.getId().equalsIgnoreCase(getDDW_mom())){
-//                retval.remove(d);
-//            }
-//            if(!vipDragons  &&  d.isVIP()){
-//                retval.remove(d);
-//            }
-//        }
 //        return retval;
-//    }
+    }
 
     private void updateBreedResults() {
         breedresultsByElementkey = new Hashtable<>();
