@@ -35,6 +35,36 @@ import java.util.TreeMap;
  */
 public class DMLcalc extends Application implements SharedPreferences.OnSharedPreferenceChangeListener{
 
+    public class SpecialBreed{
+        public String momId;
+        public String dadId;
+        public String childId;
+        public boolean isEnchanted;
+
+        public SpecialBreed(String dadID, String momID, String childID, boolean isEnchanted){
+            this.momId = momID;
+            this.dadId = dadID;
+            this.childId = childID;
+            this.isEnchanted = isEnchanted;
+        }
+
+        public boolean checkMomDadChild(Dragon mom, Dragon dad, Dragon child) {
+            if(child.getId().equalsIgnoreCase(childId)){
+                return checkMomDad(mom,dad);
+            }
+            return false;
+        }
+
+        public boolean checkMomDad(Dragon mom, Dragon dad) {
+
+            if(mom.getId().equalsIgnoreCase(momId) && dad.getId().equalsIgnoreCase(dadId)
+                    || dad.getId().equalsIgnoreCase(momId) && mom.getId().equalsIgnoreCase(dadId) ){
+                return true;
+            }
+
+            return false;
+        }
+    }
 
     public String getStringResourceByName(String aString) {
         String packageName = getContext().getPackageName();
@@ -97,7 +127,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
     private Boolean vipDragons;
     private Boolean enchantDragons;
 
-    private List<String> specialChilds = null;
+    private List<SpecialBreed> specialBreeds = null;
 
     public Map<String,Dragon> dragons = new Hashtable<String,Dragon>();
 //    public Dictionary<string, Element> elements = new Dictionary<string,Element>();
@@ -510,34 +540,38 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             vipDragons = sharedPref.getBoolean("pref_vipdragons",false);
             enchantDragons = sharedPref.getBoolean("pref_enchantbreed",false);
 
-            specialChilds = new ArrayList<>();
+            specialBreeds = new ArrayList<>();
             // Breadable legendary
-            specialChilds.add("crystal");
-            specialChilds.add("dark_machine");
-            specialChilds.add("narwhale");
-            specialChilds.add("pixie");
-            specialChilds.add("siren");
-            specialChilds.add("titan");
-            specialChilds.add("vortex");
+
+            specialBreeds.add(new SpecialBreed( "emperor","magnet","crystal",false));
+            specialBreeds.add(new SpecialBreed("magnet","sunflower","dark_machine",false));
+            specialBreeds.add(new SpecialBreed("lightning","magnet","narwhale",false));
+            specialBreeds.add(new SpecialBreed("lightning","sunflower","pixie",false));
+            specialBreeds.add(new SpecialBreed("mercury","sunflower","siren",false));
+            specialBreeds.add(new SpecialBreed("magnet","mercury","titan",false));
+            specialBreeds.add(new SpecialBreed("lightning","mercury","vortex",false));
             // enchantend breed
-            specialChilds.add("amber");
-            specialChilds.add("ant");
-            specialChilds.add("beetle");
-            specialChilds.add("bloom");
-            specialChilds.add("box");
-            specialChilds.add("briar");
-            specialChilds.add("cockatoo");
-            specialChilds.add("crumbly");
-            specialChilds.add("dark_mech");
-            specialChilds.add("disco_ball");
-            specialChilds.add("fossil");
-            specialChilds.add("frosty");
-            specialChilds.add("hellfire");
-            specialChilds.add("hypoestes");
-            specialChilds.add("origami");
-            specialChilds.add("owl");
-            specialChilds.add("plushie");
-            specialChilds.add("superhero");
+            specialBreeds.add(new SpecialBreed("bee","tree","amber",true));
+            specialBreeds.add(new SpecialBreed("clay","toxic","ant",true));
+            specialBreeds.add(new SpecialBreed("venom","orange","beetle",true));
+            specialBreeds.add(new SpecialBreed("agave","cloud","bloom",true));
+            specialBreeds.add(new SpecialBreed("seed","clownfish","box",true));
+            specialBreeds.add(new SpecialBreed("cockatoo","dark_mech","briar",true));
+            specialBreeds.add(new SpecialBreed("golden_crow","mist","cockatoo",true));
+            specialBreeds.add(new SpecialBreed("fossil","frosty","crumbly",true));
+            specialBreeds.add(new SpecialBreed("alien","armored","dark_mech",true));
+            specialBreeds.add(new SpecialBreed("rocker","magnet","disco_ball",true));
+            specialBreeds.add(new SpecialBreed("brick","lightfish","fossil",true));
+            specialBreeds.add(new SpecialBreed("yeti","frostbite","frosty",true));
+            specialBreeds.add(new SpecialBreed("rogue","banana","gorilla",true));
+            specialBreeds.add(new SpecialBreed("lava","blueflame","hellfire",true));
+            specialBreeds.add(new SpecialBreed("elemental","witch","hypoestes",true));
+            specialBreeds.add(new SpecialBreed("brick","tribal","leopard",true));
+            specialBreeds.add(new SpecialBreed("geiger","ice","origami",true));
+            specialBreeds.add(new SpecialBreed("sunflower","tribal","owl",true));
+            specialBreeds.add(new SpecialBreed("disco_ball","superhero","plushie",true));
+            specialBreeds.add(new SpecialBreed("melon","tree","sea_turtle",true));
+            specialBreeds.add(new SpecialBreed("jelly","tiger","superhero",true));
 
 
 
@@ -752,8 +786,10 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             }
         }
         String sonID = son.getId();
-        if(specialChilds.contains(sonID)){
-            return true;
+        for (SpecialBreed b: specialBreeds) {
+            if(b.childId.equalsIgnoreCase(sonID)){
+                return true;
+            }
         }
 
         //return retval;
@@ -963,63 +999,74 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         if (checkMomDad(mom, dad, getDDW_mom(), getDDW_dad())) {
             dragList.add(dragons.get(getDDW()));
         }
-        if(withEchant) {
 
-            if (checkMomDad(mom, dad, "bee", "tree")) {
-                dragList.add(dragons.get("amber"));
-            } else if (checkMomDad(mom, dad, "clay", "toxic")) {
-                dragList.add(dragons.get("ant"));
-            } else if (checkMomDad(mom, dad, "orange", "venom")) {
-                dragList.add(dragons.get("beetle"));
-            } else if (checkMomDad(mom, dad, "cloud", "agave")) {
-                dragList.add(dragons.get("bloom"));
-            } else if (checkMomDad(mom, dad, "clownfish", "seed")) {
-                dragList.add(dragons.get("box"));
-            } else if (checkMomDad(mom, dad, "dark_mech", "cockatoo")) {
-                dragList.add(dragons.get("briar"));
-            } else if (checkMomDad(mom, dad, "mist", "golden_crow")) {
-                dragList.add(dragons.get("cockatoo"));
-            } else if (checkMomDad(mom, dad, "frosty", "fossil")) {
-                dragList.add(dragons.get("crumbly"));
-            } else if (checkMomDad(mom, dad, "armored", "alien")) {
-                dragList.add(dragons.get("dark_mech"));
-            } else if (checkMomDad(mom, dad, "magnet", "rocker")) {
-                dragList.add(dragons.get("disco_ball"));
-            } else if (checkMomDad(mom, dad, "lightfish", "brick")) {
-                dragList.add(dragons.get("fossil"));
-            } else if (checkMomDad(mom, dad, "frostbite", "yeti")) {
-                dragList.add(dragons.get("frosty"));
-            } else if (checkMomDad(mom, dad, "blueflame", "lava")) {
-                dragList.add(dragons.get("hellfire"));
-            } else if (checkMomDad(mom, dad, "witch", "elemental")) {
-                dragList.add(dragons.get("hypoestes"));
-            } else if (checkMomDad(mom, dad, "ice", "geiger")) {
-                dragList.add(dragons.get("origami"));
-            } else if (checkMomDad(mom, dad, "tribal", "sunflower")) {
-                dragList.add(dragons.get("owl"));
-            } else if (checkMomDad(mom, dad, "superhero", "disco_ball")) {
-                dragList.add(dragons.get("plushie"));
-            } else if (checkMomDad(mom, dad, "tiger", "jelly")) {
-                dragList.add(dragons.get("superhero"));
+        for (SpecialBreed b:specialBreeds) {
+            if(withEchant && b.isEnchanted || !b.isEnchanted){
+                if(b.checkMomDad(mom,dad)){
+                    dragList.add(dragons.get(b.childId));
+                }
             }
-
         }
 
-        if (checkMomDad(mom, dad, "emperor", "magnet")) {
-            dragList.add(dragons.get("crystal"));
-        } else if (checkMomDad(mom, dad, "magnet", "sunflower")) {
-            dragList.add(dragons.get("dark_machine"));
-        } else if (checkMomDad(mom, dad, "lightning", "magnet")) {
-            dragList.add(dragons.get("narwhale"));
-        } else if (checkMomDad(mom, dad, "lightning", "sunflower")) {
-            dragList.add(dragons.get("pixie"));
-        } else if (checkMomDad(mom, dad, "mercury", "sunflower")) {
-            dragList.add(dragons.get("siren"));
-        } else if (checkMomDad(mom, dad, "magnet", "mercury")) {
-            dragList.add(dragons.get("titan"));
-        } else if (checkMomDad(mom, dad, "lightning", "mercury")) {
-            dragList.add(dragons.get("vortex"));
-        }
+//        if(withEchant) {
+//
+//            if (checkMomDad(mom, dad, "bee", "tree")) {
+//                dragList.add(dragons.get("amber"));
+//            } else if (checkMomDad(mom, dad, "clay", "toxic")) {
+//                dragList.add(dragons.get("ant"));
+//            } else if (checkMomDad(mom, dad, "orange", "venom")) {
+//                dragList.add(dragons.get("beetle"));
+//            } else if (checkMomDad(mom, dad, "cloud", "agave")) {
+//                dragList.add(dragons.get("bloom"));
+//            } else if (checkMomDad(mom, dad, "clownfish", "seed")) {
+//                dragList.add(dragons.get("box"));
+//            } else if (checkMomDad(mom, dad, "dark_mech", "cockatoo")) {
+//                dragList.add(dragons.get("briar"));
+//            } else if (checkMomDad(mom, dad, "mist", "golden_crow")) {
+//                dragList.add(dragons.get("cockatoo"));
+//            } else if (checkMomDad(mom, dad, "frosty", "fossil")) {
+//                dragList.add(dragons.get("crumbly"));
+//            } else if (checkMomDad(mom, dad, "armored", "alien")) {
+//                dragList.add(dragons.get("dark_mech"));
+//            } else if (checkMomDad(mom, dad, "magnet", "rocker")) {
+//                dragList.add(dragons.get("disco_ball"));
+//            } else if (checkMomDad(mom, dad, "lightfish", "brick")) {
+//                dragList.add(dragons.get("fossil"));
+//            } else if (checkMomDad(mom, dad, "frostbite", "yeti")) {
+//                dragList.add(dragons.get("frosty"));
+//            } else if (checkMomDad(mom, dad, "blueflame", "lava")) {
+//                dragList.add(dragons.get("frosty"));
+//            } else if (checkMomDad(mom, dad, "blueflame", "lava")) {
+//                dragList.add(dragons.get("hellfire"));
+//            } else if (checkMomDad(mom, dad, "witch", "elemental")) {
+//                dragList.add(dragons.get("hypoestes"));
+//            } else if (checkMomDad(mom, dad, "ice", "geiger")) {
+//                dragList.add(dragons.get("origami"));
+//            } else if (checkMomDad(mom, dad, "tribal", "sunflower")) {
+//                dragList.add(dragons.get("owl"));
+//            } else if (checkMomDad(mom, dad, "superhero", "disco_ball")) {
+//                dragList.add(dragons.get("plushie"));
+//            } else if (checkMomDad(mom, dad, "tiger", "jelly")) {
+//                dragList.add(dragons.get("superhero"));
+//            }
+//
+//        }
+//
+//        if (checkMomDad(mom, dad, "emperor", "magnet")) {
+//            dragList.add(dragons.get("crystal"));
+//        } else if (checkMomDad(mom, dad, "magnet", "sunflower")) {
+//            dragList.add(dragons.get("dark_machine"));
+//        } else if (checkMomDad(mom, dad, "lightning", "magnet")) {
+//            dragList.add(dragons.get("narwhale"));
+//        } else if (checkMomDad(mom, dad, "lightning", "sunflower")) {
+//            dragList.add(dragons.get("pixie"));
+//        } else if (checkMomDad(mom, dad, "mercury", "sunflower")) {
+//            dragList.add(dragons.get("siren"));
+//        } else if (checkMomDad(mom, dad, "magnet", "mercury")) {
+//            dragList.add(dragons.get("titan"));
+//        } else if (checkMomDad(mom, dad, "lightning", "mercury")) {
+//            dragList.add(dragons.get("vortex"));
+//        }
 
         if(!vipDragons) {
             for (i = dragList.size() - 1; i >= 0; i--) {
@@ -1248,37 +1295,24 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
     }
 
     private boolean isSpecialBreed(Dragon mom, Dragon dad, Dragon child) {
-        if(checkMomDadChild(mom,dad,child,"bee","tree","amber")) return true;
-        if(checkMomDadChild(mom,dad,child,"clay","toxic","ant")) return true;
-        if(checkMomDadChild(mom,dad,child,"orange","venom","beetle")) return true;
-        if(checkMomDadChild(mom,dad,child,"cloud","agave","bloom")) return true;
-        if(checkMomDadChild(mom,dad,child,"clownfish","seed","box")) return true;
-        if(checkMomDadChild(mom,dad,child,"dark_mech","cockatoo","briar")) return true;
-        if(checkMomDadChild(mom,dad,child,"mist","golden_crow","cockatoo")) return true;
-        if(checkMomDadChild(mom,dad,child,"frosty","fossil","crumbly")) return true;
-        if(checkMomDadChild(mom,dad,child,"armored","alien","dark_mech")) return true;
-        if(checkMomDadChild(mom,dad,child,"magnet","rocker","disco_ball")) return true;
-        if(checkMomDadChild(mom,dad,child,"lightfish","brick","fossil")) return true;
-        if(checkMomDadChild(mom,dad,child,"frostbite","yeti","frosty")) return true;
-        if(checkMomDadChild(mom,dad,child,"blueflame","lava","hellfire")) return true;
-        if(checkMomDadChild(mom,dad,child,"witch","elemental","hypoestes")) return true;
-        if(checkMomDadChild(mom,dad,child,"ice","geiger","origami")) return true;
-        if(checkMomDadChild(mom,dad,child,"tribal","sunflower","owl")) return true;
-        if(checkMomDadChild(mom,dad,child,"superhero","disco_ball","plushie")) return true;
-        if(checkMomDadChild(mom,dad,child,"tiger","jelly","superhero")) return true;
-        return false;
-    }
-
-    private boolean checkMomDadChild(Dragon mom, Dragon dad, Dragon child, String sMom, String sDad, String sChild) {
-        if(child.getId().equalsIgnoreCase(sChild)){
-            if(mom.getId().equalsIgnoreCase(sMom) && dad.getId().equalsIgnoreCase(sDad)
-                    || dad.getId().equalsIgnoreCase(sMom) && mom.getId().equalsIgnoreCase(sDad) ){
+        for (SpecialBreed b: specialBreeds) {
+            if(b.checkMomDadChild(mom,dad,child)){
                 return true;
             }
         }
         return false;
     }
 
+//    private boolean checkMomDadChild(Dragon mom, Dragon dad, Dragon child, String sMom, String sDad, String sChild) {
+//        if(child.getId().equalsIgnoreCase(sChild)){
+//            if(mom.getId().equalsIgnoreCase(sMom) && dad.getId().equalsIgnoreCase(sDad)
+//                    || dad.getId().equalsIgnoreCase(sMom) && mom.getId().equalsIgnoreCase(sDad) ){
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+//
     private boolean checkMomDad(Dragon mom, Dragon dad, String sMom, String sDad) {
 
             if(mom.getId().equalsIgnoreCase(sMom) && dad.getId().equalsIgnoreCase(sDad)
