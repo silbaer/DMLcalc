@@ -18,6 +18,7 @@
             android:title="@string/txt_VipDrachen"
             android:defaultValue="true"/>
     </PreferenceCategory>
+    <!--
     <PreferenceCategory
         android:title="@string/txt_misc_settings"
         android:key="pref_misc_settings">
@@ -28,5 +29,5 @@
             android:title="@string/txt_EnchantBreed"
             android:defaultValue="false"/>
     </PreferenceCategory>
-
+-->
 </PreferenceScreen>
