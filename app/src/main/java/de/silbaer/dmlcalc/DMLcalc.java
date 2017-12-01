@@ -499,13 +499,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         AssetManager assetManager = getAssets();
 
         try {
-//            InputStreamReader is = new InputStreamReader(getAssets().open("dragon.list"));
             InputStreamReader is = new InputStreamReader(getAssets().open("newDragon.list"));
-//
-//        BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
-//        BufferedReader br = null;
-//        StringBuilder sb = new StringBuilder();
-
             BufferedReader reader = new BufferedReader(is);
             //reader.readLine();
             String line;
@@ -513,9 +507,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             while ((line = reader.readLine()) != null) {
                 sb.append(line).append("\n");
             }
-//            while ((line = reader.readLine()) != null) {
 
-//            }
             String dragonJS = sb.toString();
 
             dragonsByElementkey = new Hashtable<>();

@@ -428,5 +428,8 @@
     <string name="dragon_hypnos">Hypnos</string>
     <string name="dragon_poseidon">Poseidon</string>
     <string name="dragon_zeus">Zeus</string>
+    <string name="dragon_muerte">Muerte</string>
+    <string name="dragon_eyeball">Augapfel</string>
+    <string name="dragon_bone">Knochen</string>
 
 </resources>

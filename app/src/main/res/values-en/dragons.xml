@@ -430,5 +430,10 @@
     <string name="dragon_poseidon">Poseidon</string>
     <string name="dragon_zeus">Zeus</string>
 
+    <string name="dragon_muerte">Muerte</string>
+    <string name="dragon_eyeball">Eyeball</string>
+    <string name="dragon_bone">Bone</string>
+
+
 
 </resources>
