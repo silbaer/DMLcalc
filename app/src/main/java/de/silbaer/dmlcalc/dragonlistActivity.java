@@ -1,6 +1,7 @@
 package de.silbaer.dmlcalc;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.IBinder;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentManager;
@@ -168,6 +169,11 @@ implements dragonListFragment.OnListFragmentInteractionListener {
         IBinder b = v.getWindowToken();
         imm.hideSoftInputFromWindow(b, 0);
         Toast.makeText(getBaseContext(), itm.toString() , Toast.LENGTH_SHORT).show();
+        if(DMLcalc.Instance().isBreedable(itm)) {
+            Intent i = new Intent(this, MainActivity.class);
+            i.putExtra("child", itm.getId());
+            startActivity(i);
+        }
 //        Context c = getBaseContext();
 //        Context c2 = getApplicationContext();
 //        dragonListFragment dlf = (dragonListFragment) mList;

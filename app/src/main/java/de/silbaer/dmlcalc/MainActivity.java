@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-    private GoogleApiClient client;
+//    private GoogleApiClient client;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
             textDad.setOnItemClickListener(onDadItemClick);
             textMom.setOnItemClickListener(onMomItemClick);
             textChild.setOnItemClickListener(onChildItemClick);
-            textDad.requestFocus();
+           // textDad.requestFocus();
 
 
             TextView tv = (TextView) findViewById(R.id.textViewDDMLabel);
@@ -186,6 +186,20 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
             e.printStackTrace();
         }
 
+        Intent intent = getIntent();
+        if(intent != null){
+            String childId = intent.getStringExtra("child");
+            String momId = intent.getStringExtra("mom");
+            String dadId = intent.getStringExtra("dad");
+            if(childId != null && childId != ""){
+                Dragon d = dml.dragons.get(childId);
+                if(d != null){
+                    displayHowToResult(d);
+                }
+            }
+
+        }
+
 
       //n  ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,languages);
 
@@ -194,7 +208,7 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+//        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     private AdapterView.OnItemClickListener onChildItemClick = new AdapterView.OnItemClickListener() {

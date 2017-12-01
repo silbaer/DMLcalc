@@ -101,7 +101,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
         vipDragons = sharedPreferences.getBoolean("pref_vipdragons",false);
-        enchantDragons = sharedPreferences.getBoolean("pref_enchantbreed",false);
+  //      enchantDragons = sharedPreferences.getBoolean("pref_enchantbreed",false);
         this.clearCache();
     }
 
@@ -538,7 +538,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
             sharedPref.registerOnSharedPreferenceChangeListener(this);
             vipDragons = sharedPref.getBoolean("pref_vipdragons",false);
-            enchantDragons = sharedPref.getBoolean("pref_enchantbreed",false);
+            enchantDragons = true; //sharedPref.getBoolean("pref_enchantbreed",false);
 
             specialBreeds = new ArrayList<>();
             // Breadable legendary
@@ -1292,6 +1292,24 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             }
         }
         return retval;
+    }
+
+    public boolean isBreedable(Dragon d){
+        if(d.isBreadable()){
+            return true;
+        }
+        if(d.getId().equalsIgnoreCase(getDDW())){
+            return true;
+        }
+        if(d.getId().equalsIgnoreCase(getDDM())){
+            return true;
+        }
+        for (SpecialBreed b: specialBreeds) {
+            if(d.getId().equalsIgnoreCase(b.childId)){
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean isSpecialBreed(Dragon mom, Dragon dad, Dragon child) {
