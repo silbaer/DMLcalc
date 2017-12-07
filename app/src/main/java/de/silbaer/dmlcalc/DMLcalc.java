@@ -757,22 +757,23 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         return retval;
     }
     private boolean canBeDad(Dragon dad, Dragon son) {
-       // boolean retval = false;
+       boolean retval = false;
         if(dad.getId().equalsIgnoreCase( getDDW_mom()) || dad.getId().equalsIgnoreCase(getDDW_dad()) ) {
+            retval = true;
             return true;
-          //  retval = true;
         }
         if(getDDM().equalsIgnoreCase(son.getId())) {
-            for (String e : getDdmElements()) {
-                if (dad.getElements().contains(e)) {
-                    //     retval = true;
-                    return true;
+            for (String ddmElement : getDdmElements()) {
+                List<String> dadElements = dad.getElements();
+                if (dadElements.contains(ddmElement)) {
+                        retval = true;
+                    return true; // Springt ans Ende der Funktion => Retval wird zurück gegeben und nicht "true"!
                 }
             }
         } else {
             for (String e : son.getElements()) {
                 if (dad.getElements().contains(e)) {
-                    // retval = true;
+                     retval = true;
                     return true;
                 }
             }
@@ -780,12 +781,13 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         String sonID = son.getId();
         for (SpecialBreed b: specialBreeds) {
             if(b.childId.equalsIgnoreCase(sonID)){
+                retval = true;
                 return true;
             }
         }
 
-        //return retval;
-        return false;
+        return retval;
+       // return false;
     }
 
     private  List<Pair<Dragon,Double>> _breed(Dragon mom, Dragon dad) {
