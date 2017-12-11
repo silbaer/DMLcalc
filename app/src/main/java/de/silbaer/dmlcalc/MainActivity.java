@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
@@ -339,7 +341,14 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
 //        toastMessage.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.ic_fly, 0, 0, 0);
 //        toastMessage.setGravity(Gravity.CENTER);
 //        toastMessage.setCompoundDrawablePadding(16);
- //       toastView.setBackgroundColor(Color.RED);
+    //    Drawable back =  toastMessage.getBackground();
+
+        GradientDrawable shape =  new GradientDrawable();
+        shape.setCornerRadius(80);
+        shape.setColor(Color.WHITE);
+
+    //    toastView.setBackgroundColor(Color.WHITE);
+        toastView.setBackground(shape);
         toast.show();
         new CountDownTimer(3000, 1000)
         {
