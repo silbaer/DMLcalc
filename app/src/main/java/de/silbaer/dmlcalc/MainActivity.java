@@ -8,7 +8,9 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
+import android.graphics.Color;
 import android.net.Uri;
+import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 
@@ -249,7 +251,7 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
     }
 
     private void displayHowToResult(){
-
+        showDdwDdmWarning();
         dml.howToBreed(this,child);
     }
 
@@ -315,7 +317,45 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
     }
 
+    private void showDdwDdmWarning(){
+        String warning = "";
+        if(dml.getDDM().equals("") && dml.getDDW().equals("")){
+            warning = "DDM & DDW not set!";
+        } else if(dml.getDDM().equals("")){
+            warning = "DDM not set!";
+        } else if(dml.getDDM().equals("")){
+            warning = "DDW not set!";
+        }else{
+            return;
+        }
+
+        final Toast toast = Toast.makeText(getBaseContext(), warning,Toast.LENGTH_SHORT);
+        View toastView = toast.getView(); // This'll return the default View of the Toast.
+
+/* And now you can get the TextView of the default View of the Toast. */
+        TextView toastMessage = (TextView) toastView.findViewById(android.R.id.message);
+        toastMessage.setTextSize(25);
+        toastMessage.setTextColor(Color.RED);
+//        toastMessage.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.ic_fly, 0, 0, 0);
+//        toastMessage.setGravity(Gravity.CENTER);
+//        toastMessage.setCompoundDrawablePadding(16);
+ //       toastView.setBackgroundColor(Color.RED);
+        toast.show();
+        new CountDownTimer(3000, 1000)
+        {
+
+            public void onTick(long millisUntilFinished) {toast.show();}
+            public void onFinish() {toast.show();}
+
+        }.start();
+    }
+
     private void displayBreedResult(){
+
+//        if(dml.getDDM().equals("") || dml.getDDW().equals("")){
+            showDdwDdmWarning();
+//        }
+
 
         dml.breed(this,dad, mom);
 
