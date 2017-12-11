@@ -322,11 +322,11 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
     private void showDdwDdmWarning(){
         String warning = "";
         if(dml.getDDM().equals("") && dml.getDDW().equals("")){
-            warning = "DDM & DDW not set!";
+            warning = getString(R.string.txt_warning_ddm_ddw_not_set);
         } else if(dml.getDDM().equals("")){
-            warning = "DDM not set!";
-        } else if(dml.getDDM().equals("")){
-            warning = "DDW not set!";
+            warning = getString(R.string.txt_warning_ddm_not_set);
+        } else if(dml.getDDW().equals("")){
+            warning = getString(R.string.txt_warning_ddw_not_set);
         }else{
             return;
         }
@@ -336,19 +336,22 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
 
 /* And now you can get the TextView of the default View of the Toast. */
         TextView toastMessage = (TextView) toastView.findViewById(android.R.id.message);
-        toastMessage.setTextSize(25);
-        toastMessage.setTextColor(Color.RED);
+        toastMessage.setTextSize(20);
+        toastMessage.setTextColor(Color.WHITE);
 //        toastMessage.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.ic_fly, 0, 0, 0);
 //        toastMessage.setGravity(Gravity.CENTER);
 //        toastMessage.setCompoundDrawablePadding(16);
     //    Drawable back =  toastMessage.getBackground();
 
+
         GradientDrawable shape =  new GradientDrawable();
         shape.setCornerRadius(80);
-        shape.setColor(Color.WHITE);
+        shape.setColor(Color.RED);
+//        shape.setStroke(10,Color.RED);
 
-    //    toastView.setBackgroundColor(Color.WHITE);
+  //      toastView.setBackgroundColor(Color.WHITE);
         toastView.setBackground(shape);
+
         toast.show();
         new CountDownTimer(3000, 1000)
         {
@@ -360,14 +363,8 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
     }
 
     private void displayBreedResult(){
-
-//        if(dml.getDDM().equals("") || dml.getDDW().equals("")){
-            showDdwDdmWarning();
-//        }
-
-
+        showDdwDdmWarning();
         dml.breed(this,dad, mom);
-
     }
 
     private AdapterView.OnItemClickListener onMomItemClick = new AdapterView.OnItemClickListener(){

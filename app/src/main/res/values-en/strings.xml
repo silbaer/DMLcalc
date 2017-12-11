@@ -61,4 +61,9 @@
     <string name="txt_EnchantBreed">Enchant breeding</string>
     <string name="txt_NotUseEnchantBreed">Do not use enchant breeding</string>
     <string name="txt_UseEnchantBreed">Use enchant breeding</string>
+
+    <string name="txt_warning_ddm_ddw_not_set">Dragon of month and dragon of week not set</string>
+    <string name="txt_warning_ddw_not_set">Dragon of week not set</string>
+    <string name="txt_warning_ddm_not_set">Dragon of month not set</string>
+
 </resources>

@@ -63,6 +63,9 @@
     <string name="txt_EnchantBreed">Verzauberte Zucht</string>
     <string name="txt_NotUseEnchantBreed">Verzauberte Zucht nicht benutzen</string>
     <string name="txt_UseEnchantBreed">Verzauberte Zucht benutzen</string>
+    <string name="txt_warning_ddm_ddw_not_set">Monatsdrache und Wochendrache nicht gesetzt</string>
+    <string name="txt_warning_ddw_not_set">Wochendrache nicht gesetzt</string>
+    <string name="txt_warning_ddm_not_set">Monatsdrache nicht gesetzt</string>
 
 
 
