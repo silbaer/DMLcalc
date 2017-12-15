@@ -16,7 +16,7 @@
             android:summaryOn="@string/txt_UseVipDragons"
             android:summaryOff="@string/txt_NotUseVipDragons"
             android:title="@string/txt_VipDrachen"
-            android:defaultValue="true"/>
+            android:defaultValue="false"/>
     </PreferenceCategory>
     <!--
     <PreferenceCategory
