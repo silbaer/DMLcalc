@@ -130,8 +130,12 @@ public class DragonListViewAdapter extends RecyclerView.Adapter<DragonListViewAd
 //            layerDrawable.setLayerSize(2,200,200);
 //            layerDrawable.setLayerInsetLeft(2,300);
 //            layerDrawable.setLayerInsetTop(2,300);
-
-
+        } else if(holder.mItem.isEnchatmentBreed()){
+            resourceId = resources.getIdentifier("enchanted_breeding_icon", "drawable", myContext.getPackageName());
+            scaledLayers.add(getScaledDrawable(resourceId,200,200));
+        } else if(!holder.mItem.isBreadable()){
+            resourceId = resources.getIdentifier("ltd_icon", "drawable", myContext.getPackageName());
+            scaledLayers.add(getScaledDrawable(resourceId,200,200));
         }
 
         LayerDrawable layerDrawable = new LayerDrawable(scaledLayers.toArray(new Drawable[0]));
@@ -149,7 +153,7 @@ public class DragonListViewAdapter extends RecyclerView.Adapter<DragonListViewAd
 
 
 
-        holder.mDragonName.setText(holder.mItem.toString());
+        holder.mDragonName.setText(holder.mItem.toString().replace("+","").replace("&","").replace("*",""));
         setElement(holder.mElement1,holder.mItem.getElement1());
         setElement(holder.mElement2,holder.mItem.getElement2());
         setElement(holder.mElement3,holder.mItem.getElement3());
