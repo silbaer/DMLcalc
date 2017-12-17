@@ -607,7 +607,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             if (!d.isUnreleased()
                     && !d.isBoss()
                     //    && !d.isEvent()
-                    && !d.isVIP()
+                    // && !d.isVIP()
                     ) {
                 if (odds.containsKey(d.getType())) {
                     sum += odds.get(d.getType());
