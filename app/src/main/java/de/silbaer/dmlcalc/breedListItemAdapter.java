@@ -110,10 +110,12 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
         setElement(iv,tmp);
 
         ImageView mDragonImage = (ImageView) view.findViewById(R.id.dragonPic);
-        String resName = d.first.getId() + "_icon" ;
-        Resources resources = context.getResources();
-        final int resourceId = resources.getIdentifier(resName, "drawable", context.getPackageName());
-        mDragonImage.setImageResource( resourceId);
+//        String resName = d.first.getId() + "_icon" ;
+//        Resources resources = context.getResources();
+//        final int resourceId = resources.getIdentifier(resName, "drawable", context.getPackageName());
+//        mDragonImage.setImageResource( resourceId);
+
+        mDragonImage.setImageDrawable(DMLcalc.Instance().getDragonIcon(d.first));
 
 
     }
