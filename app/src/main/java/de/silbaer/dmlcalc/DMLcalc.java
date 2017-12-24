@@ -10,10 +10,22 @@ import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
+import android.support.annotation.IntRange;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.ArraySet;
+import android.util.Log;
 import android.util.Pair;
+import android.util.TypedValue;
 
 import com.google.gson.Gson;
 
@@ -89,6 +101,108 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
     public static Context getContext() {
         return getApplication().getApplicationContext();
+    }
+
+    private Drawable getScaledDrawable(int resourceID, int width, int height){
+
+        Resources resources = getContext().getResources();
+
+        // Read your drawable from somewhere
+        Drawable dr = resources.getDrawable(resourceID);
+        Bitmap bitmap = ((BitmapDrawable) dr).getBitmap();
+// Scale it to width x height
+        Drawable d = new BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, width, height, true));
+// Set your new, scaled drawable "d"
+        return d;
+    }
+
+    private  Map<String,Drawable> dragonIconCache = new Hashtable<String,Drawable>();
+
+
+    public Drawable getDragonIcon(String id){
+        Dragon dragon = dragons.get(id);
+        return getDragonIcon(dragon);
+    }
+
+    public static int convertSpToPixels(float sp, Context context) {
+        int px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, context.getResources().getDisplayMetrics());
+        return px;
+    }
+
+    public Drawable getDragonIcon( Dragon dragon){
+
+        try {
+            String id = dragon.getId();
+//            Log.d("DMLcalc",id);
+            if (dragonIconCache.containsKey(id)) {
+                return dragonIconCache.get(id);
+            }
+
+
+            Context myContext = getContext();
+            int iconSize = convertSpToPixels(48,myContext);
+            String resName = id + "_icon";
+            Resources resources = myContext.getResources();
+            List<Drawable> scaledLayers = new ArrayList<Drawable>();
+
+
+            int resourceId = resources.getIdentifier(resName, "drawable", myContext.getPackageName());
+
+            if (resourceId == 0) {
+                resourceId = resources.getIdentifier("unknown_icon", "drawable", myContext.getPackageName());
+            }
+
+            scaledLayers.add(getScaledDrawable(resourceId, iconSize, iconSize));
+
+            String type = dragon.getType();
+            if ("C".equalsIgnoreCase(type)) {
+                resourceId = resources.getIdentifier("classification_corner_common", "drawable", myContext.getPackageName());
+                scaledLayers.add(getScaledDrawable(resourceId, iconSize/2, iconSize/2));
+            } else if ("D".equalsIgnoreCase(type)) {
+                resourceId = resources.getIdentifier("classification_corner_divine", "drawable", myContext.getPackageName());
+                scaledLayers.add(getScaledDrawable(resourceId, iconSize/2, iconSize/2));
+            } else if ("E".equalsIgnoreCase(type)) {
+                resourceId = resources.getIdentifier("classification_corner_epic", "drawable", myContext.getPackageName());
+                scaledLayers.add(getScaledDrawable(resourceId, iconSize/2, iconSize/2));
+            } else if ("L".equalsIgnoreCase(type)) {
+                resourceId = resources.getIdentifier("classification_corner_legendary", "drawable", myContext.getPackageName());
+                scaledLayers.add(getScaledDrawable(resourceId, iconSize/2, iconSize/2));
+            } else if ("R".equalsIgnoreCase(type)) {
+                resourceId = resources.getIdentifier("classification_corner_rare", "drawable", myContext.getPackageName());
+                scaledLayers.add(getScaledDrawable(resourceId, iconSize/2, iconSize/2));
+            } else if ("U".equalsIgnoreCase(type)) {
+                resourceId = resources.getIdentifier("classification_corner_uncommon", "drawable", myContext.getPackageName());
+                scaledLayers.add(getScaledDrawable(resourceId, iconSize/2, iconSize/2));
+            } else {
+                resourceId = resources.getIdentifier("classification_corner_empty", "drawable", myContext.getPackageName());
+                scaledLayers.add(getScaledDrawable(resourceId, iconSize/2, iconSize/2));
+            }
+
+            if (dragon.isVIP()) {
+                resourceId = resources.getIdentifier("vip_dragons_icon", "drawable", myContext.getPackageName());
+                scaledLayers.add(getScaledDrawable(resourceId, iconSize/5*2, iconSize/5*2));
+            } else if (dragon.isEnchatmentBreed()) {
+                resourceId = resources.getIdentifier("enchanted_breeding_icon", "drawable", myContext.getPackageName());
+                scaledLayers.add(getScaledDrawable(resourceId, iconSize/5*2, iconSize/5*2));
+            } else if (!dragon.isBreadable()) {
+                resourceId = resources.getIdentifier("ltd_icon", "drawable", myContext.getPackageName());
+                scaledLayers.add(getScaledDrawable(resourceId, iconSize/5*2, iconSize/5*2));
+            }
+
+            LayerDrawable layerDrawable = new LayerDrawable(scaledLayers.toArray(new Drawable[0]));
+            layerDrawable.setLayerInset(1, iconSize/2, 0, 0, iconSize/2);
+            if (scaledLayers.size() > 2) {
+                layerDrawable.setLayerInset(2, iconSize/5*3, iconSize/5*3, 0, 0);
+            }
+
+            scaledLayers.clear();
+
+            dragonIconCache.put(id, layerDrawable);
+            return layerDrawable;
+        } catch (Exception ex){
+            return new ColorDrawable();
+        }
+
     }
 
 
@@ -363,20 +477,6 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
     }
 
-//    public ArrayList<Dragon> getDragonsToShow() {
-//        ArrayList<Dragon> retval = new ArrayList<Dragon>();
-//        retval.addAll(dragons.values());
-//        for(int i = retval.size()-1; i >= 0; i--){
-//            Dragon d = retval.get(i);
-//            if(d.isBoss() || d.isUnreleased()){
-//                retval.remove(d);
-//            }
-//            if(!vipDragons  &&  d.isVIP()){
-//                retval.remove(d);
-//            }
-//        }
-//        return retval;
-//    }
 
     public void clearCache(){
         _breedCache.clear();
@@ -384,12 +484,6 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
     public void saveCache(){
 
 
-//        SharedPreferences prefs = getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
-//        SharedPreferences.Editor editor = prefs.edit();
-//        Gson gson = new Gson();
-//        String json = gson.toJson(_breedCache);
-//        editor.putString("breedCache",json);
-//        editor.commit();
 
     }
     public void loadCache(){
@@ -524,8 +618,30 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
                         dragonsByElementkey.put(elementKey,new ArrayList<Dragon>());
                     }
                     dragonsByElementkey.get(elementKey).add(d);
+              //      getDragonIcon(d);
                 }
             }
+
+
+            Thread thread = new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        for (Dragon d: dragons.values()) {
+                            getDragonIcon(d);
+                        }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+
+            thread.start();
+
+
+
+
             Context context =   getBaseContext();
             sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
             sharedPref.registerOnSharedPreferenceChangeListener(this);
@@ -570,33 +686,30 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-
         updateBreedResults();
 
 
     }
 
-    private DMLcalc(String dragonJS){
-        odds = new Hashtable<String,Double>();
-        odds.put("C",48d);
-        odds.put("U",21d);
-        odds.put("R",15d);
-        odds.put("E",10d);
-        odds.put("L", 6d);
-
-
-        Dragon d;
-        String[] lines = dragonJS.split("[\\n]+");
-        for (String line : lines) {
-            String l = line.trim();
-            if(!l.isEmpty()){
-                d = new Dragon(l,true);
-                dragons.put(d.getId(),d);
-            }
-        }
-    }
+//    private DMLcalc(String dragonJS){
+//        odds = new Hashtable<String,Double>();
+//        odds.put("C",48d);
+//        odds.put("U",21d);
+//        odds.put("R",15d);
+//        odds.put("E",10d);
+//        odds.put("L", 6d);
+//
+//
+//        Dragon d;
+//        String[] lines = dragonJS.split("[\\n]+");
+//        for (String line : lines) {
+//            String l = line.trim();
+//            if(!l.isEmpty()){
+//                d = new Dragon(l,true);
+//                dragons.put(d.getId(),d);
+//            }
+//        }
+//    }
 
 
 
