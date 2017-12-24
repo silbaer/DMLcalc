@@ -62,10 +62,12 @@ public class AutoColpleteDragonAdapter extends ArrayAdapter<Dragon> implements F
 //              Log.i(MY_DEBUG_TAG, "getView Customer Name:"+customer.getName());
                 mDragonName.setText(dragon.toString());
             }
-            String resName = dragon.getId() + "_icon" ;
-            Resources resources = myContext.getResources();
-            final int resourceId = resources.getIdentifier(resName, "drawable", myContext.getPackageName());
-            mDragonImage.setImageResource( resourceId);
+//            String resName = dragon.getId() + "_icon" ;
+//            Resources resources = myContext.getResources();
+//            final int resourceId = resources.getIdentifier(resName, "drawable", myContext.getPackageName());
+//            mDragonImage.setImageResource( resourceId);
+
+            mDragonImage.setImageDrawable(DMLcalc.Instance().getDragonIcon(dragon));
 
             setElement(mElement1,dragon.getElement1());
             setElement(mElement2,dragon.getElement2());

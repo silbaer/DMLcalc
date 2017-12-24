@@ -21,11 +21,6 @@ import java.util.List;
 import de.silbaer.dmlcalc.dragonListFragment.OnListFragmentInteractionListener;
 
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
- */
 public class DragonListViewAdapter extends RecyclerView.Adapter<DragonListViewAdapter.ViewHolder> {
 
     private  List<Dragon> mValues;
@@ -45,19 +40,19 @@ public class DragonListViewAdapter extends RecyclerView.Adapter<DragonListViewAd
                 .inflate(R.layout.fragment_dragon, parent, false);
         return new ViewHolder(view);
     }
-
-    private Drawable getScaledDrawable(int resourceID, int width, int height){
-
-        Resources resources = myContext.getResources();
-
-        // Read your drawable from somewhere
-        Drawable dr = resources.getDrawable(resourceID);
-        Bitmap bitmap = ((BitmapDrawable) dr).getBitmap();
-// Scale it to width x height
-        Drawable d = new BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, width, height, true));
-// Set your new, scaled drawable "d"
-        return d;
-    }
+//
+//    private Drawable getScaledDrawable(int resourceID, int width, int height){
+//
+//        Resources resources = myContext.getResources();
+//
+//        // Read your drawable from somewhere
+//        Drawable dr = resources.getDrawable(resourceID);
+//        Bitmap bitmap = ((BitmapDrawable) dr).getBitmap();
+//// Scale it to width x height
+//        Drawable d = new BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, width, height, true));
+//// Set your new, scaled drawable "d"
+//        return d;
+//    }
 
 
     @Override
@@ -73,83 +68,83 @@ public class DragonListViewAdapter extends RecyclerView.Adapter<DragonListViewAd
         } else {
             holder.mView.setBackgroundColor(ResourcesCompat.getColor(myContext.getResources(), R.color.colorListOdd, null));
         }
+//
+//        String resName = holder.mItem.getId() + "_icon" ;
+//        Resources resources = myContext.getResources();
+//        int resourceId = resources.getIdentifier(resName, "drawable", myContext.getPackageName());
+//
+//
+//     //   holder.mDragonImage.setImageResource( resourceId);
+//        if(resourceId == 0){
+//            resourceId = resources.getIdentifier("unknown_icon", "drawable", myContext.getPackageName());
+//        }
+//
+//
+//
+//        List<Drawable> scaledLayers = new ArrayList<Drawable>();
+//
+//        scaledLayers.add(getScaledDrawable(resourceId,500,500));
+////        layers[0] = resources.getDrawable(resourceId);
+//
+//        String type = holder.mItem.getType();
+//        if("C".equalsIgnoreCase(type)){
+//            resourceId = resources.getIdentifier("classification_corner_common", "drawable", myContext.getPackageName());
+//            scaledLayers.add(getScaledDrawable(resourceId,250,250));
+////            layers[1] = resources.getDrawable(resourceId);
+//        } else if("D".equalsIgnoreCase(type)){
+//            resourceId = resources.getIdentifier("classification_corner_divine", "drawable", myContext.getPackageName());
+//            scaledLayers.add(getScaledDrawable(resourceId,250,250));
+////            layers[1] = resources.getDrawable(resourceId);
+//        } else if("E".equalsIgnoreCase(type)){
+//            resourceId = resources.getIdentifier("classification_corner_epic", "drawable", myContext.getPackageName());
+//            scaledLayers.add(getScaledDrawable(resourceId,250,250));
+////            layers[1] = resources.getDrawable(resourceId);
+//        } else if("L".equalsIgnoreCase(type)){
+//            resourceId = resources.getIdentifier("classification_corner_legendary", "drawable", myContext.getPackageName());
+//            scaledLayers.add(getScaledDrawable(resourceId,250,250));
+////            layers[1] = resources.getDrawable(resourceId);
+//        } else if("R".equalsIgnoreCase(type)){
+//            resourceId = resources.getIdentifier("classification_corner_rare", "drawable", myContext.getPackageName());
+//            scaledLayers.add(getScaledDrawable(resourceId,250,250));
+////            layers[1] = resources.getDrawable(resourceId);
+//        } else if("U".equalsIgnoreCase(type)){
+//            resourceId = resources.getIdentifier("classification_corner_uncommon", "drawable", myContext.getPackageName());
+//            scaledLayers.add(getScaledDrawable(resourceId,250,250));
+////            layers[1] = resources.getDrawable(resourceId);
+//        } else {
+//            resourceId = resources.getIdentifier("classification_corner_empty", "drawable", myContext.getPackageName());
+//            scaledLayers.add(getScaledDrawable(resourceId,250,250));
+////            layers[1] = resources.getDrawable(resourceId);
+//        }
+//
+//        if(holder.mItem.isVIP()) {
+//            resourceId = resources.getIdentifier("vip_dragons_icon", "drawable", myContext.getPackageName());
+//            scaledLayers.add(getScaledDrawable(resourceId,200,200));
+////            Drawable d = resources.getDrawable(resourceId);
+////            layerDrawable.addLayer(d);
+////            layerDrawable.setLayerSize(2,200,200);
+////            layerDrawable.setLayerInsetLeft(2,300);
+////            layerDrawable.setLayerInsetTop(2,300);
+//        } else if(holder.mItem.isEnchatmentBreed()){
+//            resourceId = resources.getIdentifier("enchanted_breeding_icon", "drawable", myContext.getPackageName());
+//            scaledLayers.add(getScaledDrawable(resourceId,200,200));
+//        } else if(!holder.mItem.isBreadable()){
+//            resourceId = resources.getIdentifier("ltd_icon", "drawable", myContext.getPackageName());
+//            scaledLayers.add(getScaledDrawable(resourceId,200,200));
+//        }
+//
+//        LayerDrawable layerDrawable = new LayerDrawable(scaledLayers.toArray(new Drawable[0]));
+////        layerDrawable.setLayerSize(0,500,500);
+////        layerDrawable.setLayerSize(1,250,250);
+////        layerDrawable.setLayerInsetLeft(1,250);
+//        layerDrawable.setLayerInset(1,250,0,0,250);
+//        if(scaledLayers.size() > 2){
+//            layerDrawable.setLayerInset(2,300,300,0,0);
+//        }
+//
 
-        String resName = holder.mItem.getId() + "_icon" ;
-        Resources resources = myContext.getResources();
-        int resourceId = resources.getIdentifier(resName, "drawable", myContext.getPackageName());
 
-
-     //   holder.mDragonImage.setImageResource( resourceId);
-        if(resourceId == 0){
-            resourceId = resources.getIdentifier("unknown_icon", "drawable", myContext.getPackageName());
-        }
-
-
-
-        List<Drawable> scaledLayers = new ArrayList<Drawable>();
-
-        scaledLayers.add(getScaledDrawable(resourceId,500,500));
-//        layers[0] = resources.getDrawable(resourceId);
-
-        String type = holder.mItem.getType();
-        if("C".equalsIgnoreCase(type)){
-            resourceId = resources.getIdentifier("classification_corner_common", "drawable", myContext.getPackageName());
-            scaledLayers.add(getScaledDrawable(resourceId,250,250));
-//            layers[1] = resources.getDrawable(resourceId);
-        } else if("D".equalsIgnoreCase(type)){
-            resourceId = resources.getIdentifier("classification_corner_divine", "drawable", myContext.getPackageName());
-            scaledLayers.add(getScaledDrawable(resourceId,250,250));
-//            layers[1] = resources.getDrawable(resourceId);
-        } else if("E".equalsIgnoreCase(type)){
-            resourceId = resources.getIdentifier("classification_corner_epic", "drawable", myContext.getPackageName());
-            scaledLayers.add(getScaledDrawable(resourceId,250,250));
-//            layers[1] = resources.getDrawable(resourceId);
-        } else if("L".equalsIgnoreCase(type)){
-            resourceId = resources.getIdentifier("classification_corner_legendary", "drawable", myContext.getPackageName());
-            scaledLayers.add(getScaledDrawable(resourceId,250,250));
-//            layers[1] = resources.getDrawable(resourceId);
-        } else if("R".equalsIgnoreCase(type)){
-            resourceId = resources.getIdentifier("classification_corner_rare", "drawable", myContext.getPackageName());
-            scaledLayers.add(getScaledDrawable(resourceId,250,250));
-//            layers[1] = resources.getDrawable(resourceId);
-        } else if("U".equalsIgnoreCase(type)){
-            resourceId = resources.getIdentifier("classification_corner_uncommon", "drawable", myContext.getPackageName());
-            scaledLayers.add(getScaledDrawable(resourceId,250,250));
-//            layers[1] = resources.getDrawable(resourceId);
-        } else {
-            resourceId = resources.getIdentifier("classification_corner_empty", "drawable", myContext.getPackageName());
-            scaledLayers.add(getScaledDrawable(resourceId,250,250));
-//            layers[1] = resources.getDrawable(resourceId);
-        }
-
-        if(holder.mItem.isVIP()) {
-            resourceId = resources.getIdentifier("vip_dragons_icon", "drawable", myContext.getPackageName());
-            scaledLayers.add(getScaledDrawable(resourceId,200,200));
-//            Drawable d = resources.getDrawable(resourceId);
-//            layerDrawable.addLayer(d);
-//            layerDrawable.setLayerSize(2,200,200);
-//            layerDrawable.setLayerInsetLeft(2,300);
-//            layerDrawable.setLayerInsetTop(2,300);
-        } else if(holder.mItem.isEnchatmentBreed()){
-            resourceId = resources.getIdentifier("enchanted_breeding_icon", "drawable", myContext.getPackageName());
-            scaledLayers.add(getScaledDrawable(resourceId,200,200));
-        } else if(!holder.mItem.isBreadable()){
-            resourceId = resources.getIdentifier("ltd_icon", "drawable", myContext.getPackageName());
-            scaledLayers.add(getScaledDrawable(resourceId,200,200));
-        }
-
-        LayerDrawable layerDrawable = new LayerDrawable(scaledLayers.toArray(new Drawable[0]));
-//        layerDrawable.setLayerSize(0,500,500);
-//        layerDrawable.setLayerSize(1,250,250);
-//        layerDrawable.setLayerInsetLeft(1,250);
-        layerDrawable.setLayerInset(1,250,0,0,250);
-        if(scaledLayers.size() > 2){
-            layerDrawable.setLayerInset(2,300,300,0,0);
-        }
-
-
-
-        holder.mDragonImage.setImageDrawable(layerDrawable);
+        holder.mDragonImage.setImageDrawable(DMLcalc.Instance().getDragonIcon(holder.mItem));
 
 
 
