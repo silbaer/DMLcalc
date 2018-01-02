@@ -480,6 +480,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
     public void clearCache(){
         _breedCache.clear();
+        updateBreedResults();
     }
     public void saveCache(){
 
