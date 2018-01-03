@@ -115,7 +115,8 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
 //        final int resourceId = resources.getIdentifier(resName, "drawable", context.getPackageName());
 //        mDragonImage.setImageResource( resourceId);
 
-        mDragonImage.setImageDrawable(DMLcalc.Instance().getDragonIcon(d.first));
+//        mDragonImage.setImageDrawable(DMLcalc.Instance().getDragonIcon(d.first));
+        DMLcalc.Instance().loadDragonIcon(d.first.getId(),mDragonImage);
 
 
     }
