@@ -26,10 +26,14 @@ import android.util.ArraySet;
 import android.util.Log;
 import android.util.Pair;
 import android.util.TypedValue;
+import android.widget.ImageView;
 
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -116,27 +120,39 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         return d;
     }
 
-    private  Map<String,Drawable> dragonIconCache = new Hashtable<String,Drawable>();
-
-
-    public Drawable getDragonIcon(String id){
-        Dragon dragon = dragons.get(id);
-        return getDragonIcon(dragon);
-    }
+   // private  Map<String,Drawable> dragonIconCache = new Hashtable<String,Drawable>();
 
     public static int convertSpToPixels(float sp, Context context) {
         int px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, context.getResources().getDisplayMetrics());
         return px;
     }
 
-    public Drawable getDragonIcon( Dragon dragon){
+    public void loadDragonIcon(String id, ImageView view){
+
+        String filename = id + "_icon.png";
+
+        File file = new File(getContext().getFilesDir(), filename);
+        if(file.exists()) {
+            Picasso.with(getContext()).load(file).into(view);
+        } else {
+            createDragonIcon(id);
+            Picasso.with(getContext()).load(file).into(view);
+// Do something else.
+        }
+    }
+    public void createDragonIcon(String id){
+        Dragon dragon = dragons.get(id);
+        createDragonIcon(dragon);
+    }
+
+    public void createDragonIcon( Dragon dragon){
 
         try {
             String id = dragon.getId();
 //            Log.d("DMLcalc",id);
-            if (dragonIconCache.containsKey(id)) {
-                return dragonIconCache.get(id);
-            }
+//            if (dragonIconCache.containsKey(id)) {
+//                return dragonIconCache.get(id);
+//            }
 
 
             Context myContext = getContext();
@@ -197,10 +213,38 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
             scaledLayers.clear();
 
-            dragonIconCache.put(id, layerDrawable);
-            return layerDrawable;
+            String filename = id + "_icon.png";
+
+            FileOutputStream outputStream = null;
+            layerDrawable.setBounds(0,0,iconSize,iconSize);
+
+            try {
+                outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
+                Bitmap b = Bitmap.createBitmap(iconSize,iconSize, Bitmap.Config.ARGB_8888);
+                layerDrawable.draw(new Canvas(b));
+                b.compress(Bitmap.CompressFormat.PNG, 100, outputStream); // bmp is your Bitmap instance
+                // PNG is a lossless format, the compression factor (100) is ignored
+
+
+
+
+             //   outputStream.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (outputStream != null) {
+                        outputStream.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        //    dragonIconCache.put(id, layerDrawable);
+       //     return layerDrawable;
         } catch (Exception ex){
-            return new ColorDrawable();
+        //    return new ColorDrawable();
         }
 
     }
@@ -628,7 +672,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
                 public void run() {
                     try {
                         for (Dragon d: dragons.values()) {
-                            getDragonIcon(d);
+                            createDragonIcon(d);
                         }
 
                     } catch (Exception e) {

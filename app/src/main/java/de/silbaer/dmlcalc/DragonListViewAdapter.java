@@ -144,7 +144,8 @@ public class DragonListViewAdapter extends RecyclerView.Adapter<DragonListViewAd
 //
 
 
-        holder.mDragonImage.setImageDrawable(DMLcalc.Instance().getDragonIcon(holder.mItem));
+ //       holder.mDragonImage.setImageDrawable(DMLcalc.Instance().getDragonIcon(holder.mItem));
+        DMLcalc.Instance().loadDragonIcon(holder.mItem.getId(),holder.mDragonImage);
 
 
 
