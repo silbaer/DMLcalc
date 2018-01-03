@@ -35,6 +35,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -120,6 +121,32 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         return d;
     }
 
+    private Drawable getScaledDrawable(String assetsUrl, int width, int height){
+        Drawable drawable = null;
+        InputStream inputStream = null;
+
+        try {
+            Resources resources = getContext().getResources();
+            inputStream = getContext().getAssets().open(assetsUrl);
+            Drawable dr = Drawable.createFromStream(inputStream, null);
+            Bitmap bitmap = ((BitmapDrawable) dr).getBitmap();
+// Scale it to width x height
+            drawable = new BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, width, height, true));
+// Set your new, scaled drawable "d"
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if(inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return drawable;
+    }
+
    // private  Map<String,Drawable> dragonIconCache = new Hashtable<String,Drawable>();
 
     public static int convertSpToPixels(float sp, Context context) {
@@ -131,13 +158,13 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
         String filename = id + "_icon.png";
 
+
         File file = new File(getContext().getFilesDir(), filename);
         if(file.exists()) {
             Picasso.with(getContext()).load(file).into(view);
         } else {
             createDragonIcon(id);
             Picasso.with(getContext()).load(file).into(view);
-// Do something else.
         }
     }
     public void createDragonIcon(String id){
@@ -154,6 +181,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 //                return dragonIconCache.get(id);
 //            }
 
+            String assetname = "dragonicons/" + id + "_icon.png";
 
             Context myContext = getContext();
             int iconSize = convertSpToPixels(48,myContext);
@@ -163,12 +191,20 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
 
             int resourceId = resources.getIdentifier(resName, "drawable", myContext.getPackageName());
+//
+//            if (resourceId == 0) {
+//                resourceId = resources.getIdentifier("unknown_icon", "drawable", myContext.getPackageName());
+//            }
+//
+//            scaledLayers.add(getScaledDrawable(resourceId, iconSize, iconSize));
 
-            if (resourceId == 0) {
-                resourceId = resources.getIdentifier("unknown_icon", "drawable", myContext.getPackageName());
+            Drawable assetsIcon = getScaledDrawable(assetname,iconSize, iconSize);
+            if(assetsIcon == null){
+                assetsIcon = getScaledDrawable("dragonicons/" + "unknown" + "_icon.png",iconSize, iconSize);
             }
 
-            scaledLayers.add(getScaledDrawable(resourceId, iconSize, iconSize));
+            scaledLayers.add(assetsIcon);
+
 
             String type = dragon.getType();
             if ("C".equalsIgnoreCase(type)) {
@@ -244,7 +280,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         //    dragonIconCache.put(id, layerDrawable);
        //     return layerDrawable;
         } catch (Exception ex){
-        //    return new ColorDrawable();
+            ex.printStackTrace();
         }
 
     }
