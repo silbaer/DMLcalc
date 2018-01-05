@@ -431,5 +431,10 @@
     <string name="dragon_muerte">Muerte</string>
     <string name="dragon_eyeball">Augapfel</string>
     <string name="dragon_bone">Knochen</string>
+    <string name="dragon_bell">Glöckchen</string>
+    <string name="dragon_frost_fairy">Frost Fairy</string>
+    <string name="dragon_snow_queen">Schneekönigin</string>
+    <string name="dragon_snow_sport">Snow Sport</string>
+
 
 </resources>
