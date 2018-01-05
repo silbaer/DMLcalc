@@ -930,6 +930,9 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         int elementCount = son.getElements().size();
 
         for (String eleKey: dragonsByElementkey.keySet()) {
+            if(eleKey.contains("legendary") || eleKey.contains("divine")){
+                continue;
+            }
             if(eleKey.contains(son.getElement1())){
                 L1.add(eleKey);
             }
@@ -955,11 +958,11 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         }
         Dragon mom, dad;
         Hashtable<String,Pair<String,String>> breedCombos = new Hashtable<>();
-        String comboKey;
+        String comboKey, comboKey2;
         if(elementCount == 1){
             for (int x = 0; x < L1.size(); x++) {
                 for (int y = x + 1; y < L1.size(); y++) {
-                   comboKey = L1.get(x) + L1.get(y);
+                   comboKey = L1.get(x) + "/" + L1.get(y);
                     if(!breedCombos.containsKey(comboKey)){
                         breedCombos.put(comboKey, new Pair<String, String>(L1.get(x),L1.get(y)));
                     }
@@ -970,8 +973,9 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         if(elementCount == 2){
             for (int x = 0; x < L1.size(); x++) {
                 for (int y = 0; y < L2.size(); y++) {
-                    comboKey = L1.get(x) + L2.get(y);
-                    if(!breedCombos.containsKey(comboKey)){
+                    comboKey = L1.get(x) + "/" + L2.get(y);
+                    comboKey2 = L2.get(y) + "/" + L1.get(x);
+                    if(!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)){
                         breedCombos.put(comboKey, new Pair<String, String>(L1.get(x),L2.get(y)));
                     }
                 }
@@ -980,24 +984,27 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         if(elementCount == 3){
             for (int x = 0; x < L1.size(); x++) {
                 for (int y = 0; y < L23.size(); y++) {
-                    comboKey = L1.get(x) + L23.get(y);
-                    if(!breedCombos.containsKey(comboKey)){
+                    comboKey = L1.get(x) + "/" + L23.get(y);
+                    comboKey2 = L23.get(y) + "/" + L1.get(x);
+                    if(!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)){
                         breedCombos.put(comboKey, new Pair<String, String>(L1.get(x),L23.get(y)));
                     }
                 }
             }
             for (int x = 0; x < L2.size(); x++) {
                 for (int y = 0; y < L13.size(); y++) {
-                    comboKey = L2.get(x) + L13.get(y);
-                    if(!breedCombos.containsKey(comboKey)){
+                    comboKey = L2.get(x) + "/" + L13.get(y);
+                    comboKey2 = L13.get(y) + "/" + L2.get(x);
+                    if(!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)){
                         breedCombos.put(comboKey, new Pair<String, String>(L2.get(x),L13.get(y)));
                     }
                 }
             }
             for (int x = 0; x < L3.size(); x++) {
                 for (int y = 0; y < L12.size(); y++) {
-                    comboKey = L3.get(x) + L12.get(y);
-                    if(!breedCombos.containsKey(comboKey)){
+                    comboKey = L3.get(x) + "/" + L12.get(y);
+                    comboKey2 = L12.get(y) + "/" + L3.get(x);
+                    if(!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)){
                         breedCombos.put(comboKey, new Pair<String, String>(L3.get(x),L12.get(y)));
                     }
                 }
@@ -1024,7 +1031,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
     }
 
     private List<Pair<Pair<Dragon,Dragon>,Double>> _howToBreed(Dragon son) {
-        List<Pair<Pair<Dragon,Dragon>,Double>> retval;
+        List<Pair<Pair<Dragon,Dragon>,Double>> retval = null;
 
       //  retval = (List<Pair<Pair<Dragon,Dragon>,Double>>) getFromDb(son.getId());
         retval =  _howToBreed2(son);
