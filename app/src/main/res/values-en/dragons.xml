@@ -434,6 +434,10 @@
     <string name="dragon_eyeball">Eyeball</string>
     <string name="dragon_bone">Bone</string>
 
+    <string name="dragon_bell">Bell</string>
+    <string name="dragon_frost_fairy">Frost Fairy</string>
+    <string name="dragon_snow_queen">Snow Queen</string>
+    <string name="dragon_snow_sport">Snow Sport</string>
 
 
 </resources>
