@@ -26,11 +26,16 @@ import android.util.ArraySet;
 import android.util.Log;
 import android.util.Pair;
 import android.util.TypedValue;
+import android.widget.ImageView;
 
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -116,28 +121,67 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         return d;
     }
 
-    private  Map<String,Drawable> dragonIconCache = new Hashtable<String,Drawable>();
+    private Drawable getScaledDrawable(String assetsUrl, int width, int height){
+        Drawable drawable = null;
+        InputStream inputStream = null;
 
-
-    public Drawable getDragonIcon(String id){
-        Dragon dragon = dragons.get(id);
-        return getDragonIcon(dragon);
+        try {
+            Resources resources = getContext().getResources();
+            inputStream = getContext().getAssets().open(assetsUrl);
+            Drawable dr = Drawable.createFromStream(inputStream, null);
+            Bitmap bitmap = ((BitmapDrawable) dr).getBitmap();
+// Scale it to width x height
+            drawable = new BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, width, height, true));
+// Set your new, scaled drawable "d"
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if(inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return drawable;
     }
+
+   // private  Map<String,Drawable> dragonIconCache = new Hashtable<String,Drawable>();
 
     public static int convertSpToPixels(float sp, Context context) {
         int px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, context.getResources().getDisplayMetrics());
         return px;
     }
 
-    public Drawable getDragonIcon( Dragon dragon){
+    public void loadDragonIcon(String id, ImageView view){
+
+        String filename = id + "_icon.png";
+
+
+        File file = new File(getContext().getFilesDir(), filename);
+        if(file.exists()) {
+            Picasso.with(getContext()).load(file).into(view);
+        } else {
+            createDragonIcon(id);
+            Picasso.with(getContext()).load(file).into(view);
+        }
+    }
+    public void createDragonIcon(String id){
+        Dragon dragon = dragons.get(id);
+        createDragonIcon(dragon);
+    }
+
+    public void createDragonIcon( Dragon dragon){
 
         try {
             String id = dragon.getId();
 //            Log.d("DMLcalc",id);
-            if (dragonIconCache.containsKey(id)) {
-                return dragonIconCache.get(id);
-            }
+//            if (dragonIconCache.containsKey(id)) {
+//                return dragonIconCache.get(id);
+//            }
 
+            String assetname = "dragonicons/" + id + "_icon.png";
 
             Context myContext = getContext();
             int iconSize = convertSpToPixels(48,myContext);
@@ -147,12 +191,20 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
 
             int resourceId = resources.getIdentifier(resName, "drawable", myContext.getPackageName());
+//
+//            if (resourceId == 0) {
+//                resourceId = resources.getIdentifier("unknown_icon", "drawable", myContext.getPackageName());
+//            }
+//
+//            scaledLayers.add(getScaledDrawable(resourceId, iconSize, iconSize));
 
-            if (resourceId == 0) {
-                resourceId = resources.getIdentifier("unknown_icon", "drawable", myContext.getPackageName());
+            Drawable assetsIcon = getScaledDrawable(assetname,iconSize, iconSize);
+            if(assetsIcon == null){
+                assetsIcon = getScaledDrawable("dragonicons/" + "unknown" + "_icon.png",iconSize, iconSize);
             }
 
-            scaledLayers.add(getScaledDrawable(resourceId, iconSize, iconSize));
+            scaledLayers.add(assetsIcon);
+
 
             String type = dragon.getType();
             if ("C".equalsIgnoreCase(type)) {
@@ -197,10 +249,38 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
             scaledLayers.clear();
 
-            dragonIconCache.put(id, layerDrawable);
-            return layerDrawable;
+            String filename = id + "_icon.png";
+
+            FileOutputStream outputStream = null;
+            layerDrawable.setBounds(0,0,iconSize,iconSize);
+
+            try {
+                outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
+                Bitmap b = Bitmap.createBitmap(iconSize,iconSize, Bitmap.Config.ARGB_8888);
+                layerDrawable.draw(new Canvas(b));
+                b.compress(Bitmap.CompressFormat.PNG, 100, outputStream); // bmp is your Bitmap instance
+                // PNG is a lossless format, the compression factor (100) is ignored
+
+
+
+
+             //   outputStream.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (outputStream != null) {
+                        outputStream.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        //    dragonIconCache.put(id, layerDrawable);
+       //     return layerDrawable;
         } catch (Exception ex){
-            return new ColorDrawable();
+            ex.printStackTrace();
         }
 
     }
@@ -251,8 +331,8 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
  //   private Hashtable<String,Object> _howToCache;
     private Hashtable<String,Object> _breedCache;
 
-    private Hashtable<String,ArrayList<Dragon>> dragonsByElementkey;
-    private Hashtable<String,ArrayList<Dragon>> breedresultsByElementkey;
+    private Hashtable<String,ArrayList<Dragon>> dragonsByElementkey; // Alle Drachen
+    private Hashtable<String,ArrayList<Dragon>> breedresultsByElementkey;  // Erbrütbare Drachen
 
     public DMLcalc() {
 
@@ -461,6 +541,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 //        return retval;
     }
 
+    // Erbrütbare Drachen aktualisieren
     private void updateBreedResults() {
         breedresultsByElementkey = new Hashtable<>();
 
@@ -480,6 +561,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
     public void clearCache(){
         _breedCache.clear();
+        updateBreedResults();
     }
     public void saveCache(){
 
@@ -613,11 +695,13 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
                 if(!l.isEmpty()){
                     d = new Dragon(l,true);
                     dragons.put(d.getId(),d);
-                    String elementKey = d.getElementKey();
-                    if(!dragonsByElementkey.containsKey(elementKey)){
-                        dragonsByElementkey.put(elementKey,new ArrayList<Dragon>());
+                    if(!d.isUnreleased() && !d.isBoss()) {
+                        String elementKey = d.getElementKey();
+                        if (!dragonsByElementkey.containsKey(elementKey)) {
+                            dragonsByElementkey.put(elementKey, new ArrayList<Dragon>());
+                        }
+                        dragonsByElementkey.get(elementKey).add(d);
                     }
-                    dragonsByElementkey.get(elementKey).add(d);
               //      getDragonIcon(d);
                 }
             }
@@ -628,7 +712,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
                 public void run() {
                     try {
                         for (Dragon d: dragons.values()) {
-                            getDragonIcon(d);
+                            createDragonIcon(d);
                         }
 
                     } catch (Exception e) {
@@ -835,36 +919,278 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
     }
 
-    private List<Pair<Pair<Dragon,Dragon>,Double>> _howToBreed(Dragon son) {
-        List<Pair<Pair<Dragon,Dragon>,Double>> retval;
+    private List<Pair<Pair<Dragon,Dragon>,Double>> _howToBreed2(Dragon son) {
+        List<Pair<Pair<Dragon,Dragon>,Double>> retval = new ArrayList<>();
 
-        retval = (List<Pair<Pair<Dragon,Dragon>,Double>>) getFromDb(son.getId());
+        List<String> L1 =new ArrayList<>();
+        List<String> L2 =new ArrayList<>();
+        List<String> L3 =new ArrayList<>();
+        List<String> L12 =new ArrayList<>();
+        List<String> L23 =new ArrayList<>();
+        List<String> L13 =new ArrayList<>();
+        // DDM
+        List<String> L4 =new ArrayList<>();
+        List<String> L123 =new ArrayList<>();
+        List<String> L124 =new ArrayList<>();
+        List<String> L134 =new ArrayList<>();
+        List<String> L234 =new ArrayList<>();
+        List<String> L14 =new ArrayList<>();
+        List<String> L24 =new ArrayList<>();
+        List<String> L34 =new ArrayList<>();
 
-        if(retval == null){
-            retval = new ArrayList<>();
-//        ArrayList< Dragon> dl = new ArrayList<>(dragons.values());
-            ArrayList<Dragon> dl = getDragons(vipDragons,true,true,true,false);
-            for (int x = dl.size() - 1; x >= 0 ; x--) {
-                if(!canBeDad(dl.get(x),son)){
-                    dl.remove(x);
+
+
+        int elementCount;
+        List<String> breedElements;
+
+        if(son.getId().equalsIgnoreCase(getDDM())){
+            breedElements = getDdmElements();
+        } else {
+            breedElements = son.getElements();
+        }
+        elementCount = breedElements.size();
+
+
+        if(son.getId().equalsIgnoreCase(getDDW())){
+            List<Pair<Dragon, Double>> tmp = _breed(dragons.get(getDDW_mom()), dragons.get(getDDW_dad()), true);
+            for (Pair<Dragon, Double> dp : tmp) {
+                if (dp.first.getId().equalsIgnoreCase(son.getId())) {
+                    retval.add(new Pair<Pair<Dragon, Dragon>, Double>(new Pair<Dragon, Dragon>(dragons.get(getDDW_mom()),  dragons.get(getDDW_dad())), dp.second));
+                    break;
                 }
             }
-            for (int x = 0; x < dl.size() - 1; x++) {
 
-                for (int y = x + 1; y < dl.size(); y++) {
-                    if (!dl.get(x).getId().equalsIgnoreCase(son.getId())
-                            && !dl.get(y).getId().equalsIgnoreCase(son.getId())) {
-                        if (isChild(dl.get(x), dl.get(y), son)) {
-                            List<Pair<Dragon,Double>> tmp = _breed(dl.get(x), dl.get(y),true);
-                            for (Pair<Dragon,Double> dp : tmp) {
-                                if (dp.first.getId().equalsIgnoreCase(son.getId())) {
-                                    retval.add(new Pair<Pair<Dragon, Dragon>, Double>(new Pair<Dragon, Dragon>(dl.get(x), dl.get(y)), dp.second));
-                                }
-                            }
+        } else {
+
+
+            for (String eleKey : dragonsByElementkey.keySet()) {
+                if (eleKey.contains("legendary") || eleKey.contains("divine")) {
+                    continue;
+                }
+                if (elementCount > 0) {
+                    if (eleKey.contains(breedElements.get(0))) {
+                        L1.add(eleKey);
+                    }
+                }
+                if (elementCount > 1) {
+                    if (eleKey.contains(breedElements.get(1))) {
+                        L2.add(eleKey);
+                    }
+                    if (eleKey.contains(breedElements.get(0)) && eleKey.contains(breedElements.get(1))) {
+                        L12.add(eleKey);
+                    }
+                }
+                if (elementCount > 2) {
+                    if (eleKey.contains(breedElements.get(2))) {
+                        L3.add(eleKey);
+                    }
+                    if (eleKey.contains(breedElements.get(0)) && eleKey.contains(breedElements.get(2))) {
+                        L13.add(eleKey);
+                    }
+                    if (eleKey.contains(breedElements.get(1)) && eleKey.contains(breedElements.get(2))) {
+                        L23.add(eleKey);
+                    }
+                }
+                if (elementCount > 3) {
+                    if (eleKey.contains(breedElements.get(3))) {
+                        L4.add(eleKey);
+                    }
+                    if (eleKey.contains(breedElements.get(0)) && eleKey.contains(breedElements.get(1)) && eleKey.contains(breedElements.get(2))) {
+                        L123.add(eleKey);
+                    }
+                    if (eleKey.contains(breedElements.get(1)) && eleKey.contains(breedElements.get(2)) && eleKey.contains(breedElements.get(3))) {
+                        L234.add(eleKey);
+                    }
+                    if (eleKey.contains(breedElements.get(0)) && eleKey.contains(breedElements.get(2)) && eleKey.contains(breedElements.get(3))) {
+                        L134.add(eleKey);
+                    }
+                    if (eleKey.contains(breedElements.get(0)) && eleKey.contains(breedElements.get(1)) && eleKey.contains(breedElements.get(3))) {
+                        L124.add(eleKey);
+                    }
+                    if (eleKey.contains(breedElements.get(0)) && eleKey.contains(breedElements.get(3))) {
+                        L14.add(eleKey);
+                    }
+                    if (eleKey.contains(breedElements.get(1)) && eleKey.contains(breedElements.get(3))) {
+                        L24.add(eleKey);
+                    }
+                    if (eleKey.contains(breedElements.get(2)) && eleKey.contains(breedElements.get(3))) {
+                        L34.add(eleKey);
+                    }
+                }
+            }
+            Dragon mom, dad;
+            Hashtable<String, Pair<String, String>> breedCombos = new Hashtable<>();
+            String comboKey, comboKey2;
+            if (elementCount == 1) {
+                for (int x = 0; x < L1.size(); x++) {
+                    for (int y = x + 1; y < L1.size(); y++) {
+                        comboKey = L1.get(x) + "/" + L1.get(y);
+                        if (!breedCombos.containsKey(comboKey)) {
+                            breedCombos.put(comboKey, new Pair<String, String>(L1.get(x), L1.get(y)));
                         }
                     }
                 }
             }
+
+            if (elementCount == 2) {
+                for (int x = 0; x < L1.size(); x++) {
+                    for (int y = 0; y < L2.size(); y++) {
+                        comboKey = L1.get(x) + "/" + L2.get(y);
+                        comboKey2 = L2.get(y) + "/" + L1.get(x);
+                        if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
+                            breedCombos.put(comboKey, new Pair<String, String>(L1.get(x), L2.get(y)));
+                        }
+                    }
+                }
+            }
+            if (elementCount == 3) {
+                for (int x = 0; x < L1.size(); x++) {
+                    for (int y = 0; y < L23.size(); y++) {
+                        comboKey = L1.get(x) + "/" + L23.get(y);
+                        comboKey2 = L23.get(y) + "/" + L1.get(x);
+                        if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
+                            breedCombos.put(comboKey, new Pair<String, String>(L1.get(x), L23.get(y)));
+                        }
+                    }
+                }
+                for (int x = 0; x < L2.size(); x++) {
+                    for (int y = 0; y < L13.size(); y++) {
+                        comboKey = L2.get(x) + "/" + L13.get(y);
+                        comboKey2 = L13.get(y) + "/" + L2.get(x);
+                        if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
+                            breedCombos.put(comboKey, new Pair<String, String>(L2.get(x), L13.get(y)));
+                        }
+                    }
+                }
+                for (int x = 0; x < L3.size(); x++) {
+                    for (int y = 0; y < L12.size(); y++) {
+                        comboKey = L3.get(x) + "/" + L12.get(y);
+                        comboKey2 = L12.get(y) + "/" + L3.get(x);
+                        if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
+                            breedCombos.put(comboKey, new Pair<String, String>(L3.get(x), L12.get(y)));
+                        }
+                    }
+                }
+            }
+            if (elementCount == 4) {
+                for (int x = 0; x < L1.size(); x++) {
+                    for (int y = 0; y < L234.size(); y++) {
+                        comboKey = L1.get(x) + "/" + L234.get(y);
+                        comboKey2 = L234.get(y) + "/" + L1.get(x);
+                        if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
+                            breedCombos.put(comboKey, new Pair<String, String>(L1.get(x), L234.get(y)));
+                        }
+                    }
+                }
+                for (int x = 0; x < L2.size(); x++) {
+                    for (int y = 0; y < L134.size(); y++) {
+                        comboKey = L2.get(x) + "/" + L134.get(y);
+                        comboKey2 = L134.get(y) + "/" + L2.get(x);
+                        if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
+                            breedCombos.put(comboKey, new Pair<String, String>(L2.get(x), L134.get(y)));
+                        }
+                    }
+                }
+                for (int x = 0; x < L3.size(); x++) {
+                    for (int y = 0; y < L124.size(); y++) {
+                        comboKey = L3.get(x) + "/" + L124.get(y);
+                        comboKey2 = L124.get(y) + "/" + L3.get(x);
+                        if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
+                            breedCombos.put(comboKey, new Pair<String, String>(L3.get(x), L124.get(y)));
+                        }
+                    }
+                }
+                for (int x = 0; x < L4.size(); x++) {
+                    for (int y = 0; y < L123.size(); y++) {
+                        comboKey = L4.get(x) + "/" + L123.get(y);
+                        comboKey2 = L123.get(y) + "/" + L4.get(x);
+                        if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
+                            breedCombos.put(comboKey, new Pair<String, String>(L4.get(x), L123.get(y)));
+                        }
+                    }
+                }
+                for (int x = 0; x < L12.size(); x++) {
+                    for (int y = 0; y < L34.size(); y++) {
+                        comboKey = L12.get(x) + "/" + L34.get(y);
+                        comboKey2 = L34.get(y) + "/" + L12.get(x);
+                        if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
+                            breedCombos.put(comboKey, new Pair<String, String>(L12.get(x), L34.get(y)));
+                        }
+                    }
+                }
+                for (int x = 0; x < L23.size(); x++) {
+                    for (int y = 0; y < L14.size(); y++) {
+                        comboKey = L23.get(x) + "/" + L14.get(y);
+                        comboKey2 = L14.get(y) + "/" + L23.get(x);
+                        if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
+                            breedCombos.put(comboKey, new Pair<String, String>(L23.get(x), L14.get(y)));
+                        }
+                    }
+                }
+                for (int x = 0; x < L13.size(); x++) {
+                    for (int y = 0; y < L24.size(); y++) {
+                        comboKey = L13.get(x) + "/" + L24.get(y);
+                        comboKey2 = L24.get(y) + "/" + L13.get(x);
+                        if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
+                            breedCombos.put(comboKey, new Pair<String, String>(L13.get(x), L24.get(y)));
+                        }
+                    }
+                }
+            }
+
+            for (Pair<String, String> breedpair : breedCombos.values()) {
+                mom = dragonsByElementkey.get(breedpair.first).get(0);
+                dad = dragonsByElementkey.get(breedpair.second).get(0);
+                List<Pair<Dragon, Double>> tmp = _breed(mom, dad, true);
+                for (Pair<Dragon, Double> dp : tmp) {
+                    if (dp.first.getId().equalsIgnoreCase(son.getId())) {
+                        for (int iMom = 0; iMom < dragonsByElementkey.get(breedpair.first).size(); iMom++) {
+                            for (int iDad = 0; iDad < dragonsByElementkey.get(breedpair.second).size(); iDad++) {
+                                retval.add(new Pair<Pair<Dragon, Dragon>, Double>(new Pair<Dragon, Dragon>(dragonsByElementkey.get(breedpair.first).get(iMom), dragonsByElementkey.get(breedpair.second).get(iDad)), dp.second));
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+        return retval;
+    }
+
+    private List<Pair<Pair<Dragon,Dragon>,Double>> _howToBreed(Dragon son) {
+        List<Pair<Pair<Dragon,Dragon>,Double>> retval = null;
+
+        retval = (List<Pair<Pair<Dragon,Dragon>,Double>>) getFromDb(son.getId());
+        retval =  _howToBreed2(son);
+
+
+        if(retval == null){
+            retval =  _howToBreed2(son);
+//
+//            retval = new ArrayList<>();
+////        ArrayList< Dragon> dl = new ArrayList<>(dragons.values());
+//            ArrayList<Dragon> dl = getDragons(vipDragons,true,true,true,false);
+//            for (int x = dl.size() - 1; x >= 0 ; x--) {
+//                if(!canBeDad(dl.get(x),son)){
+//                    dl.remove(x);
+//                }
+//            }
+//            for (int x = 0; x < dl.size() - 1; x++) {
+//
+//                for (int y = x + 1; y < dl.size(); y++) {
+//                    if (!dl.get(x).getId().equalsIgnoreCase(son.getId())
+//                            && !dl.get(y).getId().equalsIgnoreCase(son.getId())) {
+//                        if (isChild(dl.get(x), dl.get(y), son)) {
+//                            List<Pair<Dragon,Double>> tmp = _breed(dl.get(x), dl.get(y),true);
+//                            for (Pair<Dragon,Double> dp : tmp) {
+//                                if (dp.first.getId().equalsIgnoreCase(son.getId())) {
+//                                    retval.add(new Pair<Pair<Dragon, Dragon>, Double>(new Pair<Dragon, Dragon>(dl.get(x), dl.get(y)), dp.second));
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
             saveInDb(son.getId(),retval);
         }
         return retval;

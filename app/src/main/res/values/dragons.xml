@@ -293,7 +293,7 @@
     <string name="dragon_liberty">Freiheits</string>
     <string name="dragon_elephant">Elefanten</string>
     <string name="dragon_duanwu">Duanwu</string>
-    <string name="dragon_arctic">Arctic</string>
+    <string name="dragon_arctic">Arktis</string>
     <string name="dragon_perfume">Parfüm</string>
     <string name="dragon_sandcastle">Sandburg</string>
     <string name="dragon_superhero">Superhelden</string>
@@ -431,5 +431,10 @@
     <string name="dragon_muerte">Muerte</string>
     <string name="dragon_eyeball">Augapfel</string>
     <string name="dragon_bone">Knochen</string>
+    <string name="dragon_bell">Glöckchen</string>
+    <string name="dragon_frost_fairy">Frost Fairy</string>
+    <string name="dragon_snow_queen">Schneekönigin</string>
+    <string name="dragon_snow_sport">Snow Sport</string>
+
 
 </resources>
