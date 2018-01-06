@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace DragonImport {
   public class MobaImport {
@@ -120,7 +121,11 @@ namespace DragonImport {
 							d.isEnchatmentLeague = true;
 						}
 						// elements
-						string elements = lineSplits [4].Replace ("(Element) Icon.png", "");
+						string elements = lineSplits [4].Replace ("(Element) Icon.png", " ");
+            Regex  r = new Regex("([A-Z])");
+            elements = r.Replace(elements," $1");
+            
+
 						d.Elements = new List<string> (elements.Split (new char[]{ ' ' }, StringSplitOptions.RemoveEmptyEntries));
 						// breeding
 						d.Breeding = lineSplits [5];

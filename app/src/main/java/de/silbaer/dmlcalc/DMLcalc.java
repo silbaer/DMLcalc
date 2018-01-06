@@ -510,20 +510,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
     public ArrayList<Dragon> getDragons4HowtoCombo() {
 
         return getDragons(vipDragons,enchantDragons,false,true,true);
-        // Abweichend von unten immer VIP
 
-//        ArrayList<Dragon> retval = new ArrayList<Dragon>();
-//        retval.addAll(dragons.values());
-//        for(int i = retval.size()-1; i >= 0; i--){
-//            Dragon d = retval.get(i);
-//            if((d.isBoss() || d.islegendary() || d.isdivine() || d.isUnreleased()) && !d.getId().equalsIgnoreCase(getDDW_dad()) && !d.getId().equalsIgnoreCase(getDDW_mom())){
-//                retval.remove(d);
-//            }
-//            if(!vipDragons  &&  d.isVIP()){
-//                retval.remove(d);
-//            }
-//        }
-//        return retval;
 
     }
     public ArrayList<Dragon> getDragons4BreedCombo() {
@@ -536,9 +523,6 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
     public ArrayList<Dragon> getDragons() {
         return getDragons(true,true,true,true,false);
-//        ArrayList<Dragon> retval = new ArrayList<Dragon>();
-//        retval.addAll(dragons.values());
-//        return retval;
     }
 
     // Erbrütbare Drachen aktualisieren
@@ -569,50 +553,11 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
     }
     public void loadCache(){
-//        SharedPreferences prefs = getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
-//        Gson gson = new Gson();
-//        String json = prefs.getString("breedCache","");
-//        _breedCache = gson.fromJson(json,Hashtable.class);
-//        if(_breedCache == null){
-//            _breedCache = new Hashtable<>();
-//        }
-//        w_db = mDbHelper.getWritableDatabase();
-//        r_db = mDbHelper.getReadableDatabase();
         _breedCache = new Hashtable<>();
     }
-
-//    BreedCacheDbHelper mDbHelper;
-//    SQLiteDatabase w_db;
-//    SQLiteDatabase r_db;
-
-    private Object getFromDb(String key) {
+    private Object getFromCache(String key) {
         Object retval = null;
-//        String value="";
-//      String[] projection = {
-//              BreedCacheContract.BreedCacheEntry._ID,
-//              BreedCacheContract.BreedCacheEntry.COLUMN_NAME_KEY,
-//              BreedCacheContract.BreedCacheEntry.COLUMN_NAME_VALUE
-//      };
-//        String selection = BreedCacheContract.BreedCacheEntry.COLUMN_NAME_KEY + " = ?";
-//        String[] selectionArgs = { key };
-//        String sortOrder = BreedCacheContract.BreedCacheEntry.COLUMN_NAME_KEY + " DESC";
-//        Cursor cursor = r_db.query(
-//                BreedCacheContract.BreedCacheEntry.TABLE_NAME,
-//                projection,
-//                selection,
-//                selectionArgs,
-//                null,
-//                null,
-//                sortOrder
-//        );
-//
-//        if(cursor.moveToNext()){
-//        value = cursor.getString(
-//                cursor.getColumnIndexOrThrow(BreedCacheContract.BreedCacheEntry.COLUMN_NAME_VALUE));
-//        }
-//        cursor.close();
-//        Gson gson = new Gson();
-//        retval = gson.fromJson(value,List.class);
+
         if(_breedCache.containsKey(key)){
             retval = _breedCache.get(key);
         }
@@ -620,20 +565,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
       return retval;
     }
 
-    private void saveInDb(String key, Object value){
-        // Gets the data repository in write mode
- //       SQLiteDatabase db = mDbHelper.getWritableDatabase();
-//
-//// Create a new map of values, where column names are the keys
-//        ContentValues values = new ContentValues();
-//        values.put(BreedCacheContract.BreedCacheEntry.COLUMN_NAME_KEY,key);
-//        Gson gson = new Gson();
-//        String json = gson.toJson(value);
-//
-//        values.put(BreedCacheContract.BreedCacheEntry.COLUMN_NAME_VALUE, json);
-//
-//// Insert the new row, returning the primary key value of the new row
-//        long newRowId = w_db.insert(BreedCacheContract.BreedCacheEntry.TABLE_NAME, null, values);
+    private void saveInCache(String key, Object value){
         _breedCache.put(key,value);
     }
 
@@ -664,13 +596,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         elements.add(new element("legendary"));
         elements.add(new element("divine"));
 
-        //_breedCache = new Hashtable<> ();
-        // loadCache();
-
-    //    mDbHelper = new BreedCacheDbHelper(getContext());
         loadCache();
-
-
 
         AssetManager assetManager = getAssets();
 
@@ -702,7 +628,6 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
                         }
                         dragonsByElementkey.get(elementKey).add(d);
                     }
-              //      getDragonIcon(d);
                 }
             }
 
@@ -722,9 +647,6 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             };
 
             thread.start();
-
-
-
 
             Context context =   getBaseContext();
             sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
@@ -774,28 +696,6 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
 
     }
-
-//    private DMLcalc(String dragonJS){
-//        odds = new Hashtable<String,Double>();
-//        odds.put("C",48d);
-//        odds.put("U",21d);
-//        odds.put("R",15d);
-//        odds.put("E",10d);
-//        odds.put("L", 6d);
-//
-//
-//        Dragon d;
-//        String[] lines = dragonJS.split("[\\n]+");
-//        for (String line : lines) {
-//            String l = line.trim();
-//            if(!l.isEmpty()){
-//                d = new Dragon(l,true);
-//                dragons.put(d.getId(),d);
-//            }
-//        }
-//    }
-
-
 
     public List<Pair<Dragon,Double>> CalcOdds( List<Dragon> resultList) {
         double sum = 0;
@@ -919,6 +819,8 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
     }
 
+    // Anhand des Ergebnisses (son) werden die Möglichen Eltern berechnet
+    //
     private List<Pair<Pair<Dragon,Dragon>,Double>> _howToBreed2(Dragon son) {
         List<Pair<Pair<Dragon,Dragon>,Double>> retval = new ArrayList<>();
 
@@ -951,6 +853,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         elementCount = breedElements.size();
 
 
+
         if(son.getId().equalsIgnoreCase(getDDW())){
             List<Pair<Dragon, Double>> tmp = _breed(dragons.get(getDDW_mom()), dragons.get(getDDW_dad()), true);
             for (Pair<Dragon, Double> dp : tmp) {
@@ -961,195 +864,216 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             }
 
         } else {
-
-
-            for (String eleKey : dragonsByElementkey.keySet()) {
-                if (eleKey.contains("legendary") || eleKey.contains("divine")) {
-                    continue;
-                }
-                if (elementCount > 0) {
-                    if (eleKey.contains(breedElements.get(0))) {
-                        L1.add(eleKey);
-                    }
-                }
-                if (elementCount > 1) {
-                    if (eleKey.contains(breedElements.get(1))) {
-                        L2.add(eleKey);
-                    }
-                    if (eleKey.contains(breedElements.get(0)) && eleKey.contains(breedElements.get(1))) {
-                        L12.add(eleKey);
-                    }
-                }
-                if (elementCount > 2) {
-                    if (eleKey.contains(breedElements.get(2))) {
-                        L3.add(eleKey);
-                    }
-                    if (eleKey.contains(breedElements.get(0)) && eleKey.contains(breedElements.get(2))) {
-                        L13.add(eleKey);
-                    }
-                    if (eleKey.contains(breedElements.get(1)) && eleKey.contains(breedElements.get(2))) {
-                        L23.add(eleKey);
-                    }
-                }
-                if (elementCount > 3) {
-                    if (eleKey.contains(breedElements.get(3))) {
-                        L4.add(eleKey);
-                    }
-                    if (eleKey.contains(breedElements.get(0)) && eleKey.contains(breedElements.get(1)) && eleKey.contains(breedElements.get(2))) {
-                        L123.add(eleKey);
-                    }
-                    if (eleKey.contains(breedElements.get(1)) && eleKey.contains(breedElements.get(2)) && eleKey.contains(breedElements.get(3))) {
-                        L234.add(eleKey);
-                    }
-                    if (eleKey.contains(breedElements.get(0)) && eleKey.contains(breedElements.get(2)) && eleKey.contains(breedElements.get(3))) {
-                        L134.add(eleKey);
-                    }
-                    if (eleKey.contains(breedElements.get(0)) && eleKey.contains(breedElements.get(1)) && eleKey.contains(breedElements.get(3))) {
-                        L124.add(eleKey);
-                    }
-                    if (eleKey.contains(breedElements.get(0)) && eleKey.contains(breedElements.get(3))) {
-                        L14.add(eleKey);
-                    }
-                    if (eleKey.contains(breedElements.get(1)) && eleKey.contains(breedElements.get(3))) {
-                        L24.add(eleKey);
-                    }
-                    if (eleKey.contains(breedElements.get(2)) && eleKey.contains(breedElements.get(3))) {
-                        L34.add(eleKey);
-                    }
-                }
-            }
             Dragon mom, dad;
             Hashtable<String, Pair<String, String>> breedCombos = new Hashtable<>();
             String comboKey, comboKey2;
-            if (elementCount == 1) {
-                for (int x = 0; x < L1.size(); x++) {
-                    for (int y = x + 1; y < L1.size(); y++) {
-                        comboKey = L1.get(x) + "/" + L1.get(y);
-                        if (!breedCombos.containsKey(comboKey)) {
-                            breedCombos.put(comboKey, new Pair<String, String>(L1.get(x), L1.get(y)));
-                        }
-                    }
-                }
-            }
 
-            if (elementCount == 2) {
-                for (int x = 0; x < L1.size(); x++) {
-                    for (int y = 0; y < L2.size(); y++) {
-                        comboKey = L1.get(x) + "/" + L2.get(y);
-                        comboKey2 = L2.get(y) + "/" + L1.get(x);
-                        if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
-                            breedCombos.put(comboKey, new Pair<String, String>(L1.get(x), L2.get(y)));
+            boolean isSpecialBreed = false;
+            String sonID = son.getId();
+            for (SpecialBreed b : specialBreeds) {
+                if (b.childId.equalsIgnoreCase(sonID)) {
+                    isSpecialBreed = true;
+                    mom = dragons.get(b.momId);
+                    dad = dragons.get(b.dadId);
+                    List<Pair<Dragon, Double>> tmp = _breed(mom, dad, true);
+                    for (Pair<Dragon, Double> dp : tmp) {
+                        if (dp.first.getId().equalsIgnoreCase(son.getId())) {
+                            retval.add(new Pair<Pair<Dragon, Dragon>, Double>(new Pair<Dragon, Dragon>(mom, dad), dp.second));
+                            break;
                         }
                     }
+                    break;
                 }
             }
-            if (elementCount == 3) {
-                for (int x = 0; x < L1.size(); x++) {
-                    for (int y = 0; y < L23.size(); y++) {
-                        comboKey = L1.get(x) + "/" + L23.get(y);
-                        comboKey2 = L23.get(y) + "/" + L1.get(x);
-                        if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
-                            breedCombos.put(comboKey, new Pair<String, String>(L1.get(x), L23.get(y)));
-                        }
-                    }
-                }
-                for (int x = 0; x < L2.size(); x++) {
-                    for (int y = 0; y < L13.size(); y++) {
-                        comboKey = L2.get(x) + "/" + L13.get(y);
-                        comboKey2 = L13.get(y) + "/" + L2.get(x);
-                        if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
-                            breedCombos.put(comboKey, new Pair<String, String>(L2.get(x), L13.get(y)));
-                        }
-                    }
-                }
-                for (int x = 0; x < L3.size(); x++) {
-                    for (int y = 0; y < L12.size(); y++) {
-                        comboKey = L3.get(x) + "/" + L12.get(y);
-                        comboKey2 = L12.get(y) + "/" + L3.get(x);
-                        if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
-                            breedCombos.put(comboKey, new Pair<String, String>(L3.get(x), L12.get(y)));
-                        }
-                    }
-                }
-            }
-            if (elementCount == 4) {
-                for (int x = 0; x < L1.size(); x++) {
-                    for (int y = 0; y < L234.size(); y++) {
-                        comboKey = L1.get(x) + "/" + L234.get(y);
-                        comboKey2 = L234.get(y) + "/" + L1.get(x);
-                        if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
-                            breedCombos.put(comboKey, new Pair<String, String>(L1.get(x), L234.get(y)));
-                        }
-                    }
-                }
-                for (int x = 0; x < L2.size(); x++) {
-                    for (int y = 0; y < L134.size(); y++) {
-                        comboKey = L2.get(x) + "/" + L134.get(y);
-                        comboKey2 = L134.get(y) + "/" + L2.get(x);
-                        if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
-                            breedCombos.put(comboKey, new Pair<String, String>(L2.get(x), L134.get(y)));
-                        }
-                    }
-                }
-                for (int x = 0; x < L3.size(); x++) {
-                    for (int y = 0; y < L124.size(); y++) {
-                        comboKey = L3.get(x) + "/" + L124.get(y);
-                        comboKey2 = L124.get(y) + "/" + L3.get(x);
-                        if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
-                            breedCombos.put(comboKey, new Pair<String, String>(L3.get(x), L124.get(y)));
-                        }
-                    }
-                }
-                for (int x = 0; x < L4.size(); x++) {
-                    for (int y = 0; y < L123.size(); y++) {
-                        comboKey = L4.get(x) + "/" + L123.get(y);
-                        comboKey2 = L123.get(y) + "/" + L4.get(x);
-                        if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
-                            breedCombos.put(comboKey, new Pair<String, String>(L4.get(x), L123.get(y)));
-                        }
-                    }
-                }
-                for (int x = 0; x < L12.size(); x++) {
-                    for (int y = 0; y < L34.size(); y++) {
-                        comboKey = L12.get(x) + "/" + L34.get(y);
-                        comboKey2 = L34.get(y) + "/" + L12.get(x);
-                        if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
-                            breedCombos.put(comboKey, new Pair<String, String>(L12.get(x), L34.get(y)));
-                        }
-                    }
-                }
-                for (int x = 0; x < L23.size(); x++) {
-                    for (int y = 0; y < L14.size(); y++) {
-                        comboKey = L23.get(x) + "/" + L14.get(y);
-                        comboKey2 = L14.get(y) + "/" + L23.get(x);
-                        if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
-                            breedCombos.put(comboKey, new Pair<String, String>(L23.get(x), L14.get(y)));
-                        }
-                    }
-                }
-                for (int x = 0; x < L13.size(); x++) {
-                    for (int y = 0; y < L24.size(); y++) {
-                        comboKey = L13.get(x) + "/" + L24.get(y);
-                        comboKey2 = L24.get(y) + "/" + L13.get(x);
-                        if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
-                            breedCombos.put(comboKey, new Pair<String, String>(L13.get(x), L24.get(y)));
-                        }
-                    }
-                }
-            }
+            if (!isSpecialBreed) {
 
-            for (Pair<String, String> breedpair : breedCombos.values()) {
-                mom = dragonsByElementkey.get(breedpair.first).get(0);
-                dad = dragonsByElementkey.get(breedpair.second).get(0);
-                List<Pair<Dragon, Double>> tmp = _breed(mom, dad, true);
-                for (Pair<Dragon, Double> dp : tmp) {
-                    if (dp.first.getId().equalsIgnoreCase(son.getId())) {
-                        for (int iMom = 0; iMom < dragonsByElementkey.get(breedpair.first).size(); iMom++) {
-                            for (int iDad = 0; iDad < dragonsByElementkey.get(breedpair.second).size(); iDad++) {
-                                retval.add(new Pair<Pair<Dragon, Dragon>, Double>(new Pair<Dragon, Dragon>(dragonsByElementkey.get(breedpair.first).get(iMom), dragonsByElementkey.get(breedpair.second).get(iDad)), dp.second));
+
+                for (String eleKey : dragonsByElementkey.keySet()) {
+                    if (eleKey.contains("legendary") || eleKey.contains("divine")) {
+                        continue;
+                    }
+                    if (elementCount > 0) {
+                        if (eleKey.contains(breedElements.get(0))) {
+                            L1.add(eleKey);
+                        }
+                    }
+                    if (elementCount > 1) {
+                        if (eleKey.contains(breedElements.get(1))) {
+                            L2.add(eleKey);
+                        }
+                        if (eleKey.contains(breedElements.get(0)) && eleKey.contains(breedElements.get(1))) {
+                            L12.add(eleKey);
+                        }
+                    }
+                    if (elementCount > 2) {
+                        if (eleKey.contains(breedElements.get(2))) {
+                            L3.add(eleKey);
+                        }
+                        if (eleKey.contains(breedElements.get(0)) && eleKey.contains(breedElements.get(2))) {
+                            L13.add(eleKey);
+                        }
+                        if (eleKey.contains(breedElements.get(1)) && eleKey.contains(breedElements.get(2))) {
+                            L23.add(eleKey);
+                        }
+                    }
+                    if (elementCount > 3) {
+                        if (eleKey.contains(breedElements.get(3))) {
+                            L4.add(eleKey);
+                        }
+                        if (eleKey.contains(breedElements.get(0)) && eleKey.contains(breedElements.get(1)) && eleKey.contains(breedElements.get(2))) {
+                            L123.add(eleKey);
+                        }
+                        if (eleKey.contains(breedElements.get(1)) && eleKey.contains(breedElements.get(2)) && eleKey.contains(breedElements.get(3))) {
+                            L234.add(eleKey);
+                        }
+                        if (eleKey.contains(breedElements.get(0)) && eleKey.contains(breedElements.get(2)) && eleKey.contains(breedElements.get(3))) {
+                            L134.add(eleKey);
+                        }
+                        if (eleKey.contains(breedElements.get(0)) && eleKey.contains(breedElements.get(1)) && eleKey.contains(breedElements.get(3))) {
+                            L124.add(eleKey);
+                        }
+                        if (eleKey.contains(breedElements.get(0)) && eleKey.contains(breedElements.get(3))) {
+                            L14.add(eleKey);
+                        }
+                        if (eleKey.contains(breedElements.get(1)) && eleKey.contains(breedElements.get(3))) {
+                            L24.add(eleKey);
+                        }
+                        if (eleKey.contains(breedElements.get(2)) && eleKey.contains(breedElements.get(3))) {
+                            L34.add(eleKey);
+                        }
+                    }
+                }
+
+                if (elementCount == 1) {
+                    for (int x = 0; x < L1.size(); x++) {
+                        for (int y = x + 1; y < L1.size(); y++) {
+                            comboKey = L1.get(x) + "/" + L1.get(y);
+                            if (!breedCombos.containsKey(comboKey)) {
+                                breedCombos.put(comboKey, new Pair<String, String>(L1.get(x), L1.get(y)));
                             }
                         }
-                        break;
+                    }
+                }
+
+                if (elementCount == 2) {
+                    for (int x = 0; x < L1.size(); x++) {
+                        for (int y = 0; y < L2.size(); y++) {
+                            comboKey = L1.get(x) + "/" + L2.get(y);
+                            comboKey2 = L2.get(y) + "/" + L1.get(x);
+                            if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
+                                breedCombos.put(comboKey, new Pair<String, String>(L1.get(x), L2.get(y)));
+                            }
+                        }
+                    }
+                }
+                if (elementCount == 3) {
+                    for (int x = 0; x < L1.size(); x++) {
+                        for (int y = 0; y < L23.size(); y++) {
+                            comboKey = L1.get(x) + "/" + L23.get(y);
+                            comboKey2 = L23.get(y) + "/" + L1.get(x);
+                            if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
+                                breedCombos.put(comboKey, new Pair<String, String>(L1.get(x), L23.get(y)));
+                            }
+                        }
+                    }
+                    for (int x = 0; x < L2.size(); x++) {
+                        for (int y = 0; y < L13.size(); y++) {
+                            comboKey = L2.get(x) + "/" + L13.get(y);
+                            comboKey2 = L13.get(y) + "/" + L2.get(x);
+                            if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
+                                breedCombos.put(comboKey, new Pair<String, String>(L2.get(x), L13.get(y)));
+                            }
+                        }
+                    }
+                    for (int x = 0; x < L3.size(); x++) {
+                        for (int y = 0; y < L12.size(); y++) {
+                            comboKey = L3.get(x) + "/" + L12.get(y);
+                            comboKey2 = L12.get(y) + "/" + L3.get(x);
+                            if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
+                                breedCombos.put(comboKey, new Pair<String, String>(L3.get(x), L12.get(y)));
+                            }
+                        }
+                    }
+                }
+                if (elementCount == 4) {
+                    for (int x = 0; x < L1.size(); x++) {
+                        for (int y = 0; y < L234.size(); y++) {
+                            comboKey = L1.get(x) + "/" + L234.get(y);
+                            comboKey2 = L234.get(y) + "/" + L1.get(x);
+                            if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
+                                breedCombos.put(comboKey, new Pair<String, String>(L1.get(x), L234.get(y)));
+                            }
+                        }
+                    }
+                    for (int x = 0; x < L2.size(); x++) {
+                        for (int y = 0; y < L134.size(); y++) {
+                            comboKey = L2.get(x) + "/" + L134.get(y);
+                            comboKey2 = L134.get(y) + "/" + L2.get(x);
+                            if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
+                                breedCombos.put(comboKey, new Pair<String, String>(L2.get(x), L134.get(y)));
+                            }
+                        }
+                    }
+                    for (int x = 0; x < L3.size(); x++) {
+                        for (int y = 0; y < L124.size(); y++) {
+                            comboKey = L3.get(x) + "/" + L124.get(y);
+                            comboKey2 = L124.get(y) + "/" + L3.get(x);
+                            if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
+                                breedCombos.put(comboKey, new Pair<String, String>(L3.get(x), L124.get(y)));
+                            }
+                        }
+                    }
+                    for (int x = 0; x < L4.size(); x++) {
+                        for (int y = 0; y < L123.size(); y++) {
+                            comboKey = L4.get(x) + "/" + L123.get(y);
+                            comboKey2 = L123.get(y) + "/" + L4.get(x);
+                            if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
+                                breedCombos.put(comboKey, new Pair<String, String>(L4.get(x), L123.get(y)));
+                            }
+                        }
+                    }
+                    for (int x = 0; x < L12.size(); x++) {
+                        for (int y = 0; y < L34.size(); y++) {
+                            comboKey = L12.get(x) + "/" + L34.get(y);
+                            comboKey2 = L34.get(y) + "/" + L12.get(x);
+                            if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
+                                breedCombos.put(comboKey, new Pair<String, String>(L12.get(x), L34.get(y)));
+                            }
+                        }
+                    }
+                    for (int x = 0; x < L23.size(); x++) {
+                        for (int y = 0; y < L14.size(); y++) {
+                            comboKey = L23.get(x) + "/" + L14.get(y);
+                            comboKey2 = L14.get(y) + "/" + L23.get(x);
+                            if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
+                                breedCombos.put(comboKey, new Pair<String, String>(L23.get(x), L14.get(y)));
+                            }
+                        }
+                    }
+                    for (int x = 0; x < L13.size(); x++) {
+                        for (int y = 0; y < L24.size(); y++) {
+                            comboKey = L13.get(x) + "/" + L24.get(y);
+                            comboKey2 = L24.get(y) + "/" + L13.get(x);
+                            if (!breedCombos.containsKey(comboKey) && !breedCombos.containsKey(comboKey2)) {
+                                breedCombos.put(comboKey, new Pair<String, String>(L13.get(x), L24.get(y)));
+                            }
+                        }
+                    }
+                }
+
+                for (Pair<String, String> breedpair : breedCombos.values()) {
+                    mom = dragonsByElementkey.get(breedpair.first).get(0);
+                    dad = dragonsByElementkey.get(breedpair.second).get(0);
+                    List<Pair<Dragon, Double>> tmp = _breed(mom, dad, true);
+                    for (Pair<Dragon, Double> dp : tmp) {
+                        if (dp.first.getId().equalsIgnoreCase(son.getId())) {
+                            for (int iMom = 0; iMom < dragonsByElementkey.get(breedpair.first).size(); iMom++) {
+                                for (int iDad = 0; iDad < dragonsByElementkey.get(breedpair.second).size(); iDad++) {
+                                    retval.add(new Pair<Pair<Dragon, Dragon>, Double>(new Pair<Dragon, Dragon>(dragonsByElementkey.get(breedpair.first).get(iMom), dragonsByElementkey.get(breedpair.second).get(iDad)), dp.second));
+                                }
+                            }
+                            break;
+                        }
                     }
                 }
             }
@@ -1160,38 +1084,13 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
     private List<Pair<Pair<Dragon,Dragon>,Double>> _howToBreed(Dragon son) {
         List<Pair<Pair<Dragon,Dragon>,Double>> retval = null;
 
-        retval = (List<Pair<Pair<Dragon,Dragon>,Double>>) getFromDb(son.getId());
-        retval =  _howToBreed2(son);
+        retval = (List<Pair<Pair<Dragon,Dragon>,Double>>) getFromCache(son.getId());
+
 
 
         if(retval == null){
             retval =  _howToBreed2(son);
-//
-//            retval = new ArrayList<>();
-////        ArrayList< Dragon> dl = new ArrayList<>(dragons.values());
-//            ArrayList<Dragon> dl = getDragons(vipDragons,true,true,true,false);
-//            for (int x = dl.size() - 1; x >= 0 ; x--) {
-//                if(!canBeDad(dl.get(x),son)){
-//                    dl.remove(x);
-//                }
-//            }
-//            for (int x = 0; x < dl.size() - 1; x++) {
-//
-//                for (int y = x + 1; y < dl.size(); y++) {
-//                    if (!dl.get(x).getId().equalsIgnoreCase(son.getId())
-//                            && !dl.get(y).getId().equalsIgnoreCase(son.getId())) {
-//                        if (isChild(dl.get(x), dl.get(y), son)) {
-//                            List<Pair<Dragon,Double>> tmp = _breed(dl.get(x), dl.get(y),true);
-//                            for (Pair<Dragon,Double> dp : tmp) {
-//                                if (dp.first.getId().equalsIgnoreCase(son.getId())) {
-//                                    retval.add(new Pair<Pair<Dragon, Dragon>, Double>(new Pair<Dragon, Dragon>(dl.get(x), dl.get(y)), dp.second));
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-            saveInDb(son.getId(),retval);
+            saveInCache(son.getId(),retval);
         }
         return retval;
     }
@@ -1238,34 +1137,13 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         List<Pair<Dragon,Double>> retval2;
         List<Dragon> dragList;
         String key = mom.getId() + dad.getId();
-        retval = (List<Pair<Dragon,Double>>) getFromDb(key);
+        retval = (List<Pair<Dragon,Double>>) getFromCache(key);
 
-      //  retval2 = _breed2( mom,  dad);
-      //  Date start = new Date();
 
         if (retval == null) {
             retval = _breed2( mom,  dad,withEnchantment);
-
-//            dragList = new ArrayList<Dragon>();
-//            if (dad != null && mom != null && !mom.getId().equals(dad.getId())) {
-//                ArrayList<Dragon> drags = getDragons(vipDragons,withEnchantment,false,true,true);
-//                for (Dragon d : drags) {
-//                    if (isChild(mom, dad, d)) {
-//                        dragList.add(d);
-//                    }
-//                }
-//                retval =  CalcOdds(dragList);
-//            }
-
-            saveInDb(key, retval);
+            saveInCache(key, retval);
         }
-//        Date mid = new Date();
-//        retval2 = _breed2( mom,  dad);
-//        Date end = new Date();
-//
-//        long b1 = mid.getTime() - start.getTime();
-//        long b2 = end.getTime() - mid.getTime();
-
 
         return retval;
     }
@@ -1395,22 +1273,6 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             }
         }
 
-
-
-
-//        elements.add(new element("fire"));
-//        elements.add(new element("wind"));
-//        elements.add(new element("earth"));
-//        elements.add(new element("water"));
-//        elements.add(new element("plant"));
-//        elements.add(new element("metal"));
-//        elements.add(new element("energy"));
-//        elements.add(new element("void"));
-//        elements.add(new element("light"));
-//        elements.add(new element("shadow"));
-//        elements.add(new element("legendary"));
-//        elements.add(new element("divine"));
-
         if(dad.getElements().size() == 1 || mom.getElements().size() == 1){
             elementKeys.remove(getElementKey("fire","plant"));
             elementKeys.remove(getElementKey("wind","energy"));
@@ -1425,10 +1287,6 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
                 dragList.addAll(breedresultsByElementkey.get(s));
             }
         }
-//        if( (mom.getId().equalsIgnoreCase(getDDW_mom()) && dad.getId().equalsIgnoreCase(getDDW_dad()))
-//                || (mom.getId().equalsIgnoreCase(getDDW_dad()) && dad.getId().equalsIgnoreCase(getDDW_mom())) ){
-//            dragList.add(dragons.get(getDDW()));
-//        }
         if (checkMomDad(mom, dad, getDDW_mom(), getDDW_dad())) {
             dragList.add(dragons.get(getDDW()));
         }
@@ -1441,66 +1299,6 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             }
         }
 
-//        if(withEchant) {
-//
-//            if (checkMomDad(mom, dad, "bee", "tree")) {
-//                dragList.add(dragons.get("amber"));
-//            } else if (checkMomDad(mom, dad, "clay", "toxic")) {
-//                dragList.add(dragons.get("ant"));
-//            } else if (checkMomDad(mom, dad, "orange", "venom")) {
-//                dragList.add(dragons.get("beetle"));
-//            } else if (checkMomDad(mom, dad, "cloud", "agave")) {
-//                dragList.add(dragons.get("bloom"));
-//            } else if (checkMomDad(mom, dad, "clownfish", "seed")) {
-//                dragList.add(dragons.get("box"));
-//            } else if (checkMomDad(mom, dad, "dark_mech", "cockatoo")) {
-//                dragList.add(dragons.get("briar"));
-//            } else if (checkMomDad(mom, dad, "mist", "golden_crow")) {
-//                dragList.add(dragons.get("cockatoo"));
-//            } else if (checkMomDad(mom, dad, "frosty", "fossil")) {
-//                dragList.add(dragons.get("crumbly"));
-//            } else if (checkMomDad(mom, dad, "armored", "alien")) {
-//                dragList.add(dragons.get("dark_mech"));
-//            } else if (checkMomDad(mom, dad, "magnet", "rocker")) {
-//                dragList.add(dragons.get("disco_ball"));
-//            } else if (checkMomDad(mom, dad, "lightfish", "brick")) {
-//                dragList.add(dragons.get("fossil"));
-//            } else if (checkMomDad(mom, dad, "frostbite", "yeti")) {
-//                dragList.add(dragons.get("frosty"));
-//            } else if (checkMomDad(mom, dad, "blueflame", "lava")) {
-//                dragList.add(dragons.get("frosty"));
-//            } else if (checkMomDad(mom, dad, "blueflame", "lava")) {
-//                dragList.add(dragons.get("hellfire"));
-//            } else if (checkMomDad(mom, dad, "witch", "elemental")) {
-//                dragList.add(dragons.get("hypoestes"));
-//            } else if (checkMomDad(mom, dad, "ice", "geiger")) {
-//                dragList.add(dragons.get("origami"));
-//            } else if (checkMomDad(mom, dad, "tribal", "sunflower")) {
-//                dragList.add(dragons.get("owl"));
-//            } else if (checkMomDad(mom, dad, "superhero", "disco_ball")) {
-//                dragList.add(dragons.get("plushie"));
-//            } else if (checkMomDad(mom, dad, "tiger", "jelly")) {
-//                dragList.add(dragons.get("superhero"));
-//            }
-//
-//        }
-//
-//        if (checkMomDad(mom, dad, "emperor", "magnet")) {
-//            dragList.add(dragons.get("crystal"));
-//        } else if (checkMomDad(mom, dad, "magnet", "sunflower")) {
-//            dragList.add(dragons.get("dark_machine"));
-//        } else if (checkMomDad(mom, dad, "lightning", "magnet")) {
-//            dragList.add(dragons.get("narwhale"));
-//        } else if (checkMomDad(mom, dad, "lightning", "sunflower")) {
-//            dragList.add(dragons.get("pixie"));
-//        } else if (checkMomDad(mom, dad, "mercury", "sunflower")) {
-//            dragList.add(dragons.get("siren"));
-//        } else if (checkMomDad(mom, dad, "magnet", "mercury")) {
-//            dragList.add(dragons.get("titan"));
-//        } else if (checkMomDad(mom, dad, "lightning", "mercury")) {
-//            dragList.add(dragons.get("vortex"));
-//        }
-
         if(!vipDragons) {
             for (i = dragList.size() - 1; i >= 0; i--) {
                 if (dragList.get(i).isVIP()) {
@@ -1509,221 +1307,6 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             }
         }
         retval =  CalcOdds(dragList);
-        return retval;
-    }
-
-
-    private boolean isChild(Dragon mom, Dragon dad, Dragon child) {
-        Boolean retval = false;
-
-        Boolean dotmcontrol = false;
-        Boolean mumLegendary = false;
-        Boolean dadLegendary = false;
-
-        if (mom.getId().equals(dad.getId())) {
-            // gleiche drachen geht nicht
-            return false;
-        }
-
-        if(child.isUnreleased() || mom.isUnreleased() || dad.isUnreleased()){
-             return false;
-        }
-        if (child.isBoss() || dad.isBoss() || mom.isBoss()) {
-            return false;
-        }
-
-
-//        if (!child.boss_vip.isEmpty()  && !child.boss_vip.equals("V")) { // nicht VIP, aber Boss oder Event oder unreleased
-            // Drogon of the week
-            String tmp = getDDW();
-
-            if(child.getId().equalsIgnoreCase(tmp)){
-                if(mom.getId().equalsIgnoreCase(getDDW_mom()) && dad.getId().equalsIgnoreCase(getDDW_dad())
-                        || dad.getId().equalsIgnoreCase(getDDW_mom()) && mom.getId().equalsIgnoreCase(getDDW_dad()) ){
-                    return true;
-                }
-            }
-            //if (DateTime.Now() > DOW.begin && DateTime.Now() < DOW.end && this.id == DOW.id) {
-            //  if(DOW.momid == mom.id && DOW.dadid == dad.id || DOW.momid == dad.id && DOW.dadid == mom.id ){
-            //    return true;
-            //  }
-            //}
-
-
-            // Dragon of the month
-            if(child.getId().equalsIgnoreCase(getDDM())){
-                if(mom.isBoss() || mom.isUnreleased() || mom.islegendary() || mom.isdivine()){
-                    return false;
-                }
-                if(dad.isBoss() || dad.isUnreleased() || dad.islegendary() || dad.isdivine()){
-                    return false;
-                }
-                List<String> MomDadElements = new ArrayList<>();
-                MomDadElements.addAll(mom.getElements());
-                MomDadElements.addAll(dad.getElements());
-                List<String> ddmElements = getDdmElements();
-                if(ddmElements.size() > 0) {
-                  if(MomDadElements.containsAll(ddmElements)){
-                      return true;
-                  }
-                }
-
-            }
-
-            //if (DateTime.Now() > DOM.begin && DateTime.Now() < DOM.end && this.id == DOM.id) {
-            //List<string> momDadElements = new List<string>();
-            //momDadElements.AddRange(mom.elements);
-            //momDadElements.AddRange(dad.elements);
-            // if(momDadElements.contains(DOM.element1) && momDadElements.contains(DOM.element2) && momDadElements.contains(DOM.element3) && momDadElements.contains(DOM.element4) {
-            ////  return true;
-            ////}
-            //}
-
-
-
-        if(!child.isBreadable()){
-//            if(enchantDragons) {
-                return isSpecialBreed(mom, dad, child);
-//            }
-//            return false;
-        }
-
- //           return false;
- //       }
-
-        /** SPECIAL BREED **/
-        //breed with legendary
-
-//        List<string> mumOrDadLegendaryListElements = new List<string>();
-
-//        if (mom.islegendary()) {
-////            mumOrDadLegendaryListElements.AddRange(mom.elements);
-//        }
-//        if (dad.islegendary()) {
-////            mumOrDadLegendaryListElements.AddRange(dad.elements);
-//        }
-////        mumOrDadLegendaryListElements.RemoveAll(m => m == "legendary");
-//
-//        if (mom.islegendary() && dad.islegendary()) {
-////            if (this.isBoss() || this.isEvent() || this.islegendary) {
-////                return false;
-////            } else {
-////                if (this.elements.Count == 2 &&
-////                        this.id != "sunflower" &&
-////                        this.id != "mercury" &&
-////                        this.id != "lightning" &&
-////                        this.id != "magnet" &&
-////                        this.id != "emperor") {
-////                    return true;
-////                } else {
-////                    return false;
-////                }
-////            }
-//        }
-        if (dad.islegendary() || mom.islegendary() || dad.isdivine() || mom.isdivine() ) {
-            return false; // Lassen wir mal weg....
-//            if (!this.islegendary()) {
-//            } else {
-//                return false;
-//            }
-        } else {
-            //sunflower, mercury, lightning, magnet, emperor
-
-            if (child.getId().equalsIgnoreCase("sunflower") ||
-                    child.getId().equalsIgnoreCase("mercury") ||
-                    child.getId().equalsIgnoreCase("lightning") ||
-                    child.getId().equalsIgnoreCase("magnet") ||
-                    child.getId().equalsIgnoreCase("emperor")) {
-
-                // Inkompatible Elemente ?
-                if (mom.getElements().size() == 1 || dad.getElements().size() == 1) {
-                    return false;
-                }
-            }
-            //siren,pixie,dark machine,vortex,titan,narwhale
-            if (child.getId().equalsIgnoreCase("siren") && ((mom.getId().equalsIgnoreCase("sunflower") && dad.getId().equalsIgnoreCase("mercury")) || (dad.getId().equalsIgnoreCase("sunflower") && mom.getId().equalsIgnoreCase("mercury")))) {
-                return true;
-            }
-            if (child.getId().equalsIgnoreCase("pixie") && ((mom.getId().equalsIgnoreCase("sunflower") && dad.getId().equalsIgnoreCase("lightning")) || (dad.getId().equalsIgnoreCase("sunflower") && mom.getId().equalsIgnoreCase("lightning")))) {
-                return true;
-            }
-            if (child.getId().equalsIgnoreCase("dark_machine") && ((mom.getId().equalsIgnoreCase("sunflower") && dad.getId().equalsIgnoreCase("magnet")) || (dad.getId().equalsIgnoreCase("sunflower") && mom.getId().equalsIgnoreCase("magnet")))) {
-                return true;
-            }
-            if (child.getId().equalsIgnoreCase("vortex") && ((mom.getId().equalsIgnoreCase("lightning") && dad.getId().equalsIgnoreCase("mercury")) || (dad.getId().equalsIgnoreCase("lightning") && mom.getId().equalsIgnoreCase("mercury")))) {
-                return true;
-            }
-            if (child.getId().equalsIgnoreCase("titan") && ((mom.getId().equalsIgnoreCase("magnet") && dad.getId().equalsIgnoreCase("mercury")) || (dad.getId().equalsIgnoreCase("magnet") && mom.getId().equalsIgnoreCase("mercury")))) {
-                return true;
-            }
-            if (child.getId().equalsIgnoreCase("narwhale") && ((mom.getId().equalsIgnoreCase("magnet") && dad.getId().equalsIgnoreCase("lightning")) || (dad.getId().equalsIgnoreCase("magnet") && mom.getId().equalsIgnoreCase("lightning")))) {
-                return true;
-            }
-            if (child.getId().equalsIgnoreCase("crystal") && ((mom.getId().equalsIgnoreCase("emperor") && dad.getId().equalsIgnoreCase("magnet")) || (dad.getId().equalsIgnoreCase("emperor") && mom.getId().equalsIgnoreCase("magnet")))) {
-                return true;
-            }
-            if (child.getElements().size() == 1) {
-                //1 elements => mum & dad must have element
-                if (mom.getElements().contains(child.getElement1()) && dad.getElements().contains(child.getElement1())) {
-                    return true;
-                } else {
-                    // JS ist hier schrott. Immer false
-                    return false;
-                }
-            } else if (child.getElements().size() == 2) {
-                //2 elements => mum & dad can have his element
-                // Auch hier ist das JS kaputt:
-                //if ((mumHasFirstElem && dadHasFirstElem && mumHasSecondElem && dadHasSecondElem) || (mumHasFirstElem && dadHasSecondElem) || (mumHasSecondElem && dadHasFirstElem)) {
-                //  return true;
-                //}
-                // Das erste ist ein Sonderfall und wird duch zweiten und dritten Therm aufgefangen
-
-                if ((mom.getElements().contains(child.getElement1()) && dad.getElements().contains(child.getElement2()))
-                        || (mom.getElements().contains(child.getElement2()) && dad.getElements().contains(child.getElement1()))) {
-                    return true;
-                }
-
-
-            } else if (child.getElements().size() == 3) {
-                //3 elements => mum and dad must have all the elements
-                if (child.islegendary() || child.isdivine()) {
-                    return false;
-                }
-                Boolean e1 = false;
-                Boolean e2 = false;
-                Boolean e3 = false;
-                Boolean m = false;
-                Boolean d = false;
-                if (mom.getElements().contains(child.getElement1())) {
-                    m = true;
-                    e1 = true;
-                }
-                if (mom.getElements().contains(child.getElement2())) {
-                    m = true;
-                    e2 = true;
-                }
-                if (mom.getElements().contains(child.getElement3())) {
-                    m = true;
-                    e3 = true;
-                }
-                if (dad.getElements().contains(child.getElement1())) {
-                    d = true;
-                    e1 = true;
-                }
-                if (dad.getElements().contains(child.getElement2())) {
-                    d = true;
-                    e2 = true;
-                }
-                if (dad.getElements().contains(child.getElement3())) {
-                    d = true;
-                    e3 = true;
-                }
-
-                if (e1 && e2 && e3 && m && d) {
-                    return true;
-                }
-            }
-        }
         return retval;
     }
 
@@ -1754,16 +1337,6 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         return false;
     }
 
-//    private boolean checkMomDadChild(Dragon mom, Dragon dad, Dragon child, String sMom, String sDad, String sChild) {
-//        if(child.getId().equalsIgnoreCase(sChild)){
-//            if(mom.getId().equalsIgnoreCase(sMom) && dad.getId().equalsIgnoreCase(sDad)
-//                    || dad.getId().equalsIgnoreCase(sMom) && mom.getId().equalsIgnoreCase(sDad) ){
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//
     private boolean checkMomDad(Dragon mom, Dragon dad, String sMom, String sDad) {
 
             if(mom.getId().equalsIgnoreCase(sMom) && dad.getId().equalsIgnoreCase(sDad)
