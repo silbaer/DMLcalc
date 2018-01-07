@@ -432,12 +432,15 @@
     <string name="dragon_eyeball">Augapfel</string>
     <string name="dragon_bone">Knochen</string>
     <string name="dragon_bell">Glöckchen</string>
-    <string name="dragon_frost_fairy">Frost Fairy</string>
+    <string name="dragon_frost_fairy">Frostfeen</string>
     <string name="dragon_snow_queen">Schneekönigin</string>
     <string name="dragon_snow_sport">Snow Sport</string>
     <string name="dragon_avocado">Avocado</string>
     <string name="dragon_candy_cane">Zuckerstangen</string>
     <string name="dragon_caterpillar">Raupen</string>
+    <string name="dragon_marshmallow">Marshmallow</string>
+    <string name="dragon_sprite">Elfen</string>
+    <string name="dragon_vibrant">Vibrant</string>
 
 
 

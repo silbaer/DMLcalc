@@ -84,6 +84,10 @@ namespace DragonImport {
 							d.isDailyLogin = true;
 							d.dailyLoginCount = 260;
 						}
+            if (lineSplits [3].Contains ("Daily Login Reward")) {
+              d.isDailyLogin = true;
+            
+            }
 						if (lineSplits [3].Contains ("Dungeon Chest")) {
 							d.isSeasonal = true;
 						}

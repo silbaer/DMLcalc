@@ -99,24 +99,7 @@ public class dragonListFragment extends Fragment {
 
     private void updateElementFilter(){
         List<Dragon> tmp = new ArrayList<>();
-//        tmp.addAll(displayList);
-//        for (int i = tmp.size()-1; i >= 0; i--) {
-//            Dragon d = tmp.get(i);
-//            for(String e : d.getElements())
-//                if (!elementFilter.contains(e)) {
-//                    tmp.remove(d);
-//                    break;
-//                }
-//        }
 
-//        for(Dragon d: displayList){
-//            for(String e : d.getElements()){
-//                if(elementFilter.contains(e)){
-//                    tmp.add(d);
-//                    break;
-//                }
-//            }
-//        }
 
         tmp.addAll(displayList);
         for (int i = tmp.size()-1; i >= 0; i--) {

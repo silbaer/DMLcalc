@@ -441,6 +441,10 @@
     <string name="dragon_avocado">Avocado</string>
     <string name="dragon_candy_cane">Candy Cane</string>
     <string name="dragon_caterpillar">Caterpillar</string>
+    <string name="dragon_marshmallow">Marshmallow</string>
+    <string name="dragon_sprite">Sprite</string>
+    <string name="dragon_vibrant">Vibrant</string>
+
 
 
 </resources>

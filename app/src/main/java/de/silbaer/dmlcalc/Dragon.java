@@ -2,6 +2,7 @@ package de.silbaer.dmlcalc;
 
 // import android.os.Bundle;
 
+import android.support.annotation.BoolRes;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -67,6 +68,7 @@ public class Dragon {
     public Boolean isVIP() {  return this.Vip;  }
     public Boolean isUnreleased() {  return this.Unreleased;  }
     public Boolean isEnchatmentBreed() {  return this.EnchatmentBreed;  }
+    public Boolean isDailyLogin() {return this.DailyLogin;}
 
     private Boolean _isBoss() { return this.boss_vip.trim().equalsIgnoreCase("B"); }
     private Boolean _islegendary() { return this.element1.trim().equalsIgnoreCase("legendary"); }
