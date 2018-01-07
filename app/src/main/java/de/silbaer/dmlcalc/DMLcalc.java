@@ -176,10 +176,6 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
         try {
             String id = dragon.getId();
-//            Log.d("DMLcalc",id);
-//            if (dragonIconCache.containsKey(id)) {
-//                return dragonIconCache.get(id);
-//            }
 
             String assetname = "dragonicons/" + id + "_icon.png";
 
@@ -189,14 +185,6 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             Resources resources = myContext.getResources();
             List<Drawable> scaledLayers = new ArrayList<Drawable>();
 
-
-            int resourceId = resources.getIdentifier(resName, "drawable", myContext.getPackageName());
-//
-//            if (resourceId == 0) {
-//                resourceId = resources.getIdentifier("unknown_icon", "drawable", myContext.getPackageName());
-//            }
-//
-//            scaledLayers.add(getScaledDrawable(resourceId, iconSize, iconSize));
 
             Drawable assetsIcon = getScaledDrawable(assetname,iconSize, iconSize);
             if(assetsIcon == null){
@@ -208,37 +196,29 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
 
             String type = dragon.getType();
             if ("C".equalsIgnoreCase(type)) {
-                resourceId = resources.getIdentifier("classification_corner_common", "drawable", myContext.getPackageName());
-                scaledLayers.add(getScaledDrawable(resourceId, iconSize/2, iconSize/2));
+                scaledLayers.add(getScaledDrawable("classification/classification_corner_common.png", iconSize/2, iconSize/2));
             } else if ("D".equalsIgnoreCase(type)) {
-                resourceId = resources.getIdentifier("classification_corner_divine", "drawable", myContext.getPackageName());
-                scaledLayers.add(getScaledDrawable(resourceId, iconSize/2, iconSize/2));
+                scaledLayers.add(getScaledDrawable("classification/classification_corner_divine.png", iconSize/2, iconSize/2));
             } else if ("E".equalsIgnoreCase(type)) {
-                resourceId = resources.getIdentifier("classification_corner_epic", "drawable", myContext.getPackageName());
-                scaledLayers.add(getScaledDrawable(resourceId, iconSize/2, iconSize/2));
+                scaledLayers.add(getScaledDrawable("classification/classification_corner_epic.png", iconSize/2, iconSize/2));
             } else if ("L".equalsIgnoreCase(type)) {
-                resourceId = resources.getIdentifier("classification_corner_legendary", "drawable", myContext.getPackageName());
-                scaledLayers.add(getScaledDrawable(resourceId, iconSize/2, iconSize/2));
+                scaledLayers.add(getScaledDrawable("classification/classification_corner_legendary.png", iconSize/2, iconSize/2));
             } else if ("R".equalsIgnoreCase(type)) {
-                resourceId = resources.getIdentifier("classification_corner_rare", "drawable", myContext.getPackageName());
-                scaledLayers.add(getScaledDrawable(resourceId, iconSize/2, iconSize/2));
+                scaledLayers.add(getScaledDrawable("classification/classification_corner_rare.png", iconSize/2, iconSize/2));
             } else if ("U".equalsIgnoreCase(type)) {
-                resourceId = resources.getIdentifier("classification_corner_uncommon", "drawable", myContext.getPackageName());
-                scaledLayers.add(getScaledDrawable(resourceId, iconSize/2, iconSize/2));
+                scaledLayers.add(getScaledDrawable("classification/classification_corner_uncommon.png", iconSize/2, iconSize/2));
             } else {
-                resourceId = resources.getIdentifier("classification_corner_empty", "drawable", myContext.getPackageName());
-                scaledLayers.add(getScaledDrawable(resourceId, iconSize/2, iconSize/2));
+                scaledLayers.add(getScaledDrawable("classification/classification_corner_empty.png", iconSize/2, iconSize/2));
             }
 
             if (dragon.isVIP()) {
-                resourceId = resources.getIdentifier("vip_dragons_icon", "drawable", myContext.getPackageName());
-                scaledLayers.add(getScaledDrawable(resourceId, iconSize/5*2, iconSize/5*2));
+                scaledLayers.add(getScaledDrawable("notes/vip_dragons_icon.png", iconSize/5*2, iconSize/5*2));
             } else if (dragon.isEnchatmentBreed()) {
-                resourceId = resources.getIdentifier("enchanted_breeding_icon", "drawable", myContext.getPackageName());
-                scaledLayers.add(getScaledDrawable(resourceId, iconSize/5*2, iconSize/5*2));
+                scaledLayers.add(getScaledDrawable("notes/enchanted_breeding_icon.png", iconSize/5*2, iconSize/5*2));
+            } else if (dragon.isDailyLogin()) {
+                scaledLayers.add(getScaledDrawable("notes/daily_login_reward_icon.jpg", iconSize/5*2, iconSize/5*2));
             } else if (!dragon.isBreadable()) {
-                resourceId = resources.getIdentifier("ltd_icon", "drawable", myContext.getPackageName());
-                scaledLayers.add(getScaledDrawable(resourceId, iconSize/5*2, iconSize/5*2));
+                scaledLayers.add(getScaledDrawable("notes/ltd_icon.png", iconSize/5*2, iconSize/5*2));
             }
 
             LayerDrawable layerDrawable = new LayerDrawable(scaledLayers.toArray(new Drawable[0]));
@@ -261,9 +241,6 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
                 b.compress(Bitmap.CompressFormat.PNG, 100, outputStream); // bmp is your Bitmap instance
                 // PNG is a lossless format, the compression factor (100) is ignored
 
-
-
-
              //   outputStream.close();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -277,8 +254,6 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
                 }
             }
 
-        //    dragonIconCache.put(id, layerDrawable);
-       //     return layerDrawable;
         } catch (Exception ex){
             ex.printStackTrace();
         }

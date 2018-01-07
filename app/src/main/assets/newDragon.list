@@ -39,7 +39,7 @@ maple_leaf;Maple Leaf Dragon Icon.png;Epic;Plant/Fire/Earth;62;216;420;57600;846
 liquid_fire;Liquid Fire Dragon Icon.png;Rare;Water/Fire/Plant;64;212;340;50400;74400;;;False;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 palm;Palm Dragon Icon.png;Rare;Plant/Wind/Earth;61;220;360;50400;74400;950;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 farmer;Farmer Dragon Icon.png;Rare;Plant/Earth;59;222;340;0;60600;925;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
-faun;Faun Dragon Icon.png;Epic;Plant/Earth;59;222;390;0;70800;1500;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
+faun;Faun Dragon Icon.png;Epic;Plant/Earth;59;222;390;0;70800;1500;Gems;False;False;False;False;False;False;False;False;True;0;False;False;False;False;False;
 ash;Ash Dragon Icon.png;Epic;Fire/Plant/Wind;66;200;410;57600;84600;1475;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 kangaroo;Kangaroo Dragon Icon.png;Epic;Wind/Fire/Plant;66;200;410;0;84600;;;False;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 werewolf;Werewolf Dragon Icon.png;Epic;Fire/Earth/Plant;62;216;420;57600;84600;1550;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
@@ -133,7 +133,7 @@ dracula;Dracula Dragon Icon.png;Epic;Void/Metal/Wind;62;220;535;72000;93600;1675
 swamp;Swamp Dragon Icon.png;Epic;Void/Earth/Plant;62;228;530;72000;93600;1650;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;True;
 alien;Alien Dragon Icon.png;Epic;Void/Metal/Plant;62;230;575;79200;93600;1800;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;True;
 jelly;Jelly Dragon Icon.png;Epic;Void/Energy/Water;68;208;540;79200;104400;1750;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;True;
-radiant;Radiant Dragon Icon.png;Epic;Void/Metal/Energy;66;214;615;0;100800;1850;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
+radiant;Radiant Dragon Icon.png;Epic;Void/Metal/Energy;66;214;615;0;100800;1850;Gems;False;False;False;False;False;False;False;False;True;0;False;False;False;False;False;
 eagle;Eagle Dragon Icon.png;Epic;Wind/Metal/Void;62;220;535;72000;93600;1690;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 envy;Envy Dragon Icon.png;Epic;Void/Plant/Metal;62;230;575;79200;93600;1800;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 pulsar;Pulsar Dragon Icon.png;Epic;Fire/Void/Wind;67;198;490;64800;93600;1600;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
@@ -143,10 +143,10 @@ zombie;Zombie Dragon Icon.png;Epic;Earth/Void/Fire;64;214;500;0;93600;;;False;Fa
 machine_snake;Machine Snake Dragon Icon.png;Epic;Void/Earth/Energy;66;212;570;79200;104400;1640;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 agent;Agent Dragon Icon.png;Epic;Metal/Void/Earth;59;236;545;0;93600;1007;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 ghost;Ghost Dragon Icon.png;Epic;Wind/Void/Metal;62;220;535;72000;93600;1725;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
-ragnarok;Ragnarok Dragon Icon.png;Epic;Metal/Void/Fire;64;216;545;0;93600;1700;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
+ragnarok;Ragnarok Dragon Icon.png;Epic;Metal/Void/Fire;64;216;545;0;93600;1700;Gems;False;False;False;False;False;False;False;False;True;0;False;False;False;False;False;
 hammerhead;Hammerhead Dragon Icon.png;Epic;Water/Metal/Void;61;232;515;72000;93600;1700;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 phoenix;Phoenix Dragon Icon.png;Epic;Fire/Energy/Void;71;192;570;79200;104400;1555;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
-pharaoh;Pharaoh Dragon Icon.png;Epic;Void/Wind/Earth;62;218;490;0;93600;1650;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
+pharaoh;Pharaoh Dragon Icon.png;Epic;Void/Wind/Earth;62;218;490;0;93600;1650;Gems;False;False;False;False;False;False;False;False;True;0;False;False;False;False;False;
 slam_dunk;Slam Dunk Dragon Icon.png;Epic;Wind/Earth/Void;62;218;490;64800;93600;1640;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 the_sludge;The Sludge Icon.png;Boss;Void/Energy/Water;271;832;+10%;0;0;550;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;True;
 gasper;Gasper Icon.png;Boss;Wind/Void/Metal;250;880;+10%;0;0;1000;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;True;
@@ -158,7 +158,7 @@ seahorse;Seahorse Dragon Icon.png;Epic;Water/Plant/Fire;64;212;390;0;600;1610;Ge
 celestial;Celestial Dragon Icon.png;Epic;Plant/Water/Earth;59;232;390;0;84600;1575;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 piggy_bank;Piggy Bank Dragon Icon.png;Epic;Fire/Earth/Metal;59;224;435;0;84600;;;False;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 crusader;Crusader Dragon Icon.png;Common;Shadow/Metal;64;210;435;0;49800;;;False;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
-tempest;Tempest Dragon Icon.png;Epic;Wind/Water/Energy;67;200;420;0;93600;1560;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
+tempest;Tempest Dragon Icon.png;Epic;Wind/Water/Energy;67;200;420;0;93600;1560;Gems;False;False;False;False;False;False;False;False;True;0;False;False;False;False;False;
 tsunami;Tsunami Dragon Icon.png;Epic;Water/Void/Wind;64;214;460;0;93600;1650;Gems;False;False;False;False;False;False;False;False;False;0;False;False;True;False;False;
 light;Light Dragon Icon.png;Common;Light;63;208;360;28800;31800;1000000;Gold;False;False;False;False;False;False;False;False;False;0;False;False;False;False;True;
 spikey;Spikey Dragon Icon.png;Common;Light/Earth;61;222;390;36000;48600;310;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;True;
@@ -281,7 +281,7 @@ chameleon;Chameleon Dragon Icon.png;Epic;Water/Plant/Light;64;226;540;0;100800;1
 cockatoo;Cockatoo Dragon Icon.png;Epic;Plant/Wind/Energy;68;198;480;72000;93600;;;False;False;False;False;False;False;False;False;False;0;True;False;False;False;False;
 dark_mech;Dark Mech Dragon Icon.png;Epic;Void/Earth/Metal;59;236;545;72000;93600;;;False;False;False;False;False;False;False;False;False;0;True;False;False;False;False;
 disco_ball;Disco Ball Dragon Icon.png;Epic;Void/Energy/Fire;71;192;570;79200;104400;;;False;False;False;False;False;False;False;False;False;0;True;False;False;False;False;
-firefly;Firefly Dragon Icon.png;Epic;Fire/Light/Void;68;208;650;0;111600;1828;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
+firefly;Firefly Dragon Icon.png;Epic;Fire/Light/Void;68;208;650;0;111600;1828;Gems;False;False;False;False;False;False;False;False;True;0;False;False;False;False;False;
 fossil;Fossil Dragon Icon.png;Epic;Earth/Light/Water;61;232;510;72000;100800;;;False;False;False;False;False;False;False;False;False;0;True;False;False;False;False;
 frosty;Frosty Dragon Icon.png;Epic;Shadow/Light/Wind;71;200;680;93600;118800;;;False;False;False;False;False;False;False;False;False;0;True;False;False;False;False;
 hellfire;Hellfire Dragon Icon.png;Epic;Void/Fire/Earth;64;214;500;64800;93600;;;False;False;False;False;False;False;False;False;False;0;True;False;False;False;False;
@@ -323,7 +323,7 @@ orc;Orc Dragon Icon.png;Rare;Earth/Wind/Fire;63;206;330;0;69600;;;False;False;Fa
 posh;Posh Dragon Icon.png;Epic;Energy/Metal/Void;66;214;615;0;100800;2017;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 present;Present Dragon Icon.png;Epic;Energy/Earth/Light;67;214;610;0;111600;2000;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 runestone;Runestone Dragon Icon.png;Rare;Earth/Fire;61;208;310;0;30;;;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
-sage;Sage Dragon Icon.png;Epic;Earth/Fire/Void;64;214;500;0;93600;1680;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
+sage;Sage Dragon Icon.png;Epic;Earth/Fire/Void;64;214;500;0;93600;1680;Gems;False;False;False;False;False;False;False;False;True;0;False;False;False;False;False;
 skater;Skater Dragon Icon.png;Rare;Water/Wind/Earth;60;222;300;0;69600;;;False;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 snowman;Snowman Dragon Icon.png;Epic;Wind/Water/Light;65;216;500;0;100800;;;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 xuanzang;Xuanzang Dragon Icon.png;Epic;Void/Water/Energy;68;208;540;79200;104400;1777;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
@@ -381,6 +381,9 @@ snow_sport;Snow Sport Dragon Icon.png;Epic;Shadow/Water/Fire;69;198;510;0;100800
 avocado;Avocado Dragon Icon.png;Rare;Plant/Earth;59;222;340;0;60600;;;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 candy_cane;Candy Cane Dragon Icon.png;Epic;Light/Plant/Fire;67;210;570;0;100800;1907;Gems;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 caterpillar;Caterpillar Dragon Icon.png;Epic;Earth/Plant/Energy;65;214;490;0;93600;;;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
+marshmallow;Marshmallow Dragon Icon.png;Epic;Water/Wind/Energy;67;200;420;0;93600;;;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
+sprite;Sprite Dragon Icon.png;Epic;Water/Wind/Plant;63;216;380;0;84600;;;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
+vibrant;Vibrant Dragon Icon.png;Epic;Fire/Light/Water;66;212;510;0;100800;;;True;False;False;False;False;False;False;False;False;0;False;False;False;False;False;
 dark_machine;Dark Machine Dragon Icon.png;Legendary;Legendary/Metal/Wind;72;254;755;172800;205200;3350;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;True;
 titan;Titan Dragon Icon.png;Legendary;Legendary/Void/Earth;72;260;820;172800;205200;3400;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;True;
 siren;Siren Dragon Icon.png;Legendary;Legendary/Fire/Water;75;244;680;172800;205200;3500;Gems;False;False;False;False;False;False;False;False;False;0;False;False;False;False;True;
