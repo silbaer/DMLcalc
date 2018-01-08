@@ -49,9 +49,18 @@ import java.util.TreeMap;
 
 /**
  * Created by silbaer on 13.06.16.
+ * Durch Ableitung von Application gibt es immer eine Instanz
+ *
  */
 public class DMLcalc extends Application implements SharedPreferences.OnSharedPreferenceChangeListener{
 
+    /*********************************************
+     * Halter für eine Spezialzucht => Nur eine Kombination.
+     * Spezialzucht: Züchtbare legendäre Drachen
+     *               Verzauberte Zucht
+     *
+     * TODO: Vorraussetzungen für verzauberte Zucht: Z-Level / Bruthölen-Level
+     */
     public class SpecialBreed{
         public String momId;
         public String dadId;
@@ -65,6 +74,13 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             this.isEnchanted = isEnchanted;
         }
 
+        /**
+         * Prüft ob die Drachen (Mom, Dad, Child) der gegebenen Spezialzucht entsprechen
+         * @param mom Drachen-ID
+         * @param dad Drachen-ID
+         * @param child Drachen-ID
+         * @return
+         */
         public boolean checkMomDadChild(Dragon mom, Dragon dad, Dragon child) {
             if(child.getId().equalsIgnoreCase(childId)){
                 return checkMomDad(mom,dad);
@@ -72,42 +88,66 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             return false;
         }
 
+        /**
+         * Prüft ob die Drachen (Mom, Dad) der gegebenen Spezialzucht entsprechen
+         * @param mom Drachen-ID
+         * @param dad Drachen-ID
+         * @return
+         */
         public boolean checkMomDad(Dragon mom, Dragon dad) {
 
             if(mom.getId().equalsIgnoreCase(momId) && dad.getId().equalsIgnoreCase(dadId)
                     || dad.getId().equalsIgnoreCase(momId) && mom.getId().equalsIgnoreCase(dadId) ){
                 return true;
             }
-
             return false;
         }
     }
 
+    /****************************************
+     * Gibt eine Stringresource anhand ihres Identifiers und nicht der ResourceID zurück
+     * @param aString Identifier der Resource
+     * @return Resourcestring oder aString wenn Identifier nicht gefunden wurde
+     */
     public String getStringResourceByName(String aString) {
         String packageName = getContext().getPackageName();
         int resId = getResources().getIdentifier(aString, "string", packageName);
         if(resId == 0) {
             return aString;
-
         }
         return getString(resId);
     }
 
+    /********************************************************
+     * Ermittelt die ResourceID  eines Drawables anhang des Identifier
+     * @param aString Identifier
+     * @return ResourceID ( 0 = nicht gefunden)
+     */
     public int getDrawableIdentifierByName(String aString) {
         String packageName = getContext().getPackageName();
         int resId = getResources().getIdentifier(aString, "drawable", packageName);
-
         return resId;
     }
 
-    public static Application getApplication() {
-        return _instance;
-    }
+//    public static Application getApplication() {
+//        return _instance;
+//    }
 
+    /****
+     * Gibt den Application-Context zurück
+     * @return
+     */
     public static Context getContext() {
-        return getApplication().getApplicationContext();
+        return _instance.getApplicationContext();
     }
 
+    /***********************************************
+     * Gibt ein auf Größe und Breite skaliertes Drawable anhand einer ResourceID zurück
+     * @param resourceID ID des Drawables
+     * @param width Breite
+     * @param height Höhe
+     * @return
+     */
     private Drawable getScaledDrawable(int resourceID, int width, int height){
 
         Resources resources = getContext().getResources();
@@ -121,6 +161,13 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         return d;
     }
 
+    /*****************************************************
+     * Gibt ein auf Größe und Breite skaliertes Drawable anhand einer Asset-URL zurück
+     * @param assetsUrl File-URL relativ zum Asset-Verzeichnis
+     * @param width Breite
+     * @param height Höhe
+     * @return
+     */
     private Drawable getScaledDrawable(String assetsUrl, int width, int height){
         Drawable drawable = null;
         InputStream inputStream = null;
@@ -154,11 +201,14 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         return px;
     }
 
+    /**********************************
+     * Lädt anhand einer DragonID ein (Drachenlisten-) Icon in ein Image-View. Das Icon wird per
+     * Picasso-Lib aus dem Applications-Verzeichnis geladen
+     * @param id DrachenID
+     * @param view ImageView
+     */
     public void loadDragonIcon(String id, ImageView view){
-
         String filename = id + "_icon.png";
-
-
         File file = new File(getContext().getFilesDir(), filename);
         if(file.exists()) {
             Picasso.with(getContext()).load(file).into(view);
