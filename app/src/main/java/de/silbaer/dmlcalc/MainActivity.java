@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
@@ -399,16 +400,51 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
     @Override
     protected void onPause() {
         super.onPause();
+        SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        if(mom != null) {
+            editor.putString("mom", mom.getId());
+        } else {
+            editor.putString("mom","");
+        }
+        if(dad != null) {
+            editor.putString("dad", dad.getId());
+        } else {
+            editor.putString("dad","");
+        }
+        if(child != null) {
+            editor.putString("child", child.getId());
+        } else {
+            editor.putString("child","");
+        }
+        editor.commit();
         DMLcalc.Instance().saveCache();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if(mom != null) {
-            String momName = mom.toString();
+        SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE);
+        String tmp = preferences.getString("mom","");
+        if(tmp != "") {
+            mom = DMLcalc.Instance().dragons.get(tmp);
+            textMom.setText(mom.toString());
         }
-        String tmp = dml.getDDW();
+        tmp = preferences.getString("dad","");
+        if(tmp != "") {
+            dad = DMLcalc.Instance().dragons.get(tmp);
+            textDad.setText(dad.toString());
+        }
+        tmp = preferences.getString("child","");
+        if(tmp != "") {
+            child = DMLcalc.Instance().dragons.get(tmp);
+            textChild.setText(child.toString());
+        }
+
+
+
+
+         tmp = dml.getDDW();
         if(!tmp.isEmpty()){
             TextView tv = (TextView) findViewById(R.id.textViewDDW);
             tv.setText(String.format("%s",dml.dragons.get(tmp).toString()));
