@@ -349,15 +349,16 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
     private List<SpecialBreed> specialBreeds = null;
 
     public Map<String,Dragon> dragons = new Hashtable<String,Dragon>();
-//    public Dictionary<string, Element> elements = new Dictionary<string,Element>();
 
     Map<String,Double> odds;
 
- //   private Hashtable<String,Object> _howToCache;
     private Hashtable<String,Object> _breedCache;
 
     private Hashtable<String,ArrayList<Dragon>> dragonsByElementkey; // Alle Drachen
     private Hashtable<String,ArrayList<Dragon>> breedresultsByElementkey;  // Erbrütbare Drachen
+
+    public Hashtable<String,Integer> exceptionalBreadingTimes; // Sonderzeiten beim Breading
+    public Hashtable<String,Integer> exceptionalHatchingTimes; // Sonderzeiten beim Hatching
 
     public DMLcalc() {
 
@@ -594,6 +595,36 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         _breedCache.put(key,value);
     }
 
+    public String getTimeString(Integer seconds){
+        StringBuilder retval = new StringBuilder();
+        Integer unitCount = 0;
+
+        Integer bDay = seconds / (60 * 60 * 24);
+        Integer bHour = (seconds - bDay * (60 * 60 * 24)) / (60 * 60);
+        Integer bMin = (seconds - bDay * (60 * 60 * 24) - bHour * (60 * 60)) / (60);
+        Integer bSec = seconds - bDay * (60 * 60 * 24) - bHour * (60 * 60) - bMin * 60;
+
+        if (bDay > 0) {
+            unitCount++;
+            retval.append(bDay + "d, ");
+        }
+        if (bHour > 0) {
+            unitCount++;
+            retval.append(bHour + "h, ");
+        }
+        if (bMin > 0 && unitCount < 2) {
+            unitCount++;
+            retval.append(bMin + "m, ");
+        }
+        if (bSec > 0 && unitCount < 2) {
+            unitCount++;
+            retval.append(bSec + "s, ");
+        }
+        retval.setLength(retval.length() - 2);
+
+        return retval.toString();
+    }
+
     @Override
     public void onCreate(){
         PREFS_NAME =  getResources().getString(R.string.PREFS_NAME);
@@ -644,7 +675,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             for (String jsline : lines) {
                 String l = jsline.trim();
                 if(!l.isEmpty()){
-                    d = new Dragon(l,true);
+                    d = new Dragon(l);
                     dragons.put(d.getId(),d);
                     if(!d.isUnreleased() && !d.isBoss()) {
                         String elementKey = d.getElementKey();
@@ -711,6 +742,50 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             specialBreeds.add(new SpecialBreed("disco_ball","superhero","plushie",true));
             specialBreeds.add(new SpecialBreed("melon","tree","sea_turtle",true));
             specialBreeds.add(new SpecialBreed("jelly","tiger","superhero",true));
+
+            exceptionalBreadingTimes = new Hashtable<String,Integer>();
+            exceptionalBreadingTimes.put("fire",30);
+            exceptionalBreadingTimes.put("wind",30);
+            exceptionalBreadingTimes.put("earth",60);
+            exceptionalBreadingTimes.put("water",300);
+            exceptionalBreadingTimes.put("plant",60*60);
+            exceptionalBreadingTimes.put("metal",60*90);
+            exceptionalBreadingTimes.put("energy",60*120);
+            exceptionalBreadingTimes.put("void",60*180);
+            exceptionalBreadingTimes.put("light",60*60*8);
+            exceptionalBreadingTimes.put("shadow",60*60*8);
+
+            exceptionalBreadingTimes.put("bee",60*45);
+            exceptionalBreadingTimes.put("dust",60*60*2);
+            exceptionalBreadingTimes.put("lava",60*60);
+            exceptionalBreadingTimes.put("salamander",60*90);
+            exceptionalBreadingTimes.put("smoke",60*30);
+
+            exceptionalHatchingTimes = new Hashtable<String,Integer>();
+            exceptionalHatchingTimes.put("fire",30);
+            exceptionalHatchingTimes.put("wind",30);
+            exceptionalHatchingTimes.put("earth",60);
+            exceptionalHatchingTimes.put("water",300);
+            exceptionalHatchingTimes.put("plant",60*60);
+            exceptionalHatchingTimes.put("metal",60*90);
+            exceptionalHatchingTimes.put("energy",60*120);
+            exceptionalHatchingTimes.put("void",60*180);
+            exceptionalHatchingTimes.put("light",60*(60*8 +50));
+            exceptionalHatchingTimes.put("shadow",60*(60*8+50));
+
+            exceptionalHatchingTimes.put("bee",60*80);
+            exceptionalHatchingTimes.put("dust",60*(60*3+20));
+            exceptionalHatchingTimes.put("fireball",30);
+            exceptionalHatchingTimes.put("seahorse",60*10);
+            exceptionalHatchingTimes.put("lava",60*90);
+            exceptionalHatchingTimes.put("prairie",60*5);
+            exceptionalHatchingTimes.put("runestone",30);
+            exceptionalHatchingTimes.put("salamander",60*120);
+            exceptionalHatchingTimes.put("smoke",60*45);
+            exceptionalHatchingTimes.put("tick_tock",60*(60*8));
+            exceptionalHatchingTimes.put("tribal",60*5);
+
+
 
 
 

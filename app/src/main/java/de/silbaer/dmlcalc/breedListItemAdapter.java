@@ -181,64 +181,17 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
 //            sb.append(d.toString());
 //            sb.append(" (");
             sb.append("B: ");
-             tBreed = Integer.parseInt(d.getBreedingTime());
-            if(vipTimes){
-                tBreed = tBreed * 80/100;
-            }
+            sb.append(DMLcalc.Instance().getTimeString(d.getBreedingTime(vipTimes)));
 
-
-            bDay = tBreed / (60 * 60 * 24);
-            bHour = (tBreed - bDay * (60 * 60 * 24)) / (60 * 60);
-            bMin = (tBreed - bDay * (60 * 60 * 24) - bHour * (60 * 60)) / (60);
-            bSec = tBreed - bDay * (60 * 60 * 24) - bHour * (60 * 60) - bMin * 60;
-
-
-
-
-            if (bDay > 0) {
-                sb.append(bDay + "d, ");
-            }
-            if (bHour > 0) {
-                sb.append(bHour + "h, ");
-            }
-            if (bMin > 0) {
-                sb.append(bMin + "m, ");
-            }
-            if (bSec > 0) {
-                sb.append(bSec + "s, ");
-            }
-            sb.setLength(sb.length() - 2);
         } catch (Exception e) {
             sb.append("N/A");
             e.printStackTrace();
         }
         try {
             sb.append(" / H: ");
-            tHatch = Integer.parseInt(d.getHatchingTime());
-            if(vipTimes){
-                tHatch = tHatch * 80/100;
-            }
 
+            sb.append(DMLcalc.Instance().getTimeString(d.getHatchingTime(vipTimes)));
 
-            hDay = tHatch / (60 * 60 * 24);
-            hHour = (tHatch - hDay * (60 * 60 * 24)) / (60 * 60);
-            hMin = (tHatch - hDay * (60 * 60 * 24) - hHour * (60 * 60)) / (60);
-            hSec = tHatch - hDay * (60 * 60 * 24) - hHour * (60 * 60) - hMin * 60;
-
-
-            if (hDay > 0) {
-                sb.append(hDay + "d, ");
-            }
-            if (hHour > 0) {
-                sb.append(hHour + "h, ");
-            }
-            if (hMin > 0) {
-                sb.append(hMin + "m, ");
-            }
-            if (hSec > 0) {
-                sb.append(hSec + "s, ");
-            }
-            sb.setLength(sb.length() - 2);
 
         } catch (Exception e) {
             sb.append("N/A");

@@ -19,6 +19,8 @@ import android.support.v7.app.ActionBarActivity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Pair;
 import android.view.Menu;
@@ -288,11 +290,13 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
     public void displayHowToResult(Dragon child) {
         try {
             this.child = child;
-            textChild.setText(child.toString());
-            AutoColpleteDragonAdapter ad = (AutoColpleteDragonAdapter) textChild.getAdapter();
-            int i = ad.getPosition(child);
-            textChild.setListSelection(i);
-            displayHowToResult();
+            if(child != null) {
+                textChild.setText(child.toString());
+//                AutoColpleteDragonAdapter ad = (AutoColpleteDragonAdapter) textChild.getAdapter();
+//                int i = ad.getPosition(child);
+//                textChild.setListSelection(i);
+                displayHowToResult();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -301,10 +305,12 @@ public class MainActivity extends AppCompatActivity implements DMLcalc.howToResp
         try {
             this.mom = mom;
             this.dad = dad;
-            textMom.setText(mom.toString());
-            textDad.setText(dad.toString());
+            if(mom != null && dad != null) {
+                textMom.setText(mom.toString());
+                textDad.setText(dad.toString());
 
-            displayBreedResult();
+                displayBreedResult();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

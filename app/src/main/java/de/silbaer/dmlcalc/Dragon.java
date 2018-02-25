@@ -24,8 +24,8 @@ public class Dragon {
     private  String element2;
     private  String element3;
     private  String boss_vip;
-    private  String breedingTime;  // Seconds (Integer)
-    private  String hatchingTime;  // Seconds (Integer)
+    private  Integer breedingTime = 0;  // Seconds (Integer)
+    private  Integer hatchingTime = 0;  // Seconds (Integer)
     private  String type; // C,U,R,E,L,B,D
     private  String health;
     private  String attack;
@@ -84,50 +84,114 @@ public class Dragon {
     public String getElement1() {return element1;}
     public String getElement2() {return element2;}
     public String getElement3() {return element3;}
-    public String getHatchingTime(){return hatchingTime;}
-    public String getBreedingTime(){
-        if("0".equalsIgnoreCase(breedingTime)) {
-            if(!"fireball".equalsIgnoreCase(this.getId())){
-                Integer bt = 0;
-                if(islegendary()) {
-                     bt = 48*60*60;
+//    public String getHatchingTime(){return hatchingTime;}
+//    public String getBreedingTime(){
+//        return getBreedingTime(false);
+//    }
+
+    public Integer getHatchingTime(boolean vip) {
+        Integer retval = 0;
+        if(hatchingTime == 0 ) {
+            if (!DMLcalc.Instance().exceptionalHatchingTimes.containsKey(id)) {
+                Float hatchingFactor = 0f;
+                if (islegendary()) {
+                    hatchingFactor = 1.2f;
+                } else if (isdivine()) {
+                    hatchingFactor = 1.2f;
                 } else {
-                    if(this.getType().equalsIgnoreCase("U")){
-                        bt = bt + 2*60*60;
-                    } else if(this.getType().equalsIgnoreCase("R")){
-                        bt = bt + 6*60*60;
-                    } else if(this.getType().equalsIgnoreCase("E")){
-                        bt = bt + 8*60*60;
-                    }
-                    for (Iterator<String> it = this.getElements().iterator(); it.hasNext();){
+                    for (Iterator<String> it = this.getElements().iterator(); it.hasNext(); ) {
                         String e = it.next();
-                        if(e.equalsIgnoreCase("fire")){
-                            bt = bt + 2*60*60;
-                        } else if(e.equalsIgnoreCase("wind")){
-                            bt = bt + 2*60*60;
-                        } else if(e.equalsIgnoreCase("earth")){
-                            bt = bt + 2*60*60;
-                        } else if(e.equalsIgnoreCase("water")){
-                            bt = bt + 2*60*60;
-                        } else if(e.equalsIgnoreCase("plant")){
-                            bt = bt + 4*60*60;
-                        } else if(e.equalsIgnoreCase("metal")){
-                            bt = bt + 4*60*60;
-                        } else if(e.equalsIgnoreCase("energy")){
-                            bt = bt + 6*60*60;
-                        } else if(e.equalsIgnoreCase("void")){
-                            bt = bt + 6*60*60;
-                        } else if(e.equalsIgnoreCase("light")){
-                            bt = bt + 8*60*60;
-                        } else if(e.equalsIgnoreCase("shadow")){
-                            bt = bt + 8*60*60;
+                        if (e.equalsIgnoreCase("fire")) {
+                            hatchingFactor = hatchingFactor + 1.6f;
+                        } else if (e.equalsIgnoreCase("wind")) {
+                            hatchingFactor = hatchingFactor + 1.6f;
+                        } else if (e.equalsIgnoreCase("earth")) {
+                            hatchingFactor = hatchingFactor + 1.6f;
+                        } else if (e.equalsIgnoreCase("water")) {
+                            hatchingFactor = hatchingFactor + 1.6f;
+                        } else if (e.equalsIgnoreCase("plant")) {
+                            hatchingFactor = hatchingFactor + 1.2f;
+                        } else if (e.equalsIgnoreCase("metal")) {
+                            hatchingFactor = hatchingFactor + 1.2f;
+                        } else if (e.equalsIgnoreCase("energy")) {
+                            hatchingFactor = hatchingFactor + 1.2f;
+                        } else if (e.equalsIgnoreCase("void")) {
+                            hatchingFactor = hatchingFactor + 1.2f;
+                        } else if (e.equalsIgnoreCase("light")) {
+                            hatchingFactor = hatchingFactor + 1.1f;
+                        } else if (e.equalsIgnoreCase("shadow")) {
+                            hatchingFactor = hatchingFactor + 1.1f;
+                        }
+                    }
+                    hatchingFactor = hatchingFactor / this.getElements().size();
+                }
+                Integer bt = getBreedingTime(false);
+                Integer ht1 = Math.round(bt * hatchingFactor);
+                Float ht2 = ht1 / 10f / 60f;
+                double ht = Math.ceil(ht2);
+                hatchingTime = (int) ht * 10 * 60;
+                // hatchingTime = ((int) Math.ceil( getBreedingTime(false) * hatchingFactor / 10f)) *10;
+            } else {
+                hatchingTime = DMLcalc.Instance().exceptionalHatchingTimes.get(id);
+            }
+        }
+        retval = hatchingTime;
+        if (vip) {
+            retval =  (Math.round(hatchingTime * 0.8f));
+        }
+        return retval;
+    }
+
+    public Integer getBreedingTime(boolean vip){
+        Integer retval = 0;
+        if(breedingTime == 0 ) {
+            if (!DMLcalc.Instance().exceptionalBreadingTimes.containsKey(id)) {
+                if (islegendary()) {
+                    breedingTime = 48 * 60 * 60;
+                } else if (isdivine()) {
+                    breedingTime = 96 * 60 * 60;
+                } else {
+                    if (this.getType().equalsIgnoreCase("U")) {
+                        breedingTime = breedingTime + 2 * 60 * 60;
+                    } else if (this.getType().equalsIgnoreCase("R")) {
+                        breedingTime = breedingTime + 6 * 60 * 60;
+                    } else if (this.getType().equalsIgnoreCase("E")) {
+                        breedingTime = breedingTime + 8 * 60 * 60;
+                    }
+                    for (Iterator<String> it = this.getElements().iterator(); it.hasNext(); ) {
+                        String e = it.next();
+                        if (e.equalsIgnoreCase("fire")) {
+                            breedingTime = breedingTime + 2 * 60 * 60;
+                        } else if (e.equalsIgnoreCase("wind")) {
+                            breedingTime = breedingTime + 2 * 60 * 60;
+                        } else if (e.equalsIgnoreCase("earth")) {
+                            breedingTime = breedingTime + 2 * 60 * 60;
+                        } else if (e.equalsIgnoreCase("water")) {
+                            breedingTime = breedingTime + 2 * 60 * 60;
+                        } else if (e.equalsIgnoreCase("plant")) {
+                            breedingTime = breedingTime + 4 * 60 * 60;
+                        } else if (e.equalsIgnoreCase("metal")) {
+                            breedingTime = breedingTime + 4 * 60 * 60;
+                        } else if (e.equalsIgnoreCase("energy")) {
+                            breedingTime = breedingTime + 6 * 60 * 60;
+                        } else if (e.equalsIgnoreCase("void")) {
+                            breedingTime = breedingTime + 6 * 60 * 60;
+                        } else if (e.equalsIgnoreCase("light")) {
+                            breedingTime = breedingTime + 8 * 60 * 60;
+                        } else if (e.equalsIgnoreCase("shadow")) {
+                            breedingTime = breedingTime + 8 * 60 * 60;
                         }
                     }
                 }
-                breedingTime = bt.toString();
+            } else {
+                breedingTime = DMLcalc.Instance().exceptionalBreadingTimes.get(id);
             }
         }
-        return breedingTime;
+        retval = breedingTime;
+        if (vip) {
+            retval =  (Math.round(breedingTime * 0.8f));
+        }
+        return retval;
     }
     public String getBaseAttack() {return attack;}
     public String getBaseHealth() {return health;}
@@ -185,12 +249,10 @@ public class Dragon {
         return retval;
     }
 
-    public Dragon(String zeile, boolean newFormat) {
-        if(newFormat){
+    public Dragon(String zeile) {
+
             parseNewFormat(zeile);
-        } else {
-          parseOldFormat(zeile);
-        }
+
     }
 
     private void parseNewFormat(String zeile) {
@@ -218,8 +280,8 @@ public class Dragon {
             attack = splits[4];
             health = splits[5];
             gold = splits[6];
-            breedingTime = splits[7];
-            hatchingTime = splits[8];
+          //  breedingTime = ""; // splits[7];
+          //  hatchingTime = ""; // splits[8];
             Cost = splits[9];
             CostType = splits[10];
             LimitedTime = Boolean.parseBoolean(splits[11]);
@@ -240,230 +302,5 @@ public class Dragon {
         }
     }
 
-    private void  parseOldFormat(String jsZeile) {
-
-        jsZeile = jsZeile.replace("[","").replace("]","").replace("\"","").trim();
-
-        String[] splits = jsZeile.split(",");
-        if (splits.length >= 13) {
-            id = splits[0].trim();
-            wikiName = splits[1].trim();
-            image = splits[2].trim();
-            element1 = splits[3].trim();
-            element2 = splits[4].trim();
-            element3 = splits[5].trim();
-            boss_vip = splits[6].trim();
-            breedingTime = splits[7].trim();
-            hatchingTime = splits[8].trim();
-            type = splits[9].trim();
-            health = splits[10].trim();
-            attack = splits[11].trim();
-            gold = splits[12].trim();
-        }
-        if (splits.length >= 14) {
-            lng_pt = splits[13].trim();
-        }
-        if (splits.length >= 15) {
-            lng_fr = splits[14].trim();
-        }
-        if (splits.length >= 16) {
-            lng_it = splits[15].trim();
-        }
-        if (splits.length >= 17) {
-            lng_de = splits[16].trim();
-        }
-        elements = new ArrayList<String>();
-        if (!element1.isEmpty()) {
-            elements.add(element1);
-        }
-        if (!element2.isEmpty()) {
-            elements.add(element2);
-        }
-        if (!element3.isEmpty()) {
-            elements.add(element3);
-        }
-
-        LimitedTime = _isEvent();
-        Vip = _isVIP();
-        Unreleased = _isUnreleased();
-
-
-    }
-//
-//    private Boolean isChildOf(Dragon mom, Dragon dad){
-//        Boolean retval = false;
-//
-//        Boolean dotmcontrol = false;
-//        Boolean mumLegendary = false;
-//        Boolean dadLegendary = false;
-//
-//        if (mom.id.equals(dad.id)) {
-//            // gleiche drachen geht nicht
-//            return false;
-//        }
-//
-//        if(this.boss_vip.equals("UN")){
-//            // return false;
-//        }
-//
-//        if (!this.boss_vip.isEmpty()  && !this.boss_vip.equals("V")) { // nicht VIP, aber Boss oder Event oder unreleased
-//            // Drogon of the week
-//
-//            //if (DateTime.Now() > DOW.begin && DateTime.Now() < DOW.end && this.id == DOW.id) {
-//            //  if(DOW.momid == mom.id && DOW.dadid == dad.id || DOW.momid == dad.id && DOW.dadid == mom.id ){
-//            //    return true;
-//            //  }
-//            //}
-//
-//
-//            // Dragon of the month
-//
-//            //if (DateTime.Now() > DOM.begin && DateTime.Now() < DOM.end && this.id == DOM.id) {
-//            //List<string> momDadElements = new List<string>();
-//            //momDadElements.AddRange(mom.elements);
-//            //momDadElements.AddRange(dad.elements);
-//            // if(momDadElements.contains(DOM.element1) && momDadElements.contains(DOM.element2) && momDadElements.contains(DOM.element3) && momDadElements.contains(DOM.element4) {
-//            ////  return true;
-//            ////}
-//            //}
-//
-//            return false;
-//        }
-//
-//        /** SPECIAL BREED **/
-//        //breed with legendary
-//
-////        List<string> mumOrDadLegendaryListElements = new List<string>();
-//
-//        if (mom.islegendary()) {
-////            mumOrDadLegendaryListElements.AddRange(mom.elements);
-//        }
-//        if (dad.islegendary()) {
-////            mumOrDadLegendaryListElements.AddRange(dad.elements);
-//        }
-////        mumOrDadLegendaryListElements.RemoveAll(m => m == "legendary");
-//
-//        if (mom.islegendary() && dad.islegendary()) {
-////            if (this.isBoss() || this.isEvent() || this.islegendary) {
-////                return false;
-////            } else {
-////                if (this.elements.Count == 2 &&
-////                        this.id != "sunflower" &&
-////                        this.id != "mercury" &&
-////                        this.id != "lightning" &&
-////                        this.id != "magnet" &&
-////                        this.id != "emperor") {
-////                    return true;
-////                } else {
-////                    return false;
-////                }
-////            }
-//        }
-//        if (dad.islegendary() || mom.islegendary()) {
-//            return false; // Lassen wir mal weg....
-////            if (!this.islegendary()) {
-////            } else {
-////                return false;
-////            }
-//        } else {
-//            //sunflower, mercury, lightning, magnet, emperor
-//
-//            if (this.id.equalsIgnoreCase("sunflower") ||
-//                    this.id.equalsIgnoreCase("mercury") ||
-//                    this.id.equalsIgnoreCase("lightning") ||
-//                    this.id.equalsIgnoreCase("magnet") ||
-//                    this.id.equalsIgnoreCase("emperor")) {
-//
-//                // Inkompatible Elemente ?
-//                if (mom.elements.size() == 1 || dad.elements.size() == 1) {
-//                    return false;
-//                }
-//            }
-//            //siren,pixie,dark machine,vortex,titan,narwhale
-//            if (this.id.equalsIgnoreCase("siren") && ((mom.id.equalsIgnoreCase("sunflower") && dad.id.equalsIgnoreCase("mercury")) || (dad.id.equalsIgnoreCase("sunflower") && mom.id.equalsIgnoreCase("mercury")))) {
-//                return true;
-//            }
-//            if (this.id.equalsIgnoreCase("pixie") && ((mom.id.equalsIgnoreCase("sunflower") && dad.id.equalsIgnoreCase("lightning")) || (dad.id.equalsIgnoreCase("sunflower") && mom.id.equalsIgnoreCase("lightning")))) {
-//                return true;
-//            }
-//            if (this.id.equalsIgnoreCase("dark_machine") && ((mom.id.equalsIgnoreCase("sunflower") && dad.id.equalsIgnoreCase("magnet")) || (dad.id.equalsIgnoreCase("sunflower") && mom.id.equalsIgnoreCase("magnet")))) {
-//                return true;
-//            }
-//            if (this.id.equalsIgnoreCase("vortex") && ((mom.id.equalsIgnoreCase("lightning") && dad.id.equalsIgnoreCase("mercury")) || (dad.id.equalsIgnoreCase("lightning") && mom.id.equalsIgnoreCase("mercury")))) {
-//                return true;
-//            }
-//            if (this.id.equalsIgnoreCase("titan") && ((mom.id.equalsIgnoreCase("magnet") && dad.id.equalsIgnoreCase("mercury")) || (dad.id.equalsIgnoreCase("magnet") && mom.id.equalsIgnoreCase("mercury")))) {
-//                return true;
-//            }
-//            if (this.id.equalsIgnoreCase("narwhale") && ((mom.id.equalsIgnoreCase("magnet") && dad.id.equalsIgnoreCase("lightning")) || (dad.id.equalsIgnoreCase("magnet") && mom.id.equalsIgnoreCase("lightning")))) {
-//                return true;
-//            }
-//            if (this.id.equalsIgnoreCase("crystal") && ((mom.id.equalsIgnoreCase("emperor") && dad.id.equalsIgnoreCase("magnet")) || (dad.id.equalsIgnoreCase("emperor") && mom.id.equalsIgnoreCase("magnet")))) {
-//                return true;
-//            }
-//            if (this.elements.size() == 1) {
-//                //1 elements => mum & dad must have element
-//                if (mom.elements.contains(this.element1) && dad.elements.contains(this.element1)) {
-//                    return true;
-//                } else {
-//                    // JS ist hier schrott. Immer false
-//                    return false;
-//                }
-//            } else if (this.elements.size() == 2) {
-//                //2 elements => mum & dad can have his element
-//                // Auch hier ist das JS kaputt:
-//                //if ((mumHasFirstElem && dadHasFirstElem && mumHasSecondElem && dadHasSecondElem) || (mumHasFirstElem && dadHasSecondElem) || (mumHasSecondElem && dadHasFirstElem)) {
-//                //  return true;
-//                //}
-//                // Das erste ist ein Sonderfall und wird duch zweiten und dritten Therm aufgefangen
-//
-//                if ((mom.elements.contains(this.element1) && dad.elements.contains(this.element2)) || (mom.elements.contains(this.element2) && dad.elements.contains(this.element1))) {
-//                    return true;
-//                }
-//
-//
-//            } else if (this.elements.size() == 3) {
-//                //3 elements => mum and dad must have all the elements
-//                if (this.islegendary()) {
-//                    return false;
-//                }
-//                Boolean e1 = false;
-//                Boolean e2 = false;
-//                Boolean e3 = false;
-//                Boolean m = false;
-//                Boolean d = false;
-//                if (mom.elements.contains(this.element1)) {
-//                    m = true;
-//                    e1 = true;
-//                }
-//                if (mom.elements.contains(this.element2)) {
-//                    m = true;
-//                    e2 = true;
-//                }
-//                if (mom.elements.contains(this.element3)) {
-//                    m = true;
-//                    e3 = true;
-//                }
-//                if (dad.elements.contains(this.element1)) {
-//                    d = true;
-//                    e1 = true;
-//                }
-//                if (dad.elements.contains(this.element2)) {
-//                    d = true;
-//                    e2 = true;
-//                }
-//                if (dad.elements.contains(this.element3)) {
-//                    d = true;
-//                    e3 = true;
-//                }
-//
-//                if (e1 && e2 && e3 && m && d) {
-//                    return true;
-//                }
-//            }
-//        }
-//        return retval;
-//    }
-//
 
 }
