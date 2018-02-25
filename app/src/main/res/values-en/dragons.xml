@@ -445,6 +445,21 @@
     <string name="dragon_sprite">Sprite</string>
     <string name="dragon_vibrant">Vibrant</string>
 
+    <string name="dragon_ba_jiao_gui">Ba Jiao Gui</string>
+    <string name="dragon_bamboo">Bamboo</string>
+    <string name="dragon_changeling">Changeling</string>
+    <string name="dragon_glamorous">Glamorous</string>
+    <string name="dragon_pansy">Pansy</string>
+    <string name="dragon_red_talon">Red Talon</string>
+    <string name="dragon_terracotta">Terracotta</string>
+    <string name="dragon_guan_di">Guan Di</string>
+    <string name="dragon_fairy">Fairy</string>
+    <string name="dragon_change">Chang'e</string>
+    <string name="dragon_erlang_shen">Erlang Shen</string>
+    <string name="dragon_hou_yi">Hou Yi</string>
+    <string name="dragon_nezha">Nezha</string>
+    <string name="dragon_pangu">Pangu</string>
+    <string name="dragon_taiyi_zhenren">Taiyi Zhenren</string>
 
 
 </resources>

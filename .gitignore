@@ -39,3 +39,8 @@ Thumbs.db
 /projectFilesBackup/
 /DrachenListe/
 
+*.apk
+/build/*
+/captures/*
+/.gitignore~
+/app/release/output.json

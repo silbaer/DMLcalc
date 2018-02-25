@@ -49,9 +49,18 @@ import java.util.TreeMap;
 
 /**
  * Created by silbaer on 13.06.16.
+ * Durch Ableitung von Application gibt es immer eine Instanz
+ *
  */
 public class DMLcalc extends Application implements SharedPreferences.OnSharedPreferenceChangeListener{
 
+    /*********************************************
+     * Halter für eine Spezialzucht => Nur eine Kombination.
+     * Spezialzucht: Züchtbare legendäre Drachen
+     *               Verzauberte Zucht
+     *
+     * TODO: Vorraussetzungen für verzauberte Zucht: Z-Level / Bruthölen-Level
+     */
     public class SpecialBreed{
         public String momId;
         public String dadId;
@@ -65,6 +74,13 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             this.isEnchanted = isEnchanted;
         }
 
+        /**
+         * Prüft ob die Drachen (Mom, Dad, Child) der gegebenen Spezialzucht entsprechen
+         * @param mom Drachen-ID
+         * @param dad Drachen-ID
+         * @param child Drachen-ID
+         * @return
+         */
         public boolean checkMomDadChild(Dragon mom, Dragon dad, Dragon child) {
             if(child.getId().equalsIgnoreCase(childId)){
                 return checkMomDad(mom,dad);
@@ -72,42 +88,66 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             return false;
         }
 
+        /**
+         * Prüft ob die Drachen (Mom, Dad) der gegebenen Spezialzucht entsprechen
+         * @param mom Drachen-ID
+         * @param dad Drachen-ID
+         * @return
+         */
         public boolean checkMomDad(Dragon mom, Dragon dad) {
 
             if(mom.getId().equalsIgnoreCase(momId) && dad.getId().equalsIgnoreCase(dadId)
                     || dad.getId().equalsIgnoreCase(momId) && mom.getId().equalsIgnoreCase(dadId) ){
                 return true;
             }
-
             return false;
         }
     }
 
+    /****************************************
+     * Gibt eine Stringresource anhand ihres Identifiers und nicht der ResourceID zurück
+     * @param aString Identifier der Resource
+     * @return Resourcestring oder aString wenn Identifier nicht gefunden wurde
+     */
     public String getStringResourceByName(String aString) {
         String packageName = getContext().getPackageName();
         int resId = getResources().getIdentifier(aString, "string", packageName);
         if(resId == 0) {
             return aString;
-
         }
         return getString(resId);
     }
 
+    /********************************************************
+     * Ermittelt die ResourceID  eines Drawables anhang des Identifier
+     * @param aString Identifier
+     * @return ResourceID ( 0 = nicht gefunden)
+     */
     public int getDrawableIdentifierByName(String aString) {
         String packageName = getContext().getPackageName();
         int resId = getResources().getIdentifier(aString, "drawable", packageName);
-
         return resId;
     }
 
-    public static Application getApplication() {
-        return _instance;
-    }
+//    public static Application getApplication() {
+//        return _instance;
+//    }
 
+    /****
+     * Gibt den Application-Context zurück
+     * @return
+     */
     public static Context getContext() {
-        return getApplication().getApplicationContext();
+        return _instance.getApplicationContext();
     }
 
+    /***********************************************
+     * Gibt ein auf Größe und Breite skaliertes Drawable anhand einer ResourceID zurück
+     * @param resourceID ID des Drawables
+     * @param width Breite
+     * @param height Höhe
+     * @return
+     */
     private Drawable getScaledDrawable(int resourceID, int width, int height){
 
         Resources resources = getContext().getResources();
@@ -121,6 +161,13 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         return d;
     }
 
+    /*****************************************************
+     * Gibt ein auf Größe und Breite skaliertes Drawable anhand einer Asset-URL zurück
+     * @param assetsUrl File-URL relativ zum Asset-Verzeichnis
+     * @param width Breite
+     * @param height Höhe
+     * @return
+     */
     private Drawable getScaledDrawable(String assetsUrl, int width, int height){
         Drawable drawable = null;
         InputStream inputStream = null;
@@ -154,11 +201,14 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         return px;
     }
 
+    /**********************************
+     * Lädt anhand einer DragonID ein (Drachenlisten-) Icon in ein Image-View. Das Icon wird per
+     * Picasso-Lib aus dem Applications-Verzeichnis geladen
+     * @param id DrachenID
+     * @param view ImageView
+     */
     public void loadDragonIcon(String id, ImageView view){
-
         String filename = id + "_icon.png";
-
-
         File file = new File(getContext().getFilesDir(), filename);
         if(file.exists()) {
             Picasso.with(getContext()).load(file).into(view);
@@ -299,15 +349,16 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
     private List<SpecialBreed> specialBreeds = null;
 
     public Map<String,Dragon> dragons = new Hashtable<String,Dragon>();
-//    public Dictionary<string, Element> elements = new Dictionary<string,Element>();
 
     Map<String,Double> odds;
 
- //   private Hashtable<String,Object> _howToCache;
     private Hashtable<String,Object> _breedCache;
 
     private Hashtable<String,ArrayList<Dragon>> dragonsByElementkey; // Alle Drachen
     private Hashtable<String,ArrayList<Dragon>> breedresultsByElementkey;  // Erbrütbare Drachen
+
+    public Hashtable<String,Integer> exceptionalBreadingTimes; // Sonderzeiten beim Breading
+    public Hashtable<String,Integer> exceptionalHatchingTimes; // Sonderzeiten beim Hatching
 
     public DMLcalc() {
 
@@ -544,6 +595,36 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         _breedCache.put(key,value);
     }
 
+    public String getTimeString(Integer seconds){
+        StringBuilder retval = new StringBuilder();
+        Integer unitCount = 0;
+
+        Integer bDay = seconds / (60 * 60 * 24);
+        Integer bHour = (seconds - bDay * (60 * 60 * 24)) / (60 * 60);
+        Integer bMin = (seconds - bDay * (60 * 60 * 24) - bHour * (60 * 60)) / (60);
+        Integer bSec = seconds - bDay * (60 * 60 * 24) - bHour * (60 * 60) - bMin * 60;
+
+        if (bDay > 0) {
+            unitCount++;
+            retval.append(bDay + "d, ");
+        }
+        if (bHour > 0) {
+            unitCount++;
+            retval.append(bHour + "h, ");
+        }
+        if (bMin > 0 && unitCount < 2) {
+            unitCount++;
+            retval.append(bMin + "m, ");
+        }
+        if (bSec > 0 && unitCount < 2) {
+            unitCount++;
+            retval.append(bSec + "s, ");
+        }
+        retval.setLength(retval.length() - 2);
+
+        return retval.toString();
+    }
+
     @Override
     public void onCreate(){
         PREFS_NAME =  getResources().getString(R.string.PREFS_NAME);
@@ -594,7 +675,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             for (String jsline : lines) {
                 String l = jsline.trim();
                 if(!l.isEmpty()){
-                    d = new Dragon(l,true);
+                    d = new Dragon(l);
                     dragons.put(d.getId(),d);
                     if(!d.isUnreleased() && !d.isBoss()) {
                         String elementKey = d.getElementKey();
@@ -661,6 +742,50 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             specialBreeds.add(new SpecialBreed("disco_ball","superhero","plushie",true));
             specialBreeds.add(new SpecialBreed("melon","tree","sea_turtle",true));
             specialBreeds.add(new SpecialBreed("jelly","tiger","superhero",true));
+
+            exceptionalBreadingTimes = new Hashtable<String,Integer>();
+            exceptionalBreadingTimes.put("fire",30);
+            exceptionalBreadingTimes.put("wind",30);
+            exceptionalBreadingTimes.put("earth",60);
+            exceptionalBreadingTimes.put("water",300);
+            exceptionalBreadingTimes.put("plant",60*60);
+            exceptionalBreadingTimes.put("metal",60*90);
+            exceptionalBreadingTimes.put("energy",60*120);
+            exceptionalBreadingTimes.put("void",60*180);
+            exceptionalBreadingTimes.put("light",60*60*8);
+            exceptionalBreadingTimes.put("shadow",60*60*8);
+
+            exceptionalBreadingTimes.put("bee",60*45);
+            exceptionalBreadingTimes.put("dust",60*60*2);
+            exceptionalBreadingTimes.put("lava",60*60);
+            exceptionalBreadingTimes.put("salamander",60*90);
+            exceptionalBreadingTimes.put("smoke",60*30);
+
+            exceptionalHatchingTimes = new Hashtable<String,Integer>();
+            exceptionalHatchingTimes.put("fire",30);
+            exceptionalHatchingTimes.put("wind",30);
+            exceptionalHatchingTimes.put("earth",60);
+            exceptionalHatchingTimes.put("water",300);
+            exceptionalHatchingTimes.put("plant",60*60);
+            exceptionalHatchingTimes.put("metal",60*90);
+            exceptionalHatchingTimes.put("energy",60*120);
+            exceptionalHatchingTimes.put("void",60*180);
+            exceptionalHatchingTimes.put("light",60*(60*8 +50));
+            exceptionalHatchingTimes.put("shadow",60*(60*8+50));
+
+            exceptionalHatchingTimes.put("bee",60*80);
+            exceptionalHatchingTimes.put("dust",60*(60*3+20));
+            exceptionalHatchingTimes.put("fireball",30);
+            exceptionalHatchingTimes.put("seahorse",60*10);
+            exceptionalHatchingTimes.put("lava",60*90);
+            exceptionalHatchingTimes.put("prairie",60*5);
+            exceptionalHatchingTimes.put("runestone",30);
+            exceptionalHatchingTimes.put("salamander",60*120);
+            exceptionalHatchingTimes.put("smoke",60*45);
+            exceptionalHatchingTimes.put("tick_tock",60*(60*8));
+            exceptionalHatchingTimes.put("tribal",60*5);
+
+
 
 
 
