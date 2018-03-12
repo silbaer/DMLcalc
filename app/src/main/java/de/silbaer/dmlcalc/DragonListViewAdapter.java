@@ -1,11 +1,13 @@
 package de.silbaer.dmlcalc;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
+import android.preference.PreferenceManager;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
@@ -27,6 +29,9 @@ public class DragonListViewAdapter extends RecyclerView.Adapter<DragonListViewAd
     private final OnListFragmentInteractionListener mListener;
     private  Context myContext;
 
+    Boolean vipTimes = false;
+    private   String PREFS_NAME;
+
 
     public DragonListViewAdapter(List<Dragon> items, OnListFragmentInteractionListener listener ) {
         mValues = items;
@@ -46,6 +51,9 @@ public class DragonListViewAdapter extends RecyclerView.Adapter<DragonListViewAd
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
 
+        PREFS_NAME =  myContext.getResources().getString(R.string.PREFS_NAME);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(myContext);
+        vipTimes = sharedPref.getBoolean("pref_timedisplay",false);
         holder.mItem = mValues.get(position);
 //        holder.mIdView.setText(mValues.get(position).getId());
 //        holder.mContentView.setText(mValues.get(position).toString());
@@ -66,6 +74,7 @@ public class DragonListViewAdapter extends RecyclerView.Adapter<DragonListViewAd
         setElement(holder.mElement2,holder.mItem.getElement2());
         setElement(holder.mElement3,holder.mItem.getElement3());
         holder.mDragonStats.setText(holder.mItem.getBaseHealth() + " / " + holder.mItem.getBaseAttack() + " / " + holder.mItem.getBaseGold() );
+        holder.mDragonStats2.setText(getDragonText(holder.mItem));
 
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +88,47 @@ public class DragonListViewAdapter extends RecyclerView.Adapter<DragonListViewAd
             }
         });
     }
+
+    private String getDragonText(Dragon d) {
+        StringBuilder sb = new StringBuilder();
+        int tBreed ;
+        int tHatch ;
+        int bDay;
+        int bHour;
+        int bMin;
+        int bSec;
+        int hDay;
+        int hHour;
+        int hMin;
+        int hSec;
+        try {
+//            sb.append(d.toString());
+//            sb.append(" (");
+            sb.append("B: ");
+            sb.append(DMLcalc.Instance().getTimeString(d.getBreedingTime(vipTimes)));
+
+        } catch (Exception e) {
+            sb.append("N/A");
+            e.printStackTrace();
+        }
+        try {
+            sb.append(" / H: ");
+
+            sb.append(DMLcalc.Instance().getTimeString(d.getHatchingTime(vipTimes)));
+
+
+        } catch (Exception e) {
+            sb.append("N/A");
+            e.printStackTrace();
+        }
+//        sb.append(")");
+
+
+        return sb.toString();
+    }
+
+
+
     private void setElement(ImageView iv, String element){
         if(element == null){
             iv.setImageDrawable(null);
@@ -142,6 +192,7 @@ public class DragonListViewAdapter extends RecyclerView.Adapter<DragonListViewAd
         public final ImageView mElement2;
         public final ImageView mElement3;
         public final TextView mDragonStats;
+        public final TextView mDragonStats2;
 
         public ViewHolder(View view) {
             super(view);
@@ -152,6 +203,7 @@ public class DragonListViewAdapter extends RecyclerView.Adapter<DragonListViewAd
             mElement2 = (ImageView) view.findViewById(R.id.ele2);
             mElement3 = (ImageView) view.findViewById(R.id.ele3);
             mDragonStats = (TextView) view.findViewById(R.id.textStats);
+            mDragonStats2 = (TextView) view.findViewById(R.id.textStats2);
         }
 
  //       @Override

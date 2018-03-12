@@ -230,7 +230,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             String assetname = "dragonicons/" + id + "_icon.png";
 
             Context myContext = getContext();
-            int iconSize = convertSpToPixels(48,myContext);
+            int iconSize = convertSpToPixels(72,myContext);
             String resName = id + "_icon";
             Resources resources = myContext.getResources();
             List<Drawable> scaledLayers = new ArrayList<Drawable>();
