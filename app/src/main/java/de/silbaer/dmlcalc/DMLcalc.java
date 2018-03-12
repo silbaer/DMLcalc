@@ -1294,85 +1294,163 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         List<Dragon> dragList;
         List<Pair<Dragon,Double>> retval;
         int iM, iD, i;
-        for( iM = 0; iM < mom.getElements().size(); iM++){
-            for( iD = 0; iD < dad.getElements().size(); iD++){
-                elementKeys.add(getElementKey(mom.getElements().get(iM),dad.getElements().get(iD)));
-            }
-        }
-        if(mom.getElements().size() == 2){
-            for( iD = 0; iD < dad.getElements().size(); iD++){
-                elementKeys.add(getElementKey(dad.getElements().get(iD),mom.getElement1(),mom.getElement2()));
-            }
-        }
-        if(mom.getElements().size() == 3){
-            for( iD = 0; iD < dad.getElements().size(); iD++){
-                elementKeys.add(getElementKey(dad.getElements().get(iD),mom.getElement1(),mom.getElement2()));
-                elementKeys.add(getElementKey(dad.getElements().get(iD),mom.getElement1(),mom.getElement3()));
-                elementKeys.add(getElementKey(dad.getElements().get(iD),mom.getElement2(),mom.getElement3()));
-            }
-        }
-        if(dad.getElements().size() == 2){
-            for( iM = 0; iM < mom.getElements().size(); iM++){
-                elementKeys.add(getElementKey(mom.getElements().get(iM),dad.getElement1(),dad.getElement2()));
-            }
-        }
-        if(dad.getElements().size() == 3){
-            for( iM = 0; iM < mom.getElements().size(); iM++){
-                elementKeys.add(getElementKey(mom.getElements().get(iM),dad.getElement1(),dad.getElement2()));
-                elementKeys.add(getElementKey(mom.getElements().get(iM),dad.getElement1(),dad.getElement3()));
-                elementKeys.add(getElementKey(mom.getElements().get(iM),dad.getElement2(),dad.getElement3()));
-            }
-        }
 
-        //DDM
-        if(mom.getElements().size() == 1 && dad.getElements().size() == 3) {
-            elementKeys.add(getElementKey(mom.getElement1(),dad.getElement1(),dad.getElement2(),dad.getElement3()));
-        }
-        if(dad.getElements().size() == 1 && mom.getElements().size() == 3) {
-            elementKeys.add(getElementKey(dad.getElement1(),mom.getElement1(),mom.getElement2(),mom.getElement3()));
-        }
-        if(mom.getElements().size() == 2) {
-            if (dad.getElements().size() == 2) {
-                elementKeys.add(getElementKey(mom.getElement1(), dad.getElement1(), dad.getElement2(), mom.getElement2()));
-            } else if(dad.getElements().size() == 3){
-                elementKeys.add(getElementKey(mom.getElement1(),dad.getElement1(),dad.getElement2(),dad.getElement3()));
-                elementKeys.add(getElementKey(mom.getElement2(),dad.getElement1(),dad.getElement2(),dad.getElement3()));
-            }
-        }
-        if(mom.getElements().size() == 3) {
-            if (dad.getElements().size() == 2) {
-                elementKeys.add(getElementKey(dad.getElement1(),mom.getElement1(),mom.getElement2(),mom.getElement3()));
-                elementKeys.add(getElementKey(dad.getElement2(),mom.getElement1(),mom.getElement2(),mom.getElement3()));
-            } else if (dad.getElements().size() == 3) {
-                // 1/2 & 1/2
-                // 1/2 & 1/3
-                // 1/2 & 2/3
-                elementKeys.add(getElementKey(mom.getElement1(), mom.getElement2(), dad.getElement1(), dad.getElement2()));
-                elementKeys.add(getElementKey(mom.getElement1(), mom.getElement2(), dad.getElement1(), dad.getElement3()));
-                elementKeys.add(getElementKey(mom.getElement1(), mom.getElement2(), dad.getElement2(), dad.getElement3()));
+        if(mom.isdivine() || mom.islegendary() || dad.isdivine() || dad.islegendary()){
 
-                // 1/3 & 1/2
-                // 1/3 & 1/3
-                // 1/3 & 2/3
-                elementKeys.add(getElementKey(mom.getElement1(), mom.getElement3(), dad.getElement1(), dad.getElement2()));
-                elementKeys.add(getElementKey(mom.getElement1(), mom.getElement3(), dad.getElement1(), dad.getElement3()));
-                elementKeys.add(getElementKey(mom.getElement1(), mom.getElement3(), dad.getElement2(), dad.getElement3()));
+//        if((mom.isle = legi|| devin ) || (dad = (legi || devine)) {
+            if( ( mom.islegendary() || mom.isdivine()) && (dad.islegendary() || dad.isdivine())){
+                for (element momEle : elements) {
+                    for (element dadEle : elements) {
+                        if(!momEle.isDevine() && !momEle.isLegendary() && !dadEle.isLegendary() && !dadEle.isDevine()){
+                            elementKeys.add(getElementKey(momEle.id,dadEle.id));
+                        }
+                    }
 
-                // 2/3 & 1/2
-                // 2/3 & 1/3
-                // 2/3 & 2/3
-                elementKeys.add(getElementKey(mom.getElement2(), mom.getElement3(), dad.getElement1(), dad.getElement2()));
-                elementKeys.add(getElementKey(mom.getElement2(), mom.getElement3(), dad.getElement1(), dad.getElement3()));
-                elementKeys.add(getElementKey(mom.getElement2(), mom.getElement3(), dad.getElement2(), dad.getElement3()));
+                }
+            } else if(mom.isdivine() || mom.islegendary()){
+                for (element momEle : elements)  {
+                    for (iD = 0; iD < dad.getElements().size(); iD++) {
+                        if(!momEle.isDevine() && !momEle.isLegendary()) {
+                            elementKeys.add(getElementKey(momEle.id, dad.getElements().get(iD)));
+                        }
+                    }
+                }
+                if (dad.getElements().size() == 2) {
+                    for (element momEle : elements)  {
+                        if(!momEle.isDevine() && !momEle.isLegendary()) {
+                            elementKeys.add(getElementKey(momEle.id, dad.getElement1(), dad.getElement2()));
+                        }
+                    }
+                }
+                if (mom.getElements().size() == 3) {
+                    for (element momEle : elements)  {
+                        if(!momEle.isDevine() && !momEle.isLegendary()) {
+                            elementKeys.add(getElementKey(momEle.id, dad.getElement1(), dad.getElement2(), dad.getElement3()));
+                            elementKeys.add(getElementKey(momEle.id, dad.getElement1(), dad.getElement2()));
+                            elementKeys.add(getElementKey(momEle.id, dad.getElement1(), dad.getElement3()));
+                            elementKeys.add(getElementKey(momEle.id, dad.getElement2(), dad.getElement3()));
 
-                for( i = 0; iM < 3; i++){
-                    elementKeys.add(getElementKey(mom.getElements().get(i),dad.getElement1(),dad.getElement2(),dad.getElement3()));
-                    elementKeys.add(getElementKey(dad.getElements().get(i),mom.getElement1(),mom.getElement2(),mom.getElement3()));
+                        }
+                    }
+                }
+
+            } else {
+                for (element dadEle : elements)  {
+                    for (iD = 0; iD < mom.getElements().size(); iD++) {
+                        if(!dadEle.isDevine() && !dadEle.isLegendary()) {
+                            elementKeys.add(getElementKey(dadEle.id, mom.getElements().get(iD)));
+                        }
+                    }
+                }
+                if (dad.getElements().size() == 2) {
+                    for (element dadEle : elements)  {
+                        if(!dadEle.isDevine() && !dadEle.isLegendary()) {
+                            elementKeys.add(getElementKey(dadEle.id, mom.getElement1(), mom.getElement2()));
+                        }
+                    }
+                }
+                if (mom.getElements().size() == 3) {
+                    for (element dadEle : elements)  {
+                        if(!dadEle.isDevine() && !dadEle.isLegendary()) {
+                            elementKeys.add(getElementKey(dadEle.id, mom.getElement1(), mom.getElement2(), mom.getElement3()));
+                            elementKeys.add(getElementKey(dadEle.id, mom.getElement1(), mom.getElement2()));
+                            elementKeys.add(getElementKey(dadEle.id, mom.getElement1(), mom.getElement3()));
+                            elementKeys.add(getElementKey(dadEle.id, mom.getElement2(), mom.getElement3()));
+
+                        }
+                    }
                 }
 
             }
-        }
+//            if (mom = legi || mom = devine) {
+//                if (dad = legi || dad = devine) {
+//                    jeweils nur ein element aber alle
+//                } else {
+//                    ein element von mom und Elementkeys von dad
+//                }
+//            }
+            // ddm berücksichtigen
+        } else{
 
+            for (iM = 0; iM < mom.getElements().size(); iM++) {
+                for (iD = 0; iD < dad.getElements().size(); iD++) {
+                    elementKeys.add(getElementKey(mom.getElements().get(iM), dad.getElements().get(iD)));
+                }
+            }
+            if (mom.getElements().size() == 2) {
+                for (iD = 0; iD < dad.getElements().size(); iD++) {
+                    elementKeys.add(getElementKey(dad.getElements().get(iD), mom.getElement1(), mom.getElement2()));
+                }
+            }
+            if (mom.getElements().size() == 3) {
+                for (iD = 0; iD < dad.getElements().size(); iD++) {
+                    elementKeys.add(getElementKey(dad.getElements().get(iD), mom.getElement1(), mom.getElement2()));
+                    elementKeys.add(getElementKey(dad.getElements().get(iD), mom.getElement1(), mom.getElement3()));
+                    elementKeys.add(getElementKey(dad.getElements().get(iD), mom.getElement2(), mom.getElement3()));
+                }
+            }
+            if (dad.getElements().size() == 2) {
+                for (iM = 0; iM < mom.getElements().size(); iM++) {
+                    elementKeys.add(getElementKey(mom.getElements().get(iM), dad.getElement1(), dad.getElement2()));
+                }
+            }
+            if (dad.getElements().size() == 3) {
+                for (iM = 0; iM < mom.getElements().size(); iM++) {
+                    elementKeys.add(getElementKey(mom.getElements().get(iM), dad.getElement1(), dad.getElement2()));
+                    elementKeys.add(getElementKey(mom.getElements().get(iM), dad.getElement1(), dad.getElement3()));
+                    elementKeys.add(getElementKey(mom.getElements().get(iM), dad.getElement2(), dad.getElement3()));
+                }
+            }
+
+            //DDM
+            if (mom.getElements().size() == 1 && dad.getElements().size() == 3) {
+                elementKeys.add(getElementKey(mom.getElement1(), dad.getElement1(), dad.getElement2(), dad.getElement3()));
+            }
+            if (dad.getElements().size() == 1 && mom.getElements().size() == 3) {
+                elementKeys.add(getElementKey(dad.getElement1(), mom.getElement1(), mom.getElement2(), mom.getElement3()));
+            }
+            if (mom.getElements().size() == 2) {
+                if (dad.getElements().size() == 2) {
+                    elementKeys.add(getElementKey(mom.getElement1(), dad.getElement1(), dad.getElement2(), mom.getElement2()));
+                } else if (dad.getElements().size() == 3) {
+                    elementKeys.add(getElementKey(mom.getElement1(), dad.getElement1(), dad.getElement2(), dad.getElement3()));
+                    elementKeys.add(getElementKey(mom.getElement2(), dad.getElement1(), dad.getElement2(), dad.getElement3()));
+                }
+            }
+            if (mom.getElements().size() == 3) {
+                if (dad.getElements().size() == 2) {
+                    elementKeys.add(getElementKey(dad.getElement1(), mom.getElement1(), mom.getElement2(), mom.getElement3()));
+                    elementKeys.add(getElementKey(dad.getElement2(), mom.getElement1(), mom.getElement2(), mom.getElement3()));
+                } else if (dad.getElements().size() == 3) {
+                    // 1/2 & 1/2
+                    // 1/2 & 1/3
+                    // 1/2 & 2/3
+                    elementKeys.add(getElementKey(mom.getElement1(), mom.getElement2(), dad.getElement1(), dad.getElement2()));
+                    elementKeys.add(getElementKey(mom.getElement1(), mom.getElement2(), dad.getElement1(), dad.getElement3()));
+                    elementKeys.add(getElementKey(mom.getElement1(), mom.getElement2(), dad.getElement2(), dad.getElement3()));
+
+                    // 1/3 & 1/2
+                    // 1/3 & 1/3
+                    // 1/3 & 2/3
+                    elementKeys.add(getElementKey(mom.getElement1(), mom.getElement3(), dad.getElement1(), dad.getElement2()));
+                    elementKeys.add(getElementKey(mom.getElement1(), mom.getElement3(), dad.getElement1(), dad.getElement3()));
+                    elementKeys.add(getElementKey(mom.getElement1(), mom.getElement3(), dad.getElement2(), dad.getElement3()));
+
+                    // 2/3 & 1/2
+                    // 2/3 & 1/3
+                    // 2/3 & 2/3
+                    elementKeys.add(getElementKey(mom.getElement2(), mom.getElement3(), dad.getElement1(), dad.getElement2()));
+                    elementKeys.add(getElementKey(mom.getElement2(), mom.getElement3(), dad.getElement1(), dad.getElement3()));
+                    elementKeys.add(getElementKey(mom.getElement2(), mom.getElement3(), dad.getElement2(), dad.getElement3()));
+
+                    for (i = 0; iM < 3; i++) {
+                        elementKeys.add(getElementKey(mom.getElements().get(i), dad.getElement1(), dad.getElement2(), dad.getElement3()));
+                        elementKeys.add(getElementKey(dad.getElements().get(i), mom.getElement1(), mom.getElement2(), mom.getElement3()));
+                    }
+
+                }
+            }
+        }
         if(dad.getElements().size() == 1 || mom.getElements().size() == 1){
             elementKeys.remove(getElementKey("fire","plant"));
             elementKeys.remove(getElementKey("wind","energy"));

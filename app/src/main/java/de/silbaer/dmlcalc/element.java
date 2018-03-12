@@ -9,6 +9,20 @@ public class element{
         id = Id;
     }
 
+    public boolean isDevine(){
+        try {
+            return id == "divine";
+        } catch(Exception ex){
+            return false;
+        }
+    }
+    public boolean isLegendary(){
+        try {
+            return id == "legendary";
+        } catch(Exception ex){
+            return false;
+        }
+    }
 
     public String toString() {
         String retval = id;
