@@ -458,5 +458,16 @@
     <string name="dragon_pangu">Pangu</string>
     <string name="dragon_taiyi_zhenren">Taiyi Zhenren</string>
 
+    <string name="dragon_professor">Professor</string>
+    <string name="dragon_axolotl">axolotl</string>
+    <string name="dragon_bonsai">Bonsai</string>
+    <string name="dragon_flutterby">Flatter</string>
+    <string name="dragon_petal">Blütenblatt</string>
+    <string name="dragon_pitaya">Drachenfrucht</string>
+    <string name="dragon_rock">rock</string>
+    <string name="dragon_ironfire">Eisenfeuer</string>
+    <string name="dragon_pixie_dot">Pünktchen</string>
+    <string name="dragon_princess">Prinzessin</string>
+    <string name="dragon_wraith">Phantom</string>
 
 </resources>
