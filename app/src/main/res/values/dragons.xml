@@ -434,7 +434,7 @@
     <string name="dragon_bell">Glöckchen</string>
     <string name="dragon_frost_fairy">Frostfeen</string>
     <string name="dragon_snow_queen">Schneekönigin</string>
-    <string name="dragon_snow_sport">Snow Sport</string>
+    <string name="dragon_snow_sport">Schneesport</string>
     <string name="dragon_avocado">Avocado</string>
     <string name="dragon_candy_cane">Zuckerstangen</string>
     <string name="dragon_caterpillar">Raupen</string>
@@ -442,7 +442,7 @@
     <string name="dragon_sprite">Elfen</string>
     <string name="dragon_vibrant">Vibrant</string>
 
-    <string name="dragon_ba_jiao_gui">Ba Jiao Gui</string>
+    <string name="dragon_ba_jiao_gui">Ba-Jiao-Gui</string>
     <string name="dragon_bamboo">Bambus</string>
     <string name="dragon_changeling">Wechselbalg</string>
     <string name="dragon_glamorous">Glitzer</string>
@@ -464,10 +464,11 @@
     <string name="dragon_flutterby">Flatter</string>
     <string name="dragon_petal">Blütenblatt</string>
     <string name="dragon_pitaya">Drachenfrucht</string>
-    <string name="dragon_rock">rock</string>
+    <string name="dragon_rock">Felsen</string>
     <string name="dragon_ironfire">Eisenfeuer</string>
     <string name="dragon_pixie_dot">Pünktchen</string>
     <string name="dragon_princess">Prinzessin</string>
     <string name="dragon_wraith">Phantom</string>
+
 
 </resources>

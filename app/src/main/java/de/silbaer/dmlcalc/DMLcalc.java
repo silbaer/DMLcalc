@@ -736,11 +736,11 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             specialBreeds.add(new SpecialBreed("rogue","banana","gorilla",true));
             specialBreeds.add(new SpecialBreed("lava","blueflame","hellfire",true));
             specialBreeds.add(new SpecialBreed("elemental","witch","hypoestes",true));
-            specialBreeds.add(new SpecialBreed("brick","tribal","leopard",true));
+            specialBreeds.add(new SpecialBreed("fire","wind","leopard",true));
             specialBreeds.add(new SpecialBreed("geiger","ice","origami",true));
             specialBreeds.add(new SpecialBreed("sunflower","tribal","owl",true));
             specialBreeds.add(new SpecialBreed("disco_ball","superhero","plushie",true));
-            specialBreeds.add(new SpecialBreed("melon","tree","sea_turtle",true));
+            specialBreeds.add(new SpecialBreed("plant","wind","sea_turtle",true));
             specialBreeds.add(new SpecialBreed("jelly","tiger","superhero",true));
 
             exceptionalBreadingTimes = new Hashtable<String,Integer>();
