@@ -38,12 +38,12 @@ implements dragonListFragment.OnListFragmentInteractionListener {
     private List<String> elementFilter;
     private Map<String,ImageView> filterViews;
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.dragonlist_menu, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.dragonlist_menu, menu);
+//        return true;
+//    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -54,7 +54,7 @@ implements dragonListFragment.OnListFragmentInteractionListener {
         if (id == R.id.action_settings) {
             Intent modifySettings=new Intent(dragonlistActivity.this,SettingsActivity.class);
             startActivityForResult(modifySettings,1);
-
+       //     findViewById(R.id.dragonListFragment).invalidate();
             return true;
         }
 
