@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".dragonlistActivity">
+
+    <item
+        android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+<!--
+    <item
+        android:id="@+id/action_ddw"
+        android:title="@string/action_ddw"
+        android:orderInCategory="200"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_ddm"
+        android:title="@string/action_ddm"
+        android:orderInCategory="205"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_dragonlist"
+        android:title="@string/action_dragonlist"
+        android:orderInCategory="400"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_ClearCache"
+        android:title="@string/action_clearCache"
+        android:orderInCategory="950"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_info"
+        android:title="@string/action_info"
+        android:orderInCategory="999"
+        app:showAsAction="never" />
+-->
+</menu>

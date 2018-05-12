@@ -30,4 +30,24 @@
             android:defaultValue="false"/>
     </PreferenceCategory>
 -->
+
+    <PreferenceCategory
+        android:title="@string/txt_DragonList_settings"
+        android:key="pref_DragonList_settings">
+        <SwitchPreference
+            android:key="pref_ListShowStats"
+            android:summaryOn="@string/txt_ShowStatsInList"
+            android:summaryOff="@string/txt_NotShowStatsInList"
+            android:title="@string/txt_StatsInList"
+            android:defaultValue="true"/>
+        <SwitchPreference
+            android:key="pref_ListShowTimes"
+            android:summaryOn="@string/txt_ShowTimesInList"
+            android:summaryOff="@string/txt_NotShowTimesInList"
+            android:title="@string/txt_TimeInList"
+            android:defaultValue="true"/>
+
+    </PreferenceCategory>
+
+
 </PreferenceScreen>

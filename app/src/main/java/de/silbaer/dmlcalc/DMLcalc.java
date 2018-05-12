@@ -319,10 +319,24 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
     private SharedPreferences sharedPref;
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
-        vipDragons = sharedPreferences.getBoolean("pref_vipdragons",false);
-  //      enchantDragons = sharedPreferences.getBoolean("pref_enchantbreed",false);
-        this.clearCache();
+        boolean tmp = sharedPreferences.getBoolean("pref_vipdragons",false);
+        if(vipDragons != tmp) {
+            vipDragons = tmp;
+            //      enchantDragons = sharedPreferences.getBoolean("pref_enchantbreed",false);
+            this.clearCache();
+        }
+        _ShowStatsInList = sharedPref.getBoolean("pref_ListShowStats",true);
+        _ShowTimesInList = sharedPref.getBoolean("pref_ListShowTimes",true);
     }
+    private  boolean _ShowStatsInList;
+    public boolean ShowStatsInList(){
+        return _ShowStatsInList;
+    }
+    private  boolean _ShowTimesInList;
+    public boolean ShowTimesInList(){
+        return _ShowTimesInList;
+    }
+
 
     public interface breedingResponse{
         void breedingResult(List<Pair<Dragon,Double>> result);
@@ -709,6 +723,9 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             sharedPref.registerOnSharedPreferenceChangeListener(this);
             vipDragons = sharedPref.getBoolean("pref_vipdragons",false);
             enchantDragons = true; //sharedPref.getBoolean("pref_enchantbreed",false);
+            _ShowStatsInList = sharedPref.getBoolean("pref_ListShowStats",true);
+            _ShowTimesInList = sharedPref.getBoolean("pref_ListShowTimes",true);
+
 
             specialBreeds = new ArrayList<>();
             // Breadable legendary

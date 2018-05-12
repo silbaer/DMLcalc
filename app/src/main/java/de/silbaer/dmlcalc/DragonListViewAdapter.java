@@ -43,6 +43,7 @@ public class DragonListViewAdapter extends RecyclerView.Adapter<DragonListViewAd
         myContext = parent.getContext();
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_dragon, parent, false);
+
         return new ViewHolder(view);
     }
 
@@ -55,6 +56,34 @@ public class DragonListViewAdapter extends RecyclerView.Adapter<DragonListViewAd
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(myContext);
         vipTimes = sharedPref.getBoolean("pref_timedisplay",false);
         holder.mItem = mValues.get(position);
+
+
+        int picSize = DMLcalc.convertSpToPixels(72,myContext);;
+        TextView tv;
+        int i24sp = DMLcalc.convertSpToPixels(24,myContext);;;
+        tv = (TextView) holder.mView.findViewById(R.id.textStats);
+        if(!DMLcalc.Instance().ShowStatsInList()) {
+            tv.setHeight(0);
+            picSize = picSize - i24sp;
+        } else {
+            tv.setHeight(i24sp);
+        }
+        tv = (TextView) holder.mView.findViewById(R.id.textStats2);
+        if(!DMLcalc.Instance().ShowTimesInList()) {
+            tv.setHeight(0);
+            picSize = picSize - i24sp;
+        } else {
+            tv.setHeight(i24sp);
+        }
+        ImageView iv = (ImageView) holder.mView.findViewById(R.id.dragonPic);
+
+        iv.setMaxHeight(picSize);
+        iv.setMinimumHeight(picSize);
+        iv.setMaxWidth(picSize);
+        iv.setMinimumWidth(picSize);
+
+
+
 //        holder.mIdView.setText(mValues.get(position).getId());
 //        holder.mContentView.setText(mValues.get(position).toString());
 //        iv.setImageResource(R.drawable.element_earth);
@@ -66,7 +95,6 @@ public class DragonListViewAdapter extends RecyclerView.Adapter<DragonListViewAd
         }
 
         DMLcalc.Instance().loadDragonIcon(holder.mItem.getId(),holder.mDragonImage);
-
 
 
         holder.mDragonName.setText(holder.mItem.toString().replace("+","").replace("&","").replace("*",""));

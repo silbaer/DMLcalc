@@ -43,6 +43,8 @@
     <string name="txt_howProgressMsg">Berechne Eltern...</string>
     <string name="txt_breedProgressTitle">Bitte warten...</string>
     <string name="txt_breedProgressMsg">Berechne Nachkommen...</string>
+
+    <!-- Texts for settings -->
     <string name="txt_vip_settings">VIP-Settings</string>
     <string name="txt_timedisplay">Zeit Anzeige</string>
     <string name="txt_DisplayVipTimes">VIP-Zeiten</string>
@@ -51,7 +53,15 @@
     <string name="txt_NotUseVipDragons">VIP Drachen nicht benutzen</string>
     <string name="txt_VipDrachen">VIP Drachen</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="txt_DragonList_settings">Drachenliste</string>
+    <string name="txt_ShowStatsInList">Schaden, Hitpoints, Goldertrag anzeigen</string>
+    <string name="txt_NotShowStatsInList">Schaden, Hitpoints, Gold nicht anzeigen</string>
+    <string name="txt_StatsInList">Stats in Liste</string>
+    <string name="txt_ShowTimesInList">Brut- und Zuchtzeit anzeigen</string>
+    <string name="txt_NotShowTimesInList">Brut- und Zuchtzeit nicht anzeigen</string>
+    <string name="txt_TimeInList">Zeiten in Liste</string>
+
+    <!--   -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="action_ddw">Wochendrache eingeben</string>
     <string name="action_ddm">Monatsdrache eingeben</string>
