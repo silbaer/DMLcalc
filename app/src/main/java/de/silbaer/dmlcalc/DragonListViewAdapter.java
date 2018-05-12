@@ -101,7 +101,7 @@ public class DragonListViewAdapter extends RecyclerView.Adapter<DragonListViewAd
         setElement(holder.mElement1,holder.mItem.getElement1());
         setElement(holder.mElement2,holder.mItem.getElement2());
         setElement(holder.mElement3,holder.mItem.getElement3());
-        holder.mDragonStats.setText(holder.mItem.getBaseHealth() + " / " + holder.mItem.getBaseAttack() + " / " + holder.mItem.getBaseGold() );
+        holder.mDragonStats.setText(holder.mItem.getStatText() );
         holder.mDragonStats2.setText(getDragonText(holder.mItem));
 
 

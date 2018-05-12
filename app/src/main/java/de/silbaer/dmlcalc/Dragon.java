@@ -197,6 +197,8 @@ public class Dragon {
     public String getBaseHealth() {return health;}
     public String getBaseGold() {return gold;}
 
+    public String getStatText() { return "HP: " + getBaseHealth() + " / Att: " + getBaseAttack() + " / Gold/h: " + getBaseGold(); }
+
     public String getElementKey() {
         String retval = "";
         int elementCount = DMLcalc.Instance().elements.size();

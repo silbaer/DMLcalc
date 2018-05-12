@@ -73,7 +73,7 @@ public class AutoColpleteDragonAdapter extends ArrayAdapter<Dragon> implements F
             setElement(mElement1,dragon.getElement1());
             setElement(mElement2,dragon.getElement2());
             setElement(mElement3,dragon.getElement3());
-            mDragonStats.setText(dragon.getBaseHealth() + " / " + dragon.getBaseAttack() + " / " + dragon.getBaseGold() );
+            mDragonStats.setText(dragon.getStatText() );
 
         }
         return view;
