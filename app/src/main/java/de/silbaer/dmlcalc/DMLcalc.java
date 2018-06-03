@@ -327,6 +327,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
         }
         _ShowStatsInList = sharedPref.getBoolean("pref_ListShowStats",true);
         _ShowTimesInList = sharedPref.getBoolean("pref_ListShowTimes",true);
+        _VipTimes = sharedPref.getBoolean("pref_timedisplay",false);
     }
     private  boolean _ShowStatsInList;
     public boolean ShowStatsInList(){
@@ -336,6 +337,8 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
     public boolean ShowTimesInList(){
         return _ShowTimesInList;
     }
+    private boolean _VipTimes;
+    public boolean VipTimes(){ return _VipTimes;}
 
 
     public interface breedingResponse{
@@ -725,6 +728,7 @@ public class DMLcalc extends Application implements SharedPreferences.OnSharedPr
             enchantDragons = true; //sharedPref.getBoolean("pref_enchantbreed",false);
             _ShowStatsInList = sharedPref.getBoolean("pref_ListShowStats",true);
             _ShowTimesInList = sharedPref.getBoolean("pref_ListShowTimes",true);
+            _VipTimes = sharedPref.getBoolean("pref_timedisplay",false);
 
 
             specialBreeds = new ArrayList<>();

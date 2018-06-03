@@ -49,9 +49,9 @@ public class breedListItemAdapter extends BaseAdapter implements AdapterView.OnI
         this.items = dragons;
         Collections.sort(items, new DragonOddComparator());
         this.context = context;
-        PREFS_NAME =  context.getResources().getString(R.string.PREFS_NAME);
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        vipTimes = sharedPref.getBoolean("pref_timedisplay",false);
+//        PREFS_NAME =  context.getResources().getString(R.string.PREFS_NAME);
+//        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        vipTimes = DMLcalc.Instance().VipTimes();//  sharedPref.getBoolean("pref_timedisplay",false);
 
     }
     @Override
