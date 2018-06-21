@@ -303,7 +303,7 @@
     <string name="dragon_chameleon">Chameleon</string>
     <string name="dragon_brunhilda">Brunhilda</string>
     <string name="dragon_armadillo">Gürteltier</string>
-    <string name="dragon_medalist">Medailliengewinner</string>
+    <string name="dragon_medalist">Medaillien</string>
     <string name="dragon_hellfire">Höllenfeuer</string>
     <string name="dragon_cockatoo">Kakadu</string>
     <string name="dragon_plushie">Plüsch</string>
@@ -469,6 +469,17 @@
     <string name="dragon_pixie_dot">Pünktchen</string>
     <string name="dragon_princess">Prinzessin</string>
     <string name="dragon_wraith">Phantom</string>
+
+    <string name="dragon_bubble">Bubble</string>
+    <string name="dragon_puzzle">Puzzle</string>
+    <string name="dragon_doomsday">Doomsday</string>
+    <string name="dragon_neon">Neon</string>
+    <string name="dragon_referee">Schiedsrichter</string>
+    <string name="dragon_masque">Masken</string>
+    <string name="dragon_warden">Warden</string>
+    <string name="dragon_scout">Auskundschafter</string>
+    <string name="dragon_furnace">Glutofen</string>
+
 
 
 </resources>

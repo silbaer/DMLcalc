@@ -473,5 +473,15 @@
     <string name="dragon_princess">Princess</string>
     <string name="dragon_wraith">Wraith</string>
 
+    <string name="dragon_bubble">Bubble</string>
+    <string name="dragon_puzzle">Puzzle</string>
+    <string name="dragon_doomsday">Doomsday</string>
+    <string name="dragon_neon">Neon</string>
+    <string name="dragon_referee">Referee</string>
+    <string name="dragon_masque">Masque</string>
+    <string name="dragon_warden">Warden</string>
+    <string name="dragon_scout">Scout</string>
+    <string name="dragon_furnace">Furnace</string>
+
 
 </resources>
